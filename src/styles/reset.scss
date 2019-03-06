@@ -1,0 +1,136 @@
+// 1 浏览器默认样式重置 +  2 elementUI样式重置
+// ------------------------------- elementUI样式重置 -------------------------------
+.el-table tbody tr:nth-child(even) td {
+    background: #f5f9fc;
+}
+.el-table td, .el-table th {
+    padding: 4px 0;
+    text-align: center;
+}
+.el-table th {
+    background: #4e96ef;
+    background: #3f627d;
+    color: white;
+}
+// 空表格改矮一点
+.el-table__empty-block {
+    min-height: 35px;
+}
+
+// warning按钮颜色不好看，改一下
+.el-button--warning {
+    background-color: #FFB300;
+    border-color: #FFB300;
+}
+.el-button--warning:focus, .el-button--warning:hover {
+    background: #FF9800;
+    border-color: #FF9800;
+}
+
+$disalbed_color: #555;
+//（一）表单元素禁用时，颜色太浅了看不清
+// 输入框
+.el-input.is-disabled .el-input__inner {
+    color: $disalbed_color;
+}
+// 多选框
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after {
+    border-color: $disalbed_color;
+}
+.el-checkbox__input.is-disabled+span.el-checkbox__label {
+    color: $disalbed_color;
+}
+// 时间范围选择器
+.el-range-editor.is-disabled input {
+    color: $disalbed_color;
+}
+// // 单选
+.el-radio__input.is-disabled+span.el-radio__label {
+    color: $disalbed_color;
+}
+.el-radio__input.is-disabled.is-checked .el-radio__inner:after {
+    background-color: #999;
+}
+// textarea
+.el-textarea.is-disabled .el-textarea__inner {
+    color: $disalbed_color;
+}
+// //（二）东西比较多的弹窗，需要挤一挤
+// .crowdedDialog {
+//     .el-dialog__body {
+//         padding-top: 10px;
+//         padding-bottom: 10px;
+//         .el-form-item {
+//             margin-bottom: 18px;
+//         }
+//     }
+//     .el-dialog__footer {
+//         padding-top: 10px;
+//         padding-bottom: 10px;
+//     }
+// }
+// //（三）东西比较多的表格，需要挤一挤
+// .el-table.crowdedTable {
+//     td, th {
+//         padding: 5px 0;
+//         div.cell {
+//             padding-left: 0;
+//             padding-right: 0;
+//         }
+//     }
+// }
+// //（四）表格文字居中
+// .el-table.centerTable {
+//     th, td {
+//         text-align: center !important;
+//     }
+// }
+// // （五）面包屑中字不能太长
+// .el-breadcrumb__inner {
+//     color: #606266;
+//     max-width: 150px;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     display: inline-block;
+// }
+
+// .x_ellipsis {
+//     width: 100%;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     display: block;
+// }
+// .el-dialog__footer{
+//     text-align:center!important;
+// }
+// ------------------------------- 浏览器默认样式重置 -------------------------------
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+ul, ol {
+    list-style: none;
+}
+a, a:hover {
+    text-decoration: none;
+    color: #000;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+label, span, input {
+    display: inline-block;
+}
+img {
+    border: none;
+}
+input[disabled], textarea[disabled], select[disabled] {
+    background: #ebebe4;
+    cursor: not-allowed;
+}

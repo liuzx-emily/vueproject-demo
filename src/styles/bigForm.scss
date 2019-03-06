@@ -1,0 +1,77 @@
+.bigForm {
+    // 这个宽度不能改，一旦改了，所有的样式都要调，js里面也要改！所以千万别改
+    width: 1000px;
+    // margin:0 auto;
+    font-size: 0;
+    .input_group {
+        margin: 10px 0;
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+    }
+    .input_group {
+        .input_group_text {
+            font-size: 14px;
+            width: 200px;
+            text-align: right;
+            display: inline-block;
+            color: #555;
+            padding-top: 9px;
+            vertical-align: top;
+        }
+        .input_group_rightcontent {
+            display: inline-block;
+            vertical-align: top;
+            width: 300px;
+            textarea{
+                resize: none;
+            }
+            .el-input-number{
+                width: 100%;
+            }
+        }
+        .input_group_rightcontent.needManualAlign{
+            position:relative;
+            top:11px;
+        }
+    }
+    /*一行分一份*/
+    .input_group.input_group_1 {
+        display: block;
+        width: 100%;
+        .input_group_rightcontent {
+            display: inline-block;
+            vertical-align: top;
+            width: 800px;
+            textarea{
+                display:block;
+                width: 100%;
+                height:80px;
+            }
+        }
+    }
+}
+
+
+// .grayTips {
+//     text-align: right;
+//     color: #aaa;
+//     font-size: 12px;
+//     margin: 15px 0;
+// }
+
+
+// .btn_map, .btn_file {
+//     width: 85px;
+//     cursor: pointer;
+//     background-color: #E0F7FA;
+//     border: 1px solid #80DEEA;
+//     line-height: 25px;
+//     font-size: 12px;
+//     text-align: center;
+//     padding: 3px 8px;
+//     color: #337ab7;
+// }
+// .btn_map>i, .btn_file>i {
+//     margin-right: 5px;
+// }

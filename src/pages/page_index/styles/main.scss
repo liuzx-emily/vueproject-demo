@@ -1,0 +1,154 @@
+$sidebar_width: 200px;
+$topbar_height: 70px;
+#topbar {
+    background: #375985;
+    height: $topbar_height;
+    /* logo */
+    .logo {
+        height: $topbar_height;
+        line-height: $topbar_height;
+        font-family: '微软雅黑';
+        color: white;
+        font-size: 26px;
+        display: inline-block;
+        vertical-align: top;
+        font-weight: normal;
+        margin: 0 20px;
+    }
+    /* 导航 */
+    nav {
+        display: inline-block;
+        a {
+            display: inline-block;
+            padding: 0 12px;
+            cursor: pointer;
+            height: 70px;
+            box-sizing: border-box;
+            i.fa {
+                display: block;
+                color: white;
+                font-size: 28px;
+                text-align: center;
+                padding: 5px;
+                margin-top: 5px;
+            }
+            span.name {
+                display: block;
+                text-align: center;
+                font-size: 14px;
+                color: white;
+                font-family: '微软雅黑';
+                margin-top: 3px;
+            }
+        }
+        a:hover, a.router-link-active {
+            background: #4e96ef;
+        }
+    }
+    // 用户box：信箱和用户信息
+    #userBox {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        &>* {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        a.router_mail {
+            margin-right: 30px;
+            i {
+                color: white;
+            }
+        }
+    }
+}
+#main_container {
+    position: fixed;
+    top: $topbar_height;
+    width: 100%;
+    bottom: 0;
+    overflow: auto;
+    #sidebar_wrap {
+        width: $sidebar_width;
+        transition: 0.3s;
+        // 下面一行不能删 是为了小屏时，sidebar_wrap宽度变小，不会出横向滚动条
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        // background: url('../img/ht-leftBar-bg.png');
+        background:#333;
+        background-size: cover;
+        #leftNav_control {
+            color: white;
+            font-family: '微软雅黑';
+            color: white;
+            text-align: right;
+            padding-right: 2px;
+            &>.inner {
+                width: 30px;
+                cursor: pointer;
+                display: inline-block;
+                text-align: center;
+                i.fa {
+                    font-size: 22px;
+                    display: block;
+                }
+                span.txt {
+                    display: block;
+                    font-size: 14px;
+                }
+            }
+        }
+        #leftNav {
+            .name_and_controlBtn {
+                a.limitless-menu-li-name {
+                    padding: 15px 0;
+                    font-family: '微软雅黑';
+                    font-size: 15px;
+                    // 未选中时
+                    &, &:focus {
+                        color: white;
+                    }
+                    // 选中时、hover时
+                    &.router-link-exact-active, &:hover {
+                        background: #4e96ef;
+                    }
+                }
+                .controlBtn {
+                    top: 15px;
+                    color: white;
+                }
+            }
+        }
+    }
+    #content_wrap {
+        margin-left: $sidebar_width;
+        background: #fff;
+        // 最小宽度和padding都不能改
+        min-width: 1000px;
+        padding: 5px;
+        height: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+    }
+}
+// ------------------------------- 侧边收缩了 -------------------------------
+
+$sidebar_width_cutted: 30px;
+#main_container.cuttedSideBar {
+    #sidebar_wrap {
+        width: $sidebar_width_cutted;
+        #leftNav {
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+    #content_wrap {
+        margin-left: $sidebar_width_cutted;
+    }
+}

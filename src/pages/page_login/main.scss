@@ -1,0 +1,51 @@
+body {
+    background: url("../../images/bg.jpg");
+}
+#loginForm {
+    width: 300px;
+    margin: 200px auto 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    // box
+    .loginForm-box {
+        margin: 20px 0;
+    }
+    // 验证码box
+    #captchaBox {
+        .el-input {
+            width: 200px;
+        }
+        img {}
+    }
+    #loginBtn {
+        width: 100%;
+        background: #f76f71;
+        color: white;
+        border: none;
+    }
+    .message-tip {
+        margin-top: 10px;
+        text-align: right;
+        color: #777;
+        font-size: 13px;
+    }
+}
+// 
+.el-input__prefix {
+    // padding: 11px 10px 0;
+    i.fa {
+        color: #f87d78;
+        font-size: 18px;
+        position: relative;
+        left: 7px;
+        top: 11px;
+        // 二维码的图比较宽，需要手动挪一下
+        &.fa-barcode {
+            font-size: 16px;
+            top: 13px;
+            left: 5px;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+/* ------------- 带侧边悬浮导航的 -------------*/
+.hasFloatingNav #main-content-floatingNav {    
+    position: fixed;
+    top: 50%;
+    right:18px;
+    margin-top: -130px;
+    width: 170px;
+    // margin-left: 10px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    background: white;
+}
+.hasFloatingNav #main-content-floatingNav>h2 {
+    color: #025964;
+    font-size: 16px;
+    padding: 5px 0;
+    // padding-left: 30px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.hasFloatingNav #main-content-floatingNav>h2>i.fa {
+    margin: 0 5px;
+    font-size: 14px;
+}
+.hasFloatingNav #main-content-floatingNav>nav {
+    // padding: 10px 0;
+}
+.hasFloatingNav #main-content-floatingNav>nav>a {
+    display: block;
+    padding: 2px 0;
+    color: #555;
+    font-size: 13px;
+    cursor: pointer;
+}
+.hasFloatingNav #main-content-floatingNav>nav>a>i.fa {
+    // margin: 0 3px;
+    margin-left: 2px;  
+    margin-right: 4px;  
+    font-size: 3px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    color: #a3ccd1;
+    vertical-align: middle;
+}
+.hasFloatingNav #main-content-realcontent {
+    display: block;
+    width: 1000px;
+    // margin-left: 230px;
+}
