@@ -22,6 +22,7 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "demo", "parentId": "ALL", "name": "demo", "icon": "magic", "uri": "/demo" },
         { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "magic", "uri": "/article" },
         { "permissionId": "xTable", "parentId": "EXAMPLE", "name": "表格", "icon": null, "uri": "/example/xTable" },
+        { "permissionId": "charts", "parentId": "EXAMPLE", "name": "图表", "icon": null, "uri": "/example/charts" },
     ]
 });
 // 用户拥有的按钮权限

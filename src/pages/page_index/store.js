@@ -12,6 +12,7 @@ let myStore = new vuex.Store({
         },
         // 所有按钮权限
         permissionBtns: [],
+        cuttedSideBar:false
     }
 });
 export default myStore;

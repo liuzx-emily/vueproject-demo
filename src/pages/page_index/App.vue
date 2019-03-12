@@ -27,8 +27,9 @@
                 <UserInfo />
             </section>
         </section>
-        <template v-if="leftNavList.length>0">
-            <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}">
+        <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}">
+            <template v-if="leftNavList.length>0">
+                <!-- <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}"> -->
                 <section id="sidebar_wrap">
                     <section id="leftNav_control">
                         <section class="inner" @click="$store.state.cuttedSideBar=!$store.state.cuttedSideBar">
@@ -40,19 +41,18 @@
                     <xLimitlessSidebarMenu :data="leftNavList" :props="props" id="leftNav" />
                 </section>
                 <router-view id="content_wrap"></router-view>
-            </section>
-        </template>
-        <template v-else>
-            <router-view id="content_wrap"></router-view>
-        </template>
+                <!-- </section> -->
+            </template>
+            <template v-else>
+                <router-view id="content_wrap" style="margin-left:0"></router-view>
+            </template>
+        </section>
     </div>
 </template>
 <script>
 // 全局
 import '~/styles/reset.scss'
 import '~/styles/common.scss'
-import _ from 'lodash'
-import xTools from '~/utils/xTools.js'
 import xLimitlessSidebarMenu from '~/components/xLimitlessSidebarMenu/index.vue';
 // 本页
 import './styles/main.scss'
@@ -85,7 +85,7 @@ export default {
         },
         // 侧边导航
         leftNavList() {
-            let aaaaa = _.filter(this.navList, item => item.uri == this.currentTopNavPath);
+            let aaaaa = this._.filter(this.navList, item => item.uri == this.currentTopNavPath);
             if (aaaaa[0] && aaaaa[0].child && aaaaa[0].child.length > 0) {
                 return aaaaa[0].child;
             } else {
@@ -95,6 +95,7 @@ export default {
     },
     mounted() {
         this.jumpToFirstNav();
+        this.calculateHeight();
     },
     data: function() {
         return {
@@ -108,6 +109,17 @@ export default {
         }
     },
     methods: {
+        // 计算 #main_container的高度
+        calculateHeight() {
+            let func = () => {
+                let h1 = this.xTools.getWindowSize().height;
+                let h2 = document.getElementById('topbar').offsetHeight;
+                let h3 = h1 - h2;
+                document.getElementById('main_container').style.height = h3 + "px";
+            };
+            func();
+            window.onresize = func;
+        },
         // 如果访问本组件的根地址，自动跳转到第一个菜单
         jumpToFirstNav() {
             if (this.$route.path == this.currentTopNavPath) {
@@ -149,7 +161,7 @@ export default {
                 params: {}
             }).then((response) => {
                 const res = response.data;
-                const navList = xTools.arrayToTree(res.data, { before_idkey: "permissionId", before_parentkey: "parentId", after_childkey: 'child' });
+                const navList = this.xTools.arrayToTree(res.data, { before_idkey: "permissionId", before_parentkey: "parentId", after_childkey: 'child' });
                 // 路由跳转
                 if (navList && navList.length > 0) {
                     this.navList = navList;
@@ -168,7 +180,7 @@ export default {
                 params: {}
             }).then((response) => {
                 const res = response.data;
-                this.$store.state.permissionBtns = _.map(res.data, "code");
+                this.$store.state.permissionBtns = this._.map(res.data, "code");
             }).catch(error => {});
         }
     }

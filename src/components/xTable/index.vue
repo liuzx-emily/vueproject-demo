@@ -8,7 +8,7 @@
         </el-table>
         <!-- 分页 -->
         <template v-if="enablePaging">
-            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageNum" :total="count" :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next">
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageNum" :total="count" :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next" style="margin-top:5px;">
             </el-pagination>
         </template>
     </section>

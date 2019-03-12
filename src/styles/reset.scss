@@ -26,7 +26,10 @@
     background: #FF9800;
     border-color: #FF9800;
 }
-
+// tabs页签切换中，内容太宽的都直接被隐藏了，这样不行！
+.el-tabs__content {
+    overflow: auto;
+}
 $disalbed_color: #555;
 //（一）表单元素禁用时，颜色太浅了看不清
 // 输入框

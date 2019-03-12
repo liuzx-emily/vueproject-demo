@@ -1,48 +1,58 @@
 $sidebar_width: 200px;
-$topbar_height: 70px;
+$topbar_height: 60px;
+$highlight_color:#fa5f90;
+body{
+    min-width:1300px;
+}
 #topbar {
-    background: #375985;
+    position: relative;
+    // 如果不设置z-index，那么box-shadow显示不出来，被下面的主内容盖住了
+    z-index: 1;
+    background: #fff;
     height: $topbar_height;
+    box-shadow: 0 0 5px #999;
     /* logo */
     .logo {
         height: $topbar_height;
         line-height: $topbar_height;
         font-family: '微软雅黑';
         color: white;
-        font-size: 26px;
+        color: $highlight_color;
+        font-size: 20px;
         display: inline-block;
         vertical-align: top;
-        font-weight: normal;
+        font-weight: bold;
         margin: 0 20px;
     }
     /* 导航 */
     nav {
-        display: inline-block;
+        position: absolute;
+        right: 200px;
+        top: 0;
         a {
             display: inline-block;
             padding: 0 12px;
             cursor: pointer;
-            height: 70px;
+            height: $topbar_height;
             box-sizing: border-box;
+            color: $highlight_color;
             i.fa {
                 display: block;
-                color: white;
-                font-size: 28px;
+                font-size: 20px;
                 text-align: center;
-                padding: 5px;
-                margin-top: 5px;
+                margin: 10px 0 5px;
             }
             span.name {
                 display: block;
                 text-align: center;
-                font-size: 14px;
-                color: white;
+                font-size: 13px;
                 font-family: '微软雅黑';
                 margin-top: 3px;
             }
         }
         a:hover, a.router-link-active {
-            background: #4e96ef;
+            background: $highlight_color;
+            color: white;
         }
     }
     // 用户box：信箱和用户信息
@@ -63,10 +73,8 @@ $topbar_height: 70px;
     }
 }
 #main_container {
-    position: fixed;
-    top: $topbar_height;
+    position: relative;
     width: 100%;
-    bottom: 0;
     overflow: auto;
     #sidebar_wrap {
         width: $sidebar_width;
@@ -80,7 +88,7 @@ $topbar_height: 70px;
         left: 0;
         bottom: 0;
         // background: url('../img/ht-leftBar-bg.png');
-        background:#333;
+        background: #333;
         background-size: cover;
         #leftNav_control {
             color: white;
@@ -115,7 +123,7 @@ $topbar_height: 70px;
                     }
                     // 选中时、hover时
                     &.router-link-exact-active, &:hover {
-                        background: #4e96ef;
+                        background: $highlight_color;
                     }
                 }
                 .controlBtn {
@@ -127,10 +135,8 @@ $topbar_height: 70px;
     }
     #content_wrap {
         margin-left: $sidebar_width;
-        background: #fff;
-        // 最小宽度和padding都不能改
-        min-width: 1000px;
-        padding: 5px;
+        background: #fdfcfa;
+        padding: 10px;
         height: 100%;
         overflow: auto;
         box-sizing: border-box;

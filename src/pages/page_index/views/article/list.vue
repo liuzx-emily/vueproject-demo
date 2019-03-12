@@ -11,10 +11,10 @@
                 <span class="text">
                     发布时间：
                 </span>
-                <el-date-picker v-model="fakesearchparam.startTime" type="date" value-format="timestamp" style="width:140px;">
+                <el-date-picker v-model="fakesearchparam.startTime" type="date" value-format="timestamp">
                 </el-date-picker>
                 至
-                <el-date-picker v-model="fakesearchparam.endTime_unformatted" type="date" value-format="yyyy-MM-dd" style="width:140px;">
+                <el-date-picker v-model="fakesearchparam.endTime_unformatted" type="date" value-format="yyyy-MM-dd">
                 </el-date-picker>
             </div>
             <section class="box-btns">

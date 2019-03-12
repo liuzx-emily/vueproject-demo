@@ -1,6 +1,29 @@
 import _ from 'lodash';
 
 export default {
+    // 保留几位小数？
+    accurateToDecimalPlace(value, len = 2) {
+        debugger
+        // "0.72459" => 0.72459
+        value = parseFloat(value);
+        // 0.72459 => "0.72"
+        value = value.toFixed(len);
+        // "0.72" => 0.72
+        value = parseFloat(value);
+        return value;
+    },
+    getWindowSize() {
+        return {
+            width: Math.max(
+                document.documentElement.clientWidth,
+                window.innerWidth
+            ),
+            height: Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight
+            )
+        }
+    },
     checkIsNull(value) {
         if (value === undefined || value === null || value === "") {
             return true;

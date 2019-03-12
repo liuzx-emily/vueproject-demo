@@ -37,6 +37,11 @@ const routes = [
         path: "/example/xTable",
         component: () => import('./views/example/xTable.vue')
     },
+    // charts
+    {
+        path: "/example/charts",
+        component: () => import('./views/example/charts/main.vue')
+    },
 
     // ---------------------- 系统管理 ----------------------
     // 单位管理

@@ -16,7 +16,7 @@
             font-size: 14px;
         }
         .el-input {
-            width: 150px;
+            width: 200px;
             .el-input__inner {
                 height: 32px;
                 line-height: 32px;
@@ -25,9 +25,13 @@
                 top: -4px;
             }
         }
+        // 日期选择
+        .el-input.el-date-editor--date{
+            width: 150px;
+        }
     }
     .box-wa+.box-btns {
-        margin-left: 50px;
+        margin-left: 50px; 
     }
     .box-btns {
         display: inline-block;
@@ -38,4 +42,14 @@
             padding: 8px 15px;
         }
     }
+}
+// 有阴影的box
+.box-with-shadow {
+    width: 98%;
+    margin: 10px auto;
+    padding: 10px;
+    // text-align: center;
+    background: #fff;
+    box-shadow: 0 0 6px #999;
+    border-radius: 4px;
 }
