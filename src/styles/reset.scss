@@ -1,21 +1,5 @@
-// 1 浏览器默认样式重置 +  2 elementUI样式重置
 // ------------------------------- elementUI样式重置 -------------------------------
-.el-table tbody tr:nth-child(even) td {
-    background: #f5f9fc;
-}
-.el-table td, .el-table th {
-    padding: 4px 0;
-    text-align: center;
-}
-.el-table th {
-    background: #4e96ef;
-    background: #3f627d;
-    color: white;
-}
-// 空表格改矮一点
-.el-table__empty-block {
-    min-height: 35px;
-}
+
 
 // warning按钮颜色不好看，改一下
 .el-button--warning {
@@ -72,22 +56,6 @@ $disalbed_color: #555;
 //         padding-bottom: 10px;
 //     }
 // }
-// //（三）东西比较多的表格，需要挤一挤
-// .el-table.crowdedTable {
-//     td, th {
-//         padding: 5px 0;
-//         div.cell {
-//             padding-left: 0;
-//             padding-right: 0;
-//         }
-//     }
-// }
-// //（四）表格文字居中
-// .el-table.centerTable {
-//     th, td {
-//         text-align: center !important;
-//     }
-// }
 // // （五）面包屑中字不能太长
 // .el-breadcrumb__inner {
 //     color: #606266;
@@ -120,8 +88,8 @@ ul, ol {
     list-style: none;
 }
 a, a:hover {
-    text-decoration: none;
-    color: #000;
+    // text-decoration: none;
+    // color: #000;
 }
 table {
     border-collapse: collapse;

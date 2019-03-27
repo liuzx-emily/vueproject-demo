@@ -1,7 +1,7 @@
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
         <!-- 表格 -->
-        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" border stripe @sort-change="sortChange">
+        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" @sort-change="sortChange" :class="[tableClassColor,tableClassSize,tableClassAlign]">
             <!-- 多选列 -->
             <el-table-column type="selection" v-if="enableCheckbox"></el-table-column>
             <slot></slot>
@@ -32,7 +32,20 @@ export default {
         // 默认排序
         defaultsort: {
             default: () => { return { sort: "", order: "" } }
-        }
+        },
+        // ------------ 样式class -------------------
+        tableClassColor: {
+            type: String,
+            default: "color-common"
+        },
+        tableClassSize: {
+            type: String,
+            default: "size-common"
+        },
+        tableClassAlign: {
+            type: String,
+            default: "align-common"
+        },
     },
     data() {
         return {

@@ -23,8 +23,7 @@
 </template>
 <script>
 // 全局
-import _ from 'lodash'
-import xTools from '~/utils/xTools.js'
+import "~/styles/reset.scss";
 // 本页
 import './styles/main.scss'
 export default {
@@ -47,7 +46,7 @@ export default {
             }).then((response) => {
                 const res = response.data;
                 if (res.code == 1) {
-                    let nav = _.cloneDeep(res.data);
+                    let nav = this._.cloneDeep(res.data);
                     nav.unshift({
                         "name": "首页",
                         "path": "/index"

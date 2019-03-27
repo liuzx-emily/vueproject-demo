@@ -2,15 +2,19 @@ import Mock from 'mockjs'
 // 文章列表
 Mock.mock(/\/example\/xTable.htmls/, 'get', {
     "data": [
-        { "id": "1", "name": "名称A", "time":1527292800000,"number": 70 },
-        { "id": "2", "name": "名称B", "time":1528761600000,"number": 150 },
-        { "id": "3", "name": "名称C", "time":1536451200000,"number": 15 },
-        { "id": "4", "name": "名称D", "time":1527292800000,"number": 210 },
-        { "id": "5", "name": "名称E", "time":1527292800000,"number": 55 },
-        { "id": "6", "name": "名称F", "time":1527292800000,"number": 36 },
-        { "id": "7", "name": "名称G", "time":1527292800000,"number": 15 }
+        { "id": "1", "name": "名称A", "gender": 1, "select1": 1, "time": 1527292800000, "number": 70 },
+        { "id": "2", "name": "名称B", "gender": 0, "select1": 2, "time": 1528761600000, "number": 150 },
+        { "id": "3", "name": "名称C", "gender": 1, "select1": 2, "time": 1536451200000, "number": 15 },
+        { "id": "4", "name": "名称D", "gender": 1, "select1": 1, "time": 1527292800000, "number": 210 },
+        { "id": "5", "name": "名称E", "gender": 0, "select1": 2, "time": 1527292800000, "number": 55 },
+        { "id": "6", "name": "名称F", "gender": 1, "select1": 1, "time": 1527292800000, "number": 36 },
+        { "id": "7", "name": "名称G", "gender": 1, "select1": 1, "time": 1527292800000, "number": 15 }
     ],
     "count": 7
+});
+// 通用的一个假接口，返回
+Mock.mock(/\/example\/fake_common.htmls/, 'post', {
+    "code": 1
 });
 // // 详情
 // Mock.mock(/\/article\/detail.htmls/, 'get', {

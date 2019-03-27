@@ -1,17 +1,26 @@
 <template>
     <ul class="limitless-menu-ul">
         <li v-for="(item,index) in formattedData" class="limitless-menu-li" :key="index">
-            <section class="name_and_controlBtn">
-                <!-- 说明：在这里加padding，是为了背景颜色覆盖一整行。
-                    如果在外层的 li 上加padding，那么它的子级的背景颜色就不是一整行了。 -->
-                <router-link class="limitless-menu-li-name" :to="item[urlKey]" :style="paddingStyle"> {{item.name}} </router-link>
-                <span class="controlBtn" v-if="item.hasChild" @click="item.showChild = !item.showChild">
-                    <i class="fa fa-angle-up" v-if="item.showChild"></i>
-                    <i class="fa fa-angle-down" v-else></i>
-                </span>
-            </section>
+            <!-- 有子级： -->
             <template v-if="item.hasChild">
+                <section class="name_and_controlBtn">
+                    <!-- 说明：在这里加padding，是为了背景颜色覆盖一整行。
+                    如果在外层的 li 上加padding，那么它的子级的背景颜色就不是一整行了。 -->
+                    <a class="limitless-menu-li-name" @click="item.showChild = !item.showChild" :style="paddingStyle"> {{item.name}} </a>
+                    <span class="controlBtn" v-if="item.hasChild" @click="item.showChild = !item.showChild">
+                        <i class="fa fa-angle-up" v-if="item.showChild"></i>
+                        <i class="fa fa-angle-down" v-else></i>
+                    </span>
+                </section>
                 <submenu :data="item.child" :urlKey="urlKey" :level="level+1" v-show="item.showChild"></submenu>
+            </template>
+            <!-- 没有子级 -->
+            <template v-else>
+                <section class="name_and_controlBtn">
+                    <!-- 说明：在这里加padding，是为了背景颜色覆盖一整行。
+                    如果在外层的 li 上加padding，那么它的子级的背景颜色就不是一整行了。 -->
+                    <router-link class="limitless-menu-li-name" :to="item[urlKey]" :style="paddingStyle"> {{item.name}} </router-link>
+                </section>
             </template>
         </li>
     </ul>

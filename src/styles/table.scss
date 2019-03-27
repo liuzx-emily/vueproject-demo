@@ -1,0 +1,37 @@
+// ------------------- 通用 -------------------
+.el-table {
+    // 空表格改矮一点
+    .el-table__empty-block {
+        min-height: 35px;
+    }
+}
+// 颜色
+.el-table.color-common {
+    // 隔行变色
+    tbody tr:nth-child(even) td {
+        background: #f5f9fc;
+    }
+    td, th {}
+    th {
+        background: #3f627d;
+        color: white;
+    }
+}
+// 大小
+.el-table.size-common {
+    td, th {
+        padding: 4px 0;
+    }
+}
+
+// 对齐方式
+.el-table.align-common {
+    td, th {
+        text-align: center;
+    }
+}
+.el-table.left-align {
+    td, th {
+        text-align: left;
+    }
+}

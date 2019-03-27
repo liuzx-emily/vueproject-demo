@@ -21,17 +21,44 @@ import 'element-ui/lib/theme-chalk/index.css';
 // font-awesome
 import 'font-awesome/css/font-awesome.css';
 
-// lodash
+// 注册方法库
 import _ from 'lodash'
-Vue.prototype._ = _
-
-// xTools
 import xTools from '~/utils/xTools.js'
+Vue.prototype._ = _
 Vue.prototype.xTools = xTools
 
-// echarts（如果是在组件里单独引用，那么记得要在组件中注册components。如果在这里引用，那么就不需要注册components了）
+// echarts
 import echarts from 'echarts'
 Vue.prototype.echarts = echarts
+
+// swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper, {
+    pagination: {
+        el: '.swiper-pagination'
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    },
+});
+
+
+
+// 注册常用组件和模块
+import xTable from '~/components/xTable/index.vue'
+import xTreeTable from '~/components/xTreeTable/index.vue';
+import xEditor from "~/components/xEditor/index_wangeditor.vue";
+import xUploadAttachment from "~/components/xUploadAttachment/index.vue";
+import pickYear from "~/modules/xFormItem/pickYear.vue";
+import pickDateRange from "~/modules/xFormItem/pickDateRange.vue";
+Vue.component("xTable", xTable)
+Vue.component("xTreeTable", xTreeTable)
+Vue.component("xEditor", xEditor)
+Vue.component("xUploadAttachment", xUploadAttachment)
+Vue.component("pickYear", pickYear)
+Vue.component("pickDateRange", pickDateRange)
 
 Vue.config.productionTip = false;
 

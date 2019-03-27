@@ -22,7 +22,7 @@
             </el-table-column>
         </xTreeTable>
         <!-- 弹窗 -->
-        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="500px" :modal-append-to-body='false'>
+        <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="500px" :modal-append-to-body='true'>
             <el-form ref="dialogForm1" label-width="80px" size="medium" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent>
                 <el-form-item label="单位名称" prop="name">
                     <el-input v-model="dialogData.name"></el-input>
@@ -54,11 +54,8 @@
 </template>
 <script>
 // 全局
-import _ from 'lodash';
-import xTools from '~/utils/xTools.js'
-import xTreeTable from '~/components/xTreeTable/index.vue';
 export default {
-    components: { xTreeTable },
+    components: { },
     data() {
         // 用户重名验证
         var nameValidation = (rule, value, callback) => {
@@ -121,7 +118,7 @@ export default {
             return this.dialogType == 3;
         },
         dialog_parentTree() {
-            return _.cloneDeep(this.tableData);
+            return this._.cloneDeep(this.tableData);
         }
     },
     mounted() {
@@ -130,7 +127,7 @@ export default {
     methods: {
         // 检查按钮权限
         checkBtn(code) {
-            var btnPermmisionCheck = xTools.checkBtn(this.$store, 'dept:btn:' + code);
+            var btnPermmisionCheck = this.xTools.checkBtn(this.$store, 'dept:btn:' + code);
             return btnPermmisionCheck;
         },
         // 表格treetable
@@ -142,7 +139,7 @@ export default {
                 params: { type: 23 }
             }).then((response) => {
                 const res = response.data;
-                this.tableData = xTools.arrayToTree(res.data, {
+                this.tableData = this.xTools.arrayToTree(res.data, {
                     before_idkey: "deptId",
                     before_parentkey: "parentId",
                     after_childkey: "children"
@@ -214,7 +211,7 @@ export default {
             this.$refs.dialogForm1.validate(valid => {
                 if (valid) {
                     // ajax请求
-                    let param = _.cloneDeep(this.dialogData);
+                    let param = this._.cloneDeep(this.dialogData);
                     this.loading = true;
                     let url = { 1: "add", 2: "edit" } [this.dialogType];
                     this.xAxios({
@@ -264,7 +261,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 let param = {
-                    ids: _.map(data, "deptId").join("-"),
+                    ids: this._.map(data, "deptId").join("-"),
                 };
                 this.loading = true;
                 this.xAxios({

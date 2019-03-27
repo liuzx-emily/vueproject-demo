@@ -97,10 +97,7 @@
 </template>
 <script>
 // 全局
-import _ from 'lodash'
-import xTools from '~/utils/xTools.js'
 import { xElementRules } from '~/utils/xValidate.js'
-import xTable from '~/components/xTable/index.vue'
 // 本页
 const dialogData_default = {
     userId: "",
@@ -115,7 +112,7 @@ const dialogData_default = {
 };
 export default {
     name: "user",
-    components: { xTable },
+    components: { },
     data() {
         // 用户重名验证，西文验证
         var nameValidation = (rule, value, callback) => {
@@ -147,7 +144,7 @@ export default {
             dialogVisible: false,
             // 1新增 2编辑 3查看
             dialogType: 1,
-            dialogData: _.cloneDeep(dialogData_default),
+            dialogData: this._.cloneDeep(dialogData_default),
             // 数据校验
             dialogRule1: {
                 // 账号
@@ -215,7 +212,7 @@ export default {
     methods: {
         // 检查按钮权限
         checkBtn(code) {
-            var btnPermmisionCheck = xTools.checkBtn(this.$store, 'user:btn:' + code);
+            var btnPermmisionCheck = this.xTools.checkBtn(this.$store, 'user:btn:' + code);
             return btnPermmisionCheck;
         },
         // 获取部门树数据
@@ -229,7 +226,7 @@ export default {
                 }
             }).then((response) => {
                 const res = response.data;
-                this.deptTreeData = xTools.arrayToTree(res.data, {
+                this.deptTreeData = this.xTools.arrayToTree(res.data, {
                     before_idkey: "deptId",
                     before_parentkey: "parentId",
                     after_childkey: 'children'
@@ -273,7 +270,7 @@ export default {
             }).then((response) => {
                 const res = response.data;
                 // 数据格式化
-                self.tableData = _.map(res.data, (item) => {
+                self.tableData = this._.map(res.data, (item) => {
                     return item;
                 });
                 self.count = res.count;
@@ -353,7 +350,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 let param = {
-                    ids: _.map(data, "userId").join("-"),
+                    ids: this._.map(data, "userId").join("-"),
                 };
                 this.loading = true;
                 this.xAxios({
@@ -382,7 +379,7 @@ export default {
             this.dialogType = type;
             if (type == 1) {
                 // 新增
-                this.dialogData = _.cloneDeep(dialogData_default);
+                this.dialogData = this._.cloneDeep(dialogData_default);
                 // 部门初始化为当前选中部门
                 this.dialogData.deptId = this.$refs.leftTree.getCurrentNode().deptId;
                 this.dialogData.deptName = this.$refs.leftTree.getCurrentNode().name;
@@ -429,7 +426,7 @@ export default {
             this.$refs.dialogForm1.validate(valid => {
                 if (valid) {
                     // ajax请求
-                    let param = _.cloneDeep(this.dialogData);
+                    let param = this._.cloneDeep(this.dialogData);
                     // 新增时，赋予默认密码
                     if (this.dialogType == 1) {
                         param.password = this.DEFAULT_PASSWORD;

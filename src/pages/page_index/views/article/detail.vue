@@ -100,10 +100,8 @@
   </section>
 </template>
 <script>
-import xEditor from "~/components/xEditor/index_wangeditor.vue";
-import xUploadAttachment from "~/components/xUploadAttachment/index.vue";
 export default {
-  components: { xEditor, xUploadAttachment },
+  components: { },
   data() {
     return {
       loading: false,

@@ -71,7 +71,7 @@ module.exports = {
     // 解决开发阶段跨域问题
     devServer: {
         // 端口号
-        port: "9526",
+        port: "9979",
         // proxy: {
         //     '/kitty': {
         //         target: 'http://10.10.10.22/',

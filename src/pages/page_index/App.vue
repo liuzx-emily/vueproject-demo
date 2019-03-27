@@ -2,30 +2,32 @@
     <div id="app">
         <section id="topbar">
             <!-- logo -->
-            <section class="logo">
-                一个很长很长很长很长很长的标题
-            </section>
-            <!-- 导航 -->
-            <nav>
-                <router-link v-for="(item,index) in navList" :key="item.uri" :to="item.uri">
-                    <!-- <i class="fa" :class="item.icon"></i> -->
-                    <i class="fa" :class="'fa-'+item.icon"></i>
-                    <span class="name">{{item.name}}</span>
-                </router-link>
-                <a href="./portal.html">
-                    <i class="fa fa-umbrella"></i>
-                    <span class="name">门户首页</span>
-                </a>
-            </nav>
-            <!-- 用户 -->
-            <section id="userBox">
-                <!-- <router-link key="/mailbox" to="/mailbox" title="信箱" class="router_mail">
-                    <el-badge :value="$store.state.msgNum" :hidden="$store.state.msgNum==0">
-                        <i class="fa fa-envelope-o" style="font-size:20px"></i>
-                    </el-badge>
-                </router-link> -->
+            <section class="logo">一个很长很长很长很长很长的标题</section>
+            <!-- 包在 .rightAlignContainer 中的内容会靠右对齐 -->
+            <div class="rightAlignContainer">
+                <!-- 导航 -->
+                <nav>
+                    <router-link v-for="(item) in navList" :key="item.uri" :to="item.uri">
+                        <i class="fa" :class="'fa-'+item.icon"></i>
+                        <span class="name">{{item.name}}</span>
+                    </router-link>
+                    <a href="./portal.html">
+                        <i class="fa fa-umbrella"></i>
+                        <span class="name">门户首页</span>
+                    </a>
+                </nav>
+                <!-- 信箱 -->
+                <section class="mailBox">
+                    <router-link key="/mailbox" to="/mailbox" title="信箱">
+                        <el-badge :value="$store.state.msgNum" :hidden="$store.state.msgNum==0">
+                            <i class="fa fa-envelope-o"></i>
+                        </el-badge>
+                    </router-link>
+                </section>
+                <!-- 用户信息 -->
                 <UserInfo />
-            </section>
+            </div>
+            <!-- 导航 -->
         </section>
         <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}">
             <template v-if="leftNavList.length>0">
@@ -51,18 +53,16 @@
 </template>
 <script>
 // 全局
-import '~/styles/reset.scss'
-import '~/styles/common.scss'
-import xLimitlessSidebarMenu from '~/components/xLimitlessSidebarMenu/index.vue';
+import "~/styles/reset.scss";
+import "~/styles/common.scss";
+import "~/styles/table.scss";
+import xLimitlessSidebarMenu from "~/components/xLimitlessSidebarMenu/index.vue";
 // 本页
-import './styles/main.scss'
-import UserInfo from './modules/xUserInfo/index.vue';
+import "./styles/main.scss";
+import UserInfo from "./modules/xUserInfo/index.vue";
 export default {
-    name: 'app',
-    components: {
-        UserInfo,
-        xLimitlessSidebarMenu
-    },
+    name: "app",
+    components: { UserInfo, xLimitlessSidebarMenu },
     created() {
         this.getUserInfo();
     },
@@ -72,7 +72,7 @@ export default {
         },
         leftNavList() {
             this.jumpToFirstNav();
-        },
+        }
     },
     computed: {
         currentTopNavPath() {
@@ -85,17 +85,20 @@ export default {
         },
         // 侧边导航
         leftNavList() {
-            let aaaaa = this._.filter(this.navList, item => item.uri == this.currentTopNavPath);
-            if (aaaaa[0] && aaaaa[0].child && aaaaa[0].child.length > 0) {
-                return aaaaa[0].child;
+            let currentTopNav_and_children = this._.filter(
+                this.navList,
+                item => item.uri == this.currentTopNavPath
+            );
+            if (currentTopNav_and_children[0] && currentTopNav_and_children[0].child && currentTopNav_and_children[0].child.length > 0) {
+                return currentTopNav_and_children[0].child;
             } else {
                 return [];
             }
         }
     },
     mounted() {
-        this.jumpToFirstNav();
         this.calculateHeight();
+        this.jumpToFirstNav();
     },
     data: function() {
         return {
@@ -104,18 +107,18 @@ export default {
             props: {
                 before_idkey: "permissionId",
                 before_parentkey: "parentId",
-                urlKey: "uri",
+                urlKey: "uri"
             }
-        }
+        };
     },
     methods: {
         // 计算 #main_container的高度
         calculateHeight() {
             let func = () => {
                 let h1 = this.xTools.getWindowSize().height;
-                let h2 = document.getElementById('topbar').offsetHeight;
+                let h2 = document.getElementById("topbar").offsetHeight;
                 let h3 = h1 - h2;
-                document.getElementById('main_container').style.height = h3 + "px";
+                document.getElementById("main_container").style.height = h3 + "px";
             };
             func();
             window.onresize = func;
@@ -123,7 +126,11 @@ export default {
         // 如果访问本组件的根地址，自动跳转到第一个菜单
         jumpToFirstNav() {
             if (this.$route.path == this.currentTopNavPath) {
-                if (this.leftNavList && this.leftNavList[0] && this.leftNavList[0].uri) {
+                if (
+                    this.leftNavList &&
+                    this.leftNavList[0] &&
+                    this.leftNavList[0].uri
+                ) {
                     this.$router.push(this.leftNavList[0].uri);
                 }
             }
@@ -131,57 +138,67 @@ export default {
         // 获取菜单数据，并且自动跳转到第一个菜单
         getUserInfo() {
             this.xAxios({
-                method: 'get',
-                url: BASE_PATH + '/user/userStatus.htmls',
-            }).then((response) => {
-                const res = response.data;
-                if (res.code == "1") {
-                    // 已登录
-                    let userInfo = {
-                        id: res.data.userId,
-                        name: res.data.realname,
-                    };
-                    this.$store.state.userInfo = userInfo;
-                    // 获取菜单数据，并且自动跳转到第一个菜单
-                    this.getMenuData();
-                    this.getPermissionBtnData();
-                } else {
-                    // 未登录                    
-                    window.location.href = "./portal.html";
-                }
-            }).catch(error => {
-                // console.log(error);
-            });
+                    method: "get",
+                    url: BASE_PATH + "/user/userStatus.htmls"
+                })
+                .then(response => {
+                    const res = response.data;
+                    if (res.code == "1") {
+                        // 已登录
+                        let userInfo = {
+                            id: res.data.userId,
+                            name: res.data.realname
+                        };
+                        this.$store.state.userInfo = userInfo;
+                        // 获取菜单数据，并且自动跳转到第一个菜单
+                        this.getMenuData();
+                        this.getPermissionBtnData();
+                    } else {
+                        // 未登录
+                        window.location.href = "./portal.html";
+                    }
+                })
+                .catch(error => {
+                    // console.log(error);
+                });
         },
         // 获取菜单数据，并且自动跳转到第一个菜单
         getMenuData() {
             this.xAxios({
-                method: 'get',
-                url: BASE_PATH + '/permission/nav.htmls',
-                params: {}
-            }).then((response) => {
-                const res = response.data;
-                const navList = this.xTools.arrayToTree(res.data, { before_idkey: "permissionId", before_parentkey: "parentId", after_childkey: 'child' });
-                // 路由跳转
-                if (navList && navList.length > 0) {
-                    this.navList = navList;
-                    // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
-                    if (this.$route.path == "/") {
-                        this.$router.push(navList[0].uri);
+                    method: "get",
+                    url: BASE_PATH + "/permission/nav.htmls",
+                    params: {}
+                })
+                .then(response => {
+                    const res = response.data;
+                    const navList = this.xTools.arrayToTree(res.data, {
+                        before_idkey: "permissionId",
+                        before_parentkey: "parentId",
+                        after_childkey: "child"
+                    });
+                    // 路由跳转
+                    if (navList && navList.length > 0) {
+                        this.navList = navList;
+                        // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
+                        if (this.$route.path == "/") {
+                            this.$router.push(navList[0].uri);
+                        }
                     }
-                }
-            }).catch(error => {});
+                })
+                .catch(error => {});
         },
         // 获取按钮权限数据
         getPermissionBtnData() {
             this.xAxios({
-                method: 'get',
-                url: BASE_PATH + '/permission/btn.htmls',
-                params: {}
-            }).then((response) => {
-                const res = response.data;
-                this.$store.state.permissionBtns = this._.map(res.data, "code");
-            }).catch(error => {});
+                    method: "get",
+                    url: BASE_PATH + "/permission/btn.htmls",
+                    params: {}
+                })
+                .then(response => {
+                    const res = response.data;
+                    this.$store.state.permissionBtns = this._.map(res.data, "code");
+                })
+                .catch(error => {});
         }
     }
 };

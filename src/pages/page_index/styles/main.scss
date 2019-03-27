@@ -1,73 +1,126 @@
 $sidebar_width: 200px;
 $topbar_height: 60px;
-$highlight_color:#fa5f90;
-body{
-    min-width:1300px;
+// $highlight_color:#fa5f90;
+$highlight_color: #2196f3;
+body {
+    min-width: 1300px;
 }
 #topbar {
     position: relative;
-    // 如果不设置z-index，那么box-shadow显示不出来，被下面的主内容盖住了
-    z-index: 1;
     background: #fff;
     height: $topbar_height;
+    color: $highlight_color;
+    // 如果不设置z-index，那么box-shadow显示不出来，会被下面的主内容盖住了。
+    z-index: 1;
     box-shadow: 0 0 5px #999;
-    /* logo */
+    // logo标题
     .logo {
-        height: $topbar_height;
-        line-height: $topbar_height;
-        font-family: '微软雅黑';
-        color: white;
-        color: $highlight_color;
-        font-size: 20px;
         display: inline-block;
-        vertical-align: top;
-        font-weight: bold;
-        margin: 0 20px;
+        // 字号为20px的文字，高约26px。如果字号大小改了，这里也要改
+        padding-top: ($topbar_height - 26px)/2;
+        font:{
+            family:"微软雅黑";
+            size:20px;
+            weight:bold;
+        }
     }
-    /* 导航 */
-    nav {
+    // 靠右对齐
+    .rightAlignContainer {
         position: absolute;
-        right: 200px;
+        right: 0;
         top: 0;
+        &>* {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+    // 导航菜单
+    nav {
+        margin-right: 30px;
+        // 每个菜单
         a {
             display: inline-block;
-            padding: 0 12px;
-            cursor: pointer;
+            text-decoration: none;
             height: $topbar_height;
-            box-sizing: border-box;
+            padding-left: 12px;
+            padding-right: 12px;
             color: $highlight_color;
+            cursor: pointer;
+            // 图标
             i.fa {
                 display: block;
-                font-size: 20px;
                 text-align: center;
                 margin: 10px 0 5px;
+                font-size: 20px;
             }
+            // 名称
             span.name {
                 display: block;
                 text-align: center;
-                font-size: 13px;
-                font-family: '微软雅黑';
                 margin-top: 3px;
+                font-size: 13px;
+                font-family: "微软雅黑";
             }
         }
-        a:hover, a.router-link-active {
+        // 选中、hover时的效果
+        a:hover,
+        a.router-link-active {
             background: $highlight_color;
             color: white;
         }
     }
-    // 用户box：信箱和用户信息
-    #userBox {
-        position: absolute;
-        right: 20px;
-        top: 0;
-        &>* {
-            display: inline-block;
-            vertical-align: middle;
+    // 信箱
+    .mailBox {
+        margin-right: 30px;
+        i.fa-envelope-o {
+            color: $highlight_color;
+            // 字号为20px的图标，高约20px。如果字号大小改了，这里也要改
+            padding-top: ($topbar_height - 20px)/2;
+            font-size: 20px;
         }
-        a.router_mail {
-            margin-right: 30px;
-            i {
-                color: white;
+    }
+    // 用户box
+    #userBox {
+        margin-right: 10px;
+        // 这里要用行高，而不能用padding-top来控制位置。原因是：这里有一个hover效果，如果用padding-top来控制。那么在下半部分没有办法触发hover。
+        height: $topbar_height;
+        line-height: $topbar_height;
+        font-size: 16px;
+        .userinfo_username {
+            cursor: pointer;
+            font-size: 14px;
+        }
+        i.fa-caret-down {
+            margin-left: 10px;
+        }
+        &:hover ul {
+            display: block;
+        }
+        ul {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 5px;
+            width: 120px;
+            z-index: 999;
+            box-shadow: #aaa 2px 3px 10px 0;
+            border-radius: 4px;
+            li {
+                line-height: 20px;
+                border-top: 1px solid #c4d7d9;
+                background: #fff;
+                text-align: left;
+                padding: 12px 8px;
+                color: $highlight_color;
+                font-size: 13px;
+                cursor: pointer;
+                margin: 0;
+                display: block;
+                &:hover {
+                    background: $highlight_color;
+                    color: #fff;
+                    border-top-color: $highlight_color;
+                }
             }
         }
     }
@@ -92,7 +145,7 @@ body{
         background-size: cover;
         #leftNav_control {
             color: white;
-            font-family: '微软雅黑';
+            font-family: "微软雅黑";
             color: white;
             text-align: right;
             padding-right: 2px;
@@ -115,14 +168,16 @@ body{
             .name_and_controlBtn {
                 a.limitless-menu-li-name {
                     padding: 15px 0;
-                    font-family: '微软雅黑';
+                    font-family: "微软雅黑";
                     font-size: 15px;
                     // 未选中时
-                    &, &:focus {
+                    &,
+                    &:focus {
                         color: white;
                     }
                     // 选中时、hover时
-                    &.router-link-exact-active, &:hover {
+                    &.router-link-exact-active,
+                    &:hover {
                         background: $highlight_color;
                     }
                 }

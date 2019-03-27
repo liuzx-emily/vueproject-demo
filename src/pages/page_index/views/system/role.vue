@@ -44,11 +44,8 @@
     </section>
 </template>
 <script>
-import _ from 'lodash';
-import xTools from '~/utils/xTools.js'
-import xTable from '~/components/xTable/index.vue';
 export default {
-    components: { xTable },
+    components: {  },
     data() {
         // 用户重名验证
         var nameValidation = (rule, value, callback) => {
@@ -109,7 +106,7 @@ export default {
     methods: {
         // 检查按钮权限
         checkBtn(code) {
-            var btnPermmisionCheck = xTools.checkBtn(this.$store, 'role:btn:' + code);
+            var btnPermmisionCheck = this.xTools.checkBtn(this.$store, 'role:btn:' + code);
             return btnPermmisionCheck;
         },
         // 获取权限数据
@@ -121,7 +118,7 @@ export default {
                 // url: BASE_PATH + '/permission/list.htmls',
             }).then((response) => {
                 const res = response.data;
-                this.permissionData = xTools.arrayToTree(res.data, {
+                this.permissionData = this.xTools.arrayToTree(res.data, {
                     before_idkey: "permissionId",
                     before_parentkey: "parentId",
                     after_childkey: 'children'
@@ -141,7 +138,7 @@ export default {
                 url: BASE_PATH + "/role/list.htmls",
             }).then((response) => {
                 const res = response.data;
-                this.tableData = _.map(res.data, (item) => {
+                this.tableData = this._.map(res.data, (item) => {
                     if (item.temp1 == 1) {
                         // 内置角色：只能查看
                         item.btnFlag_look = true;
@@ -206,7 +203,7 @@ export default {
             this.$refs.dialogForm1.validate(valid => {
                 if (valid) {
                     // ajax请求
-                    let param = _.cloneDeep(this.dialogData);
+                    let param = this._.cloneDeep(this.dialogData);
                     param.permissionIds = this.$refs.selectPermissionTree.getCheckedKeys().join("-");
                     this.loading = true;
                     let url = { 1: "add", 2: "edit" } [this.dialogType];
@@ -257,7 +254,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 let param = {
-                    ids: _.map(data, "roleId").join("-"),
+                    ids: this._.map(data, "roleId").join("-"),
                 };
                 this.loading = true;
                 this.xAxios({

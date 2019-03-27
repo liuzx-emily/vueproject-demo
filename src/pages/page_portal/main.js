@@ -18,6 +18,13 @@ import '~/mock/portal.js'
 // font-awesome
 import 'font-awesome/css/font-awesome.css';
 
+// 注册方法库
+import _ from 'lodash'
+import xTools from '~/utils/xTools.js'
+Vue.prototype._ = _
+Vue.prototype.xTools = xTools
+
+
 Vue.config.productionTip = false;
 
 import App from './App.vue';
@@ -26,4 +33,4 @@ new Vue({
     render: h => h(App),
     // 把router实例注入到vue根实例中
     router: router,
-}).$mount('#app');
+}).$mount('#app');     

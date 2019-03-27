@@ -3,9 +3,12 @@
   width: 90%;
   margin: 0 auto 10px;
 }
+code{
+    margin:0 5px;
+}
 </style>
 <template>
-    <section>
+    <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
         <el-card>
             <div slot="header" class="clearfix">
                 <span>组件使用说明</span>
@@ -26,6 +29,14 @@
                 <p>5 如果需要关闭分页功能，传递
                     <code>:enablePaging="false"</code>
                 </p>
+                <p>6 修改表格样式：传递
+                    <code>tableClassColor</code>
+                    <code>tableClassSize</code>
+                    <code>tableClassAlign</code>，默认值分别为
+                    <code>common-color</code>
+                    <code>common-size</code>
+                    <code>common-align</code>
+                </p>
             </div>
         </el-card>
         <el-card>
@@ -34,7 +45,7 @@
             </div>
             <div>
                 <p>1 表头强制换行：使用header插槽，见"面积"这一列</p>
-                <p>2 如果排序字段和渲染字段不一致怎么办？见"名字"这一列</p>
+                <p>2 如果排序字段和渲染字段不一致怎么办？见"性别"这一列</p>
                 <p>3 用 pickDateRange 和 pickYear这种组件。如果有默认初始值，那么要在组件和searchparam中都赋初始值才行！！！</p>
             </div>
         </el-card>
@@ -44,8 +55,12 @@
                 <el-input v-model.trim="fakesearchparam.name"></el-input>
             </section>
             <section class="box-wa">
-                <span class="text">数字：</span>
-                <el-input v-model.trim="fakesearchparam.number"></el-input>
+                <span class="text">下拉框：</span>
+                <el-select v-model="fakesearchparam.select1">
+                    <el-option label="全部" :value="-1"></el-option>
+                    <el-option label="值1" :value="1"></el-option>
+                    <el-option label="值2" :value="2"></el-option>
+                </el-select>
             </section>
             <section class="box-wa">
                 <span class="text">日期：</span>
@@ -59,56 +74,149 @@
             </section>
             <section class="box-btns">
                 <el-button type="primary" @click="do_search">搜索</el-button>
-                <el-button type="success" @click="do_add">新增</el-button>
+                <el-button type="success" @click="dialog_1_open({},false)">新增</el-button>
                 <el-button type="danger" @click="do_delete_multiple">批量删除</el-button>
             </section>
         </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="false">
+        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="false" tableClassColor="common-color" tableClassSize="common-size" tableClassAlign="left-align">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
-            <el-table-column prop="name2" label="名字2" sortable="custom">
-                <template slot-scope="scope">{{scope.row.name}}</template>
+            <el-table-column prop="gender" label="性别" sortable="custom">
+                <template slot-scope="scope">{{scope.row.genderText}}</template>
+            </el-table-column>
+            <el-table-column prop="select1" label="下拉框" sortable="custom">
+                <template slot-scope="scope">{{scope.row.select1Text}}</template>
             </el-table-column>
             <el-table-column prop="number" width="130px">
                 <template slot="header">数
                     <br>字
                 </template>
             </el-table-column>
-            <el-table-column prop="time" label="日期" width="130px"></el-table-column>
+            <el-table-column prop="time" label="日期" width="130px">
+                <template slot-scope="scope">{{scope.row.timeText}}</template>
+            </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button class="tinyBtn" type="primary" @click="do_look(scope.row)">查看</el-button>
-                    <el-button class="tinyBtn" type="success" @click="do_edit(scope.row)">编辑</el-button>
-                    <el-button class="tinyBtn" type="warning" @click="do_audit(scope.row)">审核</el-button>
+                    <el-button class="tinyBtn" type="primary" @click="dialog_1_open(scope.row,true)">查看</el-button>
+                    <el-button class="tinyBtn" type="success" @click="dialog_1_open(scope.row,false)">编辑</el-button>
+                    <el-button class="tinyBtn" type="warning" @click="dialog_2_open(scope.row)">审核</el-button>
                     <el-button class="tinyBtn" type="danger" @click="do_delete([scope.row.id])">删除</el-button>
                 </template>
             </el-table-column>
         </xTable>
+        <!-- 弹窗1 -->
+        <el-dialog :title="dialog_1.title" :visible.sync="dialog_1.visible" width="600px" :modal-append-to-body='false'>
+            <el-form ref="dialog_1_ref" label-width="100px" :model="dialog_1.data" :rules="dialog_1.rules" :disabled="dialog_1.readonly">
+                <el-form-item label="名称" prop="name">
+                    <el-input v-model="dialog_1.data.name"></el-input>
+                </el-form-item>
+                <el-form-item label="性别" prop="gender">
+                    <el-radio-group v-model="dialog_1.data.gender">
+                        <el-radio :label="0">男</el-radio>
+                        <el-radio :label="1">女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="下拉框" prop="select1">
+                    <el-select v-model="dialog_1.data.select1" style="width:100%;">
+                        <el-option label="全部" :value="-1"></el-option>
+                        <el-option label="值1" :value="1"></el-option>
+                        <el-option label="值2" :value="2"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="备注" prop="description">
+                    <el-input type="textarea" v-model="dialog_1.data.description"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <template v-if="dialog_1.readonly">
+                    <el-button @click="dialog_1.visible = false">关 闭</el-button>
+                </template>
+                <template v-else>
+                    <el-button @click="dialog_1.visible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialog_1_save">确 定</el-button>
+                </template>
+            </span>
+        </el-dialog>
+        <!-- 弹窗2 -->
+        <el-dialog :title="dialog_2.title" :visible.sync="dialog_2.visible" width="500px" :modal-append-to-body='false'>
+            <el-form ref="dialog_2_ref" label-width="100px" :model="dialog_2.data" :rules="dialog_2.rules">
+                <el-form-item label="审核结果" prop="flag">
+                    <el-radio-group v-model="dialog_2.data.flag">
+                        <el-radio label="1">通过</el-radio>
+                        <el-radio label="0">不通过</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="不通过原因" prop="description" v-if="dialog_2.data.flag==='0'">
+                    <el-input type="textarea" v-model="dialog_2.data.reason"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialog_2.visible = false">取 消</el-button>
+                <el-button type="primary" @click="dialog_2_save">确 定</el-button>
+            </span>
+        </el-dialog>
     </section>
 </template>
 <script>
-import xTools from "~/utils/xTools.js";
-import xTable from "~/components/xTable/index.vue";
-import pickYear from "~/modules/xFormItem/pickYear.vue";
-import pickDateRange from "~/modules/xFormItem/pickDateRange.vue";
 export default {
-    components: { xTable, pickYear, pickDateRange },
+    components: {},
     data() {
         return {
+            loading: false,
             // 表格参数
             fakesearchparam: {
                 name: "",
-                number: ""
+                select1: -1,
             },
             searchparam: {
                 name: "",
-                number: "",
+                select1: -1,
                 startTime: "",
                 endTime: "",
                 // 如果年份选择有初始值，那么必须在这里也传入。不然页面初始化后的默认列表，是没有带着这个字段的
                 year: new Date().getFullYear()
             },
             // 后端排序，默认参数
-            defaultsort: { sort: "name", order: "asc" }
+            defaultsort: { sort: "name", order: "asc" },
+            // 弹窗1
+            dialog_1: {
+                title: "信息",
+                visible: false,
+                readonly: false,
+                data: {
+                    id: null,
+                    name: null,
+                    number: null,
+                    gender: null,
+                    select1: null,
+                    description: null,
+                },
+                rules: {
+                    name: [
+                        { required: true, message: "不能为空", trigger: ['blur', 'change'] },
+                    ],
+                    gender: [
+                        { required: true, message: "不能为空", trigger: ['blur', 'change'] },
+                    ],
+                    select1: [
+                        { required: true, message: "不能为空", trigger: ['blur', 'change'] },
+                    ],
+                }
+            },
+            // 弹窗2
+            dialog_2: {
+                title: "审核",
+                visible: false,
+                data: {
+                    id: null,
+                    flag: null,
+                    reason: null,
+                },
+                rules: {
+                    flag: [
+                        { required: true, message: "不能为空", trigger: ['blur', 'change'] },
+                    ]
+                }
+            },
         };
     },
     mounted() {
@@ -130,8 +238,24 @@ export default {
                 .then(response => {
                     const res = response.data;
                     // 数据格式化
-                    self.tableData = _.map(res.data, item => {
-                        item.time = xTools.formatDate(item.time, 1);
+                    self.tableData = this._.map(res.data, item => {
+                        item.timeText = this.xTools.formatDate(item.time, 1);
+                        // 性别
+                        if (item.gender === 1) {
+                            item.genderText = "男";
+                        } else if (item.gender === 0) {
+                            item.genderText = "男";
+                        } else {
+                            item.genderText = "";
+                        }
+                        // 下拉框
+                        if (item.select1 === 1) {
+                            item.select1Text = "值1";
+                        } else if (item.select1 === 2) {
+                            item.select1Text = "值2";
+                        } else {
+                            item.select1Text = "";
+                        }
                         return item;
                     });
                     self.count = res.count;
@@ -149,7 +273,7 @@ export default {
         // 搜索
         do_search() {
             this.searchparam.name = this.fakesearchparam.name;
-            this.searchparam.number = this.fakesearchparam.number;
+            this.searchparam.select1 = this.fakesearchparam.select1;
             // 日期范围选择
             this.searchparam.startTime = this.$refs.pickDateRange1.get(1);
             this.searchparam.endTime = this.$refs.pickDateRange1.get(2);
@@ -199,7 +323,7 @@ export default {
                 .catch(error => {});
         },
         do_delete_multiple() {
-            var ids = _.map(this.$refs.table.getSelection(), "id");
+            var ids = this._.map(this.$refs.table.getSelection(), "id");
             if (ids.length > 0) {
                 this.do_delete(ids);
             } else {
@@ -208,7 +332,107 @@ export default {
                     type: "warning"
                 });
             }
-        }
+        },
+        // 弹窗1
+        dialog_1_open(data, readonly) {
+            this.dialog_1.visible = true;
+            this.dialog_1.readonly = readonly;
+            this.dialog_1.data = {
+                id: data.id,
+                name: data.name,
+                number: null,
+                gender: data.gender,
+                select1: data.select1,
+                description: data.description,
+            };
+            this.$nextTick(() => {
+                this.$refs.dialog_1_ref.clearValidate();
+            });
+        },
+        dialog_1_save() {
+            this.$refs.dialog_1_ref.validate(valid => {
+                if (valid) {
+                    // 拼参数
+                    let param = this._.cloneDeep(this.dialog_1.data);
+                    console.log(param);
+                    this.loading = true;
+                    this.xAxios({
+                        xJsonData: true,
+                        // method: 'post',
+                        url: BASE_PATH + '/example/fake_common.htmls',
+                        data: param,
+                        // params: param,
+                    }).then((response) => {
+                        const res = response.data;
+                        if (res.code == 1) {
+                            this.$message({
+                                type: 'success',
+                                message: '操作成功！'
+                            });
+                            // 关闭弹窗
+                            this.dialog_1.visible = false;
+                        } else {
+                            this.$message({
+                                type: 'error',
+                                message: '操作失败！'
+                            });
+                        }
+                        this.loading = false;
+                    }).catch(error => {
+                        this.loading = false;
+                    });
+                } else {
+                    // 验证失败
+                }
+            });
+        },
+        // 弹窗2
+        dialog_2_open(data) {
+            this.dialog_2.visible = true;
+            this.dialog_2.data.id = data.id;
+            this.dialog_2.data.flag = null;
+            this.dialog_2.data.reason = "";
+            this.$nextTick(() => {
+                this.$refs.dialog_2_ref.clearValidate();
+            });
+        },
+        dialog_2_save() {
+            this.$refs.dialog_2_ref.validate(valid => {
+                if (valid) {
+                    // 拼参数
+                    let param = this._.cloneDeep(this.dialog_2.data);
+                    console.log(param);
+                    this.loading = true;
+                    this.xAxios({
+                        xJsonData: true,
+                        // method: 'post',
+                        url: BASE_PATH + '/example/fake_common.htmls',
+                        data: param,
+                        // params: param,
+                    }).then((response) => {
+                        const res = response.data;
+                        if (res.code == 1) {
+                            this.$message({
+                                type: 'success',
+                                message: '操作成功！'
+                            });
+                            // 关闭弹窗
+                            this.dialog_2.visible = false;
+                        } else {
+                            this.$message({
+                                type: 'error',
+                                message: '操作失败！'
+                            });
+                        }
+                        this.loading = false;
+                    }).catch(error => {
+                        this.loading = false;
+                    });
+                } else {
+                    // 验证失败
+                }
+            });
+        },
     }
 };
 </script>

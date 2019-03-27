@@ -24,10 +24,9 @@
     </section>
 </template>
 <script>
-import xTable from '~/components/xTable/index.vue'
 export default {
     name: "user_review",
-    components: { xTable },
+    components: {},
     data() {
         return {
             dialogVisible: false,

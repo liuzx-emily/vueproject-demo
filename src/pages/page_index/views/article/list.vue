@@ -53,11 +53,8 @@
     </section>
 </template>
 <script>
-import _ from 'lodash'
-import xTools from '~/utils/xTools.js'
-import xTable from '~/components/xTable/index.vue'
 export default {
-    components: { xTable },
+    components: { },
     props: [],
     data() {
         return {
@@ -83,7 +80,7 @@ export default {
     methods: {
         // 检查按钮权限
         checkBtn(code) {
-            // var btnPermmisionCheck = xTools.checkBtn(this.$store, 'servicePolicy:btn:' + code);
+            // var btnPermmisionCheck = this.xTools.checkBtn(this.$store, 'servicePolicy:btn:' + code);
             // return btnPermmisionCheck;
             return true;
         },
@@ -99,9 +96,9 @@ export default {
             }).then((response) => {
                 const res = response.data;
                 // 数据格式化
-                self.tableData = _.map(res.data, (item) => {
+                self.tableData = this._.map(res.data, (item) => {
                     // 发布时间
-                    item.timeText = xTools.formatDate(item.time);
+                    item.timeText = this.xTools.formatDate(item.time);
                     // 审核文本
                     item.auditText = {
                         0: "待审核",

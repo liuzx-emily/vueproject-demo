@@ -18,11 +18,16 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "4", "parentId": "XTGL", "name": "注册用户审核", "icon": null, "uri": "/system/user_review" },
         { "permissionId": "XTGL", "parentId": "ALL", "name": "系统管理", "icon": "gears", "uri": "/system" },
         { "permissionId": "EXAMPLE", "parentId": "ALL", "name": "例子", "icon": "snowflake-o", "uri": "/example" },
-        { "permissionId": "mathformula", "parentId": "EXAMPLE", "name": "输入数学公式", "icon": null, "uri": "/example/mathformula" },
         { "permissionId": "demo", "parentId": "ALL", "name": "demo", "icon": "magic", "uri": "/demo" },
         { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "magic", "uri": "/article" },
         { "permissionId": "xTable", "parentId": "EXAMPLE", "name": "表格", "icon": null, "uri": "/example/xTable" },
         { "permissionId": "charts", "parentId": "EXAMPLE", "name": "图表", "icon": null, "uri": "/example/charts" },
+        { "permissionId": "guide", "parentId": "EXAMPLE", "name": "Guide", "icon": null, "uri": "/example/guide" },
+        { "permissionId": "horizontalScrolling", "parentId": "EXAMPLE", "name": "横向滚动", "icon": null, "uri": "/example/horizontalScrolling" },
+        { "permissionId": "problem", "parentId": "EXAMPLE", "name": "难点&技巧", "icon": null, "uri": "/example/problem" },
+        { "permissionId": "problem1", "parentId": "problem", "name": "输入数学公式", "icon": null, "uri": "/example/problem/1" },
+        { "permissionId": "problem2", "parentId": "problem", "name": "图片的src是变量", "icon": null, "uri": "/example/problem/2" },
+        { "permissionId": "problem3", "parentId": "problem", "name": "css画的形状", "icon": null, "uri": "/example/problem/3" },
     ]
 });
 // 用户拥有的按钮权限

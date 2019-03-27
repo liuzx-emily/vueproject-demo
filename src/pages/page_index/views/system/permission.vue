@@ -14,7 +14,6 @@
     </section>
 </template>
 <script>
-import xTools from '~/utils/xTools.js'
 export default {
     name: "role",
     data() {
@@ -40,7 +39,7 @@ export default {
                 }
             }).then((response) => {
                 const res = response.data;
-                this.data = xTools.arrayToTree(res, { before_idkey: "permissionId", before_parentkey: "parentId", after_childkey: 'children' });
+                this.data = this.xTools.arrayToTree(res, { before_idkey: "permissionId", before_parentkey: "parentId", after_childkey: 'children' });
             }).catch(error => {});
         },
         do_delete(id) {
