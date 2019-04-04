@@ -31,34 +31,26 @@ Vue.prototype.xTools = xTools
 import echarts from 'echarts'
 Vue.prototype.echarts = echarts
 
-// swiper
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper, {
-    pagination: {
-        el: '.swiper-pagination'
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-    },
-});
-
-
 
 // 注册常用组件和模块
 import xTable from '~/components/xTable/index.vue'
 import xTreeTable from '~/components/xTreeTable/index.vue';
+import xHorizontalScrolling from '~/components/xHorizontalScrolling/index.vue';
 import xEditor from "~/components/xEditor/index_wangeditor.vue";
 import xUploadAttachment from "~/components/xUploadAttachment/index.vue";
 import pickYear from "~/modules/xFormItem/pickYear.vue";
 import pickDateRange from "~/modules/xFormItem/pickDateRange.vue";
 Vue.component("xTable", xTable)
 Vue.component("xTreeTable", xTreeTable)
+Vue.component("xHorizontalScrolling", xHorizontalScrolling)
 Vue.component("xEditor", xEditor)
 Vue.component("xUploadAttachment", xUploadAttachment)
 Vue.component("pickYear", pickYear)
 Vue.component("pickDateRange", pickDateRange)
+
+// 样式
+import "~/styles/reset.scss";
+import "~/styles/common.scss";
 
 Vue.config.productionTip = false;
 

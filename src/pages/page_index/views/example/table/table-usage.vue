@@ -1,11 +1,9 @@
 <style lang="scss" scoped>
-    .el-card {
-  width: 90%;
-  margin: 0 auto 10px;
-}
-code{
-    margin:0 5px;
-}
+    code{
+        margin:0 5px;
+        color: #2196f3;
+        font-weight: bold;
+    }
 </style>
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
@@ -28,14 +26,6 @@ code{
                 </p>
                 <p>5 如果需要关闭分页功能，传递
                     <code>:enablePaging="false"</code>
-                </p>
-                <p>6 修改表格样式：传递
-                    <code>tableClassColor</code>
-                    <code>tableClassSize</code>
-                    <code>tableClassAlign</code>，默认值分别为
-                    <code>common-color</code>
-                    <code>common-size</code>
-                    <code>common-align</code>
                 </p>
             </div>
         </el-card>
@@ -78,7 +68,7 @@ code{
                 <el-button type="danger" @click="do_delete_multiple">批量删除</el-button>
             </section>
         </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="false" tableClassColor="common-color" tableClassSize="common-size" tableClassAlign="left-align">
+        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="true">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
             <el-table-column prop="gender" label="性别" sortable="custom">
                 <template slot-scope="scope">{{scope.row.genderText}}</template>
@@ -91,10 +81,10 @@ code{
                     <br>字
                 </template>
             </el-table-column>
-            <el-table-column prop="time" label="日期" width="130px">
+            <el-table-column prop="time" label="日期" width="120px">
                 <template slot-scope="scope">{{scope.row.timeText}}</template>
             </el-table-column>
-            <el-table-column label="操作">
+            <el-table-column label="操作" width="250px">
                 <template slot-scope="scope">
                     <el-button class="tinyBtn" type="primary" @click="dialog_1_open(scope.row,true)">查看</el-button>
                     <el-button class="tinyBtn" type="success" @click="dialog_1_open(scope.row,false)">编辑</el-button>

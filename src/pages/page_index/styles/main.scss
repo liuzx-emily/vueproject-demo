@@ -167,9 +167,9 @@ body {
         #leftNav {
             .name_and_controlBtn {
                 a.limitless-menu-li-name {
-                    padding: 15px 0;
+                    padding: 12px 0;
                     font-family: "微软雅黑";
-                    font-size: 15px;
+                    font-size: 14px;
                     // 未选中时
                     &,
                     &:focus {
@@ -182,7 +182,7 @@ body {
                     }
                 }
                 .controlBtn {
-                    top: 15px;
+                    top: 12px;
                     color: white;
                 }
             }

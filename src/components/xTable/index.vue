@@ -1,7 +1,7 @@
 <template>
-    <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
+    <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <!-- 表格 -->
-        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" @sort-change="sortChange" :class="[tableClassColor,tableClassSize,tableClassAlign]">
+        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" @sort-change="sortChange" :class="[tableClassColor,tableClassSize,tableClassAlign]" class="xTableStyle">
             <!-- 多选列 -->
             <el-table-column type="selection" v-if="enableCheckbox"></el-table-column>
             <slot></slot>
@@ -14,6 +14,7 @@
     </section>
 </template>
 <script>
+import './table.scss'
 export default {
     props: {
         refresh: Function,
@@ -44,7 +45,7 @@ export default {
         },
         tableClassAlign: {
             type: String,
-            default: "align-common"
+            default: "align-center"
         },
     },
     data() {

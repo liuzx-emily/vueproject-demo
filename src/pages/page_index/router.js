@@ -42,10 +42,15 @@ const routes = [
         path: "/example/problem/3",
         component: () => import('./views/example/problem/03cssmadeShape.vue'),
     },
-    // 表格 xTable
+    // problem：04打印
     {
-        path: "/example/xTable",
-        component: () => import('./views/example/xTable.vue')
+        path: "/example/problem/4",
+        component: () => import('./views/example/problem/04print.vue'),
+    },
+    // 表格 table
+    {
+        path: "/example/table",
+        component: () => import('./views/example/table/main.vue')
     },
     // 图表 charts
     {

@@ -1,5 +1,5 @@
 <style>
-.dashboardchart {
+    .dashboardchart {
     width: 250px;
     height: 260px;
     display: inline-block;

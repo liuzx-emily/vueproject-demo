@@ -38,7 +38,7 @@ export default {
     computed: {
         paddingStyle() {
             return {
-                'paddingLeft': this.level * 30 + 'px'
+                'paddingLeft': this.level * 20 + 'px'
             };
         },
     },

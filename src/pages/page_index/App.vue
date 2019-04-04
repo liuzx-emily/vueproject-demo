@@ -31,7 +31,6 @@
         </section>
         <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}">
             <template v-if="leftNavList.length>0">
-                <!-- <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}"> -->
                 <section id="sidebar_wrap">
                     <section id="leftNav_control">
                         <section class="inner" @click="$store.state.cuttedSideBar=!$store.state.cuttedSideBar">
@@ -43,7 +42,6 @@
                     <xLimitlessSidebarMenu :data="leftNavList" :props="props" id="leftNav" />
                 </section>
                 <router-view id="content_wrap"></router-view>
-                <!-- </section> -->
             </template>
             <template v-else>
                 <router-view id="content_wrap" style="margin-left:0"></router-view>
@@ -53,9 +51,6 @@
 </template>
 <script>
 // 全局
-import "~/styles/reset.scss";
-import "~/styles/common.scss";
-import "~/styles/table.scss";
 import xLimitlessSidebarMenu from "~/components/xLimitlessSidebarMenu/index.vue";
 // 本页
 import "./styles/main.scss";
