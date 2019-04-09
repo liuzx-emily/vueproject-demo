@@ -45,10 +45,10 @@
                     <el-table-column prop="roleName" label="角色"> </el-table-column>
                     <el-table-column label="操作" width="300px">
                         <template slot-scope="scope">
-                            <el-button class="tinyBtn" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.userId)">编辑</el-button>
-                            <el-button class="tinyBtn" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.userId)">查看</el-button>
-                            <el-button class="tinyBtn" type="primary" v-if="checkBtn('resetpw')" @click="openDial_resetPW(scope.row.userId)">重置密码</el-button>
-                            <el-button class="tinyBtn" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
+                            <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.userId)">编辑</el-button>
+                            <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.userId)">查看</el-button>
+                            <el-button class="size-small" type="primary" v-if="checkBtn('resetpw')" @click="openDial_resetPW(scope.row.userId)">重置密码</el-button>
+                            <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </xTable>

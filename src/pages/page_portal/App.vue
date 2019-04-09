@@ -22,10 +22,6 @@
     </div>
 </template>
 <script>
-// 全局
-import "~/styles/reset.scss";
-// 本页
-import './styles/main.scss'
 export default {
     data() {
         return {

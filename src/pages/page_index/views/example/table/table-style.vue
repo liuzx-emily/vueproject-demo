@@ -30,10 +30,10 @@
             </el-table-column>
             <el-table-column label="操作" width="250px">
                 <template slot-scope="scope">
-                    <el-button class="tinyBtn" type="primary" @click="">查看</el-button>
-                    <el-button class="tinyBtn" type="success" @click="">编辑</el-button>
-                    <el-button class="tinyBtn" type="warning" @click="">审核</el-button>
-                    <el-button class="tinyBtn" type="danger" @click="">删除</el-button>
+                    <el-button class="size-small" type="primary" @click="">查看</el-button>
+                    <el-button class="size-small" type="success" @click="">编辑</el-button>
+                    <el-button class="size-small" type="warning" @click="">审核</el-button>
+                    <el-button class="size-small" type="danger" @click="">删除</el-button>
                 </template>
             </el-table-column>
         </xTable>

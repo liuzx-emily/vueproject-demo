@@ -46,7 +46,6 @@ export default {
             let width1 = document.getElementById('main_container').getBoundingClientRect().width;
             let width2 = document.getElementById('sidebar_wrap').getBoundingClientRect().width;
             let width = width1 - width2;
-            console.log(width);
             let oStyle = document.createElement("style");
             oStyle.setAttribute("id", "printstyle");
             oStyle.innerHTML = `
@@ -75,12 +74,11 @@ export default {
 				    size: ${width}px ${width*0.6}px;
 				}
             `;
-            // if (this.pageType === 2) {
-            //     this.$refs.view2.resize();
-            // }
             document.body.appendChild(oStyle);
+            // 开个定时器，等一下上面的操作执行完。不然一旦print，所有进程会被阻塞
             setTimeout(() => {
                 window.print();
+                // 在print期间，一切进程是阻塞的。所以只有打印窗口关掉后，才会执行下面的内容
                 document.getElementById('printstyle').remove();
             }, 0);
         }

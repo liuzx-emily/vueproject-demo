@@ -16,6 +16,11 @@ const routes = [
         path: "/demo",
         component: () => import('./views/demo.vue')
     },
+    // 预设class示例
+    {
+        path: "/classdemo/btn",
+        component: () => import('./views/classdemo/btn.vue')
+    },
     // ---------------------- 文章管理 ----------------------
     {
         path: "/article",
@@ -46,6 +51,11 @@ const routes = [
     {
         path: "/example/problem/4",
         component: () => import('./views/example/problem/04print.vue'),
+    },
+    // problem：04打印
+    {
+        path: "/example/problem/5",
+        component: () => import('./views/example/problem/05cssContentAttr.vue'),
     },
     // 表格 table
     {

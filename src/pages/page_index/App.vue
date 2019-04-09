@@ -133,67 +133,61 @@ export default {
         // 获取菜单数据，并且自动跳转到第一个菜单
         getUserInfo() {
             this.xAxios({
-                    method: "get",
-                    url: BASE_PATH + "/user/userStatus.htmls"
-                })
-                .then(response => {
-                    const res = response.data;
-                    if (res.code == "1") {
-                        // 已登录
-                        let userInfo = {
-                            id: res.data.userId,
-                            name: res.data.realname
-                        };
-                        this.$store.state.userInfo = userInfo;
-                        // 获取菜单数据，并且自动跳转到第一个菜单
-                        this.getMenuData();
-                        this.getPermissionBtnData();
-                    } else {
-                        // 未登录
-                        window.location.href = "./portal.html";
-                    }
-                })
-                .catch(error => {
-                    // console.log(error);
-                });
+                method: "get",
+                url: BASE_PATH + "/user/userStatus.htmls"
+            }).then(response => {
+                const res = response.data;
+                if (res.code == "1") {
+                    // 已登录
+                    let userInfo = {
+                        id: res.data.userId,
+                        name: res.data.realname
+                    };
+                    this.$store.state.userInfo = userInfo;
+                    // 获取菜单数据，并且自动跳转到第一个菜单
+                    this.getMenuData();
+                    this.getPermissionBtnData();
+                } else {
+                    // 未登录
+                    window.location.href = "./portal.html";
+                }
+            }).catch(error => {
+                // console.log(error);
+            });
         },
         // 获取菜单数据，并且自动跳转到第一个菜单
         getMenuData() {
             this.xAxios({
-                    method: "get",
-                    url: BASE_PATH + "/permission/nav.htmls",
-                    params: {}
-                })
-                .then(response => {
-                    const res = response.data;
-                    const navList = this.xTools.arrayToTree(res.data, {
-                        before_idkey: "permissionId",
-                        before_parentkey: "parentId",
-                        after_childkey: "child"
-                    });
-                    // 路由跳转
-                    if (navList && navList.length > 0) {
-                        this.navList = navList;
-                        // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
-                        if (this.$route.path == "/") {
-                            this.$router.push(navList[0].uri);
-                        }
+                method: "get",
+                url: BASE_PATH + "/permission/nav.htmls",
+                params: {}
+            }).then(response => {
+                const res = response.data;
+                const navList = this.xTools.arrayToTree(res.data, {
+                    before_idkey: "permissionId",
+                    before_parentkey: "parentId",
+                    after_childkey: "child"
+                });
+                // 路由跳转
+                if (navList && navList.length > 0) {
+                    this.navList = navList;
+                    // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
+                    if (this.$route.path == "/") {
+                        this.$router.push(navList[0].uri);
                     }
-                })
-                .catch(error => {});
+                }
+            }).catch(error => {});
         },
         // 获取按钮权限数据
         getPermissionBtnData() {
             this.xAxios({
-                    method: "get",
-                    url: BASE_PATH + "/permission/btn.htmls",
-                    params: {}
-                })
-                .then(response => {
-                    const res = response.data;
-                    this.$store.state.permissionBtns = this._.map(res.data, "code");
-                })
-                .catch(error => {});
+                method: "get",
+                url: BASE_PATH + "/permission/btn.htmls",
+                params: {}
+            }).then(response => {
+                const res = response.data;
+                this.$store.state.permissionBtns = this._.map(res.data, "code");
+            }).catch(error => {});
         }
     }
 };

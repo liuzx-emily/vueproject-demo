@@ -11,7 +11,7 @@ Vue.prototype.xAxios = xAxios
 import store from './store.js'
 
 // mock
-import '~/mock/index/main.js'
+import './mock/main.js'
 
 //element
 import ElementUI from 'element-ui';
@@ -49,8 +49,7 @@ Vue.component("pickYear", pickYear)
 Vue.component("pickDateRange", pickDateRange)
 
 // 样式
-import "~/styles/reset.scss";
-import "~/styles/common.scss";
+import "~/styles/main.scss";
 
 Vue.config.productionTip = false;
 

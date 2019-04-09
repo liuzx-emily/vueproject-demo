@@ -39,14 +39,14 @@
             <el-table-column prop="auditText" label="状态" width="120px"> </el-table-column>
             <el-table-column label="操作" width="320px">
                 <template slot-scope="scope">
-                    <el-button class="tinyBtn" v-if="checkBtn('edit')&&scope.row.btnFlag_edit" type="warning" @click="do_edit(scope.row)">编辑</el-button>
-                    <el-button class="tinyBtn" v-if="checkBtn('look')&&scope.row.btnFlag_look" type="success" @click="do_look(scope.row)">查看</el-button>
+                    <el-button class="size-small" v-if="checkBtn('edit')&&scope.row.btnFlag_edit" type="warning" @click="do_edit(scope.row)">编辑</el-button>
+                    <el-button class="size-small" v-if="checkBtn('look')&&scope.row.btnFlag_look" type="success" @click="do_look(scope.row)">查看</el-button>
                     <template v-if="checkBtn('topping')&&scope.row.btnFlag_topping">
-                        <el-button class="tinyBtn" v-if="scope.row.roofPlacement==1" @click="do_topping(scope.row,0)">取消置顶</el-button>
-                        <el-button class="tinyBtn" v-else @click="do_topping(scope.row,1)">置顶</el-button>
+                        <el-button class="size-small" v-if="scope.row.roofPlacement==1" @click="do_topping(scope.row,0)">取消置顶</el-button>
+                        <el-button class="size-small" v-else @click="do_topping(scope.row,1)">置顶</el-button>
                     </template>
-                    <el-button class="tinyBtn" v-if="checkBtn('audit')&&scope.row.btnFlag_audit" type="primary" @click="do_audit(scope.row)">审核</el-button>
-                    <el-button class="tinyBtn" v-if="checkBtn('delete')&&scope.row.btnFlag_delete" type="danger" @click="do_delete(scope.row)">删除</el-button>
+                    <el-button class="size-small" v-if="checkBtn('audit')&&scope.row.btnFlag_audit" type="primary" @click="do_audit(scope.row)">审核</el-button>
+                    <el-button class="size-small" v-if="checkBtn('delete')&&scope.row.btnFlag_delete" type="danger" @click="do_delete(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </xTable>

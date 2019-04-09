@@ -111,7 +111,7 @@ export default {
                 tooltip: {
                     trigger: 'axis',
                     formatter: params => {
-                        console.log(params);
+                        // console.log(params);
                         let str = params[0].name + '<br/>';
                         this._.forEach(params, item => {
                             str += `${item.seriesName} :${item.value}<br/>`;

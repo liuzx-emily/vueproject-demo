@@ -86,10 +86,10 @@
             </el-table-column>
             <el-table-column label="操作" width="250px">
                 <template slot-scope="scope">
-                    <el-button class="tinyBtn" type="primary" @click="dialog_1_open(scope.row,true)">查看</el-button>
-                    <el-button class="tinyBtn" type="success" @click="dialog_1_open(scope.row,false)">编辑</el-button>
-                    <el-button class="tinyBtn" type="warning" @click="dialog_2_open(scope.row)">审核</el-button>
-                    <el-button class="tinyBtn" type="danger" @click="do_delete([scope.row.id])">删除</el-button>
+                    <el-button class="size-small" type="primary" @click="dialog_1_open(scope.row,true)">查看</el-button>
+                    <el-button class="size-small" type="success" @click="dialog_1_open(scope.row,false)">编辑</el-button>
+                    <el-button class="size-small" type="warning" @click="dialog_2_open(scope.row)">审核</el-button>
+                    <el-button class="size-small" type="danger" @click="do_delete([scope.row.id])">删除</el-button>
                 </template>
             </el-table-column>
         </xTable>

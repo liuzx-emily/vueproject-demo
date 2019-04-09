@@ -27,7 +27,7 @@
 </template>
 <script>
 // 全局
-import '~/styles/reset.scss'
+import '~/styles/main.scss'
 import _ from 'lodash'
 import xTools from '~/utils/xTools.js'
 import { xElementRules } from '~/utils/xValidate.js'

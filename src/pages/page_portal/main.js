@@ -13,7 +13,7 @@ Vue.use(ElementUI);
 import 'element-ui/lib/theme-chalk/index.css';
 
 // mock
-import '~/mock/portal.js'
+import './mock/main.js'
 
 // font-awesome
 import 'font-awesome/css/font-awesome.css';
@@ -24,6 +24,9 @@ import xTools from '~/utils/xTools.js'
 Vue.prototype._ = _
 Vue.prototype.xTools = xTools
 
+// 样式
+import "~/styles/main.scss";
+import './styles/main.scss'
 
 Vue.config.productionTip = false;
 

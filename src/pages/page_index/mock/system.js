@@ -29,6 +29,9 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "problem2", "parentId": "problem", "name": "图片的src是变量", "icon": null, "uri": "/example/problem/2" },
         { "permissionId": "problem3", "parentId": "problem", "name": "css画的形状", "icon": null, "uri": "/example/problem/3" },
         { "permissionId": "problem4", "parentId": "problem", "name": "打印", "icon": null, "uri": "/example/problem/4" },
+        { "permissionId": "problem5", "parentId": "problem", "name": "利用CSS的content属性attr抓取资料", "icon": null, "uri": "/example/problem/5" },
+        { "permissionId": "CLASSDEMO", "parentId": "ALL", "name": "预设class", "icon": "leaf", "uri": "/classdemo" },
+        { "permissionId": "CLASSDEMO_btn", "parentId": "CLASSDEMO", "name": "按钮", "icon": "leaf", "uri": "/classdemo/btn" },
     ]
 });
 // 用户拥有的按钮权限

@@ -16,10 +16,10 @@
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <!-- <el-button  class="tinyBtn"  type="warning" @click="openDial(2,scope.row.roleId)">不受权限控制的编辑</el-button> -->
-                    <el-button class="tinyBtn" type="warning" v-if="checkBtn('edit')&&scope.row.btnFlag_edit" @click="openDial(2,scope.row.roleId)">编辑</el-button>
-                    <el-button class="tinyBtn" type="success" v-if="checkBtn('look')&&scope.row.btnFlag_look" @click="openDial(3,scope.row.roleId)">查看</el-button>
-                    <el-button class="tinyBtn" type="danger" v-if="checkBtn('delete')&&scope.row.btnFlag_delete" @click="openDialog_delete(1,scope.row)">删除</el-button>
+                    <!-- <el-button  class="size-small"  type="warning" @click="openDial(2,scope.row.roleId)">不受权限控制的编辑</el-button> -->
+                    <el-button class="size-small" type="warning" v-if="checkBtn('edit')&&scope.row.btnFlag_edit" @click="openDial(2,scope.row.roleId)">编辑</el-button>
+                    <el-button class="size-small" type="success" v-if="checkBtn('look')&&scope.row.btnFlag_look" @click="openDial(3,scope.row.roleId)">查看</el-button>
+                    <el-button class="size-small" type="danger" v-if="checkBtn('delete')&&scope.row.btnFlag_delete" @click="openDialog_delete(1,scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>

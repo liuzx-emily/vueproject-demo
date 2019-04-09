@@ -7,7 +7,7 @@
             <el-table-column prop="phone" label="电话"> </el-table-column>
             <el-table-column label="操作" width="300px">
                 <template slot-scope="scope">
-                    <el-button class="tinyBtn" type="primary" @click="openDial(scope.row)">审核</el-button>
+                    <el-button class="size-small" type="primary" @click="openDial(scope.row)">审核</el-button>
                 </template>
             </el-table-column>
         </xTable>

@@ -13,8 +13,8 @@
         <el-input type="textarea" :rows="4" v-model="alltext" resize="none" disabled class="meternumber_textarea"></el-input>
         <template v-if="!readonly">
             <el-input v-model="text" class="meternumber_input"></el-input>
-            <el-button type="primary" @click="do_add" class="tinyBtn">添加</el-button>
-            <el-button type="danger" @click="do_clear" class="tinyBtn" style="margin-left: 5px;">清空</el-button>
+            <el-button type="primary" @click="do_add" class="size-small">添加</el-button>
+            <el-button type="danger" @click="do_clear" class="size-small" style="margin-left: 5px;">清空</el-button>
         </template>
     </section>
 </template>

@@ -14,9 +14,9 @@
                 <template slot-scope="scope">
                     <!-- 如果是"天津市建委"部门，则不允许操作 -->
                     <template v-if="scope.row.name!='天津市建委'">
-                        <el-button class="tinyBtn" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.deptId)">编辑</el-button>
-                        <el-button class="tinyBtn" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.deptId)">查看</el-button>
-                        <el-button class="tinyBtn" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
+                        <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.deptId)">编辑</el-button>
+                        <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.deptId)">查看</el-button>
+                        <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
                     </template>
                 </template>
             </el-table-column>

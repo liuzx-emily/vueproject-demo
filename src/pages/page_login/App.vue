@@ -25,7 +25,7 @@
 </template>
 <script>
 // 全局
-import '~/styles/reset.scss'
+import '~/styles/main.scss'
 import xTools from '~/utils/xTools.js'
 import { xValidate } from '~/utils/xValidate.js'
 // 本页
