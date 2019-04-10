@@ -17,8 +17,8 @@
     </section>
 </template>
 <script>
-import view1 from '../table/main.vue'
-import view2 from '../charts/basic/01line.vue'
+import view1 from '~/pages/page_index/views/02componentInstructions/xTable/table-usage.vue'
+import view2 from '~/pages/page_index/views/03pluginDemo/echarts/basic/01line.vue'
 export default {
     components: { view1, view2 },
     data() {

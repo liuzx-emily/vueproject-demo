@@ -12,26 +12,37 @@ Mock.mock(/\/user\/userStatus.htmls/, 'get', {
 Mock.mock(/\/permission\/nav.htmls/, 'get', {
     "code": 1,
     "data": [
-        { "permissionId": "1", "parentId": "XTGL", "name": "单位管理", "icon": null, "uri": "/system/dept" },
-        { "permissionId": "2", "parentId": "XTGL", "name": "用户管理", "icon": null, "uri": "/system/user" },
-        { "permissionId": "3", "parentId": "XTGL", "name": "角色管理", "icon": null, "uri": "/system/role" },
-        { "permissionId": "4", "parentId": "XTGL", "name": "注册用户审核", "icon": null, "uri": "/system/user_review" },
-        { "permissionId": "XTGL", "parentId": "ALL", "name": "系统管理", "icon": "gears", "uri": "/system" },
-        { "permissionId": "EXAMPLE", "parentId": "ALL", "name": "例子", "icon": "snowflake-o", "uri": "/example" },
-        { "permissionId": "demo", "parentId": "ALL", "name": "demo", "icon": "magic", "uri": "/demo" },
-        { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "magic", "uri": "/article" },
-        { "permissionId": "xTable", "parentId": "EXAMPLE", "name": "表格", "icon": null, "uri": "/example/table" },
-        { "permissionId": "charts", "parentId": "EXAMPLE", "name": "图表", "icon": null, "uri": "/example/charts" },
-        { "permissionId": "guide", "parentId": "EXAMPLE", "name": "Guide", "icon": null, "uri": "/example/guide" },
-        { "permissionId": "horizontalScrolling", "parentId": "EXAMPLE", "name": "横向滚动", "icon": null, "uri": "/example/horizontalScrolling" },
-        { "permissionId": "problem", "parentId": "EXAMPLE", "name": "难点&技巧", "icon": null, "uri": "/example/problem" },
-        { "permissionId": "problem1", "parentId": "problem", "name": "输入数学公式", "icon": null, "uri": "/example/problem/1" },
-        { "permissionId": "problem2", "parentId": "problem", "name": "图片的src是变量", "icon": null, "uri": "/example/problem/2" },
-        { "permissionId": "problem3", "parentId": "problem", "name": "css画的形状", "icon": null, "uri": "/example/problem/3" },
-        { "permissionId": "problem4", "parentId": "problem", "name": "打印", "icon": null, "uri": "/example/problem/4" },
-        { "permissionId": "problem5", "parentId": "problem", "name": "利用CSS的content属性attr抓取资料", "icon": null, "uri": "/example/problem/5" },
-        { "permissionId": "CLASSDEMO", "parentId": "ALL", "name": "预设class", "icon": "leaf", "uri": "/classdemo" },
-        { "permissionId": "CLASSDEMO_btn", "parentId": "CLASSDEMO", "name": "按钮", "icon": "leaf", "uri": "/classdemo/btn" },
+        // 01预设样式
+        { "permissionId": "presetStyle", "parentId": "ALL", "name": "预设样式", "icon": "cube", "uri": "/presetStyle" },
+        { "permissionId": "presetStyle_btn", "parentId": "presetStyle", "name": "按钮", "icon": null, "uri": "/presetStyle/btn" },
+        // 02组件使用说明
+        { "permissionId": "componentInstructions", "parentId": "ALL", "name": "组件说明", "icon": "superpowers", "uri": "/componentInstructions" },     
+        { "permissionId": "componentInstructions_xTable", "parentId": "componentInstructions", "name": "表格xTable", "icon": null, "uri": "/componentInstructions/xTable" },   
+        { "permissionId": "componentInstructions_xTreeTable", "parentId": "componentInstructions", "name": "xTreeTable", "icon": null, "uri": "/componentInstructions/xTreeTable" },   
+        { "permissionId": "componentInstructions_horizontalScrolling", "parentId": "componentInstructions", "name": "横向滚动", "icon": null, "uri": "/componentInstructions/horizontalScrolling" },
+        // 03插件DEMO
+        { "permissionId": "pluginDemo", "parentId": "ALL", "name": "插件DEMO", "icon": "leaf", "uri": "/pluginDemo" },
+        { "permissionId": "pluginDemo_echarts", "parentId": "pluginDemo", "name": "图表", "icon": null, "uri": "/pluginDemo/echarts" },
+        { "permissionId": "pluginDemo_guide", "parentId": "pluginDemo", "name": "Guide", "icon": null, "uri": "/pluginDemo/guide" },
+        // 04黑科技
+        { "permissionId": "blackTechnology", "parentId": "ALL", "name": "黑科技&难点", "icon": "magic", "uri": "/blackTechnology" },
+        { "permissionId": "blackTechnology_css", "parentId": "blackTechnology", "name": "CSS", "icon": null, "uri": "/blackTechnology/css" },
+        { "permissionId": "blackTechnology_css_01", "parentId": "blackTechnology_css", "name": "css画的形状", "icon": null, "uri": "/blackTechnology/css/01" },
+        { "permissionId": "blackTechnology_css_02", "parentId": "blackTechnology_css", "name": "利用CSS的content属性attr抓取资料", "icon": null, "uri": "/blackTechnology/css/02" },
+        { "permissionId": "blackTechnology_js", "parentId": "blackTechnology", "name": "Javascript", "icon": null, "uri": "/blackTechnology/js" },
+        { "permissionId": "blackTechnology_html", "parentId": "blackTechnology", "name": "HTML", "icon": null, "uri": "/blackTechnology/html" },
+        { "permissionId": "blackTechnology_html_01", "parentId": "blackTechnology_html", "name": "输入数学公式", "icon": null, "uri": "/blackTechnology/html/01" },
+        { "permissionId": "blackTechnology_complex", "parentId": "blackTechnology", "name": "综合", "icon": null, "uri": "/blackTechnology/complex" },
+        { "permissionId": "blackTechnology_complex_01", "parentId": "blackTechnology_complex", "name": "打印", "icon": null, "uri": "/blackTechnology/complex/01" },
+        { "permissionId": "blackTechnology_complex_02", "parentId": "blackTechnology_complex", "name": "图片的src是变量", "icon": null, "uri": "/blackTechnology/complex/02" },
+        // 11文章管理
+        { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "book", "uri": "/article" },
+        // 12系统管理
+        { "permissionId": "system_management", "parentId": "ALL", "name": "系统管理", "icon": "gears", "uri": "/system" },
+        { "permissionId": "DANWEIGUANLI", "parentId": "system_management", "name": "单位管理", "icon": null, "uri": "/system/dept" },
+        { "permissionId": "YONGHUGUANLI", "parentId": "system_management", "name": "用户管理", "icon": null, "uri": "/system/user" },
+        { "permissionId": "JUESEGUANLI", "parentId": "system_management", "name": "角色管理", "icon": null, "uri": "/system/role" },
+        { "permissionId": "ZHUCEYONGHUSHENHE", "parentId": "system_management", "name": "注册用户审核", "icon": null, "uri": "/system/user_review" },
     ]
 });
 // 用户拥有的按钮权限

@@ -6,103 +6,81 @@ Vue.use(VueRouter);
 
 // 定义路由
 const routes = [
-    // 文章管理
-    // {
-    //     path:"/article",
-    //     component:()=>import('')
-    // },
-    // demo
+    // ---------------------- 01预设样式 ----------------------
     {
-        path: "/demo",
-        component: () => import('./views/demo.vue')
+        path: "/presetStyle/btn",
+        component: () => import('./views/01presetStyle/btn.vue')
     },
-    // 预设class示例
+    // ---------------------- 02组件使用说明 ----------------------
     {
-        path: "/classdemo/btn",
-        component: () => import('./views/classdemo/btn.vue')
+        path: "/componentInstructions/xTable",
+        component: () => import('./views/02componentInstructions/xTable/main.vue')
     },
-    // ---------------------- 文章管理 ----------------------
+    {
+        path: "/componentInstructions/horizontalScrolling",
+        component: () => import('./views/02componentInstructions/horizontalScrolling/main.vue')
+    },
+    // ---------------------- 03插件DEMO ----------------------
+    {
+        path: "/pluginDemo/echarts",
+        component: () => import('./views/03pluginDemo/echarts/main.vue')
+    },
+    {
+        path: "/pluginDemo/guide",
+        component: () => import('./views/03pluginDemo/guide/main.vue')
+    },
+    // ---------------------- 04黑科技 ----------------------
+    {
+        path: "/blackTechnology/css/01",
+        component: () => import('./views/04blackTechnology/css/01cssmadeShape/main.vue')
+    },
+    {
+        path: "/blackTechnology/css/02",
+        component: () => import('./views/04blackTechnology/css/02/main.vue')
+    },
+    {
+        path: "/blackTechnology/html/01",
+        component: () => import('./views/04blackTechnology/html/01/main.vue')
+    },
+    {
+        path: "/blackTechnology/complex/01print",
+        component: () => import('./views/04blackTechnology/complex/01print/main.vue')
+    },
+    {
+        path: "/blackTechnology/complex/02",
+        component: () => import('./views/04blackTechnology/complex/02/main.vue')
+    },
+    // ---------------------- 11文章管理 ----------------------
     {
         path: "/article",
-        component: () => import('./views/article/list.vue')
+        component: () => import('./views/11article/list.vue')
     },
     {
         name: "articleDetail",
         path: "/article/detail/:mode/:id",
-        component: () => import('./views/article/detail.vue')
-    },
-    // ---------------------- 示例 ----------------------
-    // problem：01数学公式（特殊符号的输入方法）
-    {
-        path: "/example/problem/1",
-        component: () => import('./views/example/problem/01mathformula.vue'),
-    },
-    // problem：02图片的src是变量
-    {
-        path: "/example/problem/2",
-        component: () => import('./views/example/problem/02imgSrc.vue'),
-    },
-    // problem：03用css画的形状
-    {
-        path: "/example/problem/3",
-        component: () => import('./views/example/problem/03cssmadeShape.vue'),
-    },
-    // problem：04打印
-    {
-        path: "/example/problem/4",
-        component: () => import('./views/example/problem/04print.vue'),
-    },
-    // problem：04打印
-    {
-        path: "/example/problem/5",
-        component: () => import('./views/example/problem/05cssContentAttr.vue'),
-    },
-    // 表格 table
-    {
-        path: "/example/table",
-        component: () => import('./views/example/table/main.vue')
-    },
-    // 图表 charts
-    {
-        path: "/example/charts",
-        component: () => import('./views/example/charts/main.vue')
-    },
-    // guide
-    {
-        path: "/example/guide",
-        component: () => import('./views/example/guide.vue')
-    },
-    // 横向滚动 horizontalScrolling
-    {
-        path: "/example/horizontalScrolling",
-        component: () => import('./views/example/horizontalScrolling.vue')
+        component: () => import('./views/11article/detail.vue')
     },
 
-    // ---------------------- 系统管理 ----------------------
-    // 单位管理
+    // ---------------------- 12系统管理 ----------------------
     {
         path: '/system/dept',
-        component: () => import('./views/system/dept.vue')
+        component: () => import('./views/12system/dept.vue')
     },
-    // 角色管理
     {
         path: '/system/role',
-        component: () => import('./views/system/role.vue'),
+        component: () => import('./views/12system/role.vue'),
     },
-    // 权限管理（ 未开发）
     {
         path: '/system/permission',
-        component: () => ('./views/system/permission.vue'),
+        component: () => ('./views/12system/permission.vue'),
     },
-    // 用户管理
     {
         path: '/system/user',
-        component: () => import('./views/system/user.vue'),
+        component: () => import('./views/12system/user.vue'),
     },
-    // 注册用户审核
     {
         path: '/system/user_review',
-        component: () => import('./views/system/user_review.vue'),
+        component: () => import('./views/12system/user_review.vue'),
     },
 
 ]
