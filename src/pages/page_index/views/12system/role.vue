@@ -7,12 +7,12 @@
             编辑或查看时，重新设置el-tree的选中值 this.$refs.selectPermissionTree.setCheckedKeys(选中角色所拥有的所有权限的id数组);
          -->
 
-        <section class="search-condition-container">
-            <section class="box-btns">
+        <section class="search-condition">
+            <section class="search-btn-box">
                 <el-button size="small" type="primary" @click="openDial(1)" v-if="checkBtn('add')">添加</el-button>
             </section>
         </section>
-        <el-table :data="tableData" ref="table" border stripe>
+        <xTable :refresh="refresh" :enablePaging="false" ref="table">
             <el-table-column prop="name" label="名称"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
@@ -22,7 +22,7 @@
                     <el-button class="size-small" type="danger" v-if="checkBtn('delete')&&scope.row.btnFlag_delete" @click="openDialog_delete(1,scope.row)">删除</el-button>
                 </template>
             </el-table-column>
-        </el-table>
+        </xTable>
         <!-- 弹窗 -->
         <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="680px" :modal-append-to-body='false'>
             <el-form ref="dialogForm1" label-width="100px" style="width:500px;" size="medium" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent>
@@ -68,8 +68,6 @@ export default {
         };
         return {
             loading: false,
-            // 表格数据
-            tableData: [],
             // 权限数据
             permissionData: [],
             // 弹窗
@@ -100,8 +98,8 @@ export default {
         },
     },
     mounted() {
-        this.refreshTable();
         this.getPermissionData();
+        this.refreshTable_pageOne();
     },
     methods: {
         // 检查按钮权限
@@ -130,15 +128,21 @@ export default {
             // console.log("在这里加：选中子节点后，把父级、爷爷级节点也选中。")
             // console.log(a, b, c);
         },
-        // 表格
-        refreshTable() {
-            this.loading = true;
-            this.xAxios({
-                method: 'get',
+        // ------------------------------ 表格 ------------------------------
+        // 传给子组件用的
+        refresh(param, self) {
+            // console.log(param);
+            // 获取表格数据
+            self.loading = true;
+            self.xAxios({
+                method: "get",
                 url: BASE_PATH + "/role/list.htmls",
-            }).then((response) => {
+                params: param
+            }).then(response => {
                 const res = response.data;
-                this.tableData = this._.map(res.data, (item) => {
+                console.log(res);
+                // 数据格式化
+                self.tableData = this._.map(res.data, (item) => {
                     if (item.temp1 == 1) {
                         // 内置角色：只能查看
                         item.btnFlag_look = true;
@@ -151,10 +155,15 @@ export default {
                     }
                     return item;
                 });
-                this.loading = false;
+                self.loading = false;
             }).catch(error => {
-                this.loading = false;
+                self.loading = false;
             });
+        },
+        // 刷新表格（跳回第一页）
+        refreshTable_pageOne() {
+            this.$refs.table.pageNum = 1;
+            this.$refs.table.refreshTable();
         },
         // 弹窗
         openDial(type, id) {
@@ -269,7 +278,7 @@ export default {
                             message: '删除成功！'
                         });
                         // 刷新
-                        this.refreshTable();
+                        this.refreshTable_pageOne();
                     }
                     this.loading = false;
                 }).catch(error => {

@@ -117,7 +117,9 @@ export default {
             }
             const func = this.evalFunc || treeToArray
             const args = this.evalArgs ? Array.concat([tmp, this.expandAll], this.evalArgs) : [tmp, this.expandAll]
-            return func.apply(null, args)
+            let res=func.apply(null, args);
+            console.log(res);
+            return res;
         }
     },
     methods: {
@@ -141,7 +143,7 @@ export default {
         },
         // 图标显示
         iconShow(index, record) {
-            return (index === 0 && record.children && record.children.length > 0)
+            return (index === 0 && record.child && record.child.length > 0)
         }
     }
 };

@@ -26,11 +26,6 @@
     </section>
 </template>
 <script>
-// 全局
-import '~/styles/main.scss'
-import _ from 'lodash'
-import xTools from '~/utils/xTools.js'
-import { xElementRules } from '~/utils/xValidate.js'
 // 本页
 import './main.scss'
 export default {
@@ -70,7 +65,7 @@ export default {
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] },
                     { min: 2, max: 20, message: "长度在 2 到 20 个字符", trigger: ['blur', 'change'] },
                     // 西文验证，使用自己封装的xElementRules
-                    { validator: xElementRules.western, trigger: ['blur', 'change'] },
+                    { validator: this.xElementRules.western, trigger: ['blur', 'change'] },
                     // 重名验证
                     // { validator: nameValidation, trigger: "blur" }
                 ],
@@ -82,7 +77,7 @@ export default {
                 // 手机
                 phone: [
                     // 手机格式验证，使用自己封装的xElementRules
-                    { validator: xElementRules.cellphone, trigger: ['blur', 'change'] }
+                    { validator: this.xElementRules.cellphone, trigger: ['blur', 'change'] }
                 ],
                 // 邮箱
                 email: [
@@ -101,7 +96,7 @@ export default {
             this.$refs.form.validate(valid => {
                 if (valid) {
                     this.loading = true;
-                    let param = _.cloneDeep(this.registerData);
+                    let param = this._.cloneDeep(this.registerData);
                     this.xAxios({
                         // 自定义配置项：xJsonData 发送json格式的数据【修改method、headers、JSON化数据】
                         xJsonData: true,

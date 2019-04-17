@@ -43,12 +43,6 @@ module.exports = {
             // 在 dist/index.html 的输出
             filename: 'index.html'
         },
-        demo: {
-            entry: 'src/pages/page_demo/main.js',
-            template: 'public/index.html',
-            title: 'demo',
-            filename: 'demo.html'
-        },
         login: {
             entry: 'src/pages/page_login/main.js',
             template: 'public/index.html',

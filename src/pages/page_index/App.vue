@@ -3,6 +3,8 @@
         <section id="topbar">
             <!-- logo -->
             <section class="logo">一个很长很长很长很长很长的标题</section>
+            <!-- 按钮放在这里，只是为了演示导出PDF的效果 -->
+            <el-button type="danger" class="size-small" @click="do_exportPDF">导出PDF</el-button>
             <!-- 包在 .rightAlignContainer 中的内容会靠右对齐 -->
             <div class="rightAlignContainer">
                 <!-- 导航 -->
@@ -41,23 +43,25 @@
                     </section>
                     <xLimitlessSidebarMenu :data="leftNavList" :props="props" id="leftNav" />
                 </section>
-                <router-view id="content_wrap"></router-view>
+                <section id="content_wrap">
+                    <router-view></router-view>
+                </section>
             </template>
             <template v-else>
-                <router-view id="content_wrap" style="margin-left:0"></router-view>
+                <section id="content_wrap" style="margin-left:0">
+                    <router-view></router-view>
+                </section>
             </template>
         </section>
     </div>
 </template>
 <script>
-// 全局
-import xLimitlessSidebarMenu from "~/components/xLimitlessSidebarMenu/index.vue";
 // 本页
 import "./styles/main.scss";
 import UserInfo from "./modules/xUserInfo/index.vue";
 export default {
     name: "app",
-    components: { UserInfo, xLimitlessSidebarMenu },
+    components: { UserInfo },
     created() {
         this.getUserInfo();
     },
@@ -107,6 +111,13 @@ export default {
         };
     },
     methods: {
+        // 演示导出PDF的效果
+        do_exportPDF() {
+            // 不能打印 #content_wrap，因为他是限高的
+            let obj = document.querySelector('#content_wrap>*');;
+            let fileName = "演示导出PDF效果";
+            this.exportPDF(obj, fileName);
+        },
         // 计算 #main_container的高度
         calculateHeight() {
             let func = () => {

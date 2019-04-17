@@ -15,10 +15,11 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         // 01预设样式
         { "permissionId": "presetStyle", "parentId": "ALL", "name": "预设样式", "icon": "cube", "uri": "/presetStyle" },
         { "permissionId": "presetStyle_btn", "parentId": "presetStyle", "name": "按钮", "icon": null, "uri": "/presetStyle/btn" },
+        { "permissionId": "presetStyle_searchCondition", "parentId": "presetStyle", "name": "搜索条件", "icon": null, "uri": "/presetStyle/searchCondition" },
         // 02组件使用说明
         { "permissionId": "componentInstructions", "parentId": "ALL", "name": "组件说明", "icon": "superpowers", "uri": "/componentInstructions" },     
         { "permissionId": "componentInstructions_xTable", "parentId": "componentInstructions", "name": "表格xTable", "icon": null, "uri": "/componentInstructions/xTable" },   
-        { "permissionId": "componentInstructions_xTreeTable", "parentId": "componentInstructions", "name": "xTreeTable", "icon": null, "uri": "/componentInstructions/xTreeTable" },   
+        { "permissionId": "componentInstructions_treeTable", "parentId": "componentInstructions", "name": "treeTable", "icon": null, "uri": "/componentInstructions/treeTable" },   
         { "permissionId": "componentInstructions_horizontalScrolling", "parentId": "componentInstructions", "name": "横向滚动", "icon": null, "uri": "/componentInstructions/horizontalScrolling" },
         // 03插件DEMO
         { "permissionId": "pluginDemo", "parentId": "ALL", "name": "插件DEMO", "icon": "leaf", "uri": "/pluginDemo" },
@@ -34,7 +35,8 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "blackTechnology_html_01", "parentId": "blackTechnology_html", "name": "输入数学公式", "icon": null, "uri": "/blackTechnology/html/01" },
         { "permissionId": "blackTechnology_complex", "parentId": "blackTechnology", "name": "综合", "icon": null, "uri": "/blackTechnology/complex" },
         { "permissionId": "blackTechnology_complex_01", "parentId": "blackTechnology_complex", "name": "打印", "icon": null, "uri": "/blackTechnology/complex/01" },
-        { "permissionId": "blackTechnology_complex_02", "parentId": "blackTechnology_complex", "name": "图片的src是变量", "icon": null, "uri": "/blackTechnology/complex/02" },
+        { "permissionId": "blackTechnology_complex_02", "parentId": "blackTechnology_complex", "name": "页面导出PDF", "icon": null, "uri": "/blackTechnology/complex/02" },
+        { "permissionId": "blackTechnology_complex_03", "parentId": "blackTechnology_complex", "name": "图片的src是变量", "icon": null, "uri": "/blackTechnology/complex/03" },
         // 11文章管理
         { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "book", "uri": "/article" },
         // 12系统管理

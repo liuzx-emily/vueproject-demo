@@ -31,8 +31,8 @@
             <el-tree :data="deptTreeData" node-key="deptId" :props="{label: 'name'}" :default-expand-all="true" :highlight-current="true" :expand-on-click-node="false" @node-click="clickDeptTreeNode" ref="leftTree"></el-tree>
         </section>
         <section class="userModule_right">
-            <section class="search-condition-container">
-                <section class="box-btns">
+            <section class="search-condition">
+                <section class="search-btn-box">
                     <el-button type="primary" size="small" @click="openDial(1)" v-if="checkBtn('add')">添加</el-button>
                     <el-button type="danger" size="small" @click="openDialog_delete(2)" v-if="checkBtn('delete')">批量删除</el-button>
                 </section>
@@ -96,8 +96,6 @@
     </section>
 </template>
 <script>
-// 全局
-import { xElementRules } from '~/utils/xValidate.js'
 // 本页
 const dialogData_default = {
     userId: "",
@@ -152,7 +150,7 @@ export default {
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] },
                     { min: 2, max: 20, message: "长度在 2 到 20 个字符", trigger: ['blur', 'change'] },
                     // 西文验证
-                    { validator: xElementRules.western, trigger: ['blur', 'change'] },
+                    { validator: this.xElementRules.western, trigger: ['blur', 'change'] },
                     // 重名验证
                     { validator: nameValidation, trigger: "blur" },
                 ],
@@ -164,7 +162,7 @@ export default {
                 // 手机
                 phone: [
                     // 手机格式验证，使用自己封装的xElementRules
-                    { validator: xElementRules.cellphone, trigger: ['blur', 'change'] }
+                    { validator: this.xElementRules.cellphone, trigger: ['blur', 'change'] }
                 ],
                 // 邮箱
                 email: [

@@ -1,23 +1,27 @@
 <template>
     <section>
-        <section class="search-condition-container">
-            <div class="box-wa">
-                <span class="text">
+        <section class="search-condition">
+            <div class="box">
+                <span class="search-label">
                     标题：
                 </span>
-                <el-input v-model.trim="fakesearchparam.title"></el-input>
+                <span class="search-input">
+                    <el-input v-model.trim="fakesearchparam.title"></el-input>
+                </span>
             </div>
-            <div class="box-wa">
-                <span class="text">
+            <div class="box">
+                <span class="search-label">
                     发布时间：
                 </span>
-                <el-date-picker v-model="fakesearchparam.startTime" type="date" value-format="timestamp">
-                </el-date-picker>
-                至
-                <el-date-picker v-model="fakesearchparam.endTime_unformatted" type="date" value-format="yyyy-MM-dd">
-                </el-date-picker>
+                <span class="search-input">
+                    <el-date-picker v-model="fakesearchparam.startTime" type="date" value-format="timestamp">
+                    </el-date-picker>
+                    至
+                    <el-date-picker v-model="fakesearchparam.endTime_unformatted" type="date" value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                </span>
             </div>
-            <section class="box-btns">
+            <section class="search-btn-box">
                 <el-button size="small" type="warning" @click="doSearch">搜索</el-button>
                 <el-button size="small" type="primary" @click="do_add" v-if="checkBtn('add')">新增</el-button>
             </section>
@@ -54,7 +58,7 @@
 </template>
 <script>
 export default {
-    components: { },
+    components: {},
     props: [],
     data() {
         return {

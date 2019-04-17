@@ -24,11 +24,7 @@
     </div>
 </template>
 <script>
-// 全局
-import '~/styles/main.scss'
-import xTools from '~/utils/xTools.js'
-import { xValidate } from '~/utils/xValidate.js'
-// 本页
+// 样式
 import './main.scss'
 export default {
     data() {
@@ -52,7 +48,7 @@ export default {
     methods: {
         do_login() {
             // 使用自己封装的校验函数 xValidate
-            if (!xValidate(this.loginData, this.xRules)) {
+            if (!this.xValidate(this.loginData, this.xRules)) {
                 return false;
             }
             // loading遮罩层：开

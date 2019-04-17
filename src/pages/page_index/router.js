@@ -9,16 +9,24 @@ const routes = [
     // ---------------------- 01预设样式 ----------------------
     {
         path: "/presetStyle/btn",
-        component: () => import('./views/01presetStyle/btn.vue')
+        component: () => import('./views/01presetStyle/01btn.vue')
+    },
+    {
+        path: "/presetStyle/searchCondition",
+        component: () => import('./views/01presetStyle/02searchCondition.vue')
     },
     // ---------------------- 02组件使用说明 ----------------------
     {
         path: "/componentInstructions/xTable",
-        component: () => import('./views/02componentInstructions/xTable/main.vue')
+        component: () => import('./views/02componentInstructions/01xTable/main.vue')
+    },
+    {
+        path: "/componentInstructions/treeTable",
+        component: () => import('./views/02componentInstructions/02treeTable/main.vue')
     },
     {
         path: "/componentInstructions/horizontalScrolling",
-        component: () => import('./views/02componentInstructions/horizontalScrolling/main.vue')
+        component: () => import('./views/02componentInstructions/03horizontalScrolling/main.vue')
     },
     // ---------------------- 03插件DEMO ----------------------
     {
@@ -43,12 +51,16 @@ const routes = [
         component: () => import('./views/04blackTechnology/html/01/main.vue')
     },
     {
-        path: "/blackTechnology/complex/01print",
+        path: "/blackTechnology/complex/01",
         component: () => import('./views/04blackTechnology/complex/01print/main.vue')
     },
     {
         path: "/blackTechnology/complex/02",
-        component: () => import('./views/04blackTechnology/complex/02/main.vue')
+        component: () => import('./views/04blackTechnology/complex/02exportPDF/main.vue')
+    },
+    {
+        path: "/blackTechnology/complex/03",
+        component: () => import('./views/04blackTechnology/complex/03/main.vue')
     },
     // ---------------------- 11文章管理 ----------------------
     {

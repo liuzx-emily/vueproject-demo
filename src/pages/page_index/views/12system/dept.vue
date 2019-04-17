@@ -1,11 +1,11 @@
 <template>
     <section>
-        <section class="search-condition-container">
-            <section class="box-btns">
+        <section class="search-condition">
+            <section class="search-btn-box">
                 <el-button size="small" type="primary" @click="openDial(1)" v-if="checkBtn('add')">添加</el-button>
             </section>
         </section>
-        <xTreeTable :data="tableData" :columns="columns" border striped :expandAll="true">
+        <treeTable :data="tableData" :columns="columns" border striped :expandAll="true">
             <el-table-column prop="type" label="单位类型" width="200px">
                 <template slot-scope="scope">
                     {{(scope.row.type=='2'&&'调查单位')||(scope.row.type=='3'&&'市级单位')||""}}
@@ -20,7 +20,7 @@
                     </template>
                 </template>
             </el-table-column>
-        </xTreeTable>
+        </treeTable>
         <!-- 弹窗 -->
         <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="500px" :modal-append-to-body='true'>
             <el-form ref="dialogForm1" label-width="80px" size="medium" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent>
@@ -142,7 +142,7 @@ export default {
                 this.tableData = this.xTools.arrayToTree(res.data, {
                     before_idkey: "deptId",
                     before_parentkey: "parentId",
-                    after_childkey: "children"
+                    after_childkey: "child"
                 });
                 this.loading = false;
             }).catch(error => {

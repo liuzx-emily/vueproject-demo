@@ -1,6 +1,6 @@
 // ------------------------------- 浏览器默认样式重置 -------------------------------
-body{
-	margin: 0;
+body {
+    margin: 0;
 }
 // body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, button, input, textarea, th, td {
 //     margin: 0;
@@ -9,9 +9,9 @@ body{
 // body {
 //     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 // }
-// ul, ol {
-//     list-style: none;
-// }
+ul, ol {
+    list-style: none;
+}
 // a, a:hover {
 //     // text-decoration: none;
 //     // color: #000;
@@ -20,9 +20,9 @@ body{
 //     border-collapse: collapse;
 //     border-spacing: 0;
 // }
-// label, span, input {
-//     display: inline-block;
-// }
+span,a {
+    display: inline-block;
+}
 // img {
 //     border: none;
 // }

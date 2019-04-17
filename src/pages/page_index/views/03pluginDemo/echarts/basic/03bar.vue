@@ -1,41 +1,66 @@
 <style scoped>
-    .basicChart_bar{
+    .chart{
     display: block;
     width: 100%;
     height: 400px;
 }
 </style>
 <template>
-    <section>
+    <section v-loading.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
         <el-alert type="info" title="柱状图必须设置 xAxis.boundaryGap = true;"></el-alert>
-        <section :id="elementId" class="basicChart_bar"></section>
+        <el-button class="size-common" type="primary" @click="getData">重新获取数据</el-button>
+        <section :id="elementId" class="chart"></section>
     </section>
 </template>
 <script>
 export default {
     data() {
         return {
+            // 局部loading
+            loading: true,
+            // 生成随机id
             randomNum: this.xTools.guid(),
-            initFlag: false,
-            data: [
-                { name: "西瓜", price: [85, 129, 23, 7], type: "fruit", },
-                { name: "苹果", price: [169, 17, 93, 76], type: "fruit", },
-                { name: "菠萝", price: [34, 135, 15, 46], type: "fruit", },
-                { name: "白菜", price: [76, 54, 29, 84], type: "vegetable", },
-            ]
+            // 调色盘
+            colorArr: ["#ff7576", "#ffba75", "#75bbff", "#4ce297", ],
+            // 数据
+            data: [],
         }
     },
     computed: {
         elementId() {
-            return "basicChart_bar_" + this.randomNum;
+            return "chart_" + this.randomNum;
         }
     },
     mounted() {
-        // this.initChart();
+        // 当容器的宽度变化时，重新画画
+        this.chartResizeWhenWidthChange(this.elementId);
+        // this.getData();
     },
     methods: {
-        initChart() {
-            this.initFlag = true;
+        getData() {
+            this.loading = true;
+            // 先销毁之前的图
+            this.echarts.dispose(document.getElementById(this.elementId));
+            this.xAxios({
+                method: 'get',
+                url: BASE_PATH + '/dept/list.htmls',
+                params: {
+                    type: 1
+                }
+            }).then((response) => {
+                const res = response.data;
+                if (res.code == 1) {
+                    this.data = [
+                        { name: "西瓜", data: [85, 129, 23, 7], type: "fruit", },
+                        { name: "苹果", data: [169, 17, 93, 76], type: "fruit", },
+                        { name: "菠萝", data: [34, 135, 15, 46], type: "fruit", },
+                        { name: "白菜", data: [76, 54, 29, 84], type: "vegetable", },
+                    ];
+                    this.drawChart();
+                }
+            }).catch(error => {});
+        },
+        drawChart() {
             // 初始化
             let chart_obj = this.echarts.init(document.getElementById(this.elementId));
             // 每个series的默认配置
@@ -49,7 +74,7 @@ export default {
                 data: [],
             };
             // 坐标轴的默认配置
-            let default_axis = {
+            const default_axis = {
                 name: "坐标轴名称",
                 // 坐标轴名称的文字样式
                 nameTextStyle: {
@@ -94,7 +119,7 @@ export default {
             };
             // 配置项
             let option = {
-                color: ["#ff7576", "#ffba75", "#75bbff", "#4ce297", ],
+                color: this.colorArr,
                 grid: {
                     // grid左上角位置：默认80 60
                     x: 130,
@@ -149,11 +174,12 @@ export default {
             option.series = this._.map(this.data, item => {
                 let series = this._.cloneDeep(default_series_bar);
                 series.name = item.name;
-                series.data = item.price;
+                series.data = item.data;
                 return series;
             });
             // 显示图表
             chart_obj.setOption(option);
+            this.loading = false;
         }
     }
 };

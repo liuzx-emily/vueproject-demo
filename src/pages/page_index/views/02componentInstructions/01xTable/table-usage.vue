@@ -1,10 +1,3 @@
-<style lang="scss" scoped>
-    code{
-        margin:0 5px;
-        color: #2196f3;
-        font-weight: bold;
-    }
-</style>
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
         <el-card>
@@ -39,32 +32,39 @@
                 <p>3 用 pickDateRange 和 pickYear这种组件。如果有默认初始值，那么要在组件和searchparam中都赋初始值才行！！！</p>
             </div>
         </el-card>
-        <section class="search-condition-container">
-            <section class="box-wa">
-                <span class="text">名称：</span>
-                <el-input v-model.trim="fakesearchparam.name"></el-input>
+        <section class="search-condition">
+            <section class="box">
+                <span class="search-label">名称：</span>
+                <span class="search-input">
+                    <el-input v-model.trim="fakesearchparam.name"></el-input>
+                </span>
             </section>
-            <section class="box-wa">
-                <span class="text">下拉框：</span>
-                <el-select v-model="fakesearchparam.select1">
-                    <el-option label="全部" :value="-1"></el-option>
-                    <el-option label="值1" :value="1"></el-option>
-                    <el-option label="值2" :value="2"></el-option>
-                </el-select>
+            <section class="box">
+                <span class="search-label">下拉框：</span>
+                <span class="search-input">
+                    <el-select v-model="fakesearchparam.select1">
+                        <el-option label="全部" :value="-1"></el-option>
+                        <el-option label="值1" :value="1"></el-option>
+                        <el-option label="值2" :value="2"></el-option>
+                    </el-select>
+                </span>
             </section>
-            <section class="box-wa">
-                <span class="text">日期：</span>
-                <pickDateRange ref="pickDateRange1" />
-                <!-- <pickDateRange width="150px" ref="pickDateRange1"/> -->
+            <section class="box">
+                <span class="search-label">日期：</span>
+                <span class="search-input">
+                    <pickDateRange ref="pickDateRange1" />
+                    <!-- <pickDateRange width="150px" ref="pickDateRange1"/> --></span>
             </section>
-            <section class="box-wa">
-                <span class="text">年份：</span>
-                <pickYear ref="pickYear1"></pickYear>
-                <!-- <pickYear :value="2014" width="200px" :defaultPickCurrentYear="true" :cannotBeFuture="true" ref="pickYear1"></pickYear> -->
+            <section class="box">
+                <span class="search-label">年份：</span>
+                <span class="search-input">
+                    <pickYear ref="pickYear1"></pickYear>
+                    <!-- <pickYear :value="2014" width="200px" :defaultPickCurrentYear="true" :cannotBeFuture="true" ref="pickYear1"></pickYear> -->
+                </span>
             </section>
-            <section class="box-btns">
+            <section class="search-btn-box">
                 <el-button type="primary" @click="do_search">搜索</el-button>
-                <el-button type="success" @click="dialog_1_open({},false)">新增</el-button>
+                <el-button type="success" @click="dialog_1_open(1)">新增</el-button>
                 <el-button type="danger" @click="do_delete_multiple">批量删除</el-button>
             </section>
         </section>
@@ -86,8 +86,8 @@
             </el-table-column>
             <el-table-column label="操作" width="250px">
                 <template slot-scope="scope">
-                    <el-button class="size-small" type="primary" @click="dialog_1_open(scope.row,true)">查看</el-button>
-                    <el-button class="size-small" type="success" @click="dialog_1_open(scope.row,false)">编辑</el-button>
+                    <el-button class="size-small" type="success" @click="dialog_1_open(2,scope.row)">编辑</el-button>
+                    <el-button class="size-small" type="primary" @click="dialog_1_open(3,scope.row)">查看</el-button>
                     <el-button class="size-small" type="warning" @click="dialog_2_open(scope.row)">审核</el-button>
                     <el-button class="size-small" type="danger" @click="do_delete([scope.row.id])">删除</el-button>
                 </template>
@@ -170,6 +170,8 @@ export default {
             // 弹窗1
             dialog_1: {
                 title: "信息",
+                // 1新增 2编辑 3查看
+                mode: 1,
                 visible: false,
                 readonly: false,
                 data: {
@@ -216,44 +218,41 @@ export default {
         // ------------------------------ 表格 ------------------------------
         // 传给子组件用的
         refresh(param, self) {
-            console.log(param);
+            // console.log(param);
             // 获取表格数据
             self.loading = true;
-            self
-                .xAxios({
-                    method: "get",
-                    url: BASE_PATH + "/example/xTable.htmls",
-                    params: param
-                })
-                .then(response => {
-                    const res = response.data;
-                    // 数据格式化
-                    self.tableData = this._.map(res.data, item => {
-                        item.timeText = this.xTools.formatDate(item.time, 1);
-                        // 性别
-                        if (item.gender === 1) {
-                            item.genderText = "男";
-                        } else if (item.gender === 0) {
-                            item.genderText = "男";
-                        } else {
-                            item.genderText = "";
-                        }
-                        // 下拉框
-                        if (item.select1 === 1) {
-                            item.select1Text = "值1";
-                        } else if (item.select1 === 2) {
-                            item.select1Text = "值2";
-                        } else {
-                            item.select1Text = "";
-                        }
-                        return item;
-                    });
-                    self.count = res.count;
-                    self.loading = false;
-                })
-                .catch(error => {
-                    self.loading = false;
+            self.xAxios({
+                method: "get",
+                url: BASE_PATH + "/example/xTable.htmls",
+                params: param
+            }).then(response => {
+                const res = response.data;
+                // 数据格式化
+                self.tableData = this._.map(res.data, item => {
+                    item.timeText = this.xTools.formatDate(item.time, 1);
+                    // 性别
+                    if (item.gender === 1) {
+                        item.genderText = "男";
+                    } else if (item.gender === 0) {
+                        item.genderText = "男";
+                    } else {
+                        item.genderText = "";
+                    }
+                    // 下拉框
+                    if (item.select1 === 1) {
+                        item.select1Text = "值1";
+                    } else if (item.select1 === 2) {
+                        item.select1Text = "值2";
+                    } else {
+                        item.select1Text = "";
+                    }
+                    return item;
                 });
+                self.count = res.count;
+                self.loading = false;
+            }).catch(error => {
+                self.loading = false;
+            });
         },
         // 刷新表格（跳回第一页）
         refreshTable_pageOne() {
@@ -272,45 +271,32 @@ export default {
             // 刷新表格（跳回第一页）
             this.refreshTable_pageOne();
         },
-        do_add() {
-            console.log("新增");
-        },
-        do_edit(data) {
-            console.log("编辑", data);
-        },
-        do_look(data) {
-            console.log("查看", data);
-        },
-        do_audit(data) {
-            console.log("审核", data);
-        },
         do_delete(ids) {
             this.$confirm("删除后不可恢复，您确认要删除吗？", "", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
-                    type: "warning"
-                })
-                .then(() => {
-                    console.log("删除", ids);
-                    // this.xAxios({
-                    //     method: 'post',
-                    //     url: BASE_PATH + '/euq/delete.htmls',
-                    //     params: {
-                    //         id: data.id
-                    //     }
-                    // }).then((response) => {
-                    //     const res = response.data;
-                    //     if (res.code == 1) {
-                    //         this.$message({
-                    //             type: 'success',
-                    //             message: '删除成功！'
-                    //         });
-                    //         // 刷新
-                    //         this.refreshTable_pageOne();
-                    //     }
-                    // }).catch(error => {});
-                })
-                .catch(error => {});
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            }).then(() => {
+                console.log("删除", ids);
+                let idString = this._.join(ids, ",");
+                // this.xAxios({
+                //     method: 'post',
+                //     url: BASE_PATH + '/euq/delete.htmls',
+                //     params: {
+                //         id: idString
+                //     }
+                // }).then((response) => {
+                //     const res = response.data;
+                //     if (res.code == 1) {
+                //         this.$message({
+                //             type: 'success',
+                //             message: '删除成功！'
+                //         });
+                //         // 刷新
+                //         this.refreshTable_pageOne();
+                //     }
+                // }).catch(error => {});
+            }).catch(error => {});
         },
         do_delete_multiple() {
             var ids = this._.map(this.$refs.table.getSelection(), "id");
@@ -324,17 +310,31 @@ export default {
             }
         },
         // 弹窗1
-        dialog_1_open(data, readonly) {
+        dialog_1_open(mode, data) {
+
+            if (mode == 1) {
+                this.dialog_1.data = {
+                    id: null,
+                    name: "",
+                    number: null,
+                    gender: 0,
+                    select1: null,
+                    description: "",
+                };
+                this.dialog_1.readonly = false;
+            } else if (mode == 2 || mode == 3) {
+                this.dialog_1.data = {
+                    id: data.id,
+                    name: data.name,
+                    number: null,
+                    gender: data.gender,
+                    select1: data.select1,
+                    description: data.description,
+                };
+                this.dialog_1.readonly = (mode == 3);
+            }
+            this.dialog_1.mode = mode;
             this.dialog_1.visible = true;
-            this.dialog_1.readonly = readonly;
-            this.dialog_1.data = {
-                id: data.id,
-                name: data.name,
-                number: null,
-                gender: data.gender,
-                select1: data.select1,
-                description: data.description,
-            };
             this.$nextTick(() => {
                 this.$refs.dialog_1_ref.clearValidate();
             });
@@ -344,7 +344,11 @@ export default {
                 if (valid) {
                     // 拼参数
                     let param = this._.cloneDeep(this.dialog_1.data);
-                    console.log(param);
+                    if (this.dialog_1.mode == 1) {
+                        console.log("新增");
+                    } else if (this.dialog_1.mode == 2) {
+                        console.log("编辑");
+                    }
                     this.loading = true;
                     this.xAxios({
                         xJsonData: true,
@@ -361,6 +365,8 @@ export default {
                             });
                             // 关闭弹窗
                             this.dialog_1.visible = false;
+                            // 刷新
+                            this.refreshTable_pageOne();
                         } else {
                             this.$message({
                                 type: 'error',
@@ -408,6 +414,8 @@ export default {
                             });
                             // 关闭弹窗
                             this.dialog_2.visible = false;
+                            // 刷新
+                            this.refreshTable_pageOne();
                         } else {
                             this.$message({
                                 type: 'error',
