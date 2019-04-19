@@ -134,6 +134,7 @@ export default {
                     item.btnFlag_delete = true;
                     return item;
                 });
+                console.table(self.tableData,["title","publisher"])
                 self.count = res.count;
                 self.loading = false;
             }).catch(error => {

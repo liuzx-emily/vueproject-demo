@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" v-loading.fullscreen.lock="!initDone" element-loading-background="rgba(0,0,0,0.2)">
         <section id="topbar">
             <!-- logo -->
             <section class="logo">一个很长很长很长很长很长的标题</section>
@@ -31,7 +31,7 @@
             </div>
             <!-- 导航 -->
         </section>
-        <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}">
+        <section id="main_container" :class="{cuttedSideBar:$store.state.cuttedSideBar}" v-if="initDone">
             <template v-if="leftNavList.length>0">
                 <section id="sidebar_wrap">
                     <section id="leftNav_control">
@@ -62,15 +62,20 @@ import UserInfo from "./modules/xUserInfo/index.vue";
 export default {
     name: "app",
     components: { UserInfo },
-    created() {
-        this.getUserInfo();
-    },
     watch: {
         currentTopNavPath() {
             this.jumpToFirstNav();
         },
         leftNavList() {
             this.jumpToFirstNav();
+        },
+        initDone(value) {
+            if (value) {
+                this.$nextTick(() => {
+                    this.calculateHeight();
+                    // this.jumpToFirstNav();
+                })
+            }
         }
     },
     computed: {
@@ -95,12 +100,13 @@ export default {
             }
         }
     },
-    mounted() {
-        this.calculateHeight();
-        this.jumpToFirstNav();
+    created() {
+        this.getUserInfo();
     },
-    data: function() {
+    data() {
         return {
+            // 初始化完成了吗(所有要存在全局变量里的值都拿到了吗？)
+            initDone: false,
             // 总导航
             navList: [],
             props: {
@@ -149,22 +155,23 @@ export default {
             }).then(response => {
                 const res = response.data;
                 if (res.code == "1") {
-                    // 已登录
-                    let userInfo = {
-                        id: res.data.userId,
-                        name: res.data.realname
-                    };
-                    this.$store.state.userInfo = userInfo;
-                    // 获取菜单数据，并且自动跳转到第一个菜单
-                    this.getMenuData();
-                    this.getPermissionBtnData();
+                    setTimeout(() => {
+                        // 已登录
+                        let userInfo = {
+                            id: res.data.userId,
+                            name: res.data.realname
+                        };
+                        this.$store.state.userInfo = userInfo;
+                        this.initDone = true;
+                        // 获取菜单数据，并且自动跳转到第一个菜单
+                        this.getMenuData();
+                        this.getPermissionBtnData();
+                    }, 1000);
                 } else {
                     // 未登录
                     window.location.href = "./portal.html";
                 }
-            }).catch(error => {
-                // console.log(error);
-            });
+            }).catch(error => {});
         },
         // 获取菜单数据，并且自动跳转到第一个菜单
         getMenuData() {

@@ -31,11 +31,11 @@ const routes = [
     // ---------------------- 03插件DEMO ----------------------
     {
         path: "/pluginDemo/echarts",
-        component: () => import('./views/03pluginDemo/echarts/main.vue')
+        component: () => import('./views/03pluginDemo/01echarts/main.vue')
     },
     {
         path: "/pluginDemo/guide",
-        component: () => import('./views/03pluginDemo/guide/main.vue')
+        component: () => import('./views/03pluginDemo/02guide/main.vue')
     },
     // ---------------------- 04黑科技 ----------------------
     {
@@ -59,8 +59,12 @@ const routes = [
         component: () => import('./views/04blackTechnology/complex/02exportPDF/main.vue')
     },
     {
-        path: "/blackTechnology/complex/03",
-        component: () => import('./views/04blackTechnology/complex/03/main.vue')
+        path: "/blackTechnology/vue/01",
+        component: () => import('./views/04blackTechnology/vue/01variableImgSrc/main.vue')
+    },
+    {
+        path: "/blackTechnology/vue/02",
+        component: () => import('./views/04blackTechnology/vue/02afterInitDone/main.vue')
     },
     // ---------------------- 11文章管理 ----------------------
     {

@@ -28,7 +28,7 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         // 04黑科技
         { "permissionId": "blackTechnology", "parentId": "ALL", "name": "黑科技&难点", "icon": "magic", "uri": "/blackTechnology" },
         { "permissionId": "blackTechnology_css", "parentId": "blackTechnology", "name": "CSS", "icon": null, "uri": "/blackTechnology/css" },
-        { "permissionId": "blackTechnology_css_01", "parentId": "blackTechnology_css", "name": "css画的形状", "icon": null, "uri": "/blackTechnology/css/01" },
+        { "permissionId": "blackTechnology_css_01", "parentId": "blackTechnology_css", "name": "使用css绘制图形", "icon": null, "uri": "/blackTechnology/css/01" },
         { "permissionId": "blackTechnology_css_02", "parentId": "blackTechnology_css", "name": "利用CSS的content属性attr抓取资料", "icon": null, "uri": "/blackTechnology/css/02" },
         { "permissionId": "blackTechnology_js", "parentId": "blackTechnology", "name": "Javascript", "icon": null, "uri": "/blackTechnology/js" },
         { "permissionId": "blackTechnology_html", "parentId": "blackTechnology", "name": "HTML", "icon": null, "uri": "/blackTechnology/html" },
@@ -36,7 +36,9 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "blackTechnology_complex", "parentId": "blackTechnology", "name": "综合", "icon": null, "uri": "/blackTechnology/complex" },
         { "permissionId": "blackTechnology_complex_01", "parentId": "blackTechnology_complex", "name": "打印", "icon": null, "uri": "/blackTechnology/complex/01" },
         { "permissionId": "blackTechnology_complex_02", "parentId": "blackTechnology_complex", "name": "页面导出PDF", "icon": null, "uri": "/blackTechnology/complex/02" },
-        { "permissionId": "blackTechnology_complex_03", "parentId": "blackTechnology_complex", "name": "图片的src是变量", "icon": null, "uri": "/blackTechnology/complex/03" },
+        { "permissionId": "blackTechnology_vue", "parentId": "blackTechnology", "name": "vue相关", "icon": null, "uri": "/blackTechnology/vue" },
+        { "permissionId": "blackTechnology_vue_01", "parentId": "blackTechnology_vue", "name": "图片的src是变量", "icon": null, "uri": "/blackTechnology/vue/01" },
+        { "permissionId": "blackTechnology_vue_02", "parentId": "blackTechnology_vue", "name": "在初始化方法完成后再加载其他部分", "icon": null, "uri": "/blackTechnology/vue/02" },
         // 11文章管理
         { "permissionId": "WZGL", "parentId": "ALL", "name": "文章管理", "icon": "book", "uri": "/article" },
         // 12系统管理

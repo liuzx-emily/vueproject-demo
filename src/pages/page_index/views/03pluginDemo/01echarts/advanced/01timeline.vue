@@ -7,8 +7,8 @@
 </style>
 <template>
     <section v-loading.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
-        <el-alert type="info" title="要注意处理tooltip！"></el-alert>
         <el-alert type="info" title="getOption方法中，需要哪种图就去basic中复制相应的设置。但是要额外处理tooltip！"></el-alert>
+        <el-alert type="info" title="timeline本身有bug：数据不全时，图表会显示出上一个节点的数据。具体见bug专题"></el-alert>
         <el-button class="size-common" type="primary" @click="getData">重新获取数据</el-button>
         <section :id="elementId" class="chart"></section>
     </section>
@@ -276,13 +276,13 @@ export default {
                     trigger: 'axis',
                     formatter: params => {
                         let str = "";
-                        if (params.componentType == "series") {
+                        if (params.componentType == "timeline") {
+                            return params.name;
+                        } else {
                             str = params[0].name + '<br/>';
                             this._.forEach(params, item => {
                                 str += `${item.seriesName} :${item.value}<br/>`;
                             });
-                        } else if (params.componentType == "timeline") {
-                            return params.name;
                         }
                         return str;
                     }

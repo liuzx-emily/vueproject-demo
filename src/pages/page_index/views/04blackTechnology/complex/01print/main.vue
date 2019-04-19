@@ -33,8 +33,8 @@
     </section>
 </template>
 <script>
-import view1 from '~/pages/page_index/views/02componentInstructions/xTable/table-usage.vue'
-import view2 from '~/pages/page_index/views/03pluginDemo/echarts/main.vue'
+import view1 from '~/pages/page_index/views/02componentInstructions/01xTable/table-usage.vue'
+import view2 from '~/pages/page_index/views/03pluginDemo/01echarts/main.vue'
 export default {
     components: { view1, view2 },
     data() {
