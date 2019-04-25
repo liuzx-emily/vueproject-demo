@@ -32,9 +32,9 @@ export default {
             loading: false,
             captchaImgSrc: BASE_PATH + "/index/captcha.htmls",
             loginData: {
-                username: "",
-                password: "",
-                validateCode: "",
+                username: "xiaoming",
+                password: "123456",
+                validateCode: "7591",
             },
             // 自己封装的校验规则
             xRules: [
@@ -58,17 +58,22 @@ export default {
                 xJsonData: true,
                 // 自定义配置项：xDonotNeedLoginCheck 该请求不需要登录
                 xDonotNeedLoginCheck: true,
-                url: BASE_PATH + '/index/login.htmls',
+                url: BASE_PATH + '/login.do',
                 data: this.loginData,
             }).then((response) => {
                 // loading遮罩层：关
                 this.loading = false;
                 const res = response.data;
                 if (res.code == 1) {
-                    window.location.href = "./index.html";
+                    this.$message({
+                        message: '登录成功！',
+                        type: 'success',
+                        showClose: true,
+                    });
+                    // window.location.href = "./index.html";
                 } else {
                     this.$message({
-                        message: res.data,
+                        message: res.message,
                         type: 'error',
                         showClose: true,
                     });

@@ -47,6 +47,10 @@ const routes = [
         component: () => import('./views/04blackTechnology/css/02/main.vue')
     },
     {
+        path: "/blackTechnology/js/01",
+        component: () => import('./views/04blackTechnology/js/01console/main.vue')
+    },
+    {
         path: "/blackTechnology/html/01",
         component: () => import('./views/04blackTechnology/html/01/main.vue')
     },

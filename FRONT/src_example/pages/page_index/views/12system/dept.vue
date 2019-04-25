@@ -6,18 +6,17 @@
             </section>
         </section>
         <treeTable :data="tableData" :columns="columns" border striped :expandAll="true">
-            <el-table-column prop="type" label="单位类型" width="200px">
+            <el-table-column prop="type" label="类型" width="100px">
                 <template slot-scope="scope">
-                    {{(scope.row.type=='2'&&'调查单位')||(scope.row.type=='3'&&'市级单位')||""}}
-                </template></el-table-column>
+                    {{(scope.row.type=='1'&&'好吃')||(scope.row.type=='2'&&'不好吃')||""}}
+                </template>
+            </el-table-column>
+            <el-table-column prop="description" label="备注"></el-table-column>
             <el-table-column label="操作" width="250px">
-                <template slot-scope="scope">
-                    <!-- 如果是"天津市建委"部门，则不允许操作 -->
-                    <template v-if="scope.row.name!='天津市建委'">
-                        <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.deptId)">编辑</el-button>
-                        <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.deptId)">查看</el-button>
-                        <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
-                    </template>
+                <template slot-scope="scope" v-if="scope.row.id!='0'">
+                    <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial(2,scope.row.id)">编辑</el-button>
+                    <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial(3,scope.row.id)">查看</el-button>
+                    <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openDialog_delete(1,scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </treeTable>
@@ -29,13 +28,13 @@
                 </el-form-item>
                 <el-form-item label="单位类型" prop="type">
                     <el-radio-group v-model="dialogData.type">
-                        <el-radio :label="2">调查单位</el-radio>
-                        <el-radio :label="3">市级单位</el-radio>
+                        <el-radio :label="1">好吃</el-radio>
+                        <el-radio :label="2">不好吃</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="上级单位" prop="parentId">
                     <template v-if="dialogType!=3">
-                        <el-tree :data="dialog_parentTree" node-key="deptId" :props="{label: 'name'}" :default-expand-all="true" :highlight-current="true" :expand-on-click-node="false" ref="selectParentTree"></el-tree>
+                        <el-tree :data="dialog_parentTree" node-key="id" :props="{label: 'name',children:'child'}" :default-expand-all="true" :highlight-current="true" :expand-on-click-node="false" ref="selectParentTree"></el-tree>
                     </template>
                     <template v-else>
                         {{dialogData.parentName}}
@@ -55,12 +54,12 @@
 <script>
 // 全局
 export default {
-    components: { },
+    components: {},
     data() {
         // 用户重名验证
         var nameValidation = (rule, value, callback) => {
             var param = {
-                deptId: this.dialogData.deptId,
+                id: this.dialogData.id,
                 name: this.dialogData.name
             };
             this.xAxios({
@@ -88,7 +87,7 @@ export default {
             dialogVisible: false,
             dialogType: 1,
             dialogData: {
-                deptId: "",
+                id: "",
                 name: "",
                 type: "",
                 parentId: "",
@@ -99,7 +98,7 @@ export default {
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] },
                     { min: 2, max: 20, message: "长度在 2 到 20 个字符", trigger: ['blur', 'change'] },
                     // 重名验证
-                    { validator: nameValidation, trigger: "blur" }
+                    // { validator: nameValidation, trigger: "blur" }
                 ],
                 type: [
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] }
@@ -118,7 +117,13 @@ export default {
             return this.dialogType == 3;
         },
         dialog_parentTree() {
-            return this._.cloneDeep(this.tableData);
+            let data = this._.cloneDeep(this.tableData);
+            return [{
+                id: "0",
+                parentId: "-1",
+                name: "顶级",
+                child: data
+            }];
         }
     },
     mounted() {
@@ -135,12 +140,12 @@ export default {
             this.loading = true;
             this.xAxios({
                 method: 'get',
-                url: BASE_PATH + "/dept/list.htmls",
-                params: { type: 23 }
+                url: BASE_PATH + "/dept/list.do",
             }).then((response) => {
                 const res = response.data;
-                this.tableData = this.xTools.arrayToTree(res.data, {
-                    before_idkey: "deptId",
+                let data = this._.cloneDeep(res.data);
+                this.tableData = this.xTools.arrayToTree(data, {
+                    before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: "child"
                 });
@@ -156,7 +161,7 @@ export default {
             if (type == 1) {
                 // 新增
                 this.dialogData = {
-                    deptId: "",
+                    id: "",
                     name: "",
                     type: "",
                     parentId: "",
@@ -174,14 +179,14 @@ export default {
                 // 编辑、查看
                 this.xAxios({
                     method: 'get',
-                    url: BASE_PATH + "/dept/detail.htmls",
+                    url: BASE_PATH + "/dept/detail.do",
                     params: {
-                        deptId: id,
+                        id: id,
                     }
                 }).then((response) => {
                     const res = response.data;
                     this.dialogData = {
-                        deptId: id,
+                        id: id,
                         name: res.data.name,
                         type: res.data.type,
                         parentId: res.data.parentId,
@@ -202,7 +207,7 @@ export default {
         },
         saveDial() {
             this.dialogData.parentId = this.$refs.selectParentTree.getCurrentKey();
-            if (this.dialogType == '2' && this.dialogData.parentId === this.dialogData.deptId) {
+            if (this.dialogType == '2' && this.dialogData.parentId === this.dialogData.id) {
                 this.$message({
                     message: '上级单位不能选择自身！',
                     type: 'warning',
@@ -217,7 +222,7 @@ export default {
                     this.xAxios({
                         xJsonData: true,
                         data: param,
-                        url: BASE_PATH + `/dept/${url}.htmls`
+                        url: BASE_PATH + `/dept/${url}.do`
                     }).then((response) => {
                         const res = response.data;
                         if (res.code == 1) {
@@ -261,13 +266,13 @@ export default {
                 type: 'warning'
             }).then(() => {
                 let param = {
-                    ids: this._.map(data, "deptId").join("-"),
+                    id: this._.map(data, "id")
                 };
                 this.loading = true;
                 this.xAxios({
                     method: 'post',
-                    url: BASE_PATH + '/dept/delete.htmls',
-                    params: param
+                    url: BASE_PATH + '/dept/delete.do',
+                    data: param
                 }).then((response) => {
                     const res = response.data;
                     if (res.code == 1) {

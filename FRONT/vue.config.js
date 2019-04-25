@@ -27,7 +27,7 @@ module.exports = {
             extensions: ['.js', '.vue', '.json', ".css"],
             alias: {
                 'vue$': 'vue/dist/vue.esm.js',
-                '~': path.resolve(__dirname, 'src')
+                '~': path.resolve(__dirname, 'src_example')
             }
         };
     },
@@ -35,7 +35,7 @@ module.exports = {
     pages: {
         index: {
             // js入口
-            entry: 'src/pages/page_index/main.js',
+            entry: 'src_example/pages/page_index/main.js',
             // 模板来源：多个页面可以用一个模版
             template: 'public/index.html',
             // 标题 需要在模版里写上： <title><%= htmlWebpackPlugin.options.title %></title>
@@ -44,19 +44,19 @@ module.exports = {
             filename: 'index.html'
         },
         login: {
-            entry: 'src/pages/page_login/main.js',
+            entry: 'src_example/pages/page_login/main.js',
             template: 'public/index.html',
             title: '登录',
             filename: 'login.html'
         },
         register: {
-            entry: 'src/pages/page_register/main.js',
+            entry: 'src_example/pages/page_register/main.js',
             template: 'public/index.html',
             title: '注册',
             filename: 'register.html'
         },
         portal: {
-            entry: 'src/pages/page_portal/main.js',
+            entry: 'src_example/pages/page_portal/main.js',
             template: 'public/index.html',
             title: '门户',
             filename: 'portal.html'
@@ -66,21 +66,17 @@ module.exports = {
     devServer: {
         // 端口号
         port: "9979",
-        // proxy: {
-        //     '/kitty': {
-        //         target: 'http://10.10.10.22/',
-        //         // proxy websockets
-        //         // ws: true,
-        //         // needed for virtual hosted sites
-        //         // changeOrigin: true,
-        //         pathRewrite: {
-        //             '^/api': ''
-        //         }
-        //     },
-        //     '/foo': {
-        //         target: '<other_url>'
-        //     }
-        // }
+        proxy: {
+            '/kitty': {
+                target: 'http://localhost:3000/',
+                pathRewrite: {
+                    '^/kitty': '',
+                }
+            },
+            '/foo': {
+                target: '<other_url>'
+            }
+        }
     },
     // 打包上线的环境中，是否需要 sourcemap。默认为true
     productionSourceMap: false,

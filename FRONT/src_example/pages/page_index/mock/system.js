@@ -31,6 +31,7 @@ Mock.mock(/\/permission\/nav.htmls/, 'get', {
         { "permissionId": "blackTechnology_css_01", "parentId": "blackTechnology_css", "name": "使用css绘制图形", "icon": null, "uri": "/blackTechnology/css/01" },
         { "permissionId": "blackTechnology_css_02", "parentId": "blackTechnology_css", "name": "利用CSS的content属性attr抓取资料", "icon": null, "uri": "/blackTechnology/css/02" },
         { "permissionId": "blackTechnology_js", "parentId": "blackTechnology", "name": "Javascript", "icon": null, "uri": "/blackTechnology/js" },
+        { "permissionId": "blackTechnology_js_01", "parentId": "blackTechnology_js", "name": "console", "icon": null, "uri": "/blackTechnology/js/01" },
         { "permissionId": "blackTechnology_html", "parentId": "blackTechnology", "name": "HTML", "icon": null, "uri": "/blackTechnology/html" },
         { "permissionId": "blackTechnology_html_01", "parentId": "blackTechnology_html", "name": "输入数学公式", "icon": null, "uri": "/blackTechnology/html/01" },
         { "permissionId": "blackTechnology_complex", "parentId": "blackTechnology", "name": "综合", "icon": null, "uri": "/blackTechnology/complex" },
