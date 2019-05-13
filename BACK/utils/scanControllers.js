@@ -8,11 +8,9 @@ fs.readdirSync("./controllers").filter(fileName => {
         switch (item.method) {
             case "GET":
                 router.get(item.url, item.function);
-                // console.log("注册GET方法：" + item.url);
                 break;
             case "POST":
                 router.post(item.url, item.function);
-                // console.log("注册POST方法：" + item.url);
                 break;
         }
     });

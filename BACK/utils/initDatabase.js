@@ -22,6 +22,8 @@ var sequelize = new Sequelize({
         // The table name is automatically pluralized by default. This behavior can be stopped by using the freezeTableName: true option.【default:false】
         freezeTableName: true
     },
+    // The logging-option should be either a function or false. Default: console.log
+    logging: console.log,
 });
 
 // Testing the connection

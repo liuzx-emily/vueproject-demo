@@ -1,23 +1,27 @@
 const Sequelize = require('sequelize');
-const sequelize = require("../utils/initDatabase");
 
-// Modeling a table
-const User = sequelize.define("user", {
-    id: {
-        primaryKey: true,
-        type: Sequelize.STRING,
-        allowNull: false,
-        comment: "",
-    },
+const EasyModelExample = require("../utils/easyModel");
+
+let attributes = {
     deptId: {
         type: Sequelize.STRING,
         allowNull: false,
-        comment: "部门id",
+        comment: "部门id"
+    },
+    roleId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        comment: "角色id"
     },
     username: {
         type: Sequelize.STRING,
         allowNull: false,
         comment: "帐号",
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        comment: "姓名",
     },
     password: {
         type: Sequelize.STRING,
@@ -29,8 +33,21 @@ const User = sequelize.define("user", {
         allowNull: true,
         comment: "email",
     },
-}, {
-    tableName: "t_user"
-});
+    phone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        comment: "手机",
+    },
+};
 
-module.exports = User;
+module.exports = new EasyModelExample({
+    name: "user",
+    attributes: attributes,
+    options: {
+        tableName: "t_user",
+    },
+    easyModelOptions: {
+        hasField_order: true,
+        hasField_isDelete: true,
+    },
+}).getModel();;

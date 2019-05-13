@@ -1,0 +1,33 @@
+// ------------------------------- 浏览器默认样式重置 -------------------------------
+body,ul,ol,li {
+    margin: 0;
+    padding: 0;
+}
+// body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, button, input, textarea, th, td {
+//     margin: 0;
+//     padding: 0;
+// }
+// body {
+//     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+// }
+ul, ol {
+    list-style: none;
+}
+// a, a:hover {
+//     // text-decoration: none;
+//     // color: #000;
+// }
+table {
+    border-collapse: collapse;
+    // border-spacing: 0;
+}
+span,a {
+    display: inline-block;
+}
+// img {
+//     border: none;
+// }
+// input[disabled], textarea[disabled], select[disabled] {
+//     background: #ebebe4;
+//     cursor: not-allowed;
+// }

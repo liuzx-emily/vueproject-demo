@@ -22,7 +22,6 @@ class EasyControllerExample {
                 ['order', 'DESC']
             ],
         }).then(data => {
-            console.log(data, ctx);
             processReadAction(data, ctx);
         }).catch(err => {
             processErr(err, ctx);
