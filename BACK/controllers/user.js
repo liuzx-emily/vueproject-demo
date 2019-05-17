@@ -1,15 +1,15 @@
+const name = "user";
+const attributes = ["id", "username", "name", "deptId", "roleId", "email", "phone", "order"];
+
+const Op = require('sequelize').Op;
 const EasyControllerExample = require("../utils/easyController")
 
 const models = require("../utils/scanModels");
-const User = models.user;
+const MainModel = models[name];
 
-
-const attributes = ["id", "username", "name", "deptId", "roleId", "email", "phone", "order"];
-
-
-const UserController = new EasyControllerExample(User, {
+const MainControllerExample = new EasyControllerExample(MainModel, {
     NeedCheckIsDelete: true,
-    attributes: undefined,
+    attributes: attributes,
 });
 
 
@@ -22,7 +22,7 @@ const findAll = async (ctx, next) => {
     pagingParam.page = parseInt(ctx.query.page);
     pagingParam.row = parseInt(ctx.query.row);
     pagingParam.offset = (pagingParam.page - 1) * pagingParam.row;
-    await User.findAndCountAll({
+    await MainModel.findAndCountAll({
         attributes: attributes,
         where: whereParam,
         offset: pagingParam.offset,
@@ -32,10 +32,10 @@ const findAll = async (ctx, next) => {
         ],
         include: [{
             attributes: ["name"],
-            association: User.belongsTo(models.dept, { foreignKey: 'deptId' }),
+            association: MainModel.belongsTo(models.dept, { foreignKey: 'deptId' }),
         }, {
             attributes: ["name"],
-            association: User.belongsTo(models.role, { foreignKey: 'roleId' }),
+            association: MainModel.belongsTo(models.role, { foreignKey: 'roleId' }),
         }, ]
     }).then(result => {
         let arr = result.rows.map(item => {
@@ -66,15 +66,15 @@ const findByPk = async (ctx, next) => {
     let id = ctx.query.id;
     let whereParam = {};
     whereParam.isDelete = 0;
-    await User.findByPk(id, {
+    await MainModel.findByPk(id, {
         attributes: attributes,
         where: whereParam,
         include: [{
             attributes: ["name"],
-            association: User.belongsTo(models.dept, { foreignKey: 'deptId' }),
+            association: MainModel.belongsTo(models.dept, { foreignKey: 'deptId' }),
         }, {
             attributes: ["name"],
-            association: User.belongsTo(models.role, { foreignKey: 'roleId' }),
+            association: MainModel.belongsTo(models.role, { foreignKey: 'roleId' }),
         }, ]
     }).then(data => {
         let obj = {};
@@ -93,19 +93,19 @@ const findByPk = async (ctx, next) => {
     });
 };
 
-// 不能这样赋值。因为这样的话,findAll内部的this是undefined。
-// const findAll = UserController.findAll;
-const create = async (ctx, next) => { await UserController.create(ctx, next) };
-const update = async (ctx, next) => { await UserController.update(ctx, next) };
-const destroy = async (ctx, next) => { await UserController.destroy(ctx, next) };
-const destroyLogically = async (ctx, next) => { await UserController.destroyLogically(ctx, next) };
+// const findAll = MainControllerExample.findAll;
+// const findByPk = async (ctx, next) => { await MainControllerExample.findByPk(ctx, next) };
+const create = async (ctx, next) => { await MainControllerExample.create(ctx, next) };
+const update = async (ctx, next) => { await MainControllerExample.update(ctx, next) };
+const destroy = async (ctx, next) => { await MainControllerExample.destroy(ctx, next) };
+const destroyLogically = async (ctx, next) => { await MainControllerExample.destroyLogically(ctx, next) };
 
 
 const login = async (ctx, next) => {
     // 取参数
     let whereParam = ctx.request.body;
     whereParam.isDelete = 0;
-    await User.findAll({
+    await MainModel.findAll({
         where: whereParam
     }).then(res => {
         if (res.length > 0) {
@@ -120,12 +120,11 @@ const login = async (ctx, next) => {
 
 };
 module.exports = [
-    { method: 'GET', url: "/user/list.do", function: findAll },
-    { method: 'GET', url: "/user/detail.do", function: findByPk },
-    { method: 'POST', url: "/user/add.do", function: create },
-    { method: 'POST', url: "/user/edit.do", function: update },
-    // { method: 'POST', url: "/user/delete.do", function: destroy },
-    { method: 'POST', url: "/user/delete.do", function: destroyLogically },
-    // 
-    { method: 'POST', url: "/login.do", function: login },
+    { method: 'GET', url: `/${name}/list.do`, function: findAll },
+    { method: 'GET', url: `/${name}/detail.do`, function: findByPk },
+    { method: 'POST', url: `/${name}/add.do`, function: create },
+    { method: 'POST', url: `/${name}/edit.do`, function: update },
+    // { method: 'POST', url: `/${name}/delete.do`, function: destroy },
+    { method: 'POST', url: `/${name}/delete.do`, function: destroyLogically },
+    { method: 'POST', url: `/login.do`, function: login },
 ];

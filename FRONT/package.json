@@ -15,6 +15,7 @@
     "element-ui": "2.5.4",
     "font-awesome": "4.7.0",
     "html2canvas": "1.0.0-rc.1",
+    "jquery": "^3.4.1",
     "jspdf": "1.5.3",
     "loadash": "1.0.0",
     "mockjs": "1.0.1-beta3",

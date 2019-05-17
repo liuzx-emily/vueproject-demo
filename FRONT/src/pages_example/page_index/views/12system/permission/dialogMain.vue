@@ -72,7 +72,7 @@ export default {
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] },
                     { min: 2, max: 20, message: "长度在 2 到 20 个字符", trigger: ['blur', 'change'] },
                     // 重名验证
-                    { validator: this.nameValidation, trigger: "blur" }
+                    // { validator: this.nameValidation, trigger: "blur" }
                 ],
                 code: [
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] }

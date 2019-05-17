@@ -10,7 +10,7 @@ Mock.mock(/\/example\/xTable.htmls/, 'get', {
         { "id": "6", "name": "名称F", "gender": 1, "select1": 1, "time": 1527292800000, "number": 36 },
         { "id": "7", "name": "名称G", "gender": 1, "select1": 1, "time": 1527292800000, "number": 15 }
     ],
-    "count": 7
+    "count": 57
 });
 // 通用的一个假接口，返回
 Mock.mock(/\/example\/fake_common.htmls/, 'post', {

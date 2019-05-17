@@ -18,21 +18,19 @@ export default {
     install(Vue) {
         Vue.component("xTable", this);
     },
+    watch: {
+        pageNum: {
+            immediate: true,
+            handler() {
+                console.log("pageNum变化了：", this.pageNum);
+            }
+        }
+    },
     props: {
         refresh: Function,
         // 是否开启分页功能
         enablePaging: {
             default: true
-        },
-        // 分页参数 (enablePaging为true时，才有效)
-        pagingParam: {
-            default: () => {
-                return {
-                    pageSizes: [10, 20, 50, 100, 500],
-                    pageNum: 1,
-                    pageSize: 10,
-                }
-            }
         },
         // 是否添加多选列
         enableCheckbox: {
@@ -73,11 +71,11 @@ export default {
             count: 0
         };
         if (this.enablePaging) {
-            param.pageSizes = this.pagingParam.pageSizes || [10, 20, 50, 100, 500];
-            param.pageNum = this.pagingParam.pageNum || 1;
-            param.pageSize = this.pagingParam.pageSize || 10;
+            param.pageSizes = [10, 20, 50, 100, 500];
+            param.pageNum = 5;
+            param.pageSize = 10;
         }
-
+        console.log(param);
         return param;
     },
     methods: {

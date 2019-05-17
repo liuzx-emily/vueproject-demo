@@ -3,10 +3,10 @@
     <submenu :data="formattedData" :urlKey="props.urlKey" :level="1" />
 </template>
 <script>
-import submenu from './main'
+import submenu from './submenu.vue'
 import _ from 'lodash';
 import xTools from '~/utils/xTools.js'
-import './index.scss'
+import './main.scss'
 export default {
     install(Vue) {
         Vue.component("xLimitlessSidebarMenu", this);

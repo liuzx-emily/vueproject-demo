@@ -1,20 +1,21 @@
+const name = "dept";
+const attributes = ['id', "name", "parentId", "type", "description", "order"];
+
 const Op = require('sequelize').Op;
 const EasyControllerExample = require("../utils/easyController")
 
 const models = require("../utils/scanModels");
-const Dept = models.dept;
+const MainModel = models[name];
 
-const attributes = ['id', "name", "parentId", "type", "description", "order"];
-
-const DeptController = new EasyControllerExample(Dept, {
+const MainControllerExample = new EasyControllerExample(MainModel, {
     NeedCheckIsDelete: true,
-    attributes: undefined,
+    attributes: attributes,
 });
 
 const findAll = async (ctx, next) => {
     let whereParam = {};
     whereParam.isDelete = 0;
-    let result = await Dept.findAll({
+    let result = await MainModel.findAll({
         attributes: attributes,
         where: whereParam,
         order: [
@@ -37,7 +38,7 @@ const findByPk = async (ctx, next) => {
     let id = ctx.query.id;
     let whereParam = {};
     whereParam.isDelete = 0;
-    let result = await Dept.findByPk(id, {
+    let result = await MainModel.findByPk(id, {
         where: whereParam
     });
     let obj = copyByAttributes(result);
@@ -57,7 +58,7 @@ const nameValidation = async (ctx, next) => {
     whereParam.id = {
         [Op.not]: id
     };
-    let obj = await Dept.findOne({
+    let obj = await MainModel.findOne({
         where: whereParam
     });
     ctx.response.body = {
@@ -67,23 +68,21 @@ const nameValidation = async (ctx, next) => {
     }
 };
 
-// 不能这样简单赋值。因为这样的话,findAll内部的this是undefined。【为什么this会丢还不知道】
-// const findAll = DeptController.findAll;
-// const findAll = async (ctx, next) => { await DeptController.findAll(ctx, next) };
-// const findByPk = async (ctx, next) => { await DeptController.findByPk(ctx, next) };
-const create = async (ctx, next) => { await DeptController.create(ctx, next) };
-const update = async (ctx, next) => { await DeptController.update(ctx, next) };
-const destroy = async (ctx, next) => { await DeptController.destroy(ctx, next) };
-const destroyLogically = async (ctx, next) => { await DeptController.destroyLogically(ctx, next) };
+// const findAll = async (ctx, next) => { await MainControllerExample.findAll(ctx, next) };
+// const findByPk = async (ctx, next) => { await MainControllerExample.findByPk(ctx, next) };
+const create = async (ctx, next) => { await MainControllerExample.create(ctx, next) };
+const update = async (ctx, next) => { await MainControllerExample.update(ctx, next) };
+const destroy = async (ctx, next) => { await MainControllerExample.destroy(ctx, next) };
+const destroyLogically = async (ctx, next) => { await MainControllerExample.destroyLogically(ctx, next) };
 
 module.exports = [
-    { method: 'GET', url: "/dept/list.do", function: findAll },
-    { method: 'GET', url: "/dept/detail.do", function: findByPk },
-    { method: 'POST', url: "/dept/add.do", function: create },
-    { method: 'POST', url: "/dept/edit.do", function: update },
-    // { method: 'POST', url: "/dept/delete.do", function: destroy },
-    { method: 'POST', url: "/dept/delete.do", function: destroyLogically },
-    { method: 'GET', url: "/dept/nameValidation.do", function: nameValidation },
+    { method: 'GET', url: `/${name}/list.do`, function: findAll },
+    { method: 'GET', url: `/${name}/detail.do`, function: findByPk },
+    { method: 'POST', url: `/${name}/add.do`, function: create },
+    { method: 'POST', url: `/${name}/edit.do`, function: update },
+    // { method: 'POST', url: `/${name}/delete.do`, function: destroy },
+    { method: 'POST', url: `/${name}/delete.do`, function: destroyLogically },
+    { method: 'GET', url: `/${name}/nameValidation.do`, function: nameValidation },
 ];
 
 // utils
@@ -95,7 +94,7 @@ const copyByAttributes = (origin) => {
     return obj;
 };
 const getParentName = async (parentId) => {
-    let parent = await Dept.findByPk(parentId);
+    let parent = await MainModel.findByPk(parentId);
     let parentName;
     if (parent) {
         parentName = parent.name;

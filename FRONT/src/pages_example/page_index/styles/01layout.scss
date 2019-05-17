@@ -1,7 +1,8 @@
 $sidebar_width: 200px;
 $topbar_height: 60px;
-// $highlight_color:#fa5f90;
 $highlight_color: #2196f3;
+// $highlight_color: #f44336;
+// $highlight_color: #009688;
 body {
     min-width: 1300px;
 }
@@ -167,13 +168,12 @@ body {
         #leftNav {
             .name_and_controlBtn {
                 a.limitless-menu-li-name {
-                    padding: 12px 0;
+                    padding: 10px 0;
                     font-family: "微软雅黑";
-                    font-size: 14px;
+                    font-size: 12px;
                     // 未选中时
-                    &,
-                    &:focus {
-                        color: white;
+                    &, &:focus {
+                        color: #eee;
                     }
                     // 选中时、hover时
                     &.router-link-active, &:hover {
@@ -181,8 +181,10 @@ body {
                     }
                 }
                 .controlBtn {
-                    top: 12px;
+                    top: 5px;
                     color: white;
+                    color: rgba(255, 255, 255, 0.8);
+                    right: 10px;
                 }
             }
         }

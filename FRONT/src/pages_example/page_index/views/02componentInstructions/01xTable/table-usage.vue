@@ -20,7 +20,6 @@
                 <p>5 如果需要关闭分页功能，传递
                     <code>:enablePaging="false"</code>，默认为true
                 </p>
-                <p>6 如果需要修改分页信息，传递<code>pagingParam</code>参数。注意：如果要自定义起始页数，那么在mounted里面<span style="color:red">不要调用 refreshTable_pageOne()</span></p>
             </div>
         </el-card>
         <el-card>
@@ -30,7 +29,7 @@
             <div>
                 <p>1 表头强制换行：使用header插槽，见"面积"这一列</p>
                 <p>2 如果排序字段和渲染字段不一致怎么办？见"性别"这一列</p>
-                <p>3 用 pickDateRange 和 pickYear这种组件。如果有默认初始值，那么要在组件和searchparam中都赋初始值才行！！！</p>
+                <p>3 如果搜索参数有初始值，一定要在 fakesearchparam 和 searchparam 中都赋值。</p>
             </div>
         </el-card>
         <section class="search-condition">
@@ -53,14 +52,17 @@
             <section class="box">
                 <span class="search-label">日期：</span>
                 <span class="search-input">
-                    <pickDateRange ref="pickDateRange1" />
-                    <!-- <pickDateRange width="150px" ref="pickDateRange1"/> --></span>
+                    <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
+                    <!-- 可选参数width，默认为auto -->
+                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="true" width="auto" />
+                </span>
             </section>
             <section class="box">
                 <span class="search-label">年份：</span>
                 <span class="search-input">
-                    <pickYear ref="pickYear1"></pickYear>
-                    <!-- <pickYear :value="2014" width="200px" :defaultPickCurrentYear="true" :cannotBeFuture="true" ref="pickYear1"></pickYear> -->
+                    <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
+                    <!-- 可选参数width，默认为auto -->
+                    <pickYear :fyear.sync="fakesearchparam.year" :cannotBeFuture="true" width="auto" />
                 </span>
             </section>
             <section class="search-btn-box">
@@ -69,7 +71,7 @@
                 <el-button type="danger" @click="do_delete_multiple">批量删除</el-button>
             </section>
         </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="true" :pagingParam="pagingParam">
+        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="true">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
             <el-table-column prop="gender" label="性别" sortable="custom">
                 <template slot-scope="scope">{{scope.row.genderText}}</template>
@@ -151,27 +153,24 @@
 export default {
     components: {},
     data() {
+        let year = new Date().getFullYear();
         return {
             loading: false,
             // 表格参数
+            // 如果搜索参数有初始值，一定要在 fakesearchparam 和 searchparam 中都赋值
             fakesearchparam: {
                 name: "",
                 select1: -1,
+                startTime: "",
+                endTime: "",
+                year: year,
             },
             searchparam: {
                 name: "",
                 select1: -1,
                 startTime: "",
                 endTime: "",
-                // 如果年份选择有初始值，那么必须在这里也传入。不然页面初始化后的默认列表，是没有带着这个字段的
-                year: new Date().getFullYear()
-            },
-            // 分页参数
-            pagingParam: {
-                pageSizes: [5, 10, 20, 50],
-                // 如果要自定义起始页数，那么在mounted里面不要调用 refreshTable_pageOne()
-                pageNum: 1,
-                pageSize: 5,
+                year: year,
             },
             // 后端排序，默认参数
             defaultsort: { sort: "name", order: "asc" },
@@ -220,13 +219,18 @@ export default {
         };
     },
     mounted() {
-        this.refreshTable_pageOne();
+        // this.refreshTable_pageOne();
+        this.$refs.table.refreshTable();
+        this.$nextTick(() => {
+            this.$refs.table.pageNum = 3;
+            this.$refs.table.refreshTable();
+        });
     },
     methods: {
         // ------------------------------ 表格 ------------------------------
         // 传给子组件用的
         refresh(param, self) {
-            // console.log(param);
+            console.log(param);
             // 获取表格数据
             self.loading = true;
             self.xAxios({
@@ -272,10 +276,10 @@ export default {
             this.searchparam.name = this.fakesearchparam.name;
             this.searchparam.select1 = this.fakesearchparam.select1;
             // 日期范围选择
-            this.searchparam.startTime = this.$refs.pickDateRange1.get(1);
-            this.searchparam.endTime = this.$refs.pickDateRange1.get(2);
+            this.searchparam.startTime = this.fakesearchparam.startTime;
+            this.searchparam.endTime = this.fakesearchparam.endTime;
             // 年份
-            this.searchparam.year = this.$refs.pickYear1.get();
+            this.searchparam.year = this.fakesearchparam.year;
             // 刷新表格（跳回第一页）
             this.refreshTable_pageOne();
         },

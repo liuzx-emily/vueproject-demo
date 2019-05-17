@@ -42,7 +42,7 @@
                             <span class="txt">菜单</span>
                         </section>
                     </section>
-                    <xLimitlessSidebarMenu :data="leftNavList" :props="props" id="leftNav" />
+                    <xLimitlessSidebarMenu :data="leftNavList" :props="sidebarMenuProps" id="leftNav" />
                 </section>
             </template>
             <!-- 主要内容 -->
@@ -56,7 +56,7 @@
 <script>
 // 本页
 import "./styles/main.scss";
-import UserInfo from "./modules/xUserInfo/index.vue";
+import UserInfo from "./modules/xUserInfo/main.vue";
 export default {
     name: "app",
     components: { UserInfo },
@@ -64,12 +64,11 @@ export default {
         '$route.path':{
             immediate:true,
             handler(value){
-                console.log(this.$router);
-                console.log("$route.path为："+value);
+                // console.log(this.$router);
+                // console.log("$route.path为："+value);
             }
         },
         'leftNavList'() {
-            // console.log("leftNavList changing");
             this.jumpToFirstNav();
         },
         initDone(value) {
@@ -116,7 +115,6 @@ export default {
         }
     },
     created() {
-        alert("permission 删除功能不对");
         this.getUserInfo();
     },
     data() {
@@ -125,7 +123,7 @@ export default {
             initDone: false,
             // 总导航
             navList: [],
-            props: {
+            sidebarMenuProps: {
                 before_idkey: "id",
                 before_parentkey: "parentId",
                 urlKey: "code"
@@ -171,10 +169,8 @@ export default {
 
                 }
             };
-            console.log(this.$route.path,this.currentTopNavPath);
             if (this.$route.path == this.currentTopNavPath) {
                 let realPageCode = findRealPage(this.leftNavList);
-                console.log(realPageCode);
                 realPageCode && this.$router.push(realPageCode);
             }
         },

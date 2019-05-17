@@ -1,25 +1,24 @@
 const name = "role";
+const attributes = ['id', "name", "parentId", "description", "order"];
+
+const Op = require('sequelize').Op;
 const EasyControllerExample = require("../utils/easyController")
 
 const models = require("../utils/scanModels");
-const Role = models.role;
+const MainModel = models[name];
 
-const RoleController = new EasyControllerExample(Role, {
+const MainControllerExample = new EasyControllerExample(MainModel, {
     NeedCheckIsDelete: true,
-    attributes: ['id', "name", "parentId",  "description", "order"],
+    attributes: attributes,
 });
 
 
-// 不能这样简单赋值。因为这样的话,findAll内部的this是undefined。【为什么this会丢还不知道】
-// const findAll = RoleController.findAll;
-
-
-const findAll = async (ctx, next) => { await RoleController.findAll(ctx, next) };
-const findByPk = async (ctx, next) => { await RoleController.findByPk(ctx, next) };
-const create = async (ctx, next) => { await RoleController.create(ctx, next) };
-const update = async (ctx, next) => { await RoleController.update(ctx, next) };
-const destroy = async (ctx, next) => { await RoleController.destroy(ctx, next) };
-const destroyLogically = async (ctx, next) => { await RoleController.destroyLogically(ctx, next) };
+const findAll = async (ctx, next) => { await MainControllerExample.findAll(ctx, next) };
+const findByPk = async (ctx, next) => { await MainControllerExample.findByPk(ctx, next) };
+const create = async (ctx, next) => { await MainControllerExample.create(ctx, next) };
+const update = async (ctx, next) => { await MainControllerExample.update(ctx, next) };
+const destroy = async (ctx, next) => { await MainControllerExample.destroy(ctx, next) };
+const destroyLogically = async (ctx, next) => { await MainControllerExample.destroyLogically(ctx, next) };
 
 module.exports = [
     { method: 'GET', url: `/${name}/list.do`, function: findAll },

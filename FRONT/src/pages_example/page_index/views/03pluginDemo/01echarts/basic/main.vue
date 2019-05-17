@@ -19,6 +19,9 @@
             <el-tab-pane label="仪表盘" name="chart6">
                 <chartDashboard ref="chart6" />
             </el-tab-pane>
+            <el-tab-pane label="柱状图：多种颜色" name="chart7">
+                <chartBarVariousColor ref="chart7" />
+            </el-tab-pane>
         </el-tabs>
     </section>
 </template>
@@ -29,11 +32,12 @@ import chartBar from './03bar.vue'
 import chartBarStack from './04bar_stack.vue'
 import chartPie from './05pie.vue'
 import chartDashboard from './06dashboard.vue'
+import chartBarVariousColor from './07bar_variousColor.vue'
 export default {
-    components: { chartLine, chartBar, chartLineArea, chartBarStack, chartPie, chartDashboard, },
+    components: { chartLine, chartBar, chartLineArea, chartBarStack, chartPie, chartDashboard, chartBarVariousColor},
     data() {
         return {
-            activeTab: "chart6"
+            activeTab: "chart1"
         }
     },
     mounted() {

@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             // 1说明 2basic 3advanced 4bug
-            mode: 4,
+            mode: 2,
         }
     },
     mounted() {},

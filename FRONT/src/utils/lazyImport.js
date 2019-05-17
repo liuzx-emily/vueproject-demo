@@ -48,22 +48,17 @@ Vue.prototype.chartResizeWhenWidthChange = (id) => {
 
 
 // -------------- 注册常用组件和模块 --------------
-import xTable from '~/components/xTable/index.vue'
+import xTable from '~/components/xTable/main.vue'
 Vue.use(xTable);
-import treeTable from '~/components/treeTable/index.vue';
+import treeTable from '~/components/treeTable/main.vue';
 Vue.use(treeTable);
-import xHorizontalScrolling from '~/components/xHorizontalScrolling/index.vue';
+import xHorizontalScrolling from '~/components/xHorizontalScrolling/main.vue';
 Vue.use(xHorizontalScrolling);
-import xEditor from "~/components/xEditor/index_wangeditor.vue";
+import xEditor from "~/components/xEditor/main.vue";
 Vue.use(xEditor);
-import xUploadAttachment from "~/components/xUploadAttachment/index.vue";
+import xUploadAttachment from "~/components/xUploadAttachment/main.vue";
 Vue.use(xUploadAttachment);
-import xLimitlessSidebarMenu from "~/modules/xLimitlessSidebarMenu/index.vue";
-Vue.use(xLimitlessSidebarMenu);
-import pickYear from "~/modules/xFormItem/pickYear.vue";
-Vue.use(pickYear);
-import pickDateRange from "~/modules/xFormItem/pickDateRange.vue";
-Vue.use(pickDateRange);
+
 
 
 Vue.config.productionTip = false;
