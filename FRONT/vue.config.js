@@ -65,7 +65,7 @@ module.exports = {
     // 解决开发阶段跨域问题
     devServer: {
         // 端口号
-        port: "9979",
+        port: "9446",
         proxy: {
             '/kitty': {
                 target: 'http://localhost:3000/',

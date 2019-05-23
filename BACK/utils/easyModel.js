@@ -26,13 +26,13 @@ const BASIC_ATTRIBUTES = {
 const BASIC_OPTIONS = {
     hooks: {
         beforeBulkCreate(instances, options) {
-            console.log(" -------------------------- beforeBulkCreate -------------------------- ", );
+            // console.log(" -------------------------- beforeBulkCreate -------------------------- ", );
         },
         beforeBulkDestroy(options) {
-            console.log(" -------------------------- beforeBulkDestroy -------------------------- ", );
+            // console.log(" -------------------------- beforeBulkDestroy -------------------------- ", );
         },
         beforeBulkUpdate(options) {
-            console.log(" -------------------------- beforeBulkUpdate -------------------------- ", );
+            // console.log(" -------------------------- beforeBulkUpdate -------------------------- ", );
             /*
             为了实现每次更新时自动修改updateTime，先尝试在 beforeValidate 中修改updateTime的值，失败了。
             所以来这里尝试，成功了！
@@ -43,7 +43,7 @@ const BASIC_OPTIONS = {
             options.attributes.updateTime = Date.now();
         },
         beforeValidate(instance, options) {
-            console.log(" -------------------------- beforeValidate -------------------------- ", );
+            // console.log(" -------------------------- beforeValidate -------------------------- ", );
 
             /*
             功能点一：为了实现创建的时候，自动给createTime和updateTime赋值。
@@ -76,53 +76,53 @@ const BASIC_OPTIONS = {
 
         },
         afterValidate(instance, options) {
-            console.log(" -------------------------- afterValidate -------------------------- ", );
+            // console.log(" -------------------------- afterValidate -------------------------- ", );
         },
         validationFailed(instance, options, error) {
-            console.log(" -------------------------- validationFailed -------------------------- ", );
+            // console.log(" -------------------------- validationFailed -------------------------- ", );
         },
         beforeCreate(instance, options) {
-            console.log(" -------------------------- beforeCreate -------------------------- ", );
+            /*console.log(" -------------------------- beforeCreate -------------------------- ", );
             console.log(instance);
             console.log(" ------------------------- ");
             console.log(options);
-            console.log(" ------------------------- ");
+            console.log(" ------------------------- ");*/
         },
         beforeDestroy(instance, options) {
-            console.log(" -------------------------- beforeDestroy -------------------------- ", );
+            // console.log(" -------------------------- beforeDestroy -------------------------- ", );
         },
         beforeUpdate(instance, options) {
-            console.log(" -------------------------- beforeUpdate -------------------------- ", );
+            // console.log(" -------------------------- beforeUpdate -------------------------- ", );
         },
         beforeSave(instance, options) {
-            console.log(" -------------------------- beforeSave -------------------------- ", );
+            // console.log(" -------------------------- beforeSave -------------------------- ", );
         },
         beforeUpsert(values, options) {
-            console.log(" -------------------------- beforeUpsert -------------------------- ", );
+            // console.log(" -------------------------- beforeUpsert -------------------------- ", );
         },
         afterCreate(instance, options) {
-            console.log(" -------------------------- afterCreate -------------------------- ", );
+            // console.log(" -------------------------- afterCreate -------------------------- ", );
         },
         afterDestroy(instance, options) {
-            console.log(" -------------------------- afterDestroy -------------------------- ", );
+            // console.log(" -------------------------- afterDestroy -------------------------- ", );
         },
         afterUpdate(instance, options) {
-            console.log(" -------------------------- afterUpdate -------------------------- ", );
+            // console.log(" -------------------------- afterUpdate -------------------------- ", );
         },
         afterSave(instance, options) {
-            console.log(" -------------------------- afterSave -------------------------- ", );
+            // console.log(" -------------------------- afterSave -------------------------- ", );
         },
         afterUpsert(created, options) {
-            console.log(" -------------------------- afterUpsert -------------------------- ", );
+            // console.log(" -------------------------- afterUpsert -------------------------- ", );
         },
         afterBulkCreate(instances, options) {
-            console.log(" -------------------------- afterBulkCreate -------------------------- ", );
+            // console.log(" -------------------------- afterBulkCreate -------------------------- ", );
         },
         afterBulkDestroy(options) {
-            console.log(" -------------------------- afterBulkDestroy -------------------------- ", );
+            // console.log(" -------------------------- afterBulkDestroy -------------------------- ", );
         },
         afterBulkUpdate(options) {
-            console.log(" -------------------------- afterBulkUpdate -------------------------- ", );
+            // console.log(" -------------------------- afterBulkUpdate -------------------------- ", );
         },
     }
 }

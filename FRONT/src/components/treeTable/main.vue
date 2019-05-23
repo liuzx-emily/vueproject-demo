@@ -43,23 +43,26 @@ $space-width: 18px;
 }
 </style>
 <template>
-    <el-table :data="formatData" :row-style="showRow" v-bind="$attrs">
-        <!-- <el-table-column type="selection"></el-table-column> -->
-        <el-table-column :label="controlColumn.label" :width="controlColumn.width" style="text-align:left">
-            <template slot-scope="scope">
+    <el-table :data="formatData" :row-style="showRow" class="xTableStyle" :class="styleClassList">
+        <!-- 控制列永远是左对齐的，不受表格整体对齐方式的影响 -->
+        <el-table-column :width="controlColumn.width">
+            <section slot="header" style="text-align:left">
+                {{controlColumn.label}}
+            </section>
+            <section slot-scope="scope" style="text-align:left">
                 <span v-for="space in scope.row._level" :key="space" class="ms-tree-space" />
                 <span v-if="iconShow(0,scope.row)" class="tree-ctrl" @click="toggleExpanded(scope.$index)">
                     <i v-if="!scope.row._expanded" class="el-icon-plus" />
                     <i v-else class="el-icon-minus" />
                 </span>
                 {{scope.row[controlColumn.prop]}}
-            </template>
+            </section>
         </el-table-column>
         <slot></slot>
     </el-table>
 </template>
 <script>
-/**
+/** 
   Auth: Lei.j1ang
   Created: 2018/1/19-13:59
 */
@@ -75,12 +78,31 @@ export default {
         },
         controlColumn: {
             type: Object,
-            default: () => {}
+            default: () => {
+                return {
+                    label: "",
+                    width: "",
+                    prop: "",
+                }
+            }
         },
         expandAll: {
             type: Boolean,
             default: false
-        }
+        },
+        // ------------ 样式class -------------------
+        color: {
+            type: String,
+            default: "common"
+        },
+        size: {
+            type: String,
+            default: "common"
+        },
+        align: {
+            type: String,
+            default: "center"
+        },
     },
     computed: {
         // 格式化数据源
@@ -88,7 +110,10 @@ export default {
             const args = [this.data, this.expandAll];
             let res = treeToArray.apply(null, args);
             return res;
-        }
+        },
+        styleClassList() {
+            return ["color-" + this.color, "size-" + this.size, "align-" + this.align];
+        },
     },
     methods: {
         showRow: function(row) {

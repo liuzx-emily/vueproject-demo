@@ -3,11 +3,8 @@
 <template>
     <section>
         <el-card>
-            <div slot="header">
-                属性中不能包含<code>children</code>
-            </div>
-            <!-- card body -->
-            <p>因为新版本的element（v2.7.0 更新于2019-03-28），table组件支持树形结构，只要他检测到存在children属性，就会认为这是一个树形数据并相应渲染。</p>
+            <p>1 属性中不能包含<code>children</code> 因为新版本的element（v2.7.0 更新于2019-03-28），table组件支持树形结构，只要他检测到存在children属性，就会认为这是一个树形数据并相应渲染。</p>
+            <p>2 样式控制和xTable一样：传递<code>color</code>、<code>size</code>、<code>align</code></p>
         </el-card>
         <el-card>
             <div slot="header">

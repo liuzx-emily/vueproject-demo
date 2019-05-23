@@ -5,7 +5,7 @@
                 <el-button size="small" type="primary" @click="openDial_main(1)" v-if="checkBtn('add')">新增</el-button>
             </section>
         </section>
-        <treeTable :data="mainData" :controlColumn="controlColumn" :expandAll="true">
+        <treeTable :data="mainData" :controlColumn="controlColumn" :expandAll="true" color="common" size="small" align="center">
             <el-table-column prop="type" label="类型" width="100px">
                 <template slot-scope="scope">
                     <span v-if="scope.row.type==1">好吃</span>

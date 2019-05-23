@@ -6,13 +6,13 @@
             </section>
         </section>
         <treeTable :data="mainData" :controlColumn="controlColumn" :expandAll="true">
-            <el-table-column prop="type" label="类型" width="100px">
+            <!-- <el-table-column prop="type" label="类型" width="100px">
                 <template slot-scope="scope">
                     <span v-if="scope.row.type==1">好吃</span>
                     <span v-if="scope.row.type==2">不好吃</span>
                     <span v-else></span>
                 </template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column prop="description" label="备注" width="250px"></el-table-column>
             <el-table-column label="操作" width="250px">
                 <template slot-scope="scope" v-if="scope.row.id!='0'">

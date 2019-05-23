@@ -5,19 +5,19 @@
                 <span>修改表格样式</span>
             </div>
             <div>
-                <p>1 tableClassColor 默认值为 color-common ，可选 color-neat
+                <p>1 color 可选 neat common ，默认 common
                     <el-input v-model="tableClass.color"></el-input>
                 </p>
-                <p>2 tableClassSize：默认 size-common ，可选 size-big size-small
+                <p>2 size 可选 small common big ，默认 common
                     <el-input v-model="tableClass.size"></el-input>
                 </p>
-                <p>3 tableClassAlign 默认值为 align-center ，可选 align-left
+                <p>3 align 可选 left center，默认center
                     <el-input v-model="tableClass.align"></el-input>
                 </p>
                 <p>（预设的样式在 src/styles 中）</p>
             </div>
         </el-card>
-        <xTable :refresh="refresh" ref="table" :tableClassColor="tableClass.color" :tableClassSize="tableClass.size" :tableClassAlign="tableClass.align">
+        <xTable :refresh="refresh" ref="table" :color="tableClass.color" :size="tableClass.size" :align="tableClass.align">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
             <el-table-column prop="gender" label="性别" sortable="custom">
                 <template slot-scope="scope">{{scope.row.genderText}}</template>
@@ -46,9 +46,9 @@ export default {
         return {
             loading: false,
             tableClass: {
-                color: "color-common",
-                size: "size-common",
-                align: "align-left",
+                color: "common",
+                size: "common",
+                align: "left",
             }
         };
     },

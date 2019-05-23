@@ -41,7 +41,7 @@
         </section>
         <!-- 用户弹窗 -->
         <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="680px" :modal-append-to-body='false' :close-on-click-modal="false" :close-on-press-escape="false">
-            <el-form ref="dialogForm1" label-width="100px" style="width:500px;" size="medium" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent>
+            <el-form ref="dialogForm1" label-width="100px" size="mini" style="width:500px;"  :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent>
                 <el-form-item label="帐号" prop="username">
                     <el-input v-model="dialogData.username" :disabled="dialogType!=1"></el-input>
                     <div style="line-height:1;" v-if="dialogType==1">默认密码：{{DEFAULT_PASSWORD}}</div>

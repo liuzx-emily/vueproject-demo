@@ -3,7 +3,6 @@
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <!-- 弹窗 -->
         <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="500px" :modal-append-to-body='true'>
-            <!-- <el-form ref="dialogForm1" label-width="80px" size="medium" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly" status-icon @submit.native.prevent> -->
             <el-form ref="dialogForm1" label-width="80px" size="mini" :model="dialogData" :rules="dialogRule1" :disabled="dialogReadonly">
                 <el-form-item label="名称" prop="name">
                     <el-input v-model="dialogData.name"></el-input>
@@ -50,7 +49,7 @@ export default {
     data() {
         return {
             loading: false,
-            permissionData:[],
+            permissionData: [],
             // 弹窗
             dialogVisible: false,
             dialogType: 1,
@@ -60,7 +59,7 @@ export default {
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] },
                     { min: 2, max: 20, message: "长度在 2 到 20 个字符", trigger: ['blur', 'change'] },
                     // 重名验证
-                    { validator: this.nameValidation, trigger: "blur" }
+                    // { validator: this.nameValidation, trigger: "blur" }
                 ],
                 type: [
                     { required: true, message: "不能为空", trigger: ['blur', 'change'] }
@@ -140,7 +139,7 @@ export default {
                     // 清空父级的选择
                     this.$refs.selectParentTree.setCurrentKey(null);
                     // 清空权限树的已选择
-                    // this.$refs.selectPermissionTree.setCheckedKeys([]);
+                    this.$refs.selectPermissionTree.setCheckedKeys([]);
                     this.loading = false;
                 });
             } else if (type == 2 || type == 3) {
@@ -163,8 +162,7 @@ export default {
                         // 父级 type为2编辑时，才有树。type为3查看时，没有树
                         if (this.dialogType == 2) {
                             this.$refs.selectParentTree.setCurrentKey(this.dialogData.parentId);
-                            // 重新设置权限树的已选择
-                            // this.$refs.selectPermissionTree.setCheckedKeys(_(res.data.permissionList).filter((item) => { return item.checked }).map("permissionId").value());
+                            this.$refs.selectPermissionTree.setCheckedKeys(res.data.permissionIds);
                         }
                         this.loading = false;
                     });
@@ -186,7 +184,9 @@ export default {
                 if (valid) {
                     // ajax请求
                     let param = this._.cloneDeep(this.dialogData);
-                    // param.permissionIds = this.$refs.selectPermissionTree.getCheckedKeys().join("-");
+
+                    let permissionIds = this.$refs.selectPermissionTree.getCheckedKeys();
+                    param.permissionIds = permissionIds;
                     this.loading = true;
                     let url = { 1: "add", 2: "edit" } [this.dialogType];
                     this.xAxios({

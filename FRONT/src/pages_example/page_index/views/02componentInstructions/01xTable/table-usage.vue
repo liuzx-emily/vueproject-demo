@@ -71,7 +71,7 @@
                 <el-button type="danger" @click="do_delete_multiple">批量删除</el-button>
             </section>
         </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="true">
+        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="defaultsort" :enableCheckbox="true" :enablePaging="true" happy="very">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
             <el-table-column prop="gender" label="性别" sortable="custom">
                 <template slot-scope="scope">{{scope.row.genderText}}</template>
@@ -98,7 +98,7 @@
         </xTable>
         <!-- 弹窗1 -->
         <el-dialog :title="dialog_1.title" :visible.sync="dialog_1.visible" width="600px" :modal-append-to-body='false'>
-            <el-form ref="dialog_1_ref" label-width="100px" :model="dialog_1.data" :rules="dialog_1.rules" :disabled="dialog_1.readonly">
+            <el-form ref="dialog_1_ref" label-width="100px" size="mini" :model="dialog_1.data" :rules="dialog_1.rules" :disabled="dialog_1.readonly">
                 <el-form-item label="名称" prop="name">
                     <el-input v-model="dialog_1.data.name"></el-input>
                 </el-form-item>
@@ -131,7 +131,7 @@
         </el-dialog>
         <!-- 弹窗2 -->
         <el-dialog :title="dialog_2.title" :visible.sync="dialog_2.visible" width="500px" :modal-append-to-body='false'>
-            <el-form ref="dialog_2_ref" label-width="100px" :model="dialog_2.data" :rules="dialog_2.rules">
+            <el-form ref="dialog_2_ref" label-width="100px" size="mini" :model="dialog_2.data" :rules="dialog_2.rules">
                 <el-form-item label="审核结果" prop="flag">
                     <el-radio-group v-model="dialog_2.data.flag">
                         <el-radio label="1">通过</el-radio>

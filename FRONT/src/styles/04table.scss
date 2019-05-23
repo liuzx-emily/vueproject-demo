@@ -5,8 +5,11 @@
         min-height: 35px;
     }
     // 
-    .el-table__body, .el-table__footer, .el-table__header{
+    .el-table__body, .el-table__footer, .el-table__header {
         border-collapse: collapse;
+    }
+    .el-table::before {
+        height: 0;
     }
 }
 // ----------------- 颜色 -----------------
@@ -16,7 +19,7 @@
         background: #fafafa;
     }
     td, th {
-        border:1px solid #eee;
+        border: 1px solid #eee;
     }
     th {
         background: #2196f3;

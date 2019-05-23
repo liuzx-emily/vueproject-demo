@@ -35,7 +35,7 @@ export default {
                 this.loading = true;
                 this.xAxios({
                     method: 'post',
-                    url: BASE_PATH + '/dept/delete.do',
+                    url: BASE_PATH + '/role/delete.do',
                     data: param
                 }).then((response) => {
                     const res = response.data;
@@ -43,7 +43,7 @@ export default {
                         this.$message({
                             type: 'success',
                             message: '删除成功！'
-                        });
+                        }); 
                         // 刷新
                         this.refreshFunc();
                     }

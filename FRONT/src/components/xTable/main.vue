@@ -1,7 +1,7 @@
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <!-- 表格 -->
-        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" @sort-change="sortChange" class="xTableStyle" :class="[tableClassColor,tableClassSize,tableClassAlign]">
+        <el-table :data="tableData" :searchparam="searchparam" @selection-change="handleSelectionChange" @sort-change="sortChange" class="xTableStyle" :class="styleClassList"  v-bind="$attrs">
             <!-- 多选列 -->
             <el-table-column type="selection" v-if="enableCheckbox"></el-table-column>
             <slot></slot>
@@ -45,17 +45,22 @@ export default {
             default: () => { return { sort: "", order: "" } }
         },
         // ------------ 样式class -------------------
-        tableClassColor: {
+        color: {
             type: String,
-            default: "color-common"
+            default: "common"
         },
-        tableClassSize: {
+        size: {
             type: String,
-            default: "size-common"
+            default: "common"
         },
-        tableClassAlign: {
+        align: {
             type: String,
-            default: "align-center"
+            default: "center"
+        },
+    },
+    computed: {
+        styleClassList() {
+            return ["color-" + this.color, "size-" + this.size, "align-" + this.align];
         },
     },
     data() {

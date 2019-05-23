@@ -19,7 +19,7 @@
                 <template slot-scope="scope" v-if="scope.row.id!='0'">
                     <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial_main(2,scope.row)">编辑</el-button>
                     <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial_main(3,scope.row)">查看</el-button>
-                    <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openConfirm_delete(1,scope.row)">删除</el-button>
+                    <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openConfirm_delete(scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </treeTable>
@@ -78,10 +78,9 @@ export default {
             this.$refs.dialogMain.openDial(type, data.id);
         },
         // 打开询问框：删除
-        openConfirm_delete(type, data) {
-            this.$refs.confirmDelete.openConfirm(type, data);
+        openConfirm_delete(data) {
+            this.$refs.confirmDelete.openConfirm([data.id]);
         }
-
     }
 };
 </script>
