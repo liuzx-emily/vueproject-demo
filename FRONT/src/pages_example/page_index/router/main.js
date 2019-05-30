@@ -28,11 +28,6 @@ const routes = [
     article,
     // ---------------------- 12系统管理 ----------------------
     system,
-    // ---------------------- 13部门+人员管理 ----------------------
-    {
-        path: '/deptAndUser',
-        component: () => import('~/pages_example/page_index/views/13deptAndUser/main.vue'),
-    },
     // 因为路由表是由上到下匹配的，所以要把任意匹配*放在最下面
     {
         path: '*',

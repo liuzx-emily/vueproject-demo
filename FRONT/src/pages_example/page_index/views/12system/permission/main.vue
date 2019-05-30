@@ -1,11 +1,11 @@
 <template>
-    <section>
+    <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <section class="search-condition">
             <section class="search-btn-box">
-                <el-button size="small" type="primary" @click="openDial_main(1)" v-if="checkBtn('add')">新增</el-button>
+                <el-button v-permission:permission="1" type="primary" @click="openDial_main(1)">新增</el-button>
             </section>
         </section>
-        <treeTable :data="mainData" :controlColumn="controlColumn" :expandAll="true">
+        <treeTable :data="treeTableData" :controlColumn="treeTableProps.controlColumn" :expandAll="treeTableProps.expandAll">
             <el-table-column prop="type" label="类型" width="100px">
                 <template slot-scope="scope">
                     <span v-if="scope.row.type==1" style="color:#9C27B0">导航</span>
@@ -16,31 +16,29 @@
             <el-table-column prop="code" label="code" width="350px"></el-table-column>
             <el-table-column prop="icon" label="icon" width="180px"></el-table-column>
             <el-table-column label="操作" width="250px">
-                <template slot-scope="scope" v-if="scope.row.id!='0'">
-                    <el-button class="size-small" type="warning" v-if="checkBtn('edit')" @click="openDial_main(2,scope.row)">编辑</el-button>
-                    <el-button class="size-small" type="success" v-if="checkBtn('look')" @click="openDial_main(3,scope.row)">查看</el-button>
-                    <el-button class="size-small" type="danger" v-if="checkBtn('delete')" @click="openConfirm_delete(scope.row)">删除</el-button>
+                <template slot-scope="scope">
+                    <el-button class="size-small" type="warning" v-permission:permission="2" @click="openDial_main(2,scope.row)">编辑</el-button>
+                    <el-button class="size-small" type="success" v-permission:permission="3" @click="openDial_main(3,scope.row)">查看</el-button>
+                    <el-button class="size-small" type="danger" v-permission:permission="4" @click="openConfirm_delete(1,scope.row)">删除</el-button>
                 </template>
             </el-table-column>
         </treeTable>
-        <dialogMain :refreshFunc="refreshData" :mainData="mainData" ref="dialogMain"></dialogMain>
-        <confirmDelete :refreshFunc="refreshData" ref="confirmDelete"></confirmDelete>
+        <!-- 弹窗：主 -->
+        <dialogMain :refreshFunc="refreshData" :parentData="treeTableData" ref="dialogMain"></dialogMain>
     </section>
 </template>
 <script>
 import dialogMain from './dialogMain.vue'
-import confirmDelete from './confirmDelete.vue'
 export default {
-    components: { dialogMain, confirmDelete },
+    components: { dialogMain, },
     data() {
         return {
             loading: false,
-            controlColumn: {
-                label: '名称',
-                prop: 'name',
-                width: ''
+            treeTableProps: {
+                controlColumn: { label: "名称", prop: "name", width: "" },
+                expandAll: true,
             },
-            mainData: [],
+            treeTableData: [],
         }
     },
     computed: {},
@@ -48,12 +46,6 @@ export default {
         this.refreshData();
     },
     methods: {
-        // 检查按钮权限
-        checkBtn(code) {
-            var btnPermmisionCheck = this.xTools.checkBtn(this.$store, 'dept:btn:' + code);
-            return btnPermmisionCheck;
-        },
-        // 表格treetable
         refreshData() {
             this.loading = true;
             this.xAxios({
@@ -62,13 +54,11 @@ export default {
             }).then((response) => {
                 const res = response.data;
                 let data = this._.cloneDeep(res.data);
-                this.mainData = this.xTools.arrayToTree(data, {
+                this.treeTableData = this.xTools.arrayToTree(data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: "child"
                 });
-                this.loading = false;
-            }).catch(error => {
                 this.loading = false;
             });
         },
@@ -78,8 +68,20 @@ export default {
             this.$refs.dialogMain.openDial(type, data.id);
         },
         // 打开询问框：删除
-        openConfirm_delete(data) {
-            this.$refs.confirmDelete.openConfirm([data.id]);
+        openConfirm_delete(type, data) {
+            let ids = [];
+            if (type == 1) {
+                // 单个
+                ids = [data.id];
+            } else if (type == 2) {
+                // 批量
+            }
+            this.xTools.openConfirm({
+                ids: ids,
+                url: '/permission/delete.do',
+                refreshFunc: this.refreshData,
+                context: this,
+            });
         }
     }
 };

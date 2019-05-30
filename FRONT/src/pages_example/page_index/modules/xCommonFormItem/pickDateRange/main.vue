@@ -25,7 +25,7 @@ export default {
         // 宽度
         width: {
             type: String,
-            default: "auto"
+            default: ""
         },
     },
     watch: {
@@ -94,9 +94,11 @@ export default {
     },
     computed: {
         pickerStyle() {
-            return {
-                width: this.width
-            };
+            let style = {};
+            if (this.width) {
+                style.width = this.width;
+            }
+            return style;
         }
     },
     methods: {}

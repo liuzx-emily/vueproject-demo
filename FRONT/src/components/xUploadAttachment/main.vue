@@ -44,7 +44,7 @@
 <template>
     <div v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)" class="xUploadAttachment-container" :class="{inlineMode:inlineMode}">
         <!-- 编辑模式 -->
-        <template v-if="!readOnly">
+        <template v-if="!readonly">
             <!-- 上传附件 -->
             <el-upload action="用不到，随便填" :http-request="doUploadAttachment" :show-file-list="false" :multiple="true" class="upload-container">
                 <el-button size="mini" type="primary" slot="trigger">上传附件</el-button>
@@ -84,7 +84,7 @@ export default {
             type: Array,
             default: () => { return []; }
         },
-        readOnly: {
+        readonly: {
             type: Boolean,
             default: false
         },

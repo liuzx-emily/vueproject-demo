@@ -3,7 +3,6 @@ import _ from 'lodash';
 export default {
     // 保留几位小数？
     accurateToDecimalPlace(value, len = 2) {
-        debugger
         // "0.72459" => 0.72459
         value = parseFloat(value);
         // 0.72459 => "0.72"
@@ -167,6 +166,34 @@ export default {
     checkBtn(store, code) {
         var arr = store.state.permissionBtns;
         return _.indexOf(arr, code) != -1;
+    },
+
+    // 打开"删除"询问框，确认后删除（可以批量）
+    openConfirm(params) {
+        let { ids, url, refreshFunc, context, } = params;
+        context.$confirm('您确认要删除数据吗？', '', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(() => {
+            context.loading = true;
+            context.xAxios({
+                method: 'post',
+                url: BASE_PATH + url,
+                data: { id: ids }
+            }).then((response) => {
+                const res = response.data;
+                if (res.code == 1) {
+                    context.$message({
+                        type: 'success',
+                        message: '删除成功！'
+                    });
+                    // 刷新
+                    refreshFunc && refreshFunc();
+                }
+                context.loading = false;
+            });
+        }).catch(error => {});
     },
     // 对于el-input-number组件，null值会显示为0。所以要手动把null改为undefined，这样就是空了。
     processForElementNumberInput(data, keyArr) {

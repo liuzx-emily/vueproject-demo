@@ -22,7 +22,7 @@ export default {
         pageNum: {
             immediate: true,
             handler() {
-                console.log("pageNum变化了：", this.pageNum);
+                // console.log("pageNum变化了：", this.pageNum);
             }
         }
     },
@@ -80,7 +80,6 @@ export default {
             param.pageNum = 5;
             param.pageSize = 10;
         }
-        console.log(param);
         return param;
     },
     methods: {

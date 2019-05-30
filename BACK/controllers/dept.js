@@ -4,8 +4,8 @@ const attributes = ['id', "name", "parentId", "type", "description", "order"];
 const sequelize = require("../utils/initDatabase");
 const Op = require('sequelize').Op;
 const EasyControllerExample = require("../utils/easyController")
-
 const models = require("../utils/scanModels");
+
 const MainModel = models[name];
 
 const MainControllerExample = new EasyControllerExample(MainModel, {

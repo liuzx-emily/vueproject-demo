@@ -17,17 +17,19 @@
                 width: 120px;
             }
         }
+        $input-width:160px;
         .search-input {
             $height: 32px;
             font-size: 14px;
             .el-input {
-                width: 160px;
+                width: $input-width;
                 .el-input__inner {
                     height: $height;
                     line-height: $height;
                 }
             }
             div.el-select {
+                width: $input-width;
                 .el-input {
                     width: 100%;
                     .el-select__caret {
@@ -37,12 +39,21 @@
             }
             .el-date-editor {
                 .el-input__prefix {
-                    top: -3px;
+                    top: 1px;
                 }
                 .el-input__suffix {
-                    top: -3px;
+                    top: 1px;
+                }
+                // 选择日期
+                &.el-date-editor--date {
+                    width: #{ $input-width - 30px };
+                }
+                // 选择年
+                &.el-date-editor--year {
+                    width: #{ $input-width - 50px };
                 }
             }
+
         }
     }
     .box+.search-btn-box {

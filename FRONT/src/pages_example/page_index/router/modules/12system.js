@@ -14,8 +14,8 @@ const routes = {
             component: () => import('~/pages_example/page_index/views/12system/permission/main'),
         },
         {
-            path: 'user',
-            component: () => import('~/pages_example/page_index/views/12system/user.vue'),
+            path: 'deptAndUser',
+            component: () => import('~/pages_example/page_index/views/12system/deptAndUser/main.vue'),
         },
     ],
 };

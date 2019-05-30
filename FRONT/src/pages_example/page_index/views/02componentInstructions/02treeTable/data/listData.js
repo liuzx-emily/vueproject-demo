@@ -1,0 +1,91 @@
+export const listData = [{
+    "id": "12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d",
+    "name": "芹菜",
+    "parentId": "1",
+    "description": ""
+}, {
+    "id": "1",
+    "name": "蔬菜",
+    "parentId": "0",
+    "description": "vegetable"
+}, {
+    "id": "257b7b60-5ea1-493e-a617-f48d84857cf3",
+    "name": "蛋类",
+    "parentId": "3",
+    "description": ""
+}, {
+    "id": "343e3d97-9ccf-4c3e-840d-c6c4dc97ee26",
+    "name": "土豆、紫薯、红薯",
+    "parentId": "2",
+    "description": ""
+}, {
+    "id": "346e57fd-978f-4a48-9e60-454aae9e8357",
+    "name": "玉兰片2",
+    "parentId": "2",
+    "description": ""
+}, {
+    "id": "498cfb44-db9f-420e-92b1-ceda099b6144",
+    "name": "海鲜",
+    "parentId": "3",
+    "description": ""
+}, {
+    "id": "4a480fbe-e5b9-4acf-a11e-2de64e3af25a",
+    "name": "玉兰片",
+    "parentId": "2",
+    "description": "长了个蔬菜的样子，居然是主食？！！"
+}, {
+    "id": "2",
+    "name": "主食",
+    "parentId": "0",
+    "description": ""
+}, {
+    "id": "4d654e6b-b318-4f02-ae37-c6f71b3d541b",
+    "name": "发送",
+    "parentId": "3",
+    "description": ""
+}, {
+    "id": "538157aa-abea-41da-9d8a-e5294fb1f554",
+    "name": "三文鱼",
+    "parentId": "498cfb44-db9f-420e-92b1-ceda099b6144",
+    "description": ""
+}, {
+    "id": "805a780c-e00c-4caa-b5c2-d63049970523",
+    "name": "蛤蜊",
+    "parentId": "498cfb44-db9f-420e-92b1-ceda099b6144",
+    "description": ""
+}, {
+    "id": "a825a84c-8954-43dd-a774-268e5728e79f",
+    "name": "毛豆、蚕豆、豌豆",
+    "parentId": "2",
+    "description": ""
+}, {
+    "id": "c0d0d214-06b0-4b5a-96ae-8ad060ff19c9",
+    "name": "菠菜",
+    "parentId": "1",
+    "description": ""
+}, {
+    "id": "c7432832-c5b3-4f0a-88eb-6bd371e203c4",
+    "name": "禽类",
+    "parentId": "3",
+    "description": ""
+}, {
+    "id": "d3721b90-b3cd-47ae-9e46-00b64be13444",
+    "name": "鸡蛋",
+    "parentId": "257b7b60-5ea1-493e-a617-f48d84857cf3",
+    "description": ""
+}, {
+    "id": "d3849be8-e99d-4ed0-945e-e48de6b42492",
+    "name": "鸡胸肉",
+    "parentId": "c7432832-c5b3-4f0a-88eb-6bd371e203c4",
+    "description": ""
+}, {
+    "id": "3",
+    "name": "肉类",
+    "parentId": "0",
+    "description": ""
+}, {
+    "id": "f319b1d2-7ea4-48e5-9240-5a5d930f1d6e",
+    "name": "莲藕",
+    "parentId": "2",
+    "description": ""
+}];

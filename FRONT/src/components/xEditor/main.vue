@@ -1,103 +1,88 @@
+<style scoped>
+>>>.mce-branding {
+    display: none;
+}
+</style>
 <template>
-    <section>
-        <!-- 为什么要加上z-index:0？因为里面有一个层级很高的div，会把弹窗盖住。 -->
-        <section :id="editorId" style="position:relative;z-index:0;"></section>
-    </section>
+    <!-- 本来想做成数据双向绑定的，但是 setContent 会导致光标位置丢失。-->
+    <!-- 父->子：会导致光标位置一直丢失，所以做不了。所以在赋初始值时，需要在组件外部手动 setContent -->
+    <!-- 子->父：可以。所以取值时，不需要在组件外部手动 getContent ，直接取fcontent就可以  -->
+    <div class="tinymce-container">
+        <textarea :id="tinymceId" class="tinymce-textarea"></textarea>
+        <div class="editor-custom-btn-container"></div>
+    </div>
 </template>
 <script>
-import xTools from '~/utils/xTools.js'
-import WangEditor from 'wangeditor'
+import { menubar } from './config/menubar.js'
+import { toolbar } from './config/toolbar.js'
+import { plugins } from './config/plugins.js'
 export default {
-    install(Vue){
-        Vue.component("xEditor",this);
+    install(Vue) {
+        Vue.component("xEditor", this);
     },
-    components: { WangEditor },
     props: {
-        readOnly: {
-            type: Boolean,
+        readonly: {
             default: false
-        }
+        },
+        fcontent: String
     },
-    watch: {
-        readOnly() {
-            this.changeModifiability(!this.readOnly);
-        }
-    },
+    components: {},
     data() {
         return {
-            random: xTools.guid(),
-            editor: null
+            tinymceId: this.xTools.guid(),
+            content: "",
         }
     },
-    computed: {
-        editorId() {
-            return 'xEditor' + this.random;
-        }
+    computed: {},
+    watch: {
+        // 父->子：做不了，所以监听父的变化没意义了。
+        // fcontent: {
+        //     immediate: true,
+        //     handler() {
+        //         this.content = this.fcontent;
+        //     },
+        // },
+        content() {
+            // setContent 会导致光标位置丢失
+            // this.setContent(this.content);
+            // 子->父：可以。将子级的变化传递给父级
+            this.$emit("update:fcontent", this.content);
+        },
     },
+    created() {},
     mounted() {
-        this.editor = new WangEditor('#' + this.editorId); // 自定义菜单配置
-        this.editor.customConfig.menus = [
-            // 'head', // 标题
-            'justify', // 对齐方式
-            'bold', // 粗体
-            'fontSize', // 字号
-            'fontName', // 字体
-            'italic', // 斜体
-            'underline', // 下划线
-            'strikeThrough', // 删除线
-            'foreColor', // 文字颜色
-            'backColor', // 背景颜色
-            // 'link', // 插入链接
-            'list', // 列表
-            'quote', // 引用
-            // 'emoticon', // 表情
-            'image', // 插入图片
-            // 'table', // 表格
-            // 'video', // 插入视频
-            // 'code', // 插入代码
-            'undo', // 撤销
-            'redo' // 重复
-        ];
-        // 自定义字体
-        this.editor.customConfig.fontNames = [
-            '宋体',
-            '微软雅黑',
-            '楷体',
-            '黑体',
-            '隶书',
-            'Arial',
-            // 'Tahoma',
-            // 'Verdana'
-        ];
-        this.editor.customConfig.uploadImgShowBase64 = true;
-        this.editor.create();
-        // 是否禁用
-        this.changeModifiability(!this.readOnly);
-
+        this.initTinymce();
     },
     methods: {
-        // 禁用编辑器
-        changeModifiability(flag) {
-            this.editor.$textElem.attr('contenteditable', flag);
+        initTinymce() {
+            window.tinymce.init({
+                readonly: this.readonly,
+                selector: "#" + this.tinymceId,
+                language: 'zh_CN',
+                height: 400,
+                menubar: menubar,
+                toolbar: toolbar,
+                fontsize_formats: '12px 14px 16px 18px 24px 36px 48px',
+                plugins: plugins,
+                init_instance_callback: editor => {
+                    editor.on('keyup', e => {
+                        this.content = this.getContent();
+                    });
+                    editor.on('change', e => {
+                        this.content = this.getContent();
+                    });
+                }
+            });
         },
-        // 设置内容
-        setContent(value) {
-            this.editor.txt.html(value);
-        },
-        // 获取内容
-        getContent() {
-            return this.editor.txt.html();
-        },
-        // 判断是否为空
-        checkContentIsNotNull() {
-            let text = this.editor.txt.text();
-            if (text && text.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+        destroyTinymice() {
 
+        },
+        setContent(value) {
+            window.tinymce.get(this.tinymceId).setContent(value)
+        },
+        getContent() {
+            return window.tinymce.get(this.tinymceId).getContent();
+        },
+    }
 };
 </script>

@@ -18,24 +18,24 @@
                 <span class="search-label">行政区划：</span>
                 <span class="search-input">
                     <!-- 可选参数hasNullOption：是否添加 "请选择"这一空项（默认为true） -->
-                    <!-- 可选参数width，默认为auto -->
-                    <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="auto" />
+                    <!-- 可选参数width，默认为"" -->
+                    <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="" />
                 </span>
             </section>
             <section class="box">
                 <span class="search-label">日期范围：</span>
                 <span class="search-input">
                     <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
-                    <!-- 可选参数width，默认为auto -->
-                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="true" width="auto" />
+                    <!-- 可选参数width，默认为"" -->
+                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="true" width="" />
                 </span>
             </section>
             <section class="box">
                 <span class="search-label">年份：</span>
                 <span class="search-input">
                     <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
-                    <!-- 可选参数width，默认为auto -->
-                    <pickYear :fyear.sync="fakesearchparam.year" :cannotBeFuture="true" width="auto" />
+                    <!-- 可选参数width，默认为"" -->
+                    <pickYear :fyear.sync="fakesearchparam.year" :cannotBeFuture="true" width="" />
                 </span>
             </section>
         </section>

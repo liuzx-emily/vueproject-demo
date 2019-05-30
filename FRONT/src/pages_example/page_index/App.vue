@@ -4,7 +4,7 @@
             <!-- logo -->
             <section class="logo">一个很长很长很长很长很长的标题</section>
             <!-- 按钮放在这里，只是为了演示导出PDF的效果 -->
-            <el-button type="danger" class="size-small" @click="do_exportPDF">导出PDF</el-button>
+            <el-button type="danger" @click="do_exportPDF">导出PDF</el-button>
             <!-- 包在 .rightAlignContainer 中的内容会靠右对齐 -->
             <div class="rightAlignContainer">
                 <!-- 导航 -->
@@ -61,9 +61,9 @@ export default {
     name: "app",
     components: { UserInfo },
     watch: {
-        '$route.path':{
-            immediate:true,
-            handler(value){
+        '$route.path': {
+            immediate: true,
+            handler(value) {
                 // console.log(this.$router);
                 // console.log("$route.path为："+value);
             }
@@ -112,6 +112,9 @@ export default {
             } else {
                 return [];
             }
+        },
+        initDone() {
+            return this.initDone_menu && this.initDone_btn;
         }
     },
     created() {
@@ -119,8 +122,9 @@ export default {
     },
     data() {
         return {
-            // 初始化完成了吗(所有要存在$store里的值都放好了吗？)
-            initDone: false,
+            initDone_menu: false,
+            // 因为用v-permission控制按钮权限，所以一定要先获取到所有按钮的权限
+            initDone_btn: false,
             // 总导航
             navList: [],
             sidebarMenuProps: {
@@ -182,17 +186,16 @@ export default {
             }).then(response => {
                 const res = response.data;
                 if (res.code == "1") {
-                    setTimeout(() => {
-                        // 已登录
-                        let userInfo = {
-                            id: res.data.userId,
-                            name: res.data.realname
-                        };
-                        this.$store.state.userInfo = userInfo;
-                        // 获取菜单数据，并且自动跳转到第一个菜单
-                        this.getMenuData();
-                        this.getPermissionBtnData();
-                    }, 1000);
+                    // 已登录
+                    let userInfo = {
+                        id: res.data.userId,
+                        name: res.data.realname
+                    };
+                    this.$store.state.userInfo = userInfo;
+                    // 获取菜单数据，并且自动跳转到第一个菜单
+                    this.getMenuData();
+                    this.getPermissionBtnData();
+                    console.log(this.getPermissionBtnData.done);
                 } else {
                     // 未登录
                     window.location.href = "./portal.html";
@@ -203,9 +206,7 @@ export default {
         getMenuData() {
             this.xAxios({
                 method: "get",
-                // url: BASE_PATH + "/permission/nav.htmls",
-                url: BASE_PATH + "/permission/list.do",
-                params: {}
+                url: BASE_PATH + "/permission/nav.do",
             }).then(response => {
                 const res = response.data;
                 const navList = this.xTools.arrayToTree(res.data, {
@@ -218,9 +219,9 @@ export default {
                     this.navList = navList;
                     // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
                     if (this.$route.path == "/") {
-                        this.$router.push(navList[0].code);
+                        // this.$router.push(navList[0].code);
                     }
-                    this.initDone = true;
+                    this.initDone_menu = true;
                 }
             }).catch(error => {});
         },
@@ -228,11 +229,12 @@ export default {
         getPermissionBtnData() {
             this.xAxios({
                 method: "get",
-                url: BASE_PATH + "/permission/btn.htmls",
+                url: BASE_PATH + "/permission/btn.do",
                 params: {}
             }).then(response => {
                 const res = response.data;
                 this.$store.state.permissionBtns = this._.map(res.data, "code");
+                this.initDone_btn = true;
             }).catch(error => {});
         }
     }

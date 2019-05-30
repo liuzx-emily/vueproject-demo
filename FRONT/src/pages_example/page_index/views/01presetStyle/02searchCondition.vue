@@ -27,7 +27,7 @@
                 </span>
             </div>
             <section class="search-btn-box">
-                <el-button size="small" type="warning">搜索</el-button>
+                <el-button type="warning">搜索</el-button>
             </section>
         </section>
     </section>

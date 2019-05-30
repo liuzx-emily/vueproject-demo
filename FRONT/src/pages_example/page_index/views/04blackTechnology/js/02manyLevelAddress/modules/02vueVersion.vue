@@ -11,8 +11,8 @@
         <!-- card body -->
         <section>
             <!-- 可选参数hasNullOption：是否添加 "请选择"这一空项（默认为true） -->
-            <!-- 可选参数width，默认为auto -->
-            <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="auto" />
+            <!-- 可选参数width，默认为"" -->
+            <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="" />
         </section>
         <p>
             <el-button type="primary" class="size-small" @click="do_fuzhi(1)">赋值：空</el-button>
