@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const EasyModelExample = require("../utils/easyModel");
+const EasyModelExample = require("./utils/easyModel");
 
 let attributes = {
     title: {

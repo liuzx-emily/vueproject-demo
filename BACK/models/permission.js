@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const EasyModelExample = require("../utils/easyModel");
+const EasyModelExample = require("./utils/easyModel");
 
 let attributes = {
     // 这里的id会覆盖easyModel中的默认添加的id

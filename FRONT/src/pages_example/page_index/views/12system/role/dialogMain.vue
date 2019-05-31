@@ -110,6 +110,7 @@ export default {
         },
         openDial(type, id) {
             const afterGettingData = () => {
+                this.dialogVisible = true;
                 this.$nextTick(() => {
                     this.$refs.form.clearValidate();
                     if (this.dialogType == 1 || this.dialogType == 2) {
@@ -121,7 +122,6 @@ export default {
             };
             this.loading = true;
             this.dialogType = type;
-            this.dialogVisible = true;
             if (type == 1) {
                 // 新增
                 this.dialogData = this._.cloneDeep(original_data);

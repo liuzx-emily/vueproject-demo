@@ -8,7 +8,7 @@
     .el-table__body, .el-table__footer, .el-table__header {
         border-collapse: collapse;
     }
-    .el-table::before {
+    &.el-table::before {
         height: 0;
     }
 }

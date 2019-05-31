@@ -25,14 +25,14 @@
 </template>
 <script>
 // 样式
-import './main.scss'
+import './styles/main.scss'
 export default {
     data() {
         return {
             loading: false,
             captchaImgSrc: BASE_PATH + "/index/captcha.htmls",
             loginData: {
-                username: "xiaoming",
+                username: "shucaixiaoming",
                 password: "123456",
                 validateCode: "7591",
             },
@@ -70,7 +70,7 @@ export default {
                         type: 'success',
                         showClose: true,
                     });
-                    // window.location.href = "./index.html";
+                    window.location.href = "./index.html";
                 } else {
                     this.$message({
                         message: res.message,

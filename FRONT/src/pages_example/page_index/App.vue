@@ -155,7 +155,7 @@ export default {
         },
         // 如果访问本组件的根地址，自动跳转到第一个菜单
         jumpToFirstNav() {
-            let findRealPage = (list) => {
+            const findRealPage = (list) => {
                 if (list && list.length > 0) {
                     // list不是空的
                     let firstChild = list[0];
@@ -182,31 +182,29 @@ export default {
         getUserInfo() {
             this.xAxios({
                 method: "get",
-                url: BASE_PATH + "/user/userStatus.htmls"
+                url: BASE_PATH + "/userInfo.do"
             }).then(response => {
                 const res = response.data;
-                if (res.code == "1") {
-                    // 已登录
-                    let userInfo = {
-                        id: res.data.userId,
-                        name: res.data.realname
-                    };
-                    this.$store.state.userInfo = userInfo;
+                if (res.code == 1) {
+                    this.$store.state.userInfo = {
+                        id: res.data.id,
+                        username: res.data.username,
+                        name: res.data.name,
+                    }
                     // 获取菜单数据，并且自动跳转到第一个菜单
                     this.getMenuData();
                     this.getPermissionBtnData();
-                    console.log(this.getPermissionBtnData.done);
                 } else {
                     // 未登录
-                    window.location.href = "./portal.html";
+                    window.location.href = "./login.html";
                 }
             }).catch(error => {});
         },
-        // 获取菜单数据，并且自动跳转到第一个菜单
+        // 获取菜单数据。如果现在没有进入任何一个页面，则手动跳转到第一个菜单
         getMenuData() {
             this.xAxios({
                 method: "get",
-                url: BASE_PATH + "/permission/nav.do",
+                url: BASE_PATH + "/getMenus.do",
             }).then(response => {
                 const res = response.data;
                 const navList = this.xTools.arrayToTree(res.data, {
@@ -217,11 +215,14 @@ export default {
                 // 路由跳转
                 if (navList && navList.length > 0) {
                     this.navList = navList;
-                    // 说明：路由不能跳转到指定路径，因为用户不一定有权限！所以需要手动跳转
-                    if (this.$route.path == "/") {
-                        // this.$router.push(navList[0].code);
-                    }
                     this.initDone_menu = true;
+                    // 页面刷新后，需要等待一段时间才能取到正确的 $route。在这之前，this.$route.path 都是 /
+                    setTimeout(() => {
+                        // 如果现在没有进入任何一个页面，则手动跳转到第一个菜单
+                        if (this.$route.path == "/") {
+                            this.$router.push(navList[0].code);
+                        }
+                    }, 500);
                 }
             }).catch(error => {});
         },
@@ -229,7 +230,7 @@ export default {
         getPermissionBtnData() {
             this.xAxios({
                 method: "get",
-                url: BASE_PATH + "/permission/btn.do",
+                url: BASE_PATH + "/getBtns.do",
                 params: {}
             }).then(response => {
                 const res = response.data;

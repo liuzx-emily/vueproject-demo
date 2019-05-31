@@ -1,3 +1,8 @@
+// 必须要修改这个z-index。不改的话，后台系统中，（右上角）修改个人信息时，弹窗遮罩层遮不住表格的多选按钮。
+.el-checkbox__inner {
+    z-index: auto;
+}
+
 // warning按钮颜色不好看，改一下
 .el-button--warning {
     background-color: #FFB300;

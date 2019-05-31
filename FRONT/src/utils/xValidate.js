@@ -135,14 +135,14 @@ export { xValidate, xElementRules };
     },
 
     // 在方法中调用
-    if (!xValidate(this.loginData, this.xRules)) {
+    if (!this.xValidate(this.loginData, this.xRules)) {
         return false;
     }
     
 （二）xElementRules：el-form组件使用的rules。使用方法如下：
     rules:{    
         phone: [
-            { validator: xElementRules.cellphone, trigger: ['blur', 'change'] }
+            { validator: this.xElementRules.cellphone, trigger: ['blur', 'change'] }
         ],
     }
 */

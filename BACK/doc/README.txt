@@ -10,3 +10,27 @@
 
 3 最典型的tree查询，可以看 permission
 
+/* Symbol作为属性名：
+    1 创建对象时添加：必须用[]括起来
+        const s1 = Symbol("apple");
+        let obj = {
+            [s1]:"小呀小苹果"
+        };
+    2 后续添加
+        const s1 = Symbol("apple");
+        let obj = {};
+        obj[s1]= "小呀小苹果";
+*/
+if (ctx.query.title) {
+    whereParam.title = {
+        [Op.like]: '%' + ctx.query.title + '%',
+    };
+}
+if (ctx.query.startTime) {
+    whereParam.publishTime = whereParam.publishTime || {};
+    whereParam.publishTime[Op.gte] = ctx.query.startTime;
+}
+if (ctx.query.endTime) {
+    whereParam.publishTime = whereParam.publishTime || {};
+    whereParam.publishTime[Op.lte] = ctx.query.endTime;
+}

@@ -170,7 +170,9 @@ export default {
 
     // 打开"删除"询问框，确认后删除（可以批量）
     openConfirm(params) {
-        let { ids, url, refreshFunc, context, } = params;
+        let { ids, url, refreshFunc, context, extraParams } = params;
+        let data = extraParams || {};
+        data.id = ids;
         context.$confirm('您确认要删除数据吗？', '', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -180,7 +182,7 @@ export default {
             context.xAxios({
                 method: 'post',
                 url: BASE_PATH + url,
-                data: { id: ids }
+                data: data
             }).then((response) => {
                 const res = response.data;
                 if (res.code == 1) {

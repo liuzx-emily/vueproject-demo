@@ -3,24 +3,15 @@ const attributes = ['id', "name", "parentId", "type", "description", "order"];
 
 const sequelize = require("../utils/initDatabase");
 const Op = require('sequelize').Op;
-const EasyControllerExample = require("../utils/easyController")
+const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
+const rawQueryUtils = require("./utils/rawQueryUtils.js");
 
 const MainModel = models[name];
 
-const MainControllerExample = new EasyControllerExample(MainModel, {
-    NeedCheckIsDelete: true,
-    attributes: attributes,
-});
-
-const rawQuery = async (whereParam) => {
-    let str_attriutes = attributes.map(attribute => `t.${attribute}`).join(",");
-    // ----------------------------------------------
-    let arr_where = []
-    for (let prop in whereParam) {
-        arr_where.push(`t.${prop}='${whereParam[prop]}'`);
-    }
-    let str_where = arr_where.length > 0 ? (" WHERE " + arr_where.join(" and ")) : "";
+const rawQuery = async (params) => {
+    params.attributes = attributes;
+    let { str_attriutes, str_where, str_paging } = rawQueryUtils.getStr(params);
     let str = `
     SELECT
         ${str_attriutes},
@@ -34,20 +25,16 @@ const rawQuery = async (whereParam) => {
 }
 
 const findAll = async (ctx, next) => {
-    let result = await rawQuery({ isDelete: 0 });
-    // let result = await inelegentQuery({ isDelete: 0 });
-    ctx.response.body = {
-        code: 1,
-        data: result,
-    };
+    let whereParam = { isDelete: 0 };
+    let data = await rawQuery({ whereParam });
+    // let data = await inelegentQuery(whereParam);
+    ctx.response.body = { code: 1, data: data, };
 };
 
 const findByPk = async (ctx, next) => {
-    let result = (await rawQuery({ isDelete: 0, id: ctx.query.id }))[0];
-    ctx.response.body = {
-        code: 1,
-        data: result,
-    };
+    let whereParam = { isDelete: 0, id: ctx.query.id };
+    let data = (await rawQuery({ whereParam }))[0];
+    ctx.response.body = { code: 1, data: data, };
 };
 
 const nameValidation = async (ctx, next) => {
@@ -62,27 +49,53 @@ const nameValidation = async (ctx, next) => {
     let obj = await MainModel.findOne({
         where: whereParam
     });
-    ctx.response.body = {
-        code: 1,
-        data: !(obj),
-        msg: obj
-    }
+    ctx.response.body = { code: 1, data: !(obj), msg: obj }
 };
 
-// const findAll = async (ctx, next) => { await MainControllerExample.findAll(ctx, next) };
-// const findByPk = async (ctx, next) => { await MainControllerExample.findByPk(ctx, next) };
-const create = async (ctx, next) => { await MainControllerExample.create(ctx, next) };
-const update = async (ctx, next) => { await MainControllerExample.update(ctx, next) };
-const destroy = async (ctx, next) => { await MainControllerExample.destroy(ctx, next) };
-const destroyLogically = async (ctx, next) => { await MainControllerExample.destroyLogically(ctx, next) };
+const create = async (ctx, next) => {
+    // 取参数
+    let param = ctx.request.body;
+    param.id = uuid();
+    await MainModel.create(param);
+    ctx.response.body = { code: 1, };
+};
+
+const update = async (ctx, next) => {
+    let param = ctx.request.body;
+    let whereParam = { isDelete: 0, id: param.id, };
+    await MainModel.update(param, { where: whereParam });
+    ctx.response.body = { code: 1, };
+};
+
+const destroy = async (ctx, next) => {
+    let whereParam = {
+        id: {
+            [Op.in]: ctx.request.body.id
+        }
+    };
+    await MainModel.destroy({ where: whereParam });
+    ctx.response.body = { code: 1, };
+};
+
+const destroyLogically = async (ctx, next) => {
+    let whereParam = {
+        id: {
+            [Op.in]: ctx.request.body.id,
+        },
+        isDelete: 0
+    };
+    await MainModel.update({ isDelete: 1 }, { where: whereParam });
+    ctx.response.body = { code: 1, };
+};
 
 module.exports = [
+    { method: 'GET', url: `/${name}/nameValidation.do`, function: nameValidation },
+    // 
     { method: 'GET', url: `/${name}/list.do`, function: findAll },
     { method: 'GET', url: `/${name}/detail.do`, function: findByPk },
     { method: 'POST', url: `/${name}/add.do`, function: create },
     { method: 'POST', url: `/${name}/edit.do`, function: update },
     { method: 'POST', url: `/${name}/delete.do`, function: destroyLogically },
-    { method: 'GET', url: `/${name}/nameValidation.do`, function: nameValidation },
 ];
 
 // ------------------------------------------------

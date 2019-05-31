@@ -31,6 +31,18 @@ import { exportPDF } from '~/utils/xExportPdf'
 Vue.prototype.exportPDF = exportPDF
 
 
+// -------------- 自定义指令 ----------------
+Vue.directive("permission", {
+    // 指令的定义
+    inserted(el, binding, vnode) {
+        const context = vnode.context;
+        const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
+        const flag = context.xTools.checkBtn(context.$store, code);
+        // console.log(code, flag);
+        (!flag) && (el.parentElement.removeChild(el));
+    },
+});
+
 // -------------- 插件echarts --------------
 import echarts from 'echarts'
 import { bind as sizeSensor, clear } from 'size-sensor';

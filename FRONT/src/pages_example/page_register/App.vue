@@ -27,7 +27,7 @@
 </template>
 <script>
 // 本页
-import './main.scss'
+import './styles/main.scss'
 export default {
     data() {
         // 用户重名验证，西文验证
@@ -120,7 +120,7 @@ export default {
                                 closeOnPressEscape: false
                             }).then(() => {
                                 // 点击确认，会进then
-                                
+
                             }).catch(() => {
                                 // 点击取消、点击x、点击遮罩层、按esc，都会进catch
                             });
