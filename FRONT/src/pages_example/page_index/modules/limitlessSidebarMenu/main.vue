@@ -4,8 +4,6 @@
 </template>
 <script>
 import submenu from './submenu.vue'
-import _ from 'lodash';
-import xTools from '~/utils/xTools.js'
 import './main.scss'
 export default {
     install(Vue) {
@@ -42,8 +40,8 @@ export default {
         // 格式化数据，将平级的数据，转换成tree结构数据
         formattingData() {
             let data = this.data;
-            // let data = _.cloneDeep(data);
-            let treeData = xTools.arrayToTree(data, {
+            // let data = this._.cloneDeep(data);
+            let treeData = this.xTools.arrayToTree(data, {
                 before_idkey: this.props.before_idkey,
                 before_parentkey: this.props.before_parentkey,
                 after_childkey: "child"

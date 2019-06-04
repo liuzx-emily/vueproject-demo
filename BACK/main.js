@@ -22,6 +22,7 @@ app.use(require("./utils/scanControllers").routes());
 
 // log request URL:
 app.use(async (ctx, next) => {
+	// console.log(ctx.request);
     await next();
 });
 

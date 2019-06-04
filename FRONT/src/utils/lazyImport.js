@@ -45,6 +45,8 @@ Vue.directive("permission", {
 
 // -------------- 插件echarts --------------
 import echarts from 'echarts'
+import themeChick from './echartsThemes/theme-chic.js'
+echarts.registerTheme("chic", themeChick);
 import { bind as sizeSensor, clear } from 'size-sensor';
 Vue.prototype.echarts = echarts
 Vue.prototype.chartResizeWhenWidthChange = (id) => {
@@ -60,16 +62,16 @@ Vue.prototype.chartResizeWhenWidthChange = (id) => {
 
 
 // -------------- 注册常用组件和模块 --------------
-import xTable from '~/components/xTable/main.vue'
-Vue.use(xTable);
-import treeTable from '~/components/treeTable/main.vue';
-Vue.use(treeTable);
-import xHorizontalScrolling from '~/components/xHorizontalScrolling/main.vue';
-Vue.use(xHorizontalScrolling);
-import xEditor from "~/components/xEditor/main.vue";
-Vue.use(xEditor);
-import xUploadAttachment from "~/components/xUploadAttachment/main.vue";
-Vue.use(xUploadAttachment);
+import c_table from '~/components/table/main.vue'
+Vue.use(c_table);
+import c_treeTable from '~/components/treeTable/main.vue';
+Vue.use(c_treeTable);
+import c_horizontalScrolling from '~/components/horizontalScrolling/main.vue';
+Vue.use(c_horizontalScrolling);
+import c_editor from "~/components/editor/main.vue";
+Vue.use(c_editor);
+import m_upload from "~/modules/upload/main.vue";
+Vue.use(m_upload);
 
 
 

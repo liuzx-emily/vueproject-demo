@@ -12,14 +12,18 @@ import store from './store.js'
 import './mock/main.js'
 
 // --------------- 注册本页面的组件和模块 ---------------
-import xLimitlessSidebarMenu from "./modules/xLimitlessSidebarMenu/main.vue";
-Vue.use(xLimitlessSidebarMenu);
-import pickYear from "./modules/xCommonFormItem/pickYear/main.vue";
-Vue.use(pickYear);
-import pickDateRange from "./modules/xCommonFormItem/pickDateRange/main.vue";
-Vue.use(pickDateRange);
-import manyLevelAddress from "./modules/xCommonFormItem/manyLevelAddress/main.vue";
-Vue.use(manyLevelAddress);
+import c_foldableBox from "./components/foldableBox/main.vue";
+Vue.use(c_foldableBox);
+import c_pickYear from "./components/commonFormItem/pickYear/main.vue";
+Vue.use(c_pickYear);
+import c_pickDateRange from "./components/commonFormItem/pickDateRange/main.vue";
+Vue.use(c_pickDateRange);
+import c_manyLevelAddress from "./components/commonFormItem/manyLevelAddress/main.vue";
+Vue.use(c_manyLevelAddress);
+import m_limitlessSidebarMenu from "./modules/limitlessSidebarMenu/main.vue";
+Vue.use(m_limitlessSidebarMenu);
+import m_userBox from "./modules/userBox/main.vue";
+Vue.use(m_userBox);
 
 
 import App from './App.vue';

@@ -30,7 +30,7 @@
                 <el-date-picker v-model="dialogData.publishTime" type="date" value-format="timestamp" style="width:140px;"></el-date-picker>
             </el-form-item>
             <el-form-item label="附件">
-                <xUploadAttachment :orginallist="dialogData.list" ref="xUploadAttachment" :inlineMode="true" :readonly="mode==3||mode==4" />
+                <xUpload :flist.sync="dialogData.fileList" ref="xUpload" :readonly="readonly" />
             </el-form-item>
             <el-form-item label="内容">
                 <xEditor :fcontent.sync="dialogData.content" :readonly="readonly" ref="xEditor" />
@@ -118,8 +118,6 @@ export default {
         },
         // 保存
         save(submitFlag) {
-            // 附件
-            this.dialogData.fileList = this._.map(this.$refs.xUploadAttachment.fileList, "id");
             // 附件和内容至少填一个
             if (this.dialogData.content.length == 0 && this.dialogData.fileList.length == 0) {
                 this.$message({
@@ -132,6 +130,8 @@ export default {
             this.$refs.form.validate(valid => {
                 if (valid) {
                     let param = this._.cloneDeep(this.dialogData);
+                    // 附件
+                    param.fileList = this._.map(this.dialogData.fileList, "id");
                     // state 1未提交 2待审核 3审核通过 4审核不通过
                     // 审核状态：状态为审核不通过，点击保存，审核状态不变
                     if (param.state == 4 && !submitFlag) {

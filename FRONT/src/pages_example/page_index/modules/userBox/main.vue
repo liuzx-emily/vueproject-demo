@@ -17,6 +17,9 @@
 import dialogEditInfo from './dialogEditInfo.vue'
 import dialogChangePassword from './dialogChangePassword.vue'
 export default {
+    install(Vue) {
+        Vue.component("userBox", this);
+    },
     components: { dialogEditInfo, dialogChangePassword, },
     data() { return {} },
     methods: {

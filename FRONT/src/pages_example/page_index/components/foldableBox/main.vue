@@ -49,6 +49,9 @@ h2.boxTitle {
 </template>
 <script>
 export default {
+    install(Vue) {
+        Vue.component("foldableBox", this);
+    },
     props: {
         title: String
     },

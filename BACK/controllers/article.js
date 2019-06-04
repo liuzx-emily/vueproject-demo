@@ -6,6 +6,7 @@ const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
 const rawQueryUtils = require("./utils/rawQueryUtils.js");
+const fileUtils = require("./utils/fileUtils.js");
 
 const MainModel = models[name];
 
@@ -50,45 +51,91 @@ const findAll = async (ctx, nect) => {
 };
 
 const findByPk = async (ctx, next) => {
-    let whereParam = { isDelete: 0, id: ctx.query.id };
+    const articleId = ctx.query.id;
+    let whereParam = { isDelete: 0, id: articleId };
     let data = (await rawQuery({ whereParam }))[0];
+    // 取附件
+    const str_file = `
+    SELECT
+        tf.id,
+        tf.name
+    FROM
+        t_file tf
+        LEFT JOIN t_article_file taf ON tf.id = taf.fileId 
+    WHERE
+        taf.articleId = "${articleId}"`;
+    let fileList = await sequelize.query(str_file, { type: sequelize.QueryTypes.SELECT });
+    data.fileList = fileList;
     ctx.response.body = { code: 1, data: data, };
 };
 
 const create = async (ctx, next) => {
     // 取参数
+    const articleId = uuid();
     let param = ctx.request.body;
-    param.id = uuid();
+    param.id = articleId;
     await MainModel.create(param);
+    // 存附件
+    const fileList = param.fileList;
+    if (fileList) {
+        const bulkCreateList = fileList.map(fileId => {
+            return {
+                articleId: articleId,
+                fileId: fileId
+            }
+        })
+        await models.article_file.bulkCreate(bulkCreateList);
+    }
     ctx.response.body = { code: 1, };
 };
 
 
 const update = async (ctx, next) => {
     let param = ctx.request.body;
-    let whereParam = { isDelete: 0, id: param.id, };
+    const articleId = param.id;
+    let whereParam = { isDelete: 0, id: articleId, };
     await MainModel.update(param, { where: whereParam });
-    ctx.response.body = { code: 1, };
-};
-
-const destroy = async (ctx, next) => {
-    let whereParam = {
-        id: {
-            [Op.in]: ctx.request.body.id
-        }
-    };
-    await MainModel.destroy({ where: whereParam });
+    // 存附件
+    await models.article_file.destroy({ where: { articleId: articleId } });
+    const fileList = param.fileList;
+    if (fileList) {
+        const bulkCreateList = fileList.map(fileId => {
+            return {
+                articleId: articleId,
+                fileId: fileId
+            }
+        })
+        await models.article_file.bulkCreate(bulkCreateList);
+    }
     ctx.response.body = { code: 1, };
 };
 
 const destroyLogically = async (ctx, next) => {
+    const articleIds = ctx.request.body.id;
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.id,
+            [Op.in]: articleIds,
         },
         isDelete: 0
     };
     await MainModel.update({ isDelete: 1 }, { where: whereParam });
+    // 删附件
+    const fileIds = await models.article_file.findAll({
+        where: {
+            articleId: {
+                [Op.in]: articleIds,
+            },
+        }
+    }).map(file => file.fileId);
+    await fileUtils.deleteFile(fileIds);
+    // 删关联表
+    await models.article_file.destroy({
+        where: {
+            articleId: {
+                [Op.in]: articleIds,
+            },
+        }
+    });
     ctx.response.body = { code: 1, };
 };
 

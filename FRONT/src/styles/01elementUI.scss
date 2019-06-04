@@ -2,7 +2,10 @@
 .el-checkbox__inner {
     z-index: auto;
 }
-
+// 禁用的多选框，勾中时颜色太浅，改深一点
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after {
+    color: #000;
+}
 // warning按钮颜色不好看，改一下
 .el-button--warning {
     background-color: #FFB300;

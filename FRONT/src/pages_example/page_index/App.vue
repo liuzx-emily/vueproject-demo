@@ -27,7 +27,7 @@
                     </router-link>
                 </section>
                 <!-- 用户信息 -->
-                <UserInfo />
+                <userBox />
             </div>
             <!-- 导航 -->
         </section>
@@ -56,10 +56,8 @@
 <script>
 // 本页
 import "./styles/main.scss";
-import UserInfo from "./modules/xUserInfo/main.vue";
 export default {
-    name: "app",
-    components: { UserInfo },
+    components: {},
     watch: {
         '$route.path': {
             immediate: true,

@@ -2,8 +2,8 @@ const routes = {
     path: "/componentInstructions",
     component: () => import('../blank.vue'),
     children: [{
-            path: "xTable",
-            component: () => import('~/pages_example/page_index/views/02componentInstructions/01xTable/main.vue')
+            path: "table",
+            component: () => import('~/pages_example/page_index/views/02componentInstructions/01table/main.vue')
         },
         {
             path: "treeTable",
@@ -16,6 +16,10 @@ const routes = {
         {
             path: "commonFormItem",
             component: () => import('~/pages_example/page_index/views/02componentInstructions/04commonFormItem/main.vue')
+        },
+        {
+            path: "foldableBox",
+            component: () => import('~/pages_example/page_index/views/02componentInstructions/05foldableBox/main.vue')
         },
     ]
 };

@@ -1,7 +1,7 @@
 <style scoped>
     .chart {
     width: 100%;
-    height: 300px;
+    height: 500px;
 }
 </style>
 <template>
@@ -50,10 +50,10 @@ export default {
                 const res = response.data;
                 if (res.code == 1) {
                     this.data = [
-                        { name: "苹果", value: 34 },
-                        { name: "橘子", value: 24 },
-                        { name: "菠萝", value: 15 },
-                        { name: "西瓜", value: 21 },
+                        { name: "苹果", value: 94 },
+                        { name: "橘子", value: 71 },
+                        // { name: "菠萝", value: 76 },
+                        // { name: "西瓜", value: 85 },
                     ];
                     this.drawChart();
                 }
@@ -71,12 +71,9 @@ export default {
                     trigger: 'item',
                 },
             };
-            // 每个series
-            const series = {
-                name: "整个饼图的名称",
-                type: 'pie',
-                center: ['50%', '65%'],
-                radius: [40, '55%'],
+            // 设置series
+            let series = {
+                type: 'gauge',
                 data: this.data,
             };
             option.series = [series];

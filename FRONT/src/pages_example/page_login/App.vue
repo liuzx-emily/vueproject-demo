@@ -14,7 +14,7 @@
             <el-input id="captcha" v-model="loginData.validateCode" @keyup.enter.native="do_login">
                 <i class="fa fa-barcode" slot="prefix"></i>
             </el-input>
-            <img :src="captchaImgSrc" @click='do_refreshCaptchaImg'>
+            <img class="captchaImg" :src="captchaImgSrc" @click='do_refreshCaptchaImg'>
         </section>
         <div class="loginForm-box">
             <el-button @click="do_login" id="loginBtn">登录</el-button>
@@ -30,10 +30,10 @@ export default {
     data() {
         return {
             loading: false,
-            captchaImgSrc: BASE_PATH + "/index/captcha.htmls",
+            captchaImgSrc: BASE_PATH + "/captcha.do",
             loginData: {
                 username: "shucaixiaoming",
-                password: "123456",
+                password: "rock123",
                 validateCode: "7591",
             },
             // 自己封装的校验规则
@@ -65,11 +65,11 @@ export default {
                 this.loading = false;
                 const res = response.data;
                 if (res.code == 1) {
-                    this.$message({
-                        message: '登录成功！',
-                        type: 'success',
-                        showClose: true,
-                    });
+                    // this.$message({
+                    //     message: '登录成功！',
+                    //     type: 'success',
+                    //     showClose: true,
+                    // });
                     window.location.href = "./index.html";
                 } else {
                     this.$message({
@@ -85,7 +85,7 @@ export default {
             }).catch(error => {});
         },
         do_refreshCaptchaImg() {
-            this.captchaImgSrc = BASE_PATH + "/index/captcha.htmls?timestamp=" + Math.random();
+            this.captchaImgSrc = BASE_PATH + "/captcha.do?timestamp=" + Math.random();
         }
     }
 };
