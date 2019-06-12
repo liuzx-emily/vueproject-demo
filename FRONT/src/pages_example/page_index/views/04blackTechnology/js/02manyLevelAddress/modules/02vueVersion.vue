@@ -12,7 +12,7 @@
         <section>
             <!-- 可选参数hasNullOption：是否添加 "请选择"这一空项（默认为true） -->
             <!-- 可选参数width，默认为"" -->
-            <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="" />
+            <manyLevelAddress :flevelOne.sync="searchparam.address_levelone" :flevelTwo.sync="searchparam.address_leveltwo" :flevelThree.sync="searchparam.address_levelthree" :hasNullOption="true" width="" />
         </section>
         <p>
             <el-button type="primary" class="size-small" @click="do_fuzhi(1)">赋值：空</el-button>
@@ -32,7 +32,7 @@ export default {
     data() {
         return {
             // 广东 - 广州 - 海珠
-            fakesearchparam: {
+            searchparam: {
                 address_levelone: "440000",
                 address_leveltwo: "440100",
                 address_levelthree: "440105",
@@ -45,9 +45,9 @@ export default {
     mounted() {},
     methods: {
         printParam() {
-            console.log(`一级地址：${this.fakesearchparam.address_levelone}`);
-            console.log(`二级地址：${this.fakesearchparam.address_leveltwo}`);
-            console.log(`三级地址：${this.fakesearchparam.address_levelthree}`);
+            console.log(`一级地址：${this.searchparam.address_levelone}`);
+            console.log(`二级地址：${this.searchparam.address_leveltwo}`);
+            console.log(`三级地址：${this.searchparam.address_levelthree}`);
         },
         do_fuzhi(type) {
             let data;
@@ -79,9 +79,9 @@ export default {
                     levelThree: "",
                 };
             }
-            this.fakesearchparam.address_levelone = data.levelOne;
-            this.fakesearchparam.address_leveltwo = data.levelTwo;
-            this.fakesearchparam.address_levelthree = data.levelThree;
+            this.searchparam.address_levelone = data.levelOne;
+            this.searchparam.address_leveltwo = data.levelTwo;
+            this.searchparam.address_levelthree = data.levelThree;
         }
     }
 };

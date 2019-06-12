@@ -31,6 +31,16 @@ const rawQuery = async (params) => {
 
 const findAll = async (ctx, next) => {
     let whereParam = { deptId: ctx.query.deptId, isDelete: 0 };
+    if (ctx.query.username) {
+        whereParam.username = {
+            [Op.like]: '%' + ctx.query.username + '%',
+        };
+    }
+    if (ctx.query.name) {
+        whereParam.name = {
+            [Op.like]: '%' + ctx.query.name + '%',
+        };
+    }
     let pagingParam = { page: ctx.query.page, row: ctx.query.row };
     let data = await rawQuery({ whereParam, pagingParam });
     let count = await MainModel.count({ where: whereParam });
@@ -63,7 +73,7 @@ const update = async (ctx, next) => {
 const destroy = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.id
+            [Op.in]: ctx.request.body.ids
         }
     };
     await MainModel.destroy({ where: whereParam });
@@ -73,7 +83,7 @@ const destroy = async (ctx, next) => {
 const destroyLogically = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.id,
+            [Op.in]: ctx.request.body.ids,
         },
         isDelete: 0
     };
@@ -81,8 +91,16 @@ const destroyLogically = async (ctx, next) => {
     ctx.response.body = { code: 1, };
 };
 
-
+const resetPassword = async (ctx, next) => {
+    let param = {
+        password: ctx.request.body.password,
+    };
+    let whereParam = { isDelete: 0, id: ctx.request.body.id, };
+    await MainModel.update(param, { where: whereParam });
+    ctx.response.body = { code: 1, };
+};
 module.exports = [
+    { method: 'POST', url: `/${name}/resetPassword.do`, function: resetPassword },
     // 
     { method: 'GET', url: `/${name}/list.do`, function: findAll },
     { method: 'GET', url: `/${name}/detail.do`, function: findByPk },

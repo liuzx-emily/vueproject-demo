@@ -70,7 +70,7 @@ const update = async (ctx, next) => {
 const destroy = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.id
+            [Op.in]: ctx.request.body.ids
         }
     };
     await MainModel.destroy({ where: whereParam });
@@ -80,7 +80,7 @@ const destroy = async (ctx, next) => {
 const destroyLogically = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.id,
+            [Op.in]: ctx.request.body.ids,
         },
         isDelete: 0
     };

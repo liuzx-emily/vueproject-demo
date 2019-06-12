@@ -41,7 +41,7 @@ export default {
         formattingData() {
             let data = this.data;
             // let data = this._.cloneDeep(data);
-            let treeData = this.xTools.arrayToTree(data, {
+            let treeData = this.xtools.arrayToTree(data, {
                 before_idkey: this.props.before_idkey,
                 before_parentkey: this.props.before_parentkey,
                 after_childkey: "child"

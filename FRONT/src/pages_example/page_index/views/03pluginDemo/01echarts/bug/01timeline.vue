@@ -36,7 +36,7 @@ export default {
             // 局部loading
             loading: true,
             // 生成随机id
-            randomNum: this.xTools.guid(),
+            randomNum: this.xtools.randomId(),
             // 调色盘
             colorArr: ["#ff7576", "#ffba75", "#75bbff", "#4ce297", ],
             // 数据

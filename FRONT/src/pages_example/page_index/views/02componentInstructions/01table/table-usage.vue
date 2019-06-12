@@ -1,150 +1,45 @@
 <template>
-    <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.05)">
+    <section>
         <el-card>
-            <div>
-                <p>1 内置loading，在 <code>refresh</code> 方法中自动切换 </p>
-                <p>2 分页功能默认开启：<code>enablePaging</code>，内置分页参数：page row （page从1开始）</p>
-                <p>3 多选功能默认关闭：<code>enableCheckbox</code>。使用<code>getSelection</code> 方法获取选中行数据。 </p>
-                <p>4 内置后端排序，参数为：sort order，组件内部已经绑定了排序函数，只需要给排序的列添加
-                    <code>sortable="custom"</code>。
-                    <br>
-                    使用<code>defaultsort</code>来传递初始排序参数
-                </p>
-                <p>5 如果搜索参数有初始值，一定要在 fakesearchparam 和 searchparam 中都赋值。</p>
-            </div>
+            <section slot="header">搜索参数（使用方法和之前版本大不相同）</section>
+            <p>组件内部维护了一个搜索参数。</p>
+            <p>调用组件的<code>refreshTable</code>方法时，可以通过传参，来修改组件内部的搜索参数。</p>
+            <p style="color:crimson">如果有初始搜索参数，那么第一次刷新表格数据时，一定要记得传过去！</p>
         </el-card>
-        <section class="search-condition">
-            <section class="box">
-                <span class="search-label">名称：</span>
-                <span class="search-input">
-                    <el-input v-model.trim="fakesearchparam.name"></el-input>
-                </span>
+        <el-card>
+            <p>1 分页：<code>enablePaging</code>，默认开启。内置分页参数：<code>page row</code> （page从1开始）</p>
+            <p>2 多选：<code>enableCheckbox</code>，默认关闭。使用<code>getSelection</code> 方法获取选中行数据。 </p>
+            <p>3 后端排序：
+                组件内部已经绑定了排序函数，只需要给排序列添加<code>sortable="custom"</code>。
+                <br>内置的接口排序参数为：<code>sort order</code>。
+                <br>如果有初始排序，使用<code>defaultsort</code>来传递。
+            </p>
+            <hr>
+            <p>1 内置loading，在 <code>refresh</code> 方法中自动切换 </p>
+            <p>2 自定义表头： <code> &lt;template slot="header"&gt;&lt;/template&gt;</code> （这一列的label就不需要了）</p>
+        </el-card>
+        <el-card>
+            <section slot="header">
+                el-pagination的特性(bug)：分页组件初始化完成后，再通过js修改 <code>current-page</code> ，组件是不会响应它的变化的。
             </section>
-            <section class="box">
-                <span class="search-label">下拉框：</span>
-                <span class="search-input">
-                    <el-select v-model="fakesearchparam.select1">
-                        <el-option label="全部" :value="-1"></el-option>
-                        <el-option label="值1" :value="1"></el-option>
-                        <el-option label="值2" :value="2"></el-option>
-                    </el-select>
-                </span>
-            </section>
-            <section class="box">
-                <span class="search-label">日期：</span>
-                <span class="search-input">
-                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="true" />
-                </span>
-            </section>
-            <section class="box">
-                <span class="search-label">年份：</span>
-                <span class="search-input">
-                    <pickYear :fyear.sync="fakesearchparam.year" :cannotBeFuture="true" />
-                </span>
-            </section>
-            <section class="search-btn-box">
-                <el-button type="primary" @click="do_search">搜索</el-button>
-            </section>
-        </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table" :defaultsort="xTableProps.defaultsort" :enableCheckbox="xTableProps.enableCheckbox" :enablePaging="xTableProps.enablePaging">
-            <el-table-column prop="name" sortable="custom">
-                <template slot="header">
-                    <span style="display:block;color:#00bcd4;">自定义表头喔~</span>
-                    <span>这一列的label就用不到了</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="gender" label="性别" sortable="custom">
-                <template slot-scope="scope">
-                    <span v-if="scope.row.gender==1">男</span>
-                    <span v-if="scope.row.gender==2">女</span>
-                    <span v-else></span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="time" label="日期" width="120px">
-                <template slot-scope="scope">
-                    {{xTools.formatDate(scope.row.time)}}
-                </template>
-            </el-table-column>
-        </xTable>
+            <p>所以为了实现 “一上来就显示第3页” 这种需求，必须先把 <code>current-page</code> 改成3，然后再初始化分页组件。</p>
+            <p>xTable组件内部引入了<code>startRenderingPaging</code> 参数，控制分页组件的初始化时间。初始化为 false。在<code>refreshTable</code>方法中，把 <code>startRenderingPaging</code>的值改为true。</p>
+            <p>所以只要在调用 <code>refreshTable</code> 之前设置好 <code>current-page</code>就可以了。</p>
+            <pre>
+            mounted() {
+                this.$refs.table.pageNum = 3;
+                this.$refs.table.refreshTable();
+            },</pre>
+        </el-card>
     </section>
 </template>
 <script>
 export default {
     components: {},
     data() {
-        let year = new Date().getFullYear();
-        return {
-            loading: false,
-            // 表格参数
-            // 如果搜索参数有初始值，一定要在 fakesearchparam 和 searchparam 中都赋值
-            fakesearchparam: {
-                name: "",
-                select1: -1,
-                startTime: "",
-                endTime: "",
-                year: year,
-            },
-            searchparam: {
-                name: "",
-                select1: -1,
-                startTime: "",
-                endTime: "",
-                year: year,
-            },
-            xTableProps: {
-                // 后端排序，默认参数
-                defaultsort: { sort: "name", order: "asc" },
-                // 是否开启多选
-                enableCheckbox: true,
-                // 是否有分页
-                enablePaging: true,
-            },
-
-        };
+        return {};
     },
-    mounted() {
-        this.refreshTable_pageOne();
-    },
-    methods: {
-        // ------------------------------ 表格 ------------------------------
-        // 传给子组件用的
-        refresh(param, self) {
-            console.log(param);
-            // 获取表格数据
-            self.loading = true;
-            self.xAxios({
-                method: "get",
-                url: BASE_PATH + "/example/xTable.htmls",
-                params: param
-            }).then(response => {
-                const res = response.data;
-                // 数据格式化
-                self.tableData = this._.map(res.data, item => {
-                    return item;
-                });
-                self.count = res.count;
-                self.loading = false;
-            }).catch(error => {
-                self.loading = false;
-            });
-        },
-        // 刷新表格（跳回第一页）
-        refreshTable_pageOne() {
-            this.$refs.table.pageNum = 1;
-            this.$refs.table.refreshTable();
-        },
-        // 搜索
-        do_search() {
-            this.searchparam.name = this.fakesearchparam.name;
-            this.searchparam.select1 = this.fakesearchparam.select1;
-            // 日期范围选择
-            this.searchparam.startTime = this.fakesearchparam.startTime;
-            this.searchparam.endTime = this.fakesearchparam.endTime;
-            // 年份
-            this.searchparam.year = this.fakesearchparam.year;
-            // 刷新表格（跳回第一页）
-            this.refreshTable_pageOne();
-        },
-    }
+    mounted() {},
+    methods: {}
 };
 </script>

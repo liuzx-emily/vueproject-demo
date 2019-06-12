@@ -17,17 +17,8 @@
                 <p>（预设的样式在 src/styles 中）</p>
             </div>
         </el-card>
-        <xTable :refresh="refresh" ref="table" :color="tableClass.color" :size="tableClass.size" :align="tableClass.align">
+        <xTable :refresh="srefresh" ref="table" :color="tableClass.color" :size="tableClass.size" :align="tableClass.align">
             <el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
-            <el-table-column prop="gender" label="性别" sortable="custom">
-                <template slot-scope="scope">{{scope.row.genderText}}</template>
-            </el-table-column>
-            <el-table-column prop="select1" label="下拉框" sortable="custom">
-                <template slot-scope="scope">{{scope.row.select1Text}}</template>
-            </el-table-column>
-            <el-table-column prop="time" label="日期" width="120px">
-                <template slot-scope="scope">{{scope.row.timeText}}</template>
-            </el-table-column>
             <el-table-column label="操作" width="250px">
                 <template slot-scope="scope">
                     <el-button class="size-small" type="primary" @click="">查看</el-button>
@@ -53,12 +44,12 @@ export default {
         };
     },
     mounted() {
-        this.refreshTable_pageOne();
+        this.refreshTable({ refreshSearchParam: true });
     },
     methods: {
         // ------------------------------ 表格 ------------------------------
         // 传给子组件用的
-        refresh(param, self) {
+        srefresh(param, self) {
             console.log(param);
             // 获取表格数据
             self.loading = true;
@@ -72,23 +63,6 @@ export default {
                     const res = response.data;
                     // 数据格式化
                     self.tableData = this._.map(res.data, item => {
-                        item.timeText = this.xTools.formatDate(item.time, 1);
-                        // 性别
-                        if (item.gender === 1) {
-                            item.genderText = "男";
-                        } else if (item.gender === 0) {
-                            item.genderText = "男";
-                        } else {
-                            item.genderText = "";
-                        }
-                        // 下拉框
-                        if (item.select1 === 1) {
-                            item.select1Text = "值1";
-                        } else if (item.select1 === 2) {
-                            item.select1Text = "值2";
-                        } else {
-                            item.select1Text = "";
-                        }
                         return item;
                     });
                     self.count = res.count;
@@ -98,10 +72,21 @@ export default {
                     self.loading = false;
                 });
         },
-        // 刷新表格（跳回第一页）
-        refreshTable_pageOne() {
-            this.$refs.table.pageNum = 1;
-            this.$refs.table.refreshTable();
+        // 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
+        refreshTable(param) {
+            let new_searchparam = undefined;
+            // refreshSearchParam 有新的搜索参数
+            if (param && param.refreshSearchParam) {
+                new_searchparam = this._.cloneDeep(this.searchparam);
+            }
+            // goToPageN 前往指定页
+            if (param && param.goToPageN && param.pageN) {
+                this.$refs.table.pageNum = param.pageN;
+            } else {
+                // 不然的话返回第一页
+                this.$refs.table.pageNum = 1;
+            }
+            this.$refs.table.refreshTable(new_searchparam);
         },
     }
 };

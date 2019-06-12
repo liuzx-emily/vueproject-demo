@@ -62,7 +62,6 @@
     </section>
 </template>
 <script>
-import xTools from '~/utils/xTools.js'
 export default {
     data() {
         return {
@@ -128,7 +127,7 @@ export default {
             //     };
             //     this.article = {
             //         title: res.data.title,
-            //         date: xTools.formatDate(res.data.time, 1),
+            //         date: xtools.formattingDate(res.data.time, 1),
             //         publisher: res.data.publisher,
             //         content: res.data.content,
             //         fileList: res.data.list

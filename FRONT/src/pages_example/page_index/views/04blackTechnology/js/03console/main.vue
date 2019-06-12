@@ -80,7 +80,7 @@ export default {
                     type: 'success',
                     showClose: true,
                 });
-                this.timer = this.xTools.guid();
+                this.timer = this.xtools.randomId();
                 console.time(this.timer);
             }
         },

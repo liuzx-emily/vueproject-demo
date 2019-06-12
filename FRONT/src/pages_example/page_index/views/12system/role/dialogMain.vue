@@ -101,7 +101,7 @@ export default {
                 url: BASE_PATH + '/permission/list.do',
             }).then((response) => {
                 const res = response.data;
-                this.permissionTreeData = this.xTools.arrayToTree(res.data, {
+                this.permissionTreeData = this.xtools.arrayToTree(res.data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: 'child'

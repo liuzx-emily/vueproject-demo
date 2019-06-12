@@ -19,6 +19,7 @@
             <router-view class="w1200"></router-view>
         </section>
         <section id="page_footer">技术支持：RABBIT</section>
+        <el-backtop></el-backtop>
     </div>
 </template>
 <script>

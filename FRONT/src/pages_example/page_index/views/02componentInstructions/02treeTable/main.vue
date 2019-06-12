@@ -41,7 +41,7 @@ export default {
         refreshData() {
             this.loading = true;
             setTimeout(() => {
-                this.treeTableData = this.xTools.arrayToTree(listData, {
+                this.treeTableData = this.xtools.arrayToTree(listData, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: "child"

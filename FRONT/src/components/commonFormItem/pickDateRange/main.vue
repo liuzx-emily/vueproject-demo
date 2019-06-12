@@ -2,7 +2,8 @@
 </style>
 <template>
     <section>
-        <el-date-picker v-model="startTime" type="date" value-format="timestamp" :picker-options="pickerOption_start" :style="pickerStyle"></el-date-picker>至
+        <el-date-picker v-model="startTime" type="date" value-format="timestamp" :picker-options="pickerOption_start" :style="pickerStyle"></el-date-picker>
+        至
         <el-date-picker v-model="endTime" type="date" value-format="timestamp" :picker-options="pickerOption_end" :style="pickerStyle"></el-date-picker>
     </section>
 </template>

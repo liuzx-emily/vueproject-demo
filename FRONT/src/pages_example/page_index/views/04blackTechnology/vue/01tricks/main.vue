@@ -14,6 +14,10 @@ pre {
 <template>
     <section>
         <el-card>
+            组件传递prop，如果prop是个对象并且修改了地址。
+            那么组件内部的参数变化，要 nextTick 才会变化。（xTable组件内部就处理了这个问题）
+        </el-card>
+        <el-card>
             <div slot="header">
                 <code>computed</code>or <code>methods</code>
             </div>
@@ -53,12 +57,11 @@ pre {
                 &lt;template&gt;
                     {{scope.row.startTime | formatDate }}
                 &lt;/template&gt;                
-                &lt;script&gt;
-                import xTools from '路径'                        
+                &lt;script&gt;                     
                 export default{ 
                     filters: {
                         formatDate(value) {
-                            return xTools.formatDate(value, 2);
+                            return this.xtools.formattingDate(value, 2);
                         }
                     },
                 }

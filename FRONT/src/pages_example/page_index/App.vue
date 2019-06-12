@@ -54,8 +54,6 @@
     </div>
 </template>
 <script>
-// 本页
-import "./styles/main.scss";
 export default {
     components: {},
     watch: {
@@ -116,6 +114,7 @@ export default {
         }
     },
     created() {
+        console.log(this.xtools.formattingSize(43471661));
         this.getUserInfo();
     },
     data() {
@@ -143,7 +142,7 @@ export default {
         // 计算 #main_container的高度
         calculateHeight() {
             let func = () => {
-                let h1 = this.xTools.getWindowSize().height;
+                let h1 = this.xtools.getWindowSize().height;
                 let h2 = document.getElementById("topbar").offsetHeight;
                 let h3 = h1 - h2;
                 document.getElementById("main_container").style.height = h3 + "px";
@@ -205,7 +204,7 @@ export default {
                 url: BASE_PATH + "/getMenus.do",
             }).then(response => {
                 const res = response.data;
-                const navList = this.xTools.arrayToTree(res.data, {
+                const navList = this.xtools.arrayToTree(res.data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: "child"

@@ -13,7 +13,6 @@
 </template>
 <script>
 import _ from 'lodash';
-import xTools from '~/utils/xTools.js'
 export default {
     props: {
         "list": Array,
@@ -40,7 +39,7 @@ export default {
 
     filters: {
         formatDate(value) {
-            return xTools.formatDate(value, 1);
+            return xtools.formattingDate(value, 1);
         },
     },
     methods: {

@@ -35,7 +35,7 @@
                 <section class="box">
                     <section class="box-title">{{scope.item.title}}</section>
                     <section class="box-publisher">作者：{{scope.item.publisher}}</section>
-                    <section class="box-time">时间：{{xTools.formatDate(scope.item.time)}}</section>
+                    <section class="box-time">时间：{{xtools.formattingDate(scope.item.time)}}</section>
                 </section>
             </template>
         </xHorizontalScrolling>
@@ -45,7 +45,7 @@
                 <section class="box">
                     <section class="box-title">{{scope.item.title}}</section>
                     <section class="box-publisher">作者：{{scope.item.publisher}}</section>
-                    <section class="box-time">时间：{{xTools.formatDate(scope.item.time)}}</section>
+                    <section class="box-time">时间：{{xtools.formattingDate(scope.item.time)}}</section>
                 </section>
             </template>
         </xHorizontalScrolling>

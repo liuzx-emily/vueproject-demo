@@ -19,7 +19,7 @@
                 <span class="search-input">
                     <!-- 可选参数hasNullOption：是否添加 "请选择"这一空项（默认为true） -->
                     <!-- 可选参数width，默认为"" -->
-                    <manyLevelAddress :flevelOne.sync="fakesearchparam.address_levelone" :flevelTwo.sync="fakesearchparam.address_leveltwo" :flevelThree.sync="fakesearchparam.address_levelthree" :hasNullOption="true" width="" />
+                    <manyLevelAddress :flevelOne.sync="searchparam.address_levelone" :flevelTwo.sync="searchparam.address_leveltwo" :flevelThree.sync="searchparam.address_levelthree" :hasNullOption="true" width="" />
                 </span>
             </section>
             <section class="box">
@@ -27,7 +27,7 @@
                 <span class="search-input">
                     <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
                     <!-- 可选参数width，默认为"" -->
-                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="true" width="" />
+                    <pickDateRange :fstartTime.sync="searchparam.startTime" :fendTime.sync="searchparam.endTime" :cannotBeFuture="true" width="" />
                 </span>
             </section>
             <section class="box">
@@ -35,7 +35,7 @@
                 <span class="search-input">
                     <!-- 可选参数cannotBeFuture：不能选择未来吗，默认为true -->
                     <!-- 可选参数width，默认为"" -->
-                    <pickYear :fyear.sync="fakesearchparam.year" :cannotBeFuture="true" width="" />
+                    <pickYear :fyear.sync="searchparam.year" :cannotBeFuture="true" width="" />
                 </span>
             </section>
         </section>
@@ -48,7 +48,7 @@ export default {
     data() {
         return {
             // 
-            fakesearchparam: {
+            searchparam: {
                 address_levelone: "",
                 address_leveltwo: "",
                 address_levelthree: "",
@@ -64,23 +64,23 @@ export default {
     mounted() {},
     methods: {
         printParam() {
-            console.log(`一级地址：${this.fakesearchparam.address_levelone}`);
-            console.log(`二级地址：${this.fakesearchparam.address_leveltwo}`);
-            console.log(`三级地址：${this.fakesearchparam.address_levelthree}`);
-            console.log(`起始时间：${this.fakesearchparam.startTime}`);
-            console.log(`结束时间：${this.fakesearchparam.endTime}`);
-            console.log(`年份：${this.fakesearchparam.year}`);
+            console.log(`一级地址：${this.searchparam.address_levelone}`);
+            console.log(`二级地址：${this.searchparam.address_leveltwo}`);
+            console.log(`三级地址：${this.searchparam.address_levelthree}`);
+            console.log(`起始时间：${this.searchparam.startTime}`);
+            console.log(`结束时间：${this.searchparam.endTime}`);
+            console.log(`年份：${this.searchparam.year}`);
         },
         fuzhi() {
             // 广东-广州-海珠
-            this.fakesearchparam.address_levelone = "440000";
-            this.fakesearchparam.address_leveltwo = "440100";
-            this.fakesearchparam.address_levelthree = "440105";
+            this.searchparam.address_levelone = "440000";
+            this.searchparam.address_leveltwo = "440100";
+            this.searchparam.address_levelthree = "440105";
             // 20190526-20190612
-            this.fakesearchparam.startTime = 1558800000000;
-            this.fakesearchparam.endTime = 1560355199999;
+            this.searchparam.startTime = 1558800000000;
+            this.searchparam.endTime = 1560355199999;
             // 2017年
-            this.fakesearchparam.year = 2017;
+            this.searchparam.year = 2017;
         }
     }
 };

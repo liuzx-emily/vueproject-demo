@@ -56,11 +56,34 @@
                 <el-button type="danger" class="size-big">按钮</el-button>
             </section>
         </el-card>
+        <el-card>
+            <div slot="header">
+                <span>颜色</span>
+            </div>
+            <section class="box">
+                <section class="box-title">
+                    color-prettyblue
+                </section>
+                <el-button class="color-prettyblue">按钮</el-button>
+            </section>
+            <section class="box">
+                <section class="box-title">
+                    color-prettygreen
+                </section>
+                <el-button class="color-prettygreen">按钮</el-button>
+            </section>
+            <section class="box">
+                <section class="box-title">
+                    color-prettyred
+                </section>
+                <el-button class="color-prettyred">按钮</el-button>
+            </section>
+        </el-card>
     </section>
 </template>
 <script>
 export default {
-    components:{},
+    components: {},
     data() {
         return {
 

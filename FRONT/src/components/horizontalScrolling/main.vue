@@ -44,7 +44,7 @@ export default {
     },
     computed: {},
     data() {
-        let randomNum = this.xTools.guid();
+        let randomNum = this.xtools.randomId();
         return {
             randomNum: randomNum,
             swiperOption: {

@@ -20,7 +20,7 @@ export default {
             // 局部loading
             loading: true,
             // 生成随机id
-            randomNum: this.xTools.guid(),
+            randomNum: this.xtools.randomId(),
             // 调色盘
             colorArr: ["#01a6a6", "#fbc533", "#aad571", "#f89046", "#33cca1", "#fc7e4b", "#3585f6", "#9575cd", "#FB8C00", "#D84315", "#607d8b", "#e6a23c", "#f56c6c", "#795548", "#9d8eb7", "#F9A825", ],
             // 数据

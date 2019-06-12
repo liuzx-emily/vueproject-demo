@@ -1,31 +1,53 @@
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <section class="search-condition">
-            <div class="box">
-                <span class="search-label">
-                    标题：
-                </span>
-                <span class="search-input">
-                    <el-input v-model.trim="fakesearchparam.title"></el-input>
-                </span>
-            </div>
             <section class="box">
-                <span class="search-label">日期范围：</span>
+                <span class="search-label">标题</span>
                 <span class="search-input">
-                    <pickDateRange :fstartTime.sync="fakesearchparam.startTime" :fendTime.sync="fakesearchparam.endTime" :cannotBeFuture="false" />
+                    <el-input v-model.trim="searchparam.title"></el-input>
+                </span>
+            </section>
+            <section class="box">
+                <span class="search-label">发布人</span>
+                <span class="search-input">
+                    <el-input v-model.trim="searchparam.publisher"></el-input>
+                </span>
+            </section>
+            <section class="box">
+                <span class="search-label">年份</span>
+                <span class="search-input">
+                    <pickYear :fyear.sync="searchparam.year" :cannotBeFuture="true" />
+                </span>
+            </section>
+            <section class="box">
+                <span class="search-label">日期范围</span>
+                <span class="search-input">
+                    <pickDateRange :fstartTime.sync="searchparam.startTime" :fendTime.sync="searchparam.endTime" :cannotBeFuture="false" />
+                </span>
+            </section>
+            <section class="box">
+                <span class="search-label">状态</span>
+                <span class="search-input">
+                    <el-select v-model="searchparam.state">
+                        <el-option label="全部" value="-1"></el-option>
+                        <el-option label="未提交" value="1"></el-option>
+                        <el-option label="待审核" value="2"></el-option>
+                        <el-option label="审核通过" value="3"></el-option>
+                        <el-option label="审核不通过" value="4"></el-option>
+                    </el-select>
                 </span>
             </section>
             <section class="search-btn-box">
-                <el-button type="warning" @click="doSearch">搜索</el-button>
+                <el-button type="warning" @click="do_search">搜索</el-button>
                 <el-button v-permission:article="1" type="primary" @click="toDetailPage(1)">新增</el-button>
             </section>
         </section>
-        <xTable :refresh="refresh" :searchparam="searchparam" ref="table">
+        <xTable :refresh="srefresh" ref="table">
             <el-table-column prop="title" label="标题"></el-table-column>
             <el-table-column prop="publisher" label="发布人" width="120px"></el-table-column>
             <el-table-column prop="publishTime" label="发布时间" width="150px">
                 <template slot-scope="scope">
-                    {{xTools.formatDate(scope.row.publishTime)}}
+                    {{xtools.formattingDate(scope.row.publishTime)}}
                 </template>
             </el-table-column>
             <el-table-column prop="state" label="状态" width="120px">
@@ -53,25 +75,27 @@ export default {
     data() {
         return {
             loading: false,
-            fakesearchparam: {
-                title: "",
-                startTime: "",
-                endTime: "",
-            },
             searchparam: {
                 title: "",
+                publisher: "",
+                state: "",
                 startTime: "",
                 endTime: "",
+                year: new Date().getFullYear()
             },
         };
     },
     mounted() {
-        this.refreshTable_pageOne();
+        this.refreshTable({
+            refreshSearchParam: true,
+            // goToPageN: true,
+            // pageN: 2
+        });
     },
     methods: {
         // ------------------------------ 表格 ------------------------------
         // 传给子组件用的
-        refresh(param, self) {
+        srefresh(param, self) {
             // 获取表格数据
             self.loading = true;
             self.xAxios({
@@ -90,17 +114,25 @@ export default {
                 self.loading = false;
             });
         },
-        // 刷新表格（跳回第一页）
-        refreshTable_pageOne() {
-            this.$refs.table.pageNum = 1;
-            this.$refs.table.refreshTable();
+        // 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
+        refreshTable(param) {
+            let new_searchparam = undefined;
+            // refreshSearchParam 有新的搜索参数
+            if (param && param.refreshSearchParam) {
+                new_searchparam = this._.cloneDeep(this.searchparam);
+            }
+            // goToPageN 前往指定页
+            if (param && param.goToPageN && param.pageN) {
+                this.$refs.table.pageNum = param.pageN;
+            } else {
+                // 不然的话返回第一页
+                this.$refs.table.pageNum = 1;
+            }
+            this.$refs.table.refreshTable(new_searchparam);
         },
         // 搜索
-        doSearch() {
-            this.searchparam.title = this.fakesearchparam.title;
-            this.searchparam.startTime = this.fakesearchparam.startTime;
-            this.searchparam.endTime = this.fakesearchparam.endTime;
-            this.refreshTable_pageOne();
+        do_search(param) {
+            this.refreshTable({ refreshSearchParam: true });
         },
         // 跳转到详情页
         toDetailPage(mode, data) {
@@ -129,11 +161,10 @@ export default {
                     return false;
                 }
             }
-            this.xTools.openConfirm({
-                ids: ids,
+            this.xtools.openConfirm_delete({
                 url: '/article/delete.do',
-                refreshFunc: this.refreshTable_pageOne,
-                context: this,
+                data: { ids: ids },
+                refreshFunc: this.refreshTable,
             });
         },
     }

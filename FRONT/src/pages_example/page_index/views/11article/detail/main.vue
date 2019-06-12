@@ -1,41 +1,51 @@
-<style scoped></style>
+<style scoped>
+    .el-card{
+        margin-top: 10px;
+        padding-top: 20px;
+        padding-right:50px;
+    }
+</style>
 <template>
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
-        <section style="margin:10px 0 10px;">
-            <!-- 返回 -->
-            <el-button type="text" icon="el-icon-arrow-left" @click="goBack" style="margin-right:50px;">返回</el-button>
-            <!-- mode 新增、编辑： 保存、提交-->
-            <template v-if="mode==1||mode==2">
-                <el-button type="primary" @click="do_save(false)">保存</el-button>
-                <el-button type="success" @click="do_save(true)">提交</el-button>
-            </template>
-            <!-- mode 查看：无操作按钮 -->
-            <!-- mode 审核：审核通过、审核不通过 -->
-            <template v-if="mode==4">
-                <el-button type="primary" @click="do_audit_yes">审核通过</el-button>
-                <el-button type="danger" @click="do_audit_no">审核不通过</el-button>
-            </template>
+        <section class="search-condition">
+            <section class="search-btn-box">
+                <!-- 返回 -->
+                <el-button type="text" icon="el-icon-arrow-left" @click="goBack" style="margin-right:20px;">返回</el-button>
+                <!-- mode 新增、编辑： 保存、提交-->
+                <template v-if="mode==1||mode==2">
+                    <el-button type="primary" @click="do_save(false)">保存</el-button>
+                    <el-button type="success" @click="do_save(true)">提交</el-button>
+                </template>
+                <!-- mode 查看：无操作按钮 -->
+                <!-- mode 审核：审核通过、审核不通过 -->
+                <template v-if="mode==4">
+                    <el-button type="primary" @click="do_audit_yes">审核通过</el-button>
+                    <el-button type="danger" @click="do_audit_no">审核不通过</el-button>
+                </template>
+            </section>
         </section>
-        <el-form ref="form" label-width="120px" :model="dialogData" :rules="rules" style="width:95%" @submit.native.prevent :disabled="readonly">
-            <el-form-item label="" v-if="dialogData.state==4">
-                <span style="font-size:14px;font-weight:bold;color:crimson">审核未通过，原因：{{dialogData.reason}}</span>
-            </el-form-item>
-            <el-form-item label="标题" prop="title">
-                <el-input v-model="dialogData.title"></el-input>
-            </el-form-item>
-            <el-form-item label="发布人" prop="publisher" style="display:inline-block;width:50%;">
-                <el-input v-model="dialogData.publisher"></el-input>
-            </el-form-item>
-            <el-form-item label="发布时间" prop="publishTime" style="display:inline-block;width:50%;">
-                <el-date-picker v-model="dialogData.publishTime" type="date" value-format="timestamp" style="width:140px;"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="附件">
-                <xUpload :flist.sync="dialogData.fileList" ref="xUpload" :readonly="readonly" />
-            </el-form-item>
-            <el-form-item label="内容">
-                <xEditor :fcontent.sync="dialogData.content" :readonly="readonly" ref="xEditor" />
-            </el-form-item>
-        </el-form>
+        <el-card>
+            <el-form ref="form" label-width="100px" :model="dialogData" :rules="rules" @submit.native.prevent :disabled="readonly">
+                <el-form-item label="" v-if="dialogData.state==4">
+                    <span style="font-size:14px;font-weight:bold;color:crimson">审核未通过，原因：{{dialogData.reason}}</span>
+                </el-form-item>
+                <el-form-item label="标题" prop="title">
+                    <el-input v-model="dialogData.title"></el-input>
+                </el-form-item>
+                <el-form-item label="发布人" prop="publisher" style="display:inline-block;width:50%;">
+                    <el-input v-model="dialogData.publisher"></el-input>
+                </el-form-item>
+                <el-form-item label="发布时间" prop="publishTime" style="display:inline-block;width:50%;">
+                    <el-date-picker v-model="dialogData.publishTime" type="date" value-format="timestamp" style="width:140px;"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="附件">
+                    <xUpload :flist.sync="dialogData.fileList" ref="xUpload" :readonly="readonly" />
+                </el-form-item>
+                <el-form-item label="内容">
+                    <xEditor :fcontent.sync="dialogData.content" :readonly="readonly" ref="xEditor" />
+                </el-form-item>
+            </el-form>
+        </el-card>
     </section>
 </template>
 <script>
@@ -105,13 +115,13 @@ export default {
         do_save(submitFlag) {
             // submitFlag true提交 false保存
             if (submitFlag) {
-                this.$confirm("提交后信息无法再次更改，确定提交吗？", "", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
-                    type: "warning"
-                }).then(() => {
+                const confirmFunc = () => {
                     this.save(submitFlag);
-                }).catch(error => {});
+                };
+                this.xtools.openConfirm({
+                    msg: "提交后信息无法再次更改，确定提交吗？",
+                    confirmFunc
+                });
             } else {
                 this.save(submitFlag);
             }
@@ -164,11 +174,7 @@ export default {
         },
         // 审核通过
         do_audit_yes() {
-            this.$confirm("您确认审核通过吗？", "", {
-                confirmButtonText: "确定",
-                cancelButtonText: "取消",
-                type: "warning"
-            }).then(() => {
+            const confirmFunc = () => {
                 this.loading = true;
                 let param = { id: this.articleId, audit: true };
                 this.xAxios({
@@ -186,6 +192,10 @@ export default {
                     }
                     this.loading = false;
                 });
+            }
+            this.xtools.openConfirm({
+                msg: "您确认审核通过吗？",
+                confirmFunc
             });
         },
         // 审核不通过

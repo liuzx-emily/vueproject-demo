@@ -35,6 +35,11 @@ const findAll = async (ctx, nect) => {
             [Op.like]: '%' + ctx.query.title + '%',
         };
     }
+    if (ctx.query.publisher) {
+        whereParam.publisher = {
+            [Op.like]: '%' + ctx.query.publisher + '%',
+        };
+    }
     if (ctx.query.startTime) {
         whereParam.publishTime = whereParam.publishTime || {};
         whereParam.publishTime[Op.gte] = ctx.query.startTime;
@@ -42,6 +47,9 @@ const findAll = async (ctx, nect) => {
     if (ctx.query.endTime) {
         whereParam.publishTime = whereParam.publishTime || {};
         whereParam.publishTime[Op.lte] = ctx.query.endTime;
+    }
+    if (ctx.query.state && ctx.query.state != "-1") {
+        whereParam.state = ctx.query.state;
     }
     // ---------------------------------------------- pagingParam
     let pagingParam = { page: ctx.query.page, row: ctx.query.row };
@@ -111,7 +119,7 @@ const update = async (ctx, next) => {
 };
 
 const destroyLogically = async (ctx, next) => {
-    const articleIds = ctx.request.body.id;
+    const articleIds = ctx.request.body.ids;
     let whereParam = {
         id: {
             [Op.in]: articleIds,

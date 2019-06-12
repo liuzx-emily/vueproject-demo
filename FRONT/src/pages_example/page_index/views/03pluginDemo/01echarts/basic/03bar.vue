@@ -23,7 +23,7 @@ export default {
             // 局部loading
             loading: true,
             // 生成随机id
-            randomNum: this.xTools.guid(),
+            randomNum: this.xtools.randomId(),
             // 数据
             data: [],
         }

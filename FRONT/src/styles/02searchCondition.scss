@@ -4,18 +4,15 @@
     position: relative;
     .box {
         display: inline-block;
-        // width: 48%;
         margin: 5px 0;
         color: #777;
         font-size: 0;
         .search-label {
-            width: 150px;
+            min-width: 40px;
+            margin-left: 40px;
+            margin-right: 10px;
             text-align: right;
             font-size: 14px;
-            // 短一点
-            &.search-label-short {
-                width: 120px;
-            }
         }
         $input-width:160px;
         .search-input {
@@ -53,7 +50,6 @@
                     width: #{ $input-width - 50px };
                 }
             }
-
         }
     }
     .box+.search-btn-box {
@@ -63,9 +59,9 @@
         display: inline-block;
         // text-align: right;
         button {
-            font-size: 14px;
-            letter-spacing: 1.5px;
-            padding: 8px 15px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            padding: 8px 10px;
             display: inline-block;
         }
         button+button {

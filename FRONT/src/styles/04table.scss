@@ -14,8 +14,13 @@
 }
 // ----------------- 颜色 -----------------
 .xTableStyle.color-common {
+    // 滑上变色
+    tbody tr:hover>td {
+        background: #90CAF9;
+        color: white;
+    }
     // 隔行变色
-    tbody tr:nth-child(even) td {
+    tbody tr:not(:hover):nth-child(even) td {
         background: #fafafa;
     }
     td, th {

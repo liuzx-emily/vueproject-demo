@@ -1,6 +1,6 @@
 <style scoped>
 	p{
-		color:red;
+		color:crimson;
 		margin: 5px 0;
 		font-size: 14px;
 	}
@@ -14,8 +14,9 @@
     	    <!-- card body -->
     	    <p>section.search-condition</p>
     	    <p style="margin-left:30px;">section.box</p>
-    	    <p style="margin-left:60px;">span.search-label ( .search-label-short )</p>
+    	    <p style="margin-left:60px;">span.search-label</p>
     	    <p style="margin-left:60px;">span.search-input</p>
+            <p style="margin-left:30px;">section.search-btn-box</p>
     	</el-card>
         <section class="search-condition">
             <div class="box">

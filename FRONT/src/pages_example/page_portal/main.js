@@ -8,6 +8,8 @@ import router from "./router.js"
 // mock
 import './mock/main.js'
 
+// --------------- 注册本页面的组件和模块 ---------------
+
 // 样式
 import './styles/main.scss'
 

@@ -1,6 +1,7 @@
 import html2canvas from 'html2canvas'
 import jspdf from 'jspdf'
-export function exportPDF(el, fileName = "导出文件") {
+
+function exportPDF(el, fileName = "导出文件") {
     html2canvas(el, {
         // allowTaint: true
         useCORS: true //看情况选用上面还是下面的，
@@ -37,7 +38,7 @@ export function exportPDF(el, fileName = "导出文件") {
                 }
             }
         }
-
         pdf.save('content.pdf');
     })
 }
+export default exportPDF;

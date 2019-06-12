@@ -54,7 +54,7 @@ export default {
             }).then((response) => {
                 const res = response.data;
                 let data = this._.cloneDeep(res.data);
-                this.treeTableData = this.xTools.arrayToTree(data, {
+                this.treeTableData = this.xtools.arrayToTree(data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
                     after_childkey: "child"
@@ -76,11 +76,10 @@ export default {
             } else if (type == 2) {
                 // 批量
             }
-            this.xTools.openConfirm({
-                ids: ids,
+            this.xtools.openConfirm_delete({
                 url: '/permission/delete.do',
+                data: { ids: ids },
                 refreshFunc: this.refreshData,
-                context: this,
             });
         }
     }

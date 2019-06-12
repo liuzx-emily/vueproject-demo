@@ -22,12 +22,12 @@ import "~/styles/main.scss";
 // -------------- utils ----------------
 import _ from 'lodash'
 Vue.prototype._ = _
-import xTools from '~/utils/xTools.js'
-Vue.prototype.xTools = xTools
+import xtools from '~/utils/tools.js'
+Vue.prototype.xtools = xtools
 import { xValidate, xElementRules } from '~/utils/xValidate.js'
 Vue.prototype.xValidate = xValidate
 Vue.prototype.xElementRules = xElementRules
-import { exportPDF } from '~/utils/xExportPdf'
+import exportPDF from '~/utils/exportPdf'
 Vue.prototype.exportPDF = exportPDF
 
 
@@ -35,10 +35,9 @@ Vue.prototype.exportPDF = exportPDF
 Vue.directive("permission", {
     // 指令的定义
     inserted(el, binding, vnode) {
-        const context = vnode.context;
+        const permissionBtns = vnode.context.$store.state.permissionBtns
         const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
-        const flag = context.xTools.checkBtn(context.$store, code);
-        // console.log(code, flag);
+        const flag = _.indexOf(permissionBtns, code) != -1;
         (!flag) && (el.parentElement.removeChild(el));
     },
 });
@@ -70,9 +69,17 @@ import c_horizontalScrolling from '~/components/horizontalScrolling/main.vue';
 Vue.use(c_horizontalScrolling);
 import c_editor from "~/components/editor/main.vue";
 Vue.use(c_editor);
+import c_pickYear from "~/components/commonFormItem/pickYear/main.vue";
+Vue.use(c_pickYear);
+import c_pickDateRange from "~/components/commonFormItem/pickDateRange/main.vue";
+Vue.use(c_pickDateRange);
+// 
+import m_limitlessSidebarMenu from "~/modules/limitlessSidebarMenu/main.vue";
+Vue.use(m_limitlessSidebarMenu);
+import c_manyLevelAddress from "~/modules/manyLevelAddress/main.vue";
+Vue.use(c_manyLevelAddress);
 import m_upload from "~/modules/upload/main.vue";
 Vue.use(m_upload);
-
 
 
 Vue.config.productionTip = false;

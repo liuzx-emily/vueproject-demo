@@ -99,12 +99,24 @@ const update = async (ctx, next) => {
 
 const destroyLogically = async (ctx, next) => {
     let param = ctx.request.body;
-    let roleId = param.id;
+    let roleIds = param.ids;
     // -------------- 删除角色表 --------------
-    await MainModel.update({ isDelete: 1 }, { where: { id: roleId } });
+    await MainModel.update({ isDelete: 1 }, {
+        where: {
+            id: {
+                [Op.in]: roleIds
+            }
+        }
+    });
     // -------------- 删除角色-权限关联表 --------------
     let rolePermissionModel = models.role_permission;
-    await rolePermissionModel.destroy({ where: { roleId: roleId } });
+    await rolePermissionModel.destroy({
+        where: {
+            roleId: {
+                [Op.in]: roleIds
+            }
+        }
+    });
     ctx.response.body = { code: 1, };
 };
 

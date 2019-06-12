@@ -24,12 +24,15 @@ export default {
         readonly: {
             default: false
         },
-        fcontent: String
+        fcontent: String,
+        height: {
+            default: 400
+        }
     },
     components: {},
     data() {
         return {
-            tinymceId: this.xTools.guid(),
+            tinymceId: this.xtools.randomId(),
             content: "",
         }
     },
@@ -59,7 +62,7 @@ export default {
                 readonly: this.readonly,
                 selector: "#" + this.tinymceId,
                 language: 'zh_CN',
-                height: 400,
+                height: parseInt(this.height),
                 menubar: menubar,
                 toolbar: toolbar,
                 fontsize_formats: '12px 14px 16px 18px 24px 36px 48px',

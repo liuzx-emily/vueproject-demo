@@ -33,7 +33,7 @@
     </section>
 </template>
 <script>
-import view1 from '~/pages_example/page_index/views/02componentInstructions/01xTable/table-usage.vue'
+import view1 from '~/pages_example/page_index/views/02componentInstructions/01table/table-usage.vue'
 import view2 from '~/pages_example/page_index/views/03pluginDemo/01echarts/main.vue'
 export default {
     components: { view1, view2 },
