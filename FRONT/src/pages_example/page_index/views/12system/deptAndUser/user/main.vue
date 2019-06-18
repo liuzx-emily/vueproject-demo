@@ -86,8 +86,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + "/user/list.do",
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 // 数据格式化
                 self.tableData = this._.map(res.data, (item) => {
                     return item;
@@ -152,8 +151,7 @@ export default {
                     method: 'post',
                     url: BASE_PATH + '/user/resetPassword.do',
                     data: param
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     if (res.code == 1) {
                         this.$message({
                             type: 'success',

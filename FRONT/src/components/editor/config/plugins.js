@@ -13,6 +13,7 @@ const list = [
     "fullscreen",
     "hr",
     "image",
+    // 图片在线修改之后，会改成BASE64存储
     "imagetools",
     "insertdatetime",
     "link",

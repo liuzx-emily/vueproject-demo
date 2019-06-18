@@ -87,6 +87,15 @@ body {
         height: $topbar_height;
         line-height: $topbar_height;
         font-size: 16px;
+        img.profilePhoto {
+            width: $topbar_height - 20px;
+            height: $topbar_height - 20px;
+            margin-top: 8px;
+            margin-right: 12px;
+            vertical-align: top;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
         .username {
             cursor: pointer;
             font-size: 14px;

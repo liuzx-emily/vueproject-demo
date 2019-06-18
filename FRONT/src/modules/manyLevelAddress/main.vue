@@ -97,8 +97,7 @@ export default {
             this.xAxios({
                 method: 'get',
                 url: BASE_PATH + '/district/getLevelOneList.do',
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 this.levelOne_list = this.processResponse(res);
                 this.levelOne_loading = false;
             }).catch(error => {});
@@ -111,8 +110,7 @@ export default {
                     method: 'get',
                     url: BASE_PATH + '/district/getByParentCode.do',
                     params: { parentCode: this.levelOne }
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     this.levelTwo_list = this.processResponse(res);
                     // 如果levelTwo不在levelTwo_list中，就清掉levelTwo和levelThree
                     if (this._.indexOf(this._.map(this.levelTwo_list, "value"), this.levelTwo) == -1) {
@@ -130,8 +128,7 @@ export default {
                     method: 'get',
                     url: BASE_PATH + '/district/getByParentCode.do',
                     params: { parentCode: this.levelTwo }
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     this.levelThree_list = this.processResponse(res);
                     // 如果levelThree不在levelThree_list中，就清掉levelThree
                     if (this._.indexOf(this._.map(this.levelThree_list, "value"), this.levelThree) == -1) {

@@ -53,24 +53,20 @@ export default {
             console.log(param);
             // 获取表格数据
             self.loading = true;
-            self
-                .xAxios({
-                    method: "get",
-                    url: BASE_PATH + "/example/xTable.htmls",
-                    params: param
-                })
-                .then(response => {
-                    const res = response.data;
-                    // 数据格式化
-                    self.tableData = this._.map(res.data, item => {
-                        return item;
-                    });
-                    self.count = res.count;
-                    self.loading = false;
-                })
-                .catch(error => {
-                    self.loading = false;
+            self.xAxios({
+                method: "get",
+                url: BASE_PATH + "/example/xTable.htmls",
+                params: param
+            }).then(res => {
+                // 数据格式化
+                self.tableData = this._.map(res.data, item => {
+                    return item;
                 });
+                self.count = res.count;
+                self.loading = false;
+            }).catch(error => {
+                self.loading = false;
+            });
         },
         // 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
         refreshTable(param) {

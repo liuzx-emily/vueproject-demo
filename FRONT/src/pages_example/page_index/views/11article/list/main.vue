@@ -102,8 +102,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + "/article/list.do",
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 // 数据格式化
                 self.tableData = this._.map(res.data, (item) => {
                     return item;

@@ -3,6 +3,9 @@
     <section v-loading.fullscreen.lock="loading" element-loading-background="rgba(0,0,0,0.1)">
         <el-dialog title="修改个人信息" :visible.sync="dialogVisible" width="400px" :modal-append-to-body='false' :close-on-click-modal="false">
             <el-form ref="form" label-width="80px" :model="dialogData" :rules="rules">
+                <el-form-item label="旧密码" prop="oldpassword">
+                    <el-input v-model="dialogData.oldpassword" type="password"></el-input>
+                </el-form-item>
                 <el-form-item label="新密码" prop="password">
                     <el-input v-model="dialogData.password" type="password"></el-input>
                 </el-form-item>
@@ -39,6 +42,9 @@ export default {
             dialogVisible: false,
             dialogData: this._.cloneDeep(original_data),
             rules: {
+                oldpassword: [
+                    { required: true, message: "不能为空", trigger: ["blur", "change"] },
+                ],
                 password: [
                     { required: true, message: "不能为空", trigger: ["blur", "change"] },
                     { min: 4, max: 12, message: "长度在 4 到 12 个字符", trigger: ["blur", "change"] },
@@ -67,20 +73,25 @@ export default {
                 if (valid) {
                     this.loading = true;
                     let param = {};
-                    param.id = this.$store.state.userInfo.id;
-                    param.password = this.dialogData.password;
+                    param.id = this.$store.state.userId;
+                    param.old = this.dialogData.oldpassword;
+                    param.new = this.dialogData.password;
                     this.xAxios({
                         xJsonData: true,
                         data: param,
-                        url: BASE_PATH + `/user/edit.do`
-                    }).then((response) => {
-                        const res = response.data;
+                        url: BASE_PATH + `/user/changePassword.do`
+                    }).then(res => {
                         if (res.code == 1) {
                             this.$message({
                                 message: '操作成功！',
                                 type: 'success'
                             });
                             this.dialogVisible = false;
+                        } else {
+                            this.$message({
+                                message: res.message,
+                                type: 'error'
+                            });
                         }
                         this.loading = false;
                     });

@@ -96,8 +96,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + '/user/nameValidation.do',
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.data) {
                     callback();
                 } else {
@@ -110,8 +109,7 @@ export default {
             this.xAxios({
                 method: 'get',
                 url: BASE_PATH + '/role/list.do',
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 this.roleListData = res.data;
             }).catch(error => {});
         },
@@ -139,8 +137,7 @@ export default {
                     method: 'get',
                     url: BASE_PATH + "/user/detail.do",
                     params: { id: id, }
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     for (let key in original_data) {
                         this.dialogData[key] = res.data[key]
                     }
@@ -162,8 +159,7 @@ export default {
                         xJsonData: true,
                         data: param,
                         url: BASE_PATH + `/user/${url}.do`
-                    }).then((response) => {
-                        const res = response.data;
+                    }).then(res => {
                         if (res.code == 1) {
                             this.$message({
                                 message: '操作成功！',

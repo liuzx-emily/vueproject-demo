@@ -13,7 +13,7 @@
                     </template>
                 </el-form-item>
                 <el-form-item label="权限">
-                    <el-tree :data="permissionTreeData" node-key="id" :props="{label: 'name',children:'child'}" :default-expand-all="true" :show-checkbox="true" :check-strictly="true" ref="selectPermissionTree"></el-tree>
+                    <el-tree :data="permissionTreeData" node-key="id" :props="{label: 'name',children:'child'}" :default-expand-all="true" :show-checkbox="true" :check-strictly="true" ref="selectPermissionTree" @check-change="checkChange"></el-tree>
                 </el-form-item>
                 <el-form-item label="备注" prop="description">
                     <el-input type="textarea" v-model="dialogData.description"></el-input>
@@ -76,6 +76,21 @@ export default {
     },
     mounted() {},
     methods: {
+        checkChange(data, beingChecked) {
+            const checkNode = (id, checked) => {
+                return this.$refs.selectPermissionTree.setChecked(id, checked, false);
+            };
+            if (beingChecked) {
+                // 选中我的父级
+                checkNode(data.parentId, true)
+            } else {
+                // 取消我的子级
+                const children = data.child;
+                children && children.forEach(child => {
+                    checkNode(child.id, false);
+                });
+            }
+        },
         // 重名验证
         nameValidation(rule, value, callback) {
             var param = {
@@ -86,8 +101,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + '/role/nameValidation.do',
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.data) {
                     callback();
                 } else {
@@ -99,8 +113,7 @@ export default {
             this.xAxios({
                 method: 'get',
                 url: BASE_PATH + '/permission/list.do',
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 this.permissionTreeData = this.xtools.arrayToTree(res.data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
@@ -136,8 +149,7 @@ export default {
                     params: {
                         id: id,
                     }
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     for (let key in original_data) {
                         this.dialogData[key] = res.data[key]
                     }
@@ -166,8 +178,7 @@ export default {
                         xJsonData: true,
                         data: param,
                         url: BASE_PATH + `/role/${url}.do`
-                    }).then((response) => {
-                        const res = response.data;
+                    }).then(res => {
                         if (res.code == 1) {
                             this.$message({
                                 message: '操作成功！',

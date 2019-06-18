@@ -60,10 +60,9 @@ export default {
                 xDonotNeedLoginCheck: true,
                 url: BASE_PATH + '/login.do',
                 data: this.loginData,
-            }).then((response) => {
+            }).then(res => {
                 // loading遮罩层：关
                 this.loading = false;
-                const res = response.data;
                 if (res.code == 1) {
                     // this.$message({
                     //     message: '登录成功！',

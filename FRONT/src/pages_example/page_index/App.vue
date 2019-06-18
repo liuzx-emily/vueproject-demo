@@ -2,7 +2,7 @@
     <div id="app" v-loading.fullscreen.lock="!initDone" element-loading-background="rgba(0,0,0,0.2)">
         <section id="topbar">
             <!-- logo -->
-            <section class="logo">一个很长很长很长很长很长的标题</section>
+            <section class="logo">后台管理系统</section>
             <!-- 按钮放在这里，只是为了演示导出PDF的效果 -->
             <el-button type="danger" @click="do_exportPDF">导出PDF</el-button>
             <!-- 包在 .rightAlignContainer 中的内容会靠右对齐 -->
@@ -19,15 +19,15 @@
                     </a>
                 </nav>
                 <!-- 信箱 -->
-                <section class="mailBox">
+                <!-- <section class="mailBox">
                     <router-link key="/mailbox" to="/mailbox" title="信箱">
                         <el-badge :value="$store.state.msgNum" :hidden="$store.state.msgNum==0">
                             <i class="fa fa-envelope-o"></i>
                         </el-badge>
                     </router-link>
-                </section>
+                </section> -->
                 <!-- 用户信息 -->
-                <userBox />
+                <userBox></userBox>
             </div>
             <!-- 导航 -->
         </section>
@@ -114,8 +114,11 @@ export default {
         }
     },
     created() {
-        console.log(this.xtools.formattingSize(43471661));
-        this.getUserInfo();
+        // console.log(this.xtools.formattingSize(43471661));
+
+        // 获取菜单数据，并且自动跳转到第一个菜单
+        this.getMenuData();
+        this.getPermissionBtnData();
     },
     data() {
         return {
@@ -175,35 +178,12 @@ export default {
                 realPageCode && this.$router.push(realPageCode);
             }
         },
-        // 获取菜单数据，并且自动跳转到第一个菜单
-        getUserInfo() {
-            this.xAxios({
-                method: "get",
-                url: BASE_PATH + "/userInfo.do"
-            }).then(response => {
-                const res = response.data;
-                if (res.code == 1) {
-                    this.$store.state.userInfo = {
-                        id: res.data.id,
-                        username: res.data.username,
-                        name: res.data.name,
-                    }
-                    // 获取菜单数据，并且自动跳转到第一个菜单
-                    this.getMenuData();
-                    this.getPermissionBtnData();
-                } else {
-                    // 未登录
-                    window.location.href = "./login.html";
-                }
-            }).catch(error => {});
-        },
         // 获取菜单数据。如果现在没有进入任何一个页面，则手动跳转到第一个菜单
         getMenuData() {
             this.xAxios({
                 method: "get",
                 url: BASE_PATH + "/getMenus.do",
-            }).then(response => {
-                const res = response.data;
+            }).then(res => {
                 const navList = this.xtools.arrayToTree(res.data, {
                     before_idkey: "id",
                     before_parentkey: "parentId",
@@ -220,6 +200,8 @@ export default {
                             this.$router.push(navList[0].code);
                         }
                     }, 500);
+                } else {
+                    this.initDone_menu = true;
                 }
             }).catch(error => {});
         },
@@ -229,8 +211,7 @@ export default {
                 method: "get",
                 url: BASE_PATH + "/getBtns.do",
                 params: {}
-            }).then(response => {
-                const res = response.data;
+            }).then(res => {
                 this.$store.state.permissionBtns = this._.map(res.data, "code");
                 this.initDone_btn = true;
             }).catch(error => {});

@@ -3,6 +3,7 @@ const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
 const rawQueryUtils = require("./utils/rawQueryUtils.js");
+const bcryptUtils = require("./utils/bcryptUtils.js");
 
 const svgCaptcha = require('svg-captcha');
 
@@ -17,15 +18,19 @@ const login = async (ctx, next) => {
     let whereParam = {
         isDelete: 0,
         username: params.username,
-        password: params.password,
     };
-    let result = await models.user.findAll({ where: whereParam });
-    if (result.length > 0) {
-        // 存用户信息
-        ctx.session.userId = result[0].id;
-        ctx.response.body = { code: 1 };
+    let result = await models.user.findOne({ where: whereParam });
+    if (result) {
+        const flag = await bcryptUtils.compare(params.password, result.password);
+        if (flag) {
+            // 存用户信息
+            ctx.session.userId = result.id;
+            ctx.response.body = { code: 1 };
+        } else {
+            ctx.response.body = { code: 0, message: "账号、密码错误！" };
+        }
     } else {
-        ctx.response.body = { code: 0, message: "账号、密码错误！" };
+        ctx.response.body = { code: 0, message: "账号不存在！" };
     }
 };
 
@@ -40,7 +45,7 @@ const userInfo = async (ctx, next) => {
     if (userId) {
         // 存用户信息
         let whereParam = { isDelete: 0, };
-        let attributes = ["id", "username", "name"];
+        let attributes = ["id", "username", "name", "profilePhoto"];
         let result = await models.user.findByPk(userId, { where: whereParam, attributes });
         ctx.response.body = { code: 1, data: result };
     } else {

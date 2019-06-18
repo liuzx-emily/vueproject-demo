@@ -82,8 +82,7 @@ export default {
                 params: {
                     row: 8
                 }
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     this.box1 = res.data[0];
                     this.box2 = res.data[1];

@@ -40,8 +40,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + '/user/verification.htmls',
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     callback();
                 } else {
@@ -104,9 +103,8 @@ export default {
                         xDonotNeedLoginCheck: true,
                         url: BASE_PATH + '/user/add.htmls',
                         data: param,
-                    }).then((response) => {
+                    }).then(res => {
                         this.loading = false;
-                        const res = response.data;
                         if (res.code == 1) {
                             this.$msgbox({
                                 title: '',

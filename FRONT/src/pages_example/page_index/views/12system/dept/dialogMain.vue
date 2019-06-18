@@ -85,8 +85,7 @@ export default {
                 method: 'get',
                 url: BASE_PATH + '/dept/nameValidation.do',
                 params: param
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.data) {
                     callback();
                 } else {
@@ -118,8 +117,7 @@ export default {
                     method: "get",
                     url: BASE_PATH + "/dept/detail.do",
                     params: { id: id, }
-                }).then((response) => {
-                    const res = response.data;
+                }).then(res => {
                     for (let key in original_data) {
                         this.dialogData[key] = res.data[key]
                     }
@@ -146,8 +144,7 @@ export default {
                         xJsonData: true,
                         data: param,
                         url: BASE_PATH + `/dept/${url}.do`
-                    }).then((response) => {
-                        const res = response.data;
+                    }).then(res => {
                         if (res.code == 1) {
                             this.$message({
                                 message: '操作成功！',

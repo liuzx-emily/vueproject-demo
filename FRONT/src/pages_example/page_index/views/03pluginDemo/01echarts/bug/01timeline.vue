@@ -71,8 +71,7 @@ export default {
                 params: {
                     type: 1
                 }
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     this.data = [{
                         year: '2015年',

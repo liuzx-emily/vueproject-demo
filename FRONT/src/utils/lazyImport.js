@@ -80,6 +80,8 @@ import c_manyLevelAddress from "~/modules/manyLevelAddress/main.vue";
 Vue.use(c_manyLevelAddress);
 import m_upload from "~/modules/upload/main.vue";
 Vue.use(m_upload);
+import m_uploadOneImg from "~/modules/uploadOneImg/main.vue";
+Vue.use(m_uploadOneImg);
 
 
 Vue.config.productionTip = false;

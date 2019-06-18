@@ -15,6 +15,9 @@
                 <el-form-item label="邮箱" prop="email">
                     <el-input v-model="dialogData.email"></el-input>
                 </el-form-item>
+                <el-form-item label="头像">
+                    <uploadOneImg :fimgUrl.sync="dialogData.profilePhoto" :canBeDeleted="false" width="50px" height="50px"></uploadOneImg>
+                </el-form-item>
             </el-form>
             <div slot="footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
@@ -26,6 +29,9 @@
 <script>
 import original_data from './data/dialogEditInfoData.js';
 export default {
+    props: {
+        refreshFunc: {},
+    },
     data() {
         return {
             loading: false,
@@ -51,9 +57,8 @@ export default {
             this.xAxios({
                 method: "get",
                 url: BASE_PATH + "/user/detail.do",
-                params: { id: this.$store.state.userInfo.id, }
-            }).then((response) => {
-                const res = response.data;
+                params: { id: this.$store.state.userId, }
+            }).then(res => {
                 for (let key in original_data) {
                     this.dialogData[key] = res.data[key]
                 }
@@ -68,22 +73,20 @@ export default {
             this.$refs.form.validate(valid => {
                 if (valid) {
                     let param = this._.cloneDeep(this.dialogData);
-                    param.id = this.$store.state.userInfo.id;
+                    param.id = this.$store.state.userId;
                     this.loading = true;
                     this.xAxios({
                         xJsonData: true,
                         data: param,
                         url: BASE_PATH + `/user/edit.do`
-                    }).then((response) => {
-                        const res = response.data;
+                    }).then(res => {
                         if (res.code == 1) {
                             this.$message({
                                 message: '操作成功！',
                                 type: 'success'
                             });
                             this.dialogVisible = false;
-                            this.$store.state.userInfo.username = this.dialogData.username;
-                            this.$store.state.userInfo.name = this.dialogData.name;
+                            this.refreshFunc && this.refreshFunc();
                         }
                         this.loading = false;
                     });

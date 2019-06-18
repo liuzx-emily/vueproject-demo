@@ -119,8 +119,7 @@ export default {
             //     params: {
             //         id: this.$route.params.id
             //     }
-            // }).then((response) => {
-            //     const res = response.data;
+            // }).then(res => {
             //     this.column = {
             //         id: res.data.catalogId,
             //         name: res.data.name,

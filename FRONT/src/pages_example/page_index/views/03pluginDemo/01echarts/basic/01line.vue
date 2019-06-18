@@ -47,8 +47,7 @@ export default {
                 params: {
                     type: 1
                 }
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     this.data = [
                         { name: "西瓜", data: [85, 129, 23, 7], },

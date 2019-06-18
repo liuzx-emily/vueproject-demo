@@ -83,8 +83,7 @@ export default {
                 method: 'post',
                 url: BASE_PATH + '/upload.do',
                 data: data
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 this.list.push({
                     id: res.data,
                     name: file.name

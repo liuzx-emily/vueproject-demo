@@ -7,5 +7,7 @@ const data = {
     phone: "",
     // 邮箱
     email: "",
+    // 头像
+    profilePhoto: "",
 };
 export default data;

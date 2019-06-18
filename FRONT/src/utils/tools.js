@@ -31,7 +31,7 @@ const tools = {
         if (!timestamp) {
             return "";
         }
-        var oDate = new Date(parseInt(timestamp));
+        var oDate = new Date(+timestamp);
         if (pattern === undefined || pattern == 1) {
             pattern = "yyyy-MM-dd";
         } else if (pattern == 2) {
@@ -167,8 +167,7 @@ const tools = {
                 method: 'post',
                 url: BASE_PATH + url,
                 data: data
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     Message({
                         type: 'success',

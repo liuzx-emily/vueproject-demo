@@ -1,11 +1,12 @@
 const name = "user";
-const attributes = ["id", "username", "name", "deptId", "roleId", "email", "phone", "order"];
+const attributes = ["id", "username", "name", "deptId", "roleId", "email", "phone", "order", "profilePhoto"];
 
 const sequelize = require("../utils/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
 const rawQueryUtils = require("./utils/rawQueryUtils.js");
+const bcryptUtils = require("./utils/bcryptUtils.js");
 
 const MainModel = models[name];
 
@@ -58,17 +59,14 @@ const create = async (ctx, next) => {
     // 取参数
     let param = ctx.request.body;
     param.id = uuid();
+    const password = param.password;
+    param.password = await bcryptUtils.encryption(password);
+    param.temp1 = password;
     await MainModel.create(param);
     ctx.response.body = { code: 1, };
 };
 
 
-const update = async (ctx, next) => {
-    let param = ctx.request.body;
-    let whereParam = { isDelete: 0, id: param.id, };
-    await MainModel.update(param, { where: whereParam });
-    ctx.response.body = { code: 1, };
-};
 
 const destroy = async (ctx, next) => {
     let whereParam = {
@@ -91,20 +89,55 @@ const destroyLogically = async (ctx, next) => {
     ctx.response.body = { code: 1, };
 };
 
-const resetPassword = async (ctx, next) => {
-    let param = {
-        password: ctx.request.body.password,
-    };
-    let whereParam = { isDelete: 0, id: ctx.request.body.id, };
-    await MainModel.update(param, { where: whereParam });
+// --------------------------------------------------------
+
+const update = async (id, updateParam) => {
+    const whereParam = { isDelete: 0, id: id, };
+    const res = await MainModel.update(updateParam, { where: whereParam });
+    return res;
+};
+
+const editUser = async (ctx, next) => {
+    let updateParam = ctx.request.body;
+    update(updateParam.id, updateParam);
     ctx.response.body = { code: 1, };
 };
+
+const resetPassword = async (ctx, next) => {
+    const password = ctx.request.body.password;
+    let updateParam = {
+        password: await bcryptUtils.encryption(password),
+        temp1: password,
+    };
+    update(ctx.request.body.id, updateParam);
+    ctx.response.body = { code: 1, };
+};
+
+const changePassword = async (ctx, next) => {
+    let params = ctx.request.body;
+    const user = await models.user.findOne({ where: { isDelete: 0, id: params.id, } });
+    const flag = await bcryptUtils.compare(params.old, user.password);
+    if (flag) {
+        const password = params.new;
+        let updateParam = {
+            password: await bcryptUtils.encryption(password),
+            temp1: password,
+        };
+        update(params.id, updateParam);
+        ctx.response.body = { code: 1, };
+    } else {
+        ctx.response.body = { code: 0, message: "旧密码错误！" };
+    }
+};
+
+// --------------------------------------------------------
 module.exports = [
+    { method: 'POST', url: `/${name}/changePassword.do`, function: changePassword },
     { method: 'POST', url: `/${name}/resetPassword.do`, function: resetPassword },
     // 
     { method: 'GET', url: `/${name}/list.do`, function: findAll },
     { method: 'GET', url: `/${name}/detail.do`, function: findByPk },
     { method: 'POST', url: `/${name}/add.do`, function: create },
-    { method: 'POST', url: `/${name}/edit.do`, function: update },
+    { method: 'POST', url: `/${name}/edit.do`, function: editUser },
     { method: 'POST', url: `/${name}/delete.do`, function: destroyLogically },
 ];

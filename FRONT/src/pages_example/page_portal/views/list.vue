@@ -73,8 +73,7 @@ export default {
             //         page: this.page,
             //         row: this.row
             //     }
-            // }).then((response) => {
-            //     const res = response.data;
+            // }).then(res => {
             //     this.columnName = res.data.name;
             //     this.list = res.data.data;
             //     this.count = res.data.count;

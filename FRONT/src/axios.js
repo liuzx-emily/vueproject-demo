@@ -58,8 +58,7 @@ axios.interceptors.response.use(
                 tokenInvalid();
                 return Promise.reject();
             }*/
-            return response;
-
+            return response.data;
         }
     },
     err => {

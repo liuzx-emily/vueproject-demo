@@ -10,6 +10,7 @@ let myStore = new vuex.Store({
             id: undefined,
             username: "",
             name: "",
+            profilePhoto: "",
         },
         // 所有按钮权限
         permissionBtns: [],

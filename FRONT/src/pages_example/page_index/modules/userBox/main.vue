@@ -1,6 +1,7 @@
 <template>
     <section id="userBox">
-        <span class="username">{{$store.state.userInfo.name}}</span>
+        <img v-if="userInfo.profilePhoto" class="profilePhoto" :src="BASE_PATH + userInfo.profilePhoto">
+        <span class="username">{{userInfo.name}}</span>
         <i class="fa fa-caret-down"></i>
         <ul>
             <li @click="openDial_changePassword">修改密码</li>
@@ -8,7 +9,7 @@
             <li @click="logout">安全退出</li>
         </ul>
         <!-- 弹窗：修改个人信息 -->
-        <dialogEditInfo ref="dialogEditInfo"></dialogEditInfo>
+        <dialogEditInfo ref="dialogEditInfo" :refreshFunc="getUserInfo"></dialogEditInfo>
         <!-- 弹窗：修改密码 -->
         <dialogChangePassword ref="dialogChangePassword"></dialogChangePassword>
     </section>
@@ -21,8 +22,41 @@ export default {
         Vue.component("userBox", this);
     },
     components: { dialogEditInfo, dialogChangePassword, },
-    data() { return {} },
+    data() {
+        return {
+            BASE_PATH: BASE_PATH,
+            userInfo: {
+                id: "",
+                username: "",
+                name: "",
+                profilePhoto: "",
+            }
+        }
+    },
+    created() {
+        this.getUserInfo();
+    },
     methods: {
+        // 获取用户信息
+        getUserInfo() {
+            this.xAxios({
+                method: "get",
+                url: BASE_PATH + "/userInfo.do"
+            }).then(res => {
+                if (res.code == 1) {
+                    this.$store.state.userId = res.data.id;
+                    this.userInfo = {
+                        id: res.data.id,
+                        username: res.data.username,
+                        name: res.data.name,
+                        profilePhoto: res.data.profilePhoto,
+                    };
+                } else {
+                    // 未登录
+                    window.location.href = "./login.html";
+                }
+            }).catch(error => {});
+        },
         // 打开弹窗：修改个人信息
         openDial_editInfo() {
             this.$refs.dialogEditInfo.openDial();
@@ -37,8 +71,7 @@ export default {
             this.xAxios({
                 method: "post",
                 url: BASE_PATH + "/logout.do"
-            }).then(response => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == "1") {
                     window.location.href = "./login.html";
                 }

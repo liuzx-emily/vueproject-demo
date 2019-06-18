@@ -50,8 +50,7 @@ export default {
             this.xAxios({
                 method: 'get',
                 url: BASE_PATH + "/dept/list.do",
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 let data = this._.cloneDeep(res.data);
                 this.treeTableData = this.xtools.arrayToTree(data, {
                     before_idkey: "id",
@@ -77,7 +76,7 @@ export default {
             }
             this.xtools.openConfirm_delete({
                 url: '/dept/delete.do',
-                data: {ids},
+                data: { ids },
                 refreshFunc: this.refreshData,
             });
         }

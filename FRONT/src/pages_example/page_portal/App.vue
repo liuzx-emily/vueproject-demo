@@ -40,8 +40,7 @@ export default {
                 xDonotNeedLoginCheck: true,
                 method: 'get',
                 url: BASE_PATH + '/portal/nav.htmls',
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 if (res.code == 1) {
                     let nav = this._.cloneDeep(res.data);
                     nav.unshift({

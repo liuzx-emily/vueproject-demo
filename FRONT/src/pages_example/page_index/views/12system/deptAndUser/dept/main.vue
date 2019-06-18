@@ -72,8 +72,7 @@ export default {
             this.xAxios({
                 method: 'get',
                 url: BASE_PATH + "/dept/list.do",
-            }).then((response) => {
-                const res = response.data;
+            }).then(res => {
                 let data = this._.cloneDeep(res.data);
                 this.treeData = this.xtools.arrayToTree(data, {
                     before_idkey: "id",

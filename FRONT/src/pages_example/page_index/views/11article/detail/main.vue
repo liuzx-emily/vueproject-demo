@@ -101,8 +101,7 @@ export default {
                     method: "get",
                     url: BASE_PATH + "/article/detail.do",
                     params: { id: this.articleId }
-                }).then(response => {
-                    const res = response.data;
+                }).then(res => {
                     for (let key in original_data) {
                         this.dialogData[key] = res.data[key]
                     }
@@ -154,8 +153,7 @@ export default {
                         xJsonData: true,
                         url: BASE_PATH + `/article/${this.mode == 1 ? "add" : "edit"}.do`,
                         data: param
-                    }).then(response => {
-                        const res = response.data;
+                    }).then(res => {
                         // 数据格式化
                         if (res.code == 1) {
                             this.$message({
@@ -181,8 +179,7 @@ export default {
                     method: "post",
                     url: BASE_PATH + "/article/audit.do",
                     data: param
-                }).then(response => {
-                    const res = response.data;
+                }).then(res => {
                     if (res.code == 1) {
                         this.$message({
                             type: "success",
@@ -211,8 +208,7 @@ export default {
                     method: "post",
                     url: BASE_PATH + "/article/audit.do",
                     data: param
-                }).then(response => {
-                    const res = response.data;
+                }).then(res => {
                     if (res.code == 1) {
                         this.$message({
                             type: "success",

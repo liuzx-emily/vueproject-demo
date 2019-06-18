@@ -38,6 +38,15 @@ let attributes = {
         allowNull: true,
         comment: "手机",
     },
+    profilePhoto: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        comment: "头像",
+    },
+    temp1: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 };
 
 module.exports = new EasyModelExample({
