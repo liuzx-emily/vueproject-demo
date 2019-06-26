@@ -28,6 +28,11 @@ const routes = [
     article,
     // ---------------------- 12系统管理 ----------------------
     system,
+    // ---------------------- 13拖拽缩放 ----------------------
+    {
+        path: '/dragAndResize',
+        component: () => import('~/pages_example/page_index/views/13dragAndResize/main.vue')
+    },
     // 因为路由表是由上到下匹配的，所以要把任意匹配*放在最下面
     // {
     //     path: '*',

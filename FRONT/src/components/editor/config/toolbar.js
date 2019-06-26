@@ -25,4 +25,5 @@ const list = [
     "myBtn-imageUpload",
     // "fullscreen",
 ];
-export const toolbar = [list.join(" ")];
+// export const toolbar = [list.join(" ")];
+export const toolbar = ["fontselect  fontsizeselect forecolor backcolor","alignleft aligncenter alignright bold italic underline link myBtn-imageUpload fullscreen"];

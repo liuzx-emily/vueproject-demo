@@ -112,7 +112,7 @@ const theme = {
             // color:"black",
             fontSize: 12,
             formatter: function(params) {
-                console.log(params);
+                // console.log(params);
                 return `${params.name}（${params.percent}%）`;
             },
         },

@@ -2,6 +2,9 @@
     >>>.mce-branding {
         display: none;
     }
+    >>>.mce-tinymce{
+        width:auto!important;
+    }
 </style>
 <template>
     <!-- 本来想做成数据双向绑定的，但是 setContent 会导致光标位置丢失。-->
@@ -98,9 +101,13 @@ export default {
                         this.content = this.getContent();
                     });
                 }
-            });
+            }).then(() => {
+                // 如果编辑器放在弹窗中，那么第一次 setContent 的时候，可能编辑器还没初始化完。
+                // 所以在初始化完成时，要赋值
+                this.content && this.setContent(this.content);
+            })
         },
-        destroyTinymice() {
+        destroyTinymce() {
 
         },
         uploadImg() {
@@ -146,7 +153,10 @@ export default {
             });
         },
         setContent(value) {
-            window.tinymce.get(this.tinymceId).setContent(value)
+            window.tinymce.get(this.tinymceId).setContent(value);
+            // 如果编辑器放在弹窗中，那么第一次 setContent 的时候，可能编辑器还没初始化完。
+            // 所以在这里把 value 存起来，在初始化完成后赋值
+            this.content = value;
         },
         getContent() {
             return window.tinymce.get(this.tinymceId).getContent();
