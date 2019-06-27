@@ -16,7 +16,7 @@
                 <uploadOneImg :fimgUrl.sync="dialogData.backgroundImgUrl" :canBeDeleted="false"></uploadOneImg>
             </el-form-item>
         </el-form>
-        <el-button type="primary" @click="saveData">确 定</el-button>
+        <el-button @click="saveData">保存</el-button>
     </section>
 </template>
 <script>

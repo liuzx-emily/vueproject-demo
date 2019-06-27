@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 26/06/2019 15:47:57
+ Date: 27/06/2019 17:47:17
 */
 
 SET NAMES utf8mb4;
@@ -3812,6 +3812,7 @@ CREATE TABLE `t_magiccomponent`  (
   `y` int(11) NULL DEFAULT NULL,
   `width` int(11) NULL DEFAULT NULL,
   `height` int(11) NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `backgroundType` tinyint(4) NULL DEFAULT NULL COMMENT '1无 2背景颜色 3背景图片',
   `backgroundColor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -3826,10 +3827,11 @@ CREATE TABLE `t_magiccomponent`  (
 -- ----------------------------
 -- Records of t_magiccomponent
 -- ----------------------------
-INSERT INTO `t_magiccomponent` VALUES ('4f5e579e-1335-444f-97a8-f8f18542c246', '65dc30a6-16c6-4988-8e23-7095ebadf365', 'magic', 1561449262869, 1561449262869, 311, 109, 182, 75, '<p style=\"text-align: center;\">新内容</p>', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
-INSERT INTO `t_magiccomponent` VALUES ('65dc30a6-16c6-4988-8e23-7095ebadf365', '0', 'magic', 1561449262862, 1561449262862, 12, 58, 568, 275, '<p style=\"text-align: center;\">淡绿色区块</p>', 2, 'rgba(252, 255, 249, 1)', NULL, 5, 'solid', '#eee', NULL);
-INSERT INTO `t_magiccomponent` VALUES ('6b3f8ab1-8b62-4199-b842-a72bad79a822', '0', 'magic', 1561449262876, 1561449262876, 20, 378, 531, 214, NULL, 2, 'rgba(245, 237, 245, 0.68)', NULL, 50, 'solid', '#DAE0FF', 4);
-INSERT INTO `t_magiccomponent` VALUES ('8c99528b-e1a8-4401-b01c-ec9abc0e99d4', '0', 'magic', 1561449262882, 1561449262882, 627, 209, 567, 470, '<p style=\"text-align: center;\"><span style=\"color: #cc99ff;\">淡褐色区块</span></p>', 2, 'rgba(254, 248, 247, 1)', NULL, 5, 'solid', '#eee', NULL);
+INSERT INTO `t_magiccomponent` VALUES ('6f230793-ebdc-4f62-9925-f3fc6b3cec18', '0', 'magic', 1561614328892, 1561614328892, 676, 40, 502, 317, '背景板2', '<p>我不好</p>', 2, '#ecd', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_magiccomponent` VALUES ('e7f66297-83a6-4eb7-9c61-91ee0be55035', 'eb797931-ae48-444a-8029-edf37c1b81d9', 'magic', 1561614328883, 1561614328883, 436, 134, 100, 50, '新内容1', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
+INSERT INTO `t_magiccomponent` VALUES ('eb797931-ae48-444a-8029-edf37c1b81d9', '0', 'magic', 1561614328878, 1561614328878, 69, 134, 594, 281, '背景板', '<p>你好</p>', 2, '#dce', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_magiccomponent` VALUES ('f3b39708-de9c-4b55-b431-dc49a67e75a3', '6f230793-ebdc-4f62-9925-f3fc6b3cec18', 'magic', 1561614328896, 1561614328896, 189, 121, 100, 50, '新内容', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
+INSERT INTO `t_magiccomponent` VALUES ('fc7330a7-c595-4e33-9f93-8fc834984870', 'eb797931-ae48-444a-8029-edf37c1b81d9', 'magic', 1561614328889, 1561614328889, 147, 78, 100, 50, '新内容2', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
 
 -- ----------------------------
 -- Table structure for t_permission

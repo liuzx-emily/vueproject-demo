@@ -6,6 +6,7 @@ const data = {
     y: 0,
     width: 100,
     height: 50,
+    title: "新内容",
     content: "新内容",
     backgroundType: 2,
     backgroundColor: "#ede",
@@ -18,6 +19,5 @@ const data = {
     list:[],
     top: false,
     active: false,
-    isDelete: false,
 };
 export default data;

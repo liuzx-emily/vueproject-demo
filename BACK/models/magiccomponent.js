@@ -29,6 +29,11 @@ let attributes = {
         type: Sequelize.INTEGER,
         allowNull: true,
     },
+    title: {
+        // Unlimited length TEXT column
+        type: Sequelize.TEXT,
+        allowNull: true,
+    },
     content: {
         // Unlimited length TEXT column
         type: Sequelize.TEXT,

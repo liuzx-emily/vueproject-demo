@@ -6,7 +6,7 @@ import '~/utils/lazyImport'
 import router from "./router/main.js"
 
 // store (vuex)
-import store from './store.js'
+import store from './store/main.js'
 
 // mock
 import './mock/main.js'

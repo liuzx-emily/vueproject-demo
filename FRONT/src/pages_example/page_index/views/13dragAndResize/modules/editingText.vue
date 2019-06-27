@@ -2,7 +2,7 @@
 <template>
     <section>
         <xEditor :fcontent.sync="dialogData.content" ref="xEditor" height="200" />
-        <el-button type="primary" @click="saveData">确 定</el-button>
+        <el-button type="primary" @click="saveData">保存</el-button>
     </section>
 </template>
 <script>

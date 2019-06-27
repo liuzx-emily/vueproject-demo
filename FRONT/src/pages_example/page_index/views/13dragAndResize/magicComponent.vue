@@ -1,24 +1,6 @@
 <style scoped lang="scss">
-.elementBox {
-    outline: 1px dashed #ddd;
-}
-.elementBox-caozuohang {
-    position: absolute;
-    z-index: 1;
-    text-align: center;
-    left: 50%;
-    top: 10px;
-    width: 200px;
-    margin-left: -110px;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 5px 10px 7px;
-    border-radius: 6px;
-    .el-button+.el-button {
-        margin-left: 5px;
-    }
-}
 .isCurrentMagic {
-    outline: 10px solid red;
+    outline: 5px solid red;
 }
 </style>
 <template>
@@ -45,16 +27,9 @@
     <!-- resizestop:每当组件停止调整大小时调用。参数：left top width height -->
     <!-- dragging:每当拖动组件时调用。参数：left top -->
     <!-- dragstop:每当组件停止拖动时调用。参数：left top -->
-    <vue-draggable-resizable :active.sync="data.active" :draggable="!data.top" :resizable="!data.top" :w="data.width" :h="data.height" :x="data.x" :y="data.y" :parent="true" :isConflictCheck="false" class="elementBox" :class="checkIsCurrentMagic" @activated="onActivated" @deactivated="onDeactivated" @resizestop="onResizestop" @dragstop="onDragstop" :id="containerId" ref="shenqixiaobinggan" v-if="!data.isDelete">
+    <vue-draggable-resizable :active.sync="data.active" :w="data.width" :h="data.height" :x="data.x" :y="data.y" :parent="true" :isConflictCheck="false" :class="checkIsCurrentMagic" @activated="onActivated" @deactivated="onDeactivated" @resizestop="onResizestop" @dragstop="onDragstop" :id="containerId">
         <!-- 内容 -->
         <section v-html="data.content"></section>
-        <!-- 操作行 -->
-        <!-- <section v-if="data.active" class="elementBox-caozuohang">
-            <el-button class="size-tiny color-prettyblue" @click="do_add"><i class="el-icon-plus"></i></el-button>
-            <template v-if="!data.top">
-                <el-button class="size-tiny color-prettyred" @click="do_delete"><i class="el-icon-delete"></i></el-button>
-            </template>
-        </section> -->
         <!-- 子内容 -->
         <magicComponent v-for="item in data.list" :fdata.sync="item"></magicComponent>
     </vue-draggable-resizable>
@@ -69,27 +44,17 @@ export default {
     components: { VueDraggableResizable, },
     props: { fdata: {}, },
     watch: {
-        fdata: {
-            immediate: true,
-            handler: function(value) {
-                this.data = value;
-            }
-        },
-        data: {
-            handler: function(value) {
-                this.$emit("update:fdata", value);
-            }
-        },
-        "data.active"(value) {
-            if (value) {
-                this.$store.state.magicComponent.currentComponent = this;
+        "data.active"(active) {
+            if (active) {
+                this.$store.commit("magicComponent/setCurrentId", this.data.id);
             }
         }
     },
     data() {
         return {
             containerId: "container-" + this.xtools.randomId(),
-            data: this._.cloneDeep(original_data),
+            // 指向一个地址。所以data变化 === fdata变化 === $store中的值变化
+            data: this.fdata,
         }
     },
     computed: {
@@ -97,7 +62,7 @@ export default {
             return document.querySelector('#' + this.containerId);
         },
         checkIsCurrentMagic() {
-            return { isCurrentMagic: this === this.$store.state.magicComponent.currentComponent && !this.data.top };
+            return { isCurrentMagic: this.data.id === this.$store.state.magicComponent.currentId };
         }
     },
     mounted() {
@@ -106,16 +71,10 @@ export default {
     },
     methods: {
         onActivated() {
-            if (!this.data.top) {
-                this.data.active = true;
-            }
+            this.data.active = true;
         },
         onDeactivated() {
             this.data.active = false;
-            // let currentComponent = this.$store.state.magicComponent.currentComponent;
-            // if (this === currentComponent) {
-            //     this.$store.state.magicComponent.currentComponent = null;
-            // }
         },
         onResizestop(left, top, width, height) {
             this.data.x = left;
@@ -127,19 +86,6 @@ export default {
             this.data.x = left;
             this.data.y = top;
         },
-        do_add() {
-            if (!this.data.list) {
-                this.data.list = [];
-            }
-            let new_item = this._.cloneDeep(original_data);
-            new_item.id = this.xtools.randomId();
-            new_item.active = true;
-            this.data.list.push(new_item);
-        },
-        do_delete() {
-            this.data.isDelete = true;
-        },
-
     }
 };
 </script>

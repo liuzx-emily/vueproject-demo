@@ -21,7 +21,7 @@
                 </el-form-item>
             </template>
         </el-form>
-        <el-button type="primary" @click="saveData">确 定</el-button>
+        <el-button @click="saveData">保存</el-button>
     </section>
 </template>
 <script>

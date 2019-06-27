@@ -29,3 +29,21 @@ export function render_border(vc) {
         target.style.borderWidth = data.borderWidth + "px";
     }
 }
+export function findById(father, id) {
+    let list = father.list;
+    if (list && list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+            let item = list[i];
+            if (item.id === id) {
+                return { me: item, father: father, index: i };
+            }
+            const res = findById(item, id);
+            if (res) {
+                return res;
+            }
+        }
+        return false;
+    } else {
+        return false;
+    }
+}

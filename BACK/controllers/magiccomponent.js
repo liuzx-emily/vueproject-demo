@@ -1,5 +1,5 @@
 const name = "magiccomponent";
-const attributes = ['id', "parentId", "contentId", "x", "y", "width", "height", "content", "backgroundType", "backgroundColor",
+const attributes = ['id', "parentId", "contentId", "x", "y", "width", "height", "title","content", "backgroundType", "backgroundColor",
     "backgroundImgUrl", "borderRadius", "borderStyle", "borderColor", "borderWidth",
 ];
 
