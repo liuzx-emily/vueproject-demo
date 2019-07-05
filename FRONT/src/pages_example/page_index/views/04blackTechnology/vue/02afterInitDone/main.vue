@@ -11,7 +11,7 @@
         <el-card>
             <div slot="header">聪明的方法</div>
             <!-- card body -->
-            <p>在<code>App.vue</code>中设置一个局部变量<code>initDone</code>，初始化为false。给<code>#main_container</code>设置<code>v-if="initDone"</code></p>
+            <p>在<code>App.vue</code>中设置一个局部变量<code>initDone</code>，初始化为false。给<code>#columnContainer</code>设置<code>v-if="initDone"</code></p>
             <p>把子页面需要用的值存到全局变量中(vuex)，这些全局变量记为<code>vars</code>。在<code>App.vue</code>中，所有<code>vars</code>都获取完之后，再把<code>initDone</code>设置为true。</p>
         </el-card>
         <el-card>

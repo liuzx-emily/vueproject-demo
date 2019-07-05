@@ -16,7 +16,7 @@ import m_userBox from "./modules/userBox/main.vue";
 Vue.use(m_userBox);
 
 // 样式
-import "./styles/main.scss";
+import "./styles/main.less";
 
 import App from './App.vue';
 

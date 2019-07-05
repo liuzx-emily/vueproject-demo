@@ -21,7 +21,7 @@
             <!-- card body -->
             <p>思路：虽然用@media print无法保证w1==w2。但是如果能用其他方式实现w1==w2，那么是最简单的了，因为不需要处理宽度变化。</p>
             <p>方法：<span class="highlight">每次打印前获取w1，将w2设置为w1。</span></p>
-            <p>需要注意的点：将<code>#main_container</code>的限高去掉，将滚动释放到页面级别</p>
+            <p>需要注意的点：将<code>#columnContainer</code>的限高去掉，将滚动释放到页面级别</p>
             <p>其他：打印出的内容靠左，不居中。没找到原因</p>
             <p style="color:red;font-weight:bold;font-size:18px;">打印是真难控制，而且可能有兼容性问题。如果不是特殊要求，别用这个功能。</p>
         </el-card>
@@ -45,7 +45,7 @@ export default {
     methods: {
 
         do_print(type) {
-            let width = document.querySelector('#content_wrap').getBoundingClientRect().width;
+            let width = document.querySelector('#mainContentWrap').getBoundingClientRect().width;
             console.log(width);
             let oStyle = document.createElement("style");
             oStyle.setAttribute("id", "printstyle");
@@ -53,14 +53,14 @@ export default {
                 #topbar {
                     display: none;
                 }
-                #main_container {
+                #columnContainer {
                     width: ${width}px !important;
                     height: auto !important;                    
                 }
-                #sidebar_wrap {
+                #sidebarWrap {
                     display: none !important;
                 }
-                #content_wrap {
+                #mainContentWrap {
                     margin: 0 !important;               
                 }                
                 @page {

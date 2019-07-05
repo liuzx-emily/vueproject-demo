@@ -1,4 +1,4 @@
-<style scoped="" lang="scss">
+<style scoped="" lang="less">
     .box{
         margin:10px 0;
         .box-title{

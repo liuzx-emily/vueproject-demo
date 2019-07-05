@@ -1,5 +1,3 @@
-<style lang="scss" scoped>
-</style>
 <template>
     <section>
         <el-date-picker v-model="startTime" type="date" value-format="timestamp" :picker-options="pickerOption_start" :style="pickerStyle"></el-date-picker>

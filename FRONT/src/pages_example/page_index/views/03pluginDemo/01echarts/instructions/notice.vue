@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="less" scoped>
 code {
     color: #2196f3;
     font-weight: bold;

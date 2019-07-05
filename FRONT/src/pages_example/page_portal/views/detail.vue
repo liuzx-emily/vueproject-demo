@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="less">
 .detailPage-title {
     font-size: 30px;
     text-align: center;
@@ -49,7 +49,7 @@
             <div class="detailPage-title">{{article.title}}</div>
             <div class="detailPage-info">
                 <span>发布人：{{article.publisher}}</span>
-                <span>发布时间：{{article.date}}</span>
+                <time>发布时间：{{article.date}}</time>
             </div>
             <div v-html="article.content"></div>
             <div class="detailPage-fileList" v-if="article.fileList&&article.fileList.length>0">

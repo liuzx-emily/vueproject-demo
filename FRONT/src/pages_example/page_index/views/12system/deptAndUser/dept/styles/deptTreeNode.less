@@ -1,0 +1,46 @@
+.userpage_deptTreeNode {
+	position: relative;
+	width: 100%;
+
+	.name {
+		font-size: 14px;
+	}
+
+	.btns {
+		position: absolute;
+		right: 4px;
+		top: -1px;
+		display: none;
+
+		button {
+			vertical-align: top;
+			padding: 3px 4px;
+			background: white;
+			font-size: 14px;
+			border: 1px solid white;
+
+			i {
+				margin-right: 0;
+			}
+
+			&.blue {
+				border-color: #cedbfa;
+				color: #6090fe;
+			}
+
+			&.green {
+				border-color: #b3ea97;
+				color: #67C23A;
+			}
+
+			&.red {
+				border-color: #f2bcbe;
+				color: #e6555a;
+			}
+		}
+
+		button+button {
+			margin-left: 7px;
+		}
+	}
+}

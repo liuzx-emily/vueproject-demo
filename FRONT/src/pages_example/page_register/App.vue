@@ -26,8 +26,6 @@
     </section>
 </template>
 <script>
-// 本页
-import './styles/main.scss'
 export default {
     data() {
         // 用户重名验证，西文验证

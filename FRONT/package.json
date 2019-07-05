@@ -1,71 +1,71 @@
 {
-  "name": "vueProject",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@vue/babel-preset-app": "3.6.0",
-    "autoprefixer": "9.5.1",
-    "driver.js": "0.9.5",
-    "echarts": "4.2.1",
-    "element-ui": "2.7.2",
-    "font-awesome": "4.7.0",
-    "html2canvas": "1.0.0-rc.1",
-    "jquery": "3.4.1",
-    "jspdf": "1.5.3",
-    "loadash": "1.0.0",
-    "mockjs": "1.0.1-beta3",
-    "size-sensor": "0.2.2",
-    "vue": "2.6.6",
-    "vue-awesome-swiper": "3.1.3",
-    "vue-draggable-resizable-gorkys": "1.1.2",
-    "vue-router": "3.0.6",
-    "vue-simple-uploader": "0.7.0",
-    "vuex": "3.1.1",
-    "wangeditor": "3.1.1",
-    "webuploader": "0.1.8"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "3.4.0",
-    "@vue/cli-plugin-eslint": "3.4.0",
-    "@vue/cli-service": "3.4.0",
-    "axios": "0.18.0",
-    "babel-polyfill": "6.26.0",
-    "css-loader": "1.0.1",
-    "node-sass": "4.11.0",
-    "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
-    "vue-template-compiler": "2.6.6"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "no-console": 0,
-      "no-unused-vars": "off"
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+	"name": "vueProject",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"@vue/babel-preset-app": "3.6.0",
+		"autoprefixer": "9.5.1",
+		"driver.js": "0.9.5",
+		"echarts": "4.2.1",
+		"element-ui": "2.7.2",
+		"font-awesome": "4.7.0",
+		"html2canvas": "1.0.0-rc.1",
+		"jquery": "3.4.1",
+		"jspdf": "1.5.3",
+		"less": "^3.9.0",
+		"less-loader": "^5.0.0",
+		"loadash": "1.0.0",
+		"mockjs": "1.0.1-beta3",
+		"size-sensor": "0.2.2",
+		"vue": "2.6.6",
+		"vue-awesome-swiper": "3.1.3",
+		"vue-draggable-resizable-gorkys": "1.1.2",
+		"vue-router": "3.0.6",
+		"vue-simple-uploader": "0.7.0",
+		"vuex": "3.1.1",
+		"wangeditor": "3.1.1",
+		"webuploader": "0.1.8"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "3.4.0",
+		"@vue/cli-plugin-eslint": "3.4.0",
+		"@vue/cli-service": "3.4.0",
+		"axios": "0.18.0",
+		"babel-polyfill": "6.26.0",
+		"css-loader": "1.0.1",
+		"style-loader": "0.23.1",
+		"vue-template-compiler": "2.6.6"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"rules": {
+			"no-console": 0,
+			"no-unused-vars": "off"
+		},
+		"parserOptions": {
+			"parser": "babel-eslint"
+		}
+	},
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {}
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
 }

@@ -24,8 +24,6 @@
     </div>
 </template>
 <script>
-// 样式
-import './styles/main.scss'
 export default {
     data() {
         return {

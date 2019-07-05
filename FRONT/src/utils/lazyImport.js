@@ -16,7 +16,7 @@ import 'font-awesome/css/font-awesome.css';
 
 
 // -------------- 样式 --------------
-import "~/styles/main.scss";
+import "~/styles/main.less";
 
 
 // -------------- utils ----------------

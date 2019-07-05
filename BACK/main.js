@@ -1,13 +1,31 @@
 const Koa = require('koa');
 const session = require('koa-session');
+const WebSocket = require('ws');
 
 const app = new Koa();
+const wss = new WebSocket.Server({
+	port: 8888
+});
+wss.on('connection', ws => {
+	ws.wss = wss;
+	ws.broadcast = (msg) => {
+		wss.clients.forEach(client => {
+			// if (client !== ws && client.readyState === WebSocket.OPEN) {
+			// 	client.send(msg);
+			// }
+			if (client.readyState === WebSocket.OPEN) {
+				client.send(msg);
+			}
+		});
+	};
+	global.ws = ws;
+});
 
 // define app.keys before adding session
 app.keys = ['userId'];
 
 app.use(session({
-    key: "SESSION_ID",
+	key: "SESSION_ID",
 }, app));
 
 
@@ -23,7 +41,8 @@ app.use(require("./utils/scanControllers").routes());
 // log request URL:
 app.use(async (ctx, next) => {
 	// console.log(ctx.request);
-    await next();
+	global.ws.broadcast(ctx.request);
+	await next();
 });
 
 app.listen(3000);

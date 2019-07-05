@@ -39,7 +39,7 @@ export default {
                     title: "主导航"
                 }
             }, {
-                element: "#leftNav_control .inner",
+                element: "#sidebarController .inner",
                 stageBackground: "#000",
                 popover: {
                     title: "收缩、展开侧边栏"

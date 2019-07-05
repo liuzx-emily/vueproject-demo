@@ -7,14 +7,14 @@ const bcryptUtils = require("./utils/bcryptUtils.js");
 
 const svgCaptcha = require('svg-captcha');
 
-
+const WebSocket = require('ws');
 
 const login = async (ctx, next) => {
     let params = ctx.request.body;
-    if (params.validateCode != ctx.session.captcha) {
-        ctx.response.body = { code: 0, message: "验证码错误！" };
-        return;
-    }
+    // if (params.validateCode != ctx.session.captcha) {
+    //     ctx.response.body = { code: 0, message: "验证码错误！" };
+    //     return;
+    // }
     let whereParam = {
         isDelete: 0,
         username: params.username,
@@ -27,6 +27,7 @@ const login = async (ctx, next) => {
             ctx.session.userId = result.id;
             ctx.response.body = { code: 1 };
         } else {
+			global.ws.broadcast(`广播广播！有人尝试登录账号:${params.username}`)
             ctx.response.body = { code: 0, message: "账号、密码错误！" };
         }
     } else {

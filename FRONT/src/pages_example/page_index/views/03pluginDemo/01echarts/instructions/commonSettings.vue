@@ -1,31 +1,31 @@
-<style lang="scss" scoped>
+<style lang="less" scoped>
 code {
-    color: #2196f3;
-    font-weight: bold;
+	color: #2196f3;
+	font-weight: bold;
 }
 p {
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 10px 0;
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 10px 0;
 }
 pre {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 </style>
 <template>
-    <section>
-        <el-card>
-            <div slot="header">
-                <span>通用设置</span>
-            </div>
-            <el-radio-group v-model="preIndex">
-                <el-radio :label="2">grid</el-radio>
-                <el-radio :label="5">坐标轴设置</el-radio>
-                <el-radio :label="3">legend</el-radio>
-                <el-radio :label="1">lineStyle</el-radio>
-                <el-radio :label="4">tooltip</el-radio>
-            </el-radio-group>
-            <pre v-if="preIndex==5">
+	<section>
+		<el-card>
+			<div slot="header">
+				<span>通用设置</span>
+			</div>
+			<el-radio-group v-model="preIndex">
+				<el-radio :label="2">grid</el-radio>
+				<el-radio :label="5">坐标轴设置</el-radio>
+				<el-radio :label="3">legend</el-radio>
+				<el-radio :label="1">lineStyle</el-radio>
+				<el-radio :label="4">tooltip</el-radio>
+			</el-radio-group>
+			<pre v-if="preIndex==5">
                 1 type：坐标轴类型。
                     category ：类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。
                     value ：数值轴，适用于连续数据。
@@ -42,7 +42,7 @@ pre {
                     只在数值轴或时间轴中（type: 'value' 或 'time'）有效。
                     例如可以设置成1保证坐标轴分割刻度显示成整数。
             </pre>
-            <pre v-if="preIndex==1">
+			<pre v-if="preIndex==1">
                 // 线条样式
                 lineStyle: {
                     // 线的颜色【可以做线性渐变、径向渐变和纹理填充】
@@ -61,7 +61,7 @@ pre {
                     shadowOffsetY: 0,
                 },
             </pre>
-            <pre v-if="preIndex==2">
+			<pre v-if="preIndex==2">
                 grid: {
                     // grid左上角位置：默认80 60
                     x: 80,
@@ -71,7 +71,7 @@ pre {
                     y2: 80,
                 },
             </pre>
-            <pre v-if="preIndex==3">
+			<pre v-if="preIndex==3">
                 // 图例
                 legend: {
                     show: true,
@@ -99,7 +99,7 @@ pre {
                     borderWidth: 5
                 },
             </pre>
-            <pre v-if="preIndex==4">
+			<pre v-if="preIndex==4">
                 // 提示框
                 tooltip: {
                     /*
@@ -116,18 +116,18 @@ pre {
                     }
                 },
             </pre>
-        </el-card>
-    </section>
+		</el-card>
+	</section>
 </template>
 <script>
 export default {
-    components: {},
-    data() {
-        return {
-            preIndex: 2,
-        }
-    },
-    mounted() {},
-    methods: {}
+	components: {},
+	data() {
+		return {
+			preIndex: 2,
+		}
+	},
+	mounted() { },
+	methods: {}
 };
 </script>

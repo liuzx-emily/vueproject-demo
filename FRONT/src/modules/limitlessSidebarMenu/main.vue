@@ -4,7 +4,7 @@
 </template>
 <script>
 import submenu from './submenu.vue'
-import './main.scss'
+import './main.less'
 export default {
     install(Vue) {
         Vue.component("xLimitlessSidebarMenu", this);
