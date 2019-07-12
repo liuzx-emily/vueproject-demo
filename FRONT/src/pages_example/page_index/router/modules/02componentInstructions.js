@@ -21,6 +21,10 @@ const routes = {
 			path: "painting",
 			component: () => import('~/pages_example/page_index/views/02componentInstructions/05painting/main.vue')
 		},
+		 {
+			path: "canvasImage",
+			component: () => import('~/pages_example/page_index/views/02componentInstructions/06canvasImage/main.vue')
+		},
 	]
 };
 export default routes;

@@ -15,7 +15,7 @@ ul li {
 		}
 	}
 }
-.linshihuabu{
+.linshihuabu {
 	display: none;
 }
 </style>
@@ -32,7 +32,7 @@ ul li {
 			<button></button>
 		</section>
 		<section>
-			
+
 		</section>
 		<canvas :id="elementId" width="500" height="500"></canvas>
 		<div class="linshihuabu"></div>
@@ -72,14 +72,18 @@ export default {
 			this.ctx.lineWidth = this.lineWidth;
 		},
 		drawLine(e) {
+			const getOffset = e => {
+				return [e.clientX - this.canvas.getBoundingClientRect().left, e.clientY - this.canvas.getBoundingClientRect().top]
+			};
 			const ctx = this.ctx;
 			ctx.beginPath();
-			ctx.moveTo(e.offsetX, e.offsetY);
-			this.canvas.onmousemove = e => {
-				ctx.lineTo(e.offsetX, e.offsetY);
+			ctx.moveTo(...getOffset(e));
+			document.onmousemove = e => {
+				ctx.lineTo(...getOffset(e));
 				ctx.stroke();
+				return false;
 			};
-			window.onmouseup = e => {
+			document.onmouseup = e => {
 				if (this.inHistory) {
 					this.historyList.length = this.historyIndex + 1;
 				}
@@ -87,8 +91,8 @@ export default {
 				this.historyList.push(url);
 				this.historyIndex = this.historyList.length - 1;
 
-				this.canvas.onmousemove = null;
-				window.onmouseup = null;
+				document.onmousemove = null;
+				document.onmouseup = null;
 			};
 		},
 		goBack() {

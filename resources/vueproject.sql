@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 05/07/2019 16:14:58
+ Date: 12/07/2019 15:15:20
 */
 
 SET NAMES utf8mb4;
@@ -3767,7 +3767,7 @@ CREATE TABLE `t_permission`  (
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_permission
@@ -3836,6 +3836,7 @@ INSERT INTO `t_permission` VALUES (68, 1560830587257, 1560843091897, 1, 6, '上�
 INSERT INTO `t_permission` VALUES (69, 1560830689513, 1560843094801, 1, 7, '编辑器', 8, 2, '/componentInstructions/editor', '', '');
 INSERT INTO `t_permission` VALUES (70, 1560849667607, 1560850516770, 0, 13, '拖拽缩放', 0, 2, '/dragAndResize', 'fire', '');
 INSERT INTO `t_permission` VALUES (71, 1562202881876, 1562202894466, 0, 5, '画板', 8, 2, '/componentInstructions/painting', '', '');
+INSERT INTO `t_permission` VALUES (72, 1562903845417, 1562903856442, 0, 6, 'canvasImage', 8, 2, '/componentInstructions/canvasImage', '', '');
 
 -- ----------------------------
 -- Table structure for t_role
