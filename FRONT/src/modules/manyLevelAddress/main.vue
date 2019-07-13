@@ -142,12 +142,12 @@ export default {
 		},
 		// -------------------- 工具方法 --------------------
 		processResponse(res) {
-			let arr = this._.map(res.data, (item) => {
+			let arr = res.data.map(item => {
 				return {
 					label: item.name,
 					value: item.code,
 				};
-			});
+			})
 			if (arr.length > 0 && this.hasNullOption) {
 				arr.unshift({ value: "", label: "请选择" });
 			}

@@ -35,7 +35,7 @@ module.exports = {
     pages: {     
         index: {
             // js入口
-            entry: 'src/pages_example/page_index/main.js',
+            entry: 'src/pages/index/main.js',
             // 模板来源：多个页面可以用一个模版
             template: 'public/index.html',
             // 标题 需要在模版里写上： <title><%= htmlWebpackPlugin.options.title %></title>
@@ -43,20 +43,26 @@ module.exports = {
             // 在 dist/index.html 的输出
             filename: 'index.html'
         },
+        demo: {
+            entry: 'src/pages/demo/main.js',
+            template: 'public/index.html',
+            title: 'demo',
+            filename: 'demo.html'
+        },
         login: {
-            entry: 'src/pages_example/page_login/main.js',
+            entry: 'src/pages/login/main.js',
             template: 'public/index.html',
             title: '登录',
             filename: 'login.html'
         },
         register: {
-            entry: 'src/pages_example/page_register/main.js',
+            entry: 'src/pages/register/main.js',
             template: 'public/index.html',
             title: '注册',
             filename: 'register.html'
         },
         portal: {
-            entry: 'src/pages_example/page_portal/main.js',
+            entry: 'src/pages/portal/main.js',
             template: 'public/index.html',
             title: '门户',
             filename: 'portal.html'
