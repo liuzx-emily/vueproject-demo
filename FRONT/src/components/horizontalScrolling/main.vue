@@ -12,7 +12,7 @@
 	<section class="container">
 		<swiper :options="swiperOption" ref="mySwiper">
 			<!-- noSwiping设为true时，可以在slide上（或其他元素）增加类名'swiper-no-swiping'，使该slide无法拖动 -->
-			<swiper-slide v-for="item in list" class="swiper-no-swiping">
+			<swiper-slide v-for="item in list" :key="item" class="swiper-no-swiping">
 				<slot :item="item"></slot>
 			</swiper-slide>
 			<!-- <div class="swiper-pagination" slot="pagination"></div> -->

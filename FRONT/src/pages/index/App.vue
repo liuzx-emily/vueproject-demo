@@ -15,7 +15,11 @@
 					</router-link>
 					<a href="./portal.html">
 						<i class="fa fa-umbrella"></i>
-						<span class="name">门户首页</span>
+						<span class="name">portal</span>
+					</a>
+					<a href="./demo.html">
+						<i class="fa fa-umbrella"></i>
+						<span class="name">demo</span>
 					</a>
 				</nav>
 				<!-- 用户信息 -->

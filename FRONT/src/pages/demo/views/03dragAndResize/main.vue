@@ -35,7 +35,7 @@
 	<section style="height:100%;">
 		<section class="left">
 			<section class="container">
-				<magicComponent v-for="item in dataList" :fdata.sync="item"></magicComponent>
+				<magicComponent v-for="item in dataList" :key="item" :fdata.sync="item"></magicComponent>
 			</section>
 		</section>
 		<section class="right">
@@ -108,7 +108,7 @@ export default {
 		}
 	},
 	created() {
-		// this.getData();
+		this.getData();
 	},
 	mounted() { },
 	methods: {

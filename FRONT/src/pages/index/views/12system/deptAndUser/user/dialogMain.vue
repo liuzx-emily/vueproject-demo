@@ -14,7 +14,7 @@
                 </el-form-item>
                 <el-form-item label="角色" prop="roleId">
                     <el-select v-model="dialogData.roleId" style="width:100%">
-                        <el-option v-for="item in roleListData" :label="item.name" :value="item.id"></el-option>
+                        <el-option v-for="item in roleListData" :key="item.id" :label="item.name" :value="item.id"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="部门" prop="deptId">
