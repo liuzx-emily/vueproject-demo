@@ -43,12 +43,9 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xAxios({
-				method: 'get',
+			this.xaxios({
 				url: BASE_PATH + '/dept/list.htmls',
-				params: {
-					type: 1
-				}
+				params: { type: 1 }
 			}).then(res => {
 				if (res.code == 1) {
 					this.data = [

@@ -31,7 +31,7 @@
         <!-- 内容 -->
         <section v-html="data.content"></section>
         <!-- 子内容 -->
-        <magicComponent v-for="item in data.list" :fdata.sync="item"></magicComponent>
+        <magicComponent v-for="(item,index) in data.list" :key="index" :fdata.sync="item"></magicComponent>
     </vue-draggable-resizable>
 </template>
 <script>

@@ -169,8 +169,7 @@ export default {
 		},
 		// 获取菜单数据。如果现在没有进入任何一个页面，则手动跳转到第一个菜单
 		getMenuData() {
-			this.xAxios({
-				method: "get",
+			this.xaxios({
 				url: BASE_PATH + "/getMenus.do"
 			}).then(res => {
 				const navList = this.xtools.arrayToTree(res.data, {
@@ -196,10 +195,8 @@ export default {
 		},
 		// 获取按钮权限数据
 		getPermissionBtnData() {
-			this.xAxios({
-				method: "get",
+			this.xaxios({
 				url: BASE_PATH + "/getBtns.do",
-				params: {}
 			}).then(res => {
 				this.$store.state.permissionBtns = this._.map(res.data, "code");
 				this.initDone_btn = true;

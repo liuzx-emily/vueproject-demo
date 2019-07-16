@@ -86,11 +86,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.refreshTable({
-			refreshSearchParam: true,
-			// goToPageN: true,
-			// pageN: 2
-		});
+		this.refreshTable(true);
 	},
 	methods: {
 		// ------------------------------ 表格 ------------------------------
@@ -98,8 +94,7 @@ export default {
 		srefresh(param, self) {
 			// 获取表格数据
 			self.loading = true;
-			self.xAxios({
-				method: 'get',
+			self.xaxios({
 				url: BASE_PATH + "/article/list.do",
 				params: param
 			}).then(res => {
@@ -113,25 +108,18 @@ export default {
 				self.loading = false;
 			});
 		},
-		// 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
-		refreshTable(param) {
-			let new_searchparam = undefined;
-			// refreshSearchParam 有新的搜索参数
-			if (param && param.refreshSearchParam) {
-				new_searchparam = this._.cloneDeep(this.searchparam);
-			}
-			// goToPageN 前往指定页
-			if (param && param.goToPageN && param.pageN) {
-				this.$refs.table.pageNum = param.pageN;
+		// 刷新表格
+		refreshTable(refreshSearchParam) {
+			if (refreshSearchParam) {
+				let new_searchparam = this._.cloneDeep(this.searchparam);
+				this.$refs.table.refreshTable(new_searchparam);
 			} else {
-				// 不然的话返回第一页
-				this.$refs.table.pageNum = 1;
+				this.$refs.table.refreshTable();
 			}
-			this.$refs.table.refreshTable(new_searchparam);
 		},
 		// 搜索
-		do_search(param) {
-			this.refreshTable({ refreshSearchParam: true });
+		do_search() {
+			this.refreshTable(true);
 		},
 		// 跳转到详情页
 		toDetailPage(mode, data) {

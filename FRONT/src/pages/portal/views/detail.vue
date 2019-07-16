@@ -113,8 +113,7 @@ export default {
                 ]
             };
             // this.loading = true;
-            // this.xAxios({
-            //     method: 'get',
+            // this.xaxios({
             //     url: BASE_PATH + '/esi/front/details.htmls',
             //     params: {
             //         id: this.$route.params.id

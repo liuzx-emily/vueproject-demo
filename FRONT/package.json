@@ -50,7 +50,12 @@
 		],
 		"rules": {
 			"no-console": 0,
-			"no-unused-vars": "off"
+			"no-unused-vars": "off",
+			"no-undef": 0,
+			"no-mixed-spaces-and-tabs": 0,
+			"no-extra-boolean-cast": 0,
+			"vue/require-v-for-key": 0,
+			"vue/valid-v-on": 0
 		},
 		"parserOptions": {
 			"parser": "babel-eslint"

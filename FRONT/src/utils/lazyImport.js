@@ -2,8 +2,8 @@ import Vue from 'vue';
 
 
 // axios
-import xAxios from '~/axios.js'
-Vue.prototype.xAxios = xAxios
+import xaxios from '~/axios.js'
+Vue.prototype.xaxios = xaxios
 
 // -------------- element --------------
 import ElementUI from 'element-ui';

@@ -21,10 +21,10 @@
 			<el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
 			<el-table-column label="操作" width="250px">
 				<template slot-scope="scope">
-					<el-button class="size-small" type="primary" @click="">查看</el-button>
-					<el-button class="size-small" type="success" @click="">编辑</el-button>
-					<el-button class="size-small" type="warning" @click="">审核</el-button>
-					<el-button class="size-small" type="danger" @click="">删除</el-button>
+					<el-button class="size-small" type="primary">查看</el-button>
+					<el-button class="size-small" type="success">编辑</el-button>
+					<el-button class="size-small" type="warning">审核</el-button>
+					<el-button class="size-small" type="danger">删除</el-button>
 				</template>
 			</el-table-column>
 		</xTable>
@@ -44,7 +44,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.refreshTable({ refreshSearchParam: true });
+		this.refreshTable(true);
 	},
 	methods: {
 		// ------------------------------ 表格 ------------------------------
@@ -53,8 +53,7 @@ export default {
 			console.log(param);
 			// 获取表格数据
 			self.loading = true;
-			self.xAxios({
-				method: "get",
+			self.xaxios({
 				url: BASE_PATH + "/example/xTable.htmls",
 				params: param
 			}).then(res => {
@@ -68,21 +67,13 @@ export default {
 				self.loading = false;
 			});
 		},
-		// 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
-		refreshTable(param) {
-			let new_searchparam = undefined;
-			// refreshSearchParam 有新的搜索参数
-			if (param && param.refreshSearchParam) {
-				new_searchparam = this._.cloneDeep(this.searchparam);
-			}
-			// goToPageN 前往指定页
-			if (param && param.goToPageN && param.pageN) {
-				this.$refs.table.pageNum = param.pageN;
+		refreshTable(refreshSearchParam) {
+			if (refreshSearchParam) {
+				let new_searchparam = this._.cloneDeep(this.searchparam);
+				this.$refs.table.refreshTable(new_searchparam);
 			} else {
-				// 不然的话返回第一页
-				this.$refs.table.pageNum = 1;
+				this.$refs.table.refreshTable();
 			}
-			this.$refs.table.refreshTable(new_searchparam);
 		},
 	}
 };

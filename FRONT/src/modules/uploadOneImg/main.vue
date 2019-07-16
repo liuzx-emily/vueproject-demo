@@ -94,7 +94,7 @@ export default {
 			var data = new FormData();
 			data.append("file", file);
 			data.append("fileName", file.name);
-			this.xAxios({
+			this.xaxios({
 				method: 'post',
 				url: BASE_PATH + '/upload.do',
 				data: data

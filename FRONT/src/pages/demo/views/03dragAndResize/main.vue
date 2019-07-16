@@ -116,7 +116,7 @@ export default {
 			this.$store.commit("magicComponent/setCurrentId", "");
 		},
 		getData() {
-			this.xAxios({
+			this.xaxios({
 				url: BASE_PATH + "/magiccomponent/list.do",
 				params: {
 					contentId: this.contentId
@@ -135,7 +135,7 @@ export default {
 			})
 		},
 		do_save() {
-			this.xAxios({
+			this.xaxios({
 				method: 'POST',
 				url: BASE_PATH + "/magiccomponent/saveAll.do",
 				data: {

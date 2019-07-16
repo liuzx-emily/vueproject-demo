@@ -19,18 +19,15 @@
         <beAlertToEqualTo />
         <!-- 使用scrollIntoView来完成滚动定位 -->
         <scrollIntoView />
-        <!-- 方法链 -->
-        <methodChaining />
     </section>
 </template>
 <script>
 import jQuery_ReadyAndLoad from './modules/01jQuery_readyAndLoad.vue'
 import beAlertToEqualTo from './modules/02beAlertToEqualTo.vue'
 import scrollIntoView from './modules/03scrollIntoView.vue'
-import methodChaining from './modules/04methodChaining.vue'
 export default {
     props: {},
-    components: { "jQuery-ReadyAndLoad": jQuery_ReadyAndLoad, beAlertToEqualTo, scrollIntoView, methodChaining },
+    components: { "jQuery-ReadyAndLoad": jQuery_ReadyAndLoad, beAlertToEqualTo, scrollIntoView, },
     data() {
         return {}
     },

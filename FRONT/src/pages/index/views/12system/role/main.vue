@@ -40,8 +40,7 @@ export default {
     methods: {
         refreshData() {
             this.loading = true;
-            this.xAxios({
-                method: 'get',
+            this.xaxios({
                 url: BASE_PATH + "/role/list.do",
             }).then(res => {
                 let data = this._.cloneDeep(res.data);

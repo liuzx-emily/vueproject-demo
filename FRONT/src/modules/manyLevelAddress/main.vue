@@ -92,8 +92,7 @@ export default {
 	methods: {
 		get_levelOne_list() {
 			this.levelOne_loading = true;
-			this.xAxios({
-				method: 'get',
+			this.xaxios({
 				url: BASE_PATH + '/district/getLevelOneList.do',
 			}).then(res => {
 				this.levelOne_list = this.processResponse(res);
@@ -104,8 +103,7 @@ export default {
 			this.levelTwo_list = [];
 			if (this.levelOne) {
 				this.levelTwo_loading = true;
-				this.xAxios({
-					method: 'get',
+				this.xaxios({
 					url: BASE_PATH + '/district/getByParentCode.do',
 					params: { parentCode: this.levelOne }
 				}).then(res => {
@@ -125,8 +123,7 @@ export default {
 		refresh_levelThree() {
 			this.levelThree_list = [];
 			if (this.levelTwo) {
-				this.xAxios({
-					method: 'get',
+				this.xaxios({
 					url: BASE_PATH + '/district/getByParentCode.do',
 					params: { parentCode: this.levelTwo }
 				}).then(res => {

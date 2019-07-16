@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Loading, MessageBox, Message } from 'element-ui';
-import xAxios from '~/axios.js'
+import xaxios from '~/axios.js'
 const tools = {
     // -------------------------- Array --------------------------
     arrayToTree(dataArr, param) {
@@ -163,7 +163,7 @@ const tools = {
                 lock: true,
                 background: 'rgba(0, 0, 0, 0.2)',
             });
-            xAxios({
+            xaxios({
                 method: 'post',
                 url: BASE_PATH + url,
                 data: data

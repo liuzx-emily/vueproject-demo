@@ -7,7 +7,7 @@
 				<el-button size="mini" type="primary" slot="trigger">上传附件</el-button>
 			</el-upload>
 			<ul>
-				<li v-for="(file,index) in list">
+				<li v-for="file in list" :key="file.id">
 					<i class="fa fa-paperclip icon"></i>
 					<a @click="do_download(file)" title="下载" class="fileName">{{file.name}}</a>
 					<i @click="do_delete(index)" class="fa fa-trash deleteBtn" title="删除"></i>
@@ -17,7 +17,7 @@
 		<!-- 阅读模式 -->
 		<template v-else>
 			<ul v-if="list.length>0">
-				<li v-for="(file,index) in list">
+				<li v-for="file in list" :key="file.id">
 					<i class="fa fa-paperclip icon"></i>
 					<a @click="do_download(file)" title="点击下载" class="fileName">{{file.name}}</a>
 				</li>
@@ -79,7 +79,7 @@ export default {
 			var data = new FormData();
 			data.append("file", file);
 			data.append("fileName", file.name);
-			this.xAxios({
+			this.xaxios({
 				method: 'post',
 				url: BASE_PATH + '/upload.do',
 				data: data

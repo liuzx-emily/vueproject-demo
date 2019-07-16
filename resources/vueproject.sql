@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 12/07/2019 15:15:20
+ Date: 16/07/2019 17:59:41
 */
 
 SET NAMES utf8mb4;
@@ -35,6 +35,12 @@ CREATE TABLE `t_article`  (
   `reason` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '审核不通过的原因',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of t_article
+-- ----------------------------
+INSERT INTO `t_article` VALUES ('8e432018-6505-4615-ac40-1c4a97e6b519', 1562916988740, 1562916988740, 0, NULL, '新文章1', '小明', 1562916982361, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('f6a39985-2b25-4a5d-8cd6-6f61344762fe', 1562916991632, 1562916991632, 0, NULL, '新文章2', '小明', 1562916990011, '<p>哈哈</p>', '1', '');
 
 -- ----------------------------
 -- Table structure for t_article_file
@@ -3790,11 +3796,11 @@ INSERT INTO `t_permission` VALUES (16, 1557129517350, 1557129517350, 0, 1, 'echa
 INSERT INTO `t_permission` VALUES (17, 1557129542688, 1557129542688, 0, 2, 'Guide', 9, 2, '/pluginDemo/guide', '', '');
 INSERT INTO `t_permission` VALUES (18, 1557129587195, 1557129614479, 0, 1, 'CSS', 10, 1, '/blackTechnology/css', '', '');
 INSERT INTO `t_permission` VALUES (19, 1557129608347, 1557988597949, 0, 3, '使用css绘制图形', 18, 2, '/blackTechnology/css/03', '', '');
-INSERT INTO `t_permission` VALUES (20, 1557129646124, 1557374645882, 0, 2, '利用content属性attr抓取资料', 18, 2, '/blackTechnology/css/02', '', '');
+INSERT INTO `t_permission` VALUES (20, 1557129646124, 1563155256206, 1, 2, '利用content属性attr抓取资料', 18, 2, '/blackTechnology/css/02', '', '');
 INSERT INTO `t_permission` VALUES (21, 1557129805787, 1557129805787, 0, 2, 'Javascript', 10, 1, '/blackTechnology/js', '', '');
 INSERT INTO `t_permission` VALUES (22, 1557129830883, 1557988572307, 0, 3, 'console', 21, 2, '/blackTechnology/js/03', '', '');
-INSERT INTO `t_permission` VALUES (23, 1557129849079, 1557129876502, 0, 3, 'HTML', 10, 1, '/blackTechnology/html', '', '');
-INSERT INTO `t_permission` VALUES (24, 1557191243343, 1557191243343, 0, 1, '输入数学公式', 23, 2, '/blackTechnology/html/01', '', '');
+INSERT INTO `t_permission` VALUES (23, 1557129849079, 1563169578198, 1, 3, 'HTML', 10, 1, '/blackTechnology/html', '', '');
+INSERT INTO `t_permission` VALUES (24, 1557191243343, 1563169323220, 1, 1, '输入数学公式', 23, 2, '/blackTechnology/html/01', '', '');
 INSERT INTO `t_permission` VALUES (25, 1557191262124, 1557191262124, 0, 4, '综合', 10, 1, '/blackTechnology/complex', '', '');
 INSERT INTO `t_permission` VALUES (26, 1557191278753, 1557191278753, 0, 1, '打印', 25, 2, '/blackTechnology/complex/01', '', '');
 INSERT INTO `t_permission` VALUES (27, 1557191301658, 1557191301658, 0, 2, '页面导出PDF', 25, 2, '/blackTechnology/complex/02', '', '');
@@ -3804,10 +3810,10 @@ INSERT INTO `t_permission` VALUES (30, 1557191358015, 1557191358015, 0, 2, '在�
 INSERT INTO `t_permission` VALUES (31, 1557191389360, 1557195837762, 0, 11, '文章管理', 0, 2, '/article', 'book', '');
 INSERT INTO `t_permission` VALUES (32, 1557195814726, 1559115237438, 1, 13, '人员管理', 0, 2, '/deptAndUser', 'user', '');
 INSERT INTO `t_permission` VALUES (39, 1557741931092, 1557741931092, 0, 4, '常见表单组件', 8, 2, '/componentInstructions/commonFormItem', '', '');
-INSERT INTO `t_permission` VALUES (40, 1557891352688, 1557988585767, 0, 1, 'tricks', 18, 2, '/blackTechnology/css/01', '', '');
+INSERT INTO `t_permission` VALUES (40, 1557891352688, 1563155249709, 1, 1, 'tricks', 18, 2, '/blackTechnology/css/01', '', '');
 INSERT INTO `t_permission` VALUES (41, 1557892532138, 1557988576571, 0, 1, 'tricks', 21, 2, '/blackTechnology/js/01', '', '');
 INSERT INTO `t_permission` VALUES (42, 1557975656515, 1557988564597, 0, 2, '多级地址', 21, 2, '/blackTechnology/js/02', '', '');
-INSERT INTO `t_permission` VALUES (43, 1558064644520, 1558064787978, 0, 1, 'tricks', 28, 2, '/blackTechnology/vue/01', '', '');
+INSERT INTO `t_permission` VALUES (43, 1558064644520, 1563170101486, 1, 1, 'tricks', 28, 2, '/blackTechnology/vue/01', '', '');
 INSERT INTO `t_permission` VALUES (44, 1558405866313, 1558406135596, 1, 0, '11', 0, 2, '11', '', '');
 INSERT INTO `t_permission` VALUES (45, 1559099231635, 1559099231635, 0, 1, '新增', 2, 3, 'dept:btn:add', '', '');
 INSERT INTO `t_permission` VALUES (46, 1559099266232, 1559099266232, 0, 2, '编辑', 2, 3, 'dept:btn:edit', '', '');
@@ -3834,9 +3840,9 @@ INSERT INTO `t_permission` VALUES (66, 1559628756490, 1559714388936, 1, 5, 'fold
 INSERT INTO `t_permission` VALUES (67, 1560830542110, 1560843088196, 1, 5, '上传附件', 8, 2, '/componentInstructions/upload', '', '');
 INSERT INTO `t_permission` VALUES (68, 1560830587257, 1560843091897, 1, 6, '上传单一图片', 8, 2, '/componentInstructions/uploadOneImg', '', '');
 INSERT INTO `t_permission` VALUES (69, 1560830689513, 1560843094801, 1, 7, '编辑器', 8, 2, '/componentInstructions/editor', '', '');
-INSERT INTO `t_permission` VALUES (70, 1560849667607, 1560850516770, 0, 13, '拖拽缩放', 0, 2, '/dragAndResize', 'fire', '');
-INSERT INTO `t_permission` VALUES (71, 1562202881876, 1562202894466, 0, 5, '画板', 8, 2, '/componentInstructions/painting', '', '');
-INSERT INTO `t_permission` VALUES (72, 1562903845417, 1562903856442, 0, 6, 'canvasImage', 8, 2, '/componentInstructions/canvasImage', '', '');
+INSERT INTO `t_permission` VALUES (70, 1560849667607, 1563171105667, 1, 13, '拖拽缩放', 0, 2, '/dragAndResize', 'fire', '');
+INSERT INTO `t_permission` VALUES (71, 1562202881876, 1563155227731, 1, 5, '画板', 8, 2, '/componentInstructions/painting', '', '');
+INSERT INTO `t_permission` VALUES (72, 1562903845417, 1563155230909, 1, 6, 'canvasImage', 8, 2, '/componentInstructions/canvasImage', '', '');
 
 -- ----------------------------
 -- Table structure for t_role
@@ -3967,9 +3973,11 @@ CREATE TABLE `t_user`  (
 -- Records of t_user
 -- ----------------------------
 INSERT INTO `t_user` VALUES ('2fdfad5f-f522-4213-8fc2-7ef38a1199e4', 1559271273609, 1562227403581, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaohong', '蔬菜小红', '$2b$10$nGA9RvL9TToCdBWd31AMSe.7ijCVZTYxpesVkaDB3eNZswyri0ywS', '', '', '/download.do?id=b20d9922-e42a-4cb5-9d61-7e85ec0e27df', '123456');
+INSERT INTO `t_user` VALUES ('4573d922-29ee-44d5-bd93-4267be5fc0ef', 1563244187232, 1563244197228, 1, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '4d9772fe-bb47-4c60-b837-8d96be77677b', 'asdfasdf', 'asdfasdf', '$2b$10$OUGu7CJJxi8KLGEOkAzjNOuxnuIljTTxEKp9uvc1/XyexCT7BScHe', '', '', '', '123456');
 INSERT INTO `t_user` VALUES ('56a67bce-4575-4129-a88c-105662832f56', 1559121455119, 1560483933717, 0, 0, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'bocaixiaoliu', '菠菜小刘', '$2b$10$.Xr0dTg6LZmUCibaPWWN2ucI4i5B/.sO1ZkUufk0BEYL9l1Oigu8q', '', '', NULL, '123456');
 INSERT INTO `t_user` VALUES ('5b29f21d-0b8d-4206-b226-f1cf92d1a7db', 1556530469471, 1560483932130, 0, NULL, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'qincaixiaoha', '现在是菠菜小哈', '$2b$10$rz7iZZ7ajAyfq3c6euhQPewYttEL6b5EToVQgtF0qHmHvbQmO1Q9.', '', '13825164233', NULL, '123456');
-INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1562314469941, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2b$10$5W8piOSk85X5uSRnPHocG.iu5tp4cKgDx4lPeskwFWqlhtyGbIE2W', 'xiaoming@163.com', '15822432311', '/download.do?id=76525bf4-c746-445f-835c-715d6232f2fd', 'rock123');
+INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1563170797670, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2b$10$5W8piOSk85X5uSRnPHocG.iu5tp4cKgDx4lPeskwFWqlhtyGbIE2W', 'xiaoming@163.com', '15822432311', '/download.do?id=76525bf4-c746-445f-835c-715d6232f2fd', 'rock123');
+INSERT INTO `t_user` VALUES ('98c961b4-4809-4f55-9ff6-a53b15402e26', 1563245875245, 1563245875245, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'xiaogang', '小刚', '$2b$10$2/rcmsxs8Evu6pIAjpDvw.ZkRxZKD5Aoxqz23qLkmlr9OWMRPuU9i', '', '', '', '123456');
 INSERT INTO `t_user` VALUES ('a723fbcc-6235-4e07-b038-8bd6f1eae97e', 1560483092329, 1560490276643, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'aaa', '哎哎哎', '$2b$10$ddy23q6IX6iQEa1kW6MiBu/4ukCIflyDmhFEV1LBJB.EQBejaPK/q', '', '', NULL, '123456');
 INSERT INTO `t_user` VALUES ('e5c382ce-d060-4604-b35c-8582b66ab5d2', 1559271290307, 1560483922563, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'shucaixiaogang', '蔬菜小刚', '$2b$10$tENZ0jiy8mWhuqRlod/QxOsPtcaFHeZbg0KJWa5387irat8mKefq2', '', '', NULL, '123456');
 

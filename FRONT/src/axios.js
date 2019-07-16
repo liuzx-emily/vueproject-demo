@@ -9,24 +9,13 @@ axios.interceptors.request.use(
 		// 对IE内核，要加上时间戳，防止请求被缓存
 		// config.url += '?timestamp=' + new Date().getTime();
 
-		// 自定义配置项：xJsonData 发送json格式的数据【修改method、headers、JSON化数据】
-		if (config.xJsonData) {
-			config.method = "post";
-			config.headers["Content-Type"] = 'application/json;charset=UTF-8';
-			config.data = JSON.stringify(config.data);
-		}
-		// 自定义配置项：xDonotNeedLoginCheck 该请求不需要登录
-		if (config.xDonotNeedLoginCheck) {
-			console.log(config.url + "该请求不需要登录");
-		} else {
-			// 在360安全模式下， Vuecookies会报错。没发现原因，不用cookie了，改用localStorage
-			/*let token = localStorage.getItem("token");
-			if (token) {
-			    config.headers["token"] = token;
-			} else {
-			    tokenInvalid();
-			}*/
-		}
+		// if (请求需要登录) {
+		// 	if (登录验证通过) {
+
+		// 	} else {
+		// 		loggingInvalid();
+		// 	}
+		// }
 		return config;
 	}, err => {
 		/*Message({
@@ -57,7 +46,7 @@ axios.interceptors.response.use(
 			    return Promise.reject();
 			} else if (code == 401) {
 			    // token失效（这里的401是后端自己定义的code值，不是http状态码）
-			    tokenInvalid();
+			    loggingInvalid();
 			    return Promise.reject();
 			}*/
 			return response.data;
@@ -88,7 +77,7 @@ axios.interceptors.response.use(
 	}
 )
 
-function tokenInvalid() {
+function loggingInvalid() {
 	/*Message({
 	    message: "登录超时！请重新登录！",
 	    type: 'error'

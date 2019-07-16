@@ -73,7 +73,7 @@ export default {
 	},
 	created() { },
 	mounted() {
-		this.refreshTable({ refreshSearchParam: true });
+		this.refreshTable(true);
 	},
 	methods: {
 		// ----------------------------- 用户表格（子组件相关） -----------------------------
@@ -82,8 +82,7 @@ export default {
 			param.deptId = this.deptId;
 			// 获取表格数据
 			self.loading = true;
-			self.xAxios({
-				method: 'get',
+			self.xaxios({
 				url: BASE_PATH + "/user/list.do",
 				params: param
 			}).then(res => {
@@ -95,20 +94,17 @@ export default {
 				self.loading = false;
 			})
 		},
-		// 刷新表格（默认是沿用之前的搜索参数，跳转回第一页刷新）
-		refreshTable(param) {
-			let new_searchparam = undefined;
-			// refreshSearchParam 有新的搜索参数
-			if (param && param.refreshSearchParam) {
-				new_searchparam = this._.cloneDeep(this.searchparam);
+		refreshTable(refreshSearchParam) {
+			if (refreshSearchParam) {
+				let new_searchparam = this._.cloneDeep(this.searchparam);
+				this.$refs.table.refreshTable(new_searchparam);
+			} else {
+				this.$refs.table.refreshTable();
 			}
-			// 返回第一页
-			this.$refs.table.pageNum = 1;
-			this.$refs.table.refreshTable(new_searchparam);
 		},
 		// 搜索
-		do_search(param) {
-			this.refreshTable({ refreshSearchParam: true });
+		do_search() {
+			this.refreshTable(true);
 		},
 		// 打开弹窗：主弹窗
 		openDial_main(type, data) {
@@ -147,7 +143,7 @@ export default {
 					password: this.DEFAULT_PASSWORD
 				};
 				this.loading = true;
-				this.xAxios({
+				this.xaxios({
 					method: 'post',
 					url: BASE_PATH + '/user/resetPassword.do',
 					data: param

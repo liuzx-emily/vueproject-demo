@@ -65,8 +65,7 @@ export default {
             ];
             this.count = 15;
             // this.loading = true;
-            // this.xAxios({
-            //     method: 'get',
+            // this.xaxios({
             //     url: BASE_PATH + '/esi/front/list.htmls',
             //     params: {
             //         id: this.$route.params.id,

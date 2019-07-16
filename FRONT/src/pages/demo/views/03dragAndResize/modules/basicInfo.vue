@@ -1,7 +1,7 @@
 <style scoped></style>
 <template>
 	<section>
-		<input v-model="dialogData.title"></input>
+		<input v-model="dialogData.title">
 		<button type="button" @click="do_add"><i class="el-icon-plus"></i> 添加子内容</button>
 		<button type="button" @click="do_delete"><i class="el-icon-delete"></i> 删除</button>
 		<button type="button" @click="saveData">保存</button>

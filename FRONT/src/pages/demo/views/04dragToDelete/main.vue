@@ -77,8 +77,6 @@ export default {
 				uploadBoxEle.innerHTML = "上传啦~";
 				Array.from(e.dataTransfer.files).forEach(file => {
 					if (!file.type.includes("image")) {
-						var fr = new FileReader();
-						fr.readAsDataURL(file);
 						return;
 					}
 					var fr = new FileReader();
