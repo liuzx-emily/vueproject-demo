@@ -10,7 +10,7 @@ export function render_background(vc) {
         target.style.background = data.backgroundColor;
     } else if (type == 3) {
         // 背景图片
-        target.style.backgroundImage = `url(${BASE_PATH+data.backgroundImgUrl})`;
+        target.style.backgroundImage = `url(${data.backgroundImgUrl})`;
         target.style.backgroundSize = "cover";
         // target.style.backgroundPosition = "center center";
         target.style.backgroundRepeat = "no-repeat";

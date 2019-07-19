@@ -17,7 +17,7 @@
 				<p>（预设的样式在 src/styles 中）</p>
 			</div>
 		</el-card>
-		<xTable :refresh="srefresh" ref="table" :color="tableClass.color" :size="tableClass.size" :align="tableClass.align">
+		<x-table :refresh="srefresh" ref="table" :color="tableClass.color" :size="tableClass.size" :align="tableClass.align">
 			<el-table-column prop="name" label="名称" sortable="custom"></el-table-column>
 			<el-table-column label="操作" width="250px">
 				<template slot-scope="scope">
@@ -27,7 +27,7 @@
 					<el-button class="size-small" type="danger">删除</el-button>
 				</template>
 			</el-table-column>
-		</xTable>
+		</x-table>
 	</section>
 </template>
 <script>
@@ -54,7 +54,7 @@ export default {
 			// 获取表格数据
 			self.loading = true;
 			self.xaxios({
-				url: BASE_PATH + "/example/xTable.htmls",
+				url: "/api/example/xTable.htmls",
 				params: param
 			}).then(res => {
 				// 数据格式化

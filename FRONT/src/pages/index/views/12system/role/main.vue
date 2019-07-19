@@ -41,13 +41,13 @@ export default {
         refreshData() {
             this.loading = true;
             this.xaxios({
-                url: BASE_PATH + "/role/list.do",
+                url: "/api/role/list.do",
             }).then(res => {
                 let data = this._.cloneDeep(res.data);
                 this.treeTableData = this.xtools.arrayToTree(data, {
-                    before_idkey: "id",
-                    before_parentkey: "parentId",
-                    after_childkey: "child"
+                    id: "id",
+                    parentId: "parentId",
+                    children: "child"
                 });
                 this.loading = false;
             });
@@ -67,7 +67,7 @@ export default {
                 // 批量
             }
             this.xtools.openConfirm_delete({
-                url: '/role/delete.do',
+                url: "/api/role/delete.do",
                 data: { ids },
                 refreshFunc: this.refreshData,
             });

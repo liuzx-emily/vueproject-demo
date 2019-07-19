@@ -55,7 +55,7 @@ export default {
 		openDial() {
 			this.loading = true;
 			this.xaxios({
-				url: BASE_PATH + "/user/detail.do",
+				url: "/api/user/detail.do",
 				params: { id: this.$store.state.userId, }
 			}).then(res => {
 				for (let key in original_data) {
@@ -76,8 +76,8 @@ export default {
 					this.loading = true;
 					this.xaxios({
 						method: 'post',
+						url: "/api/user/edit.do",
 						data: param,
-						url: BASE_PATH + `/user/edit.do`
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

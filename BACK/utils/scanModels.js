@@ -8,8 +8,8 @@ fs.readdirSync("./models").filter(fileName => {
     models[name] = model;
 
     // Synchronizing the model with the database
-    // Note: using `force: true` will drop the table if it already exists
-    model.sync({ force: false }).then(() => {});
+    // Note: using `force: true` will drop the table if it already exists and 数据会丢失
+    // model.sync({ force: false }).then(() => {});
 })
 
 module.exports = models;

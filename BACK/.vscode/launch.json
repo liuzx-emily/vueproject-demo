@@ -7,7 +7,7 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "koa",
+			"name": "Launch Program",
 			"program": "${workspaceFolder}\\main.js"
 		}
 	]

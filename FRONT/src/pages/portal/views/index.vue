@@ -77,7 +77,7 @@ export default {
 	methods: {
 		getData() {
 			this.xaxios({
-				url: BASE_PATH + '/esi/front/index.htmls',
+				url: "/api/esi/front/index.htmls",
 				params: { row: 8 }
 			}).then(res => {
 				if (res.code == 1) {

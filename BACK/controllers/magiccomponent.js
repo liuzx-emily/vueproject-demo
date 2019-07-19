@@ -3,7 +3,7 @@ const attributes = ['id', "parentId", "contentId", "x", "y", "width", "height", 
     "backgroundImgUrl", "borderRadius", "borderStyle", "borderColor", "borderWidth",
 ];
 
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -12,7 +12,7 @@ const rawQueryUtils = require("./utils/rawQueryUtils.js");
 const MainModel = models[name];
 
 const findAll = async (ctx, next) => {
-    const contentId = ctx.query.contentId;
+    const contentId = ctx.requestparam.contentId;
     let data = await MainModel.findAll({
         attributes: attributes,
         where: { contentId: contentId }
@@ -21,11 +21,11 @@ const findAll = async (ctx, next) => {
 };
 
 const saveAll = async (ctx, next) => {
-    const contentId = ctx.request.body.contentId;
+    const contentId = ctx.requestparam.contentId;
     // 删除所有
     await MainModel.destroy({ where: { contentId: contentId } });
     // 存储所有
-    let list = ctx.request.body.list;
+    let list = ctx.requestparam.list;
     await save(list, "0", contentId);
     ctx.response.body = { code: 1, };
 };

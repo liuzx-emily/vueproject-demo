@@ -21,7 +21,7 @@
 			</section>
 		</section>
 		<section>
-			<xTable :refresh="srefresh" ref="table">
+			<x-table :refresh="srefresh" ref="table">
 				<el-table-column type="selection"></el-table-column>
 				<el-table-column prop="username" label="帐号"></el-table-column>
 				<el-table-column prop="name" label="姓名"></el-table-column>
@@ -37,7 +37,7 @@
 						<el-button v-permission:user="4" class="size-small" type="danger" @click="openConfirm_delete(1,scope.row)">删除</el-button>
 					</template>
 				</el-table-column>
-			</xTable>
+			</x-table>
 			<!-- 弹窗：主 -->
 			<dialogMain :deptId="deptId" :refreshFunc="refreshTable" :deptTreeData="deptTreeData" ref="dialogMain"></dialogMain>
 		</section>
@@ -50,15 +50,13 @@ export default {
 	components: { dialogMain, },
 	data() {
 		return {
+			DEFAULT_PASSWORD: "123456",
 			loading: false,
 			searchparam: {
 				username: "",
 				name: "",
 			}
 		};
-	},
-	computed: {
-		DEFAULT_PASSWORD() { return window.DEFAULT_PASSWORD },
 	},
 	watch: {
 		deptId: {
@@ -83,7 +81,7 @@ export default {
 			// 获取表格数据
 			self.loading = true;
 			self.xaxios({
-				url: BASE_PATH + "/user/list.do",
+				url: "/api/user/list.do",
 				params: param
 			}).then(res => {
 				// 数据格式化
@@ -130,7 +128,7 @@ export default {
 				}
 			}
 			this.xtools.openConfirm_delete({
-				url: '/user/delete.do',
+				url: "/api/user/delete.do",
 				data: { ids: ids },
 				refreshFunc: this.refreshTable,
 			});
@@ -145,7 +143,7 @@ export default {
 				this.loading = true;
 				this.xaxios({
 					method: 'post',
-					url: BASE_PATH + '/user/resetPassword.do',
+					url: "/api/user/resetPassword.do",
 					data: param
 				}).then(res => {
 					if (res.code == 1) {

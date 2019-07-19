@@ -70,13 +70,13 @@ export default {
 		refreshData() {
 			this.loading = true;
 			this.xaxios({
-				url: BASE_PATH + "/dept/list.do",
+				url: "/api/dept/list.do",
 			}).then(res => {
 				let data = this._.cloneDeep(res.data);
 				this.treeData = this.xtools.arrayToTree(data, {
-					before_idkey: "id",
-					before_parentkey: "parentId",
-					after_childkey: "child"
+					id: "id",
+					parentId: "parentId",
+					children: "child"
 				});
 				// 选中第一个节点
 				if (this.treeData && this.treeData.length > 0) {
@@ -116,7 +116,7 @@ export default {
 				}
 			}
 			this.xtools.openConfirm_delete({
-				url: '/dept/delete.do',
+				url: "/api/dept/delete.do",
 				data: { ids },
 				refreshFunc: this.refreshData,
 			});

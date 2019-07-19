@@ -25,124 +25,124 @@ var positionRetrival_levelThree = "";
 
 // 位置select初始化
 function initPositionSelect() {
-    var temp_levelOne;
-    if (duringPositionRetrival) {
-        temp_levelOne = positionRetrival_levelOne;
-    } else {
-        temp_levelOne = $("#select_levelOne").val();
-    }
-    $("#select_levelOne").html("");
-    $("#select_levelTwo").html("");
-    $("#select_levelThree").html("");
-    $.ajax({
-        url: BASE_PATH + '/district/getLevelOneList.do',
-        async: false,
-        success: function success(res) {
-            var list = res.data;
-            if (list && list.length > 0) {
-                var html = "";
-                if (positionRetrival_hasNull) {
-                    html += `<option value="">请选择</option>`;
-                }
-                $.each(list, function(index, item) {
-                    let selectedFlag = temp_levelOne && item.code == temp_levelOne;
-                    html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
-                });
-                $("#select_levelOne").html(html);
-                setTimeout(function() {
-                    $("#select_levelOne").trigger('change');
-                }, 0);
-            }
-        }
-    });
-    $("#select_levelOne").change(function() {
-        var levelOne = $("#select_levelOne").val();
-        $("#select_levelTwo").html("");
-        $("#select_levelThree").html("");
-        if (levelOne) {
-            var temp_levelTwo;
-            if (duringPositionRetrival) {
-                temp_levelTwo = positionRetrival_levelTwo;
-            } else {
-                temp_levelTwo = $("#select_levelTwo").val();
-            }
-            $.ajax({
-                url: BASE_PATH + '/district/getByParentCode.do',
-                async: false,
-                data: {
-                    parentCode: levelOne
-                },
-                success: function success(res) {
-                    var list = res.data;
-                    if (list && list.length > 0) {
-                        var html = "";
-                        if (positionRetrival_hasNull) {
-                            html += `<option value="">请选择</option>`;
-                        }
-                        $.each(list, function(index, item) {
-                            let selectedFlag = temp_levelTwo && item.code == temp_levelTwo;
-                            html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
-                        });
-                        $("#select_levelTwo").html(html);
-                        setTimeout(function() {
-                            $("#select_levelTwo").trigger('change');
-                        }, 0);
-                    } else {
-                        duringPositionRetrival = false;
-                    }
-                }
-            });
-        }
-    });
-    $("#select_levelTwo").change(function() {
-        var levelTwo = $("#select_levelTwo").val();
-        $("#select_levelThree").html("");
-        if (levelTwo) {
-            var temp_levelThree;
-            if (duringPositionRetrival) {
-                temp_levelThree = positionRetrival_levelThree;
-            } else {
-                temp_levelThree = $("#select_levelThree").val();
-            }
-            $.ajax({
-                url: BASE_PATH + '/district/getByParentCode.do',
-                data: {
-                    parentCode: levelTwo
-                },
-                success: function success(res) {
-                    var list = res.data;
-                    if (list && list.length > 0) {
-                        var html = "";
-                        if (positionRetrival_hasNull) {
-                            html += `<option value="">请选择</option>`;
-                        }
-                        $.each(list, function(index, item) {
-                            let selectedFlag = temp_levelThree && item.code == temp_levelThree;
-                            html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
-                        });
-                        $("#select_levelThree").html(html);
-                    }
-                    duringPositionRetrival = false
-                }
-            });
-        }
-    });
+	var temp_levelOne;
+	if (duringPositionRetrival) {
+		temp_levelOne = positionRetrival_levelOne;
+	} else {
+		temp_levelOne = $("#select_levelOne").val();
+	}
+	$("#select_levelOne").html("");
+	$("#select_levelTwo").html("");
+	$("#select_levelThree").html("");
+	$.ajax({
+		url: "/api/district/getLevelOneList.do",
+		async: false,
+		success: function success(res) {
+			var list = res.data;
+			if (list && list.length > 0) {
+				var html = "";
+				if (positionRetrival_hasNull) {
+					html += `<option value="">请选择</option>`;
+				}
+				$.each(list, function(index, item) {
+					let selectedFlag = temp_levelOne && item.code == temp_levelOne;
+					html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
+				});
+				$("#select_levelOne").html(html);
+				setTimeout(function() {
+					$("#select_levelOne").trigger('change');
+				}, 0);
+			}
+		}
+	});
+	$("#select_levelOne").change(function() {
+		var levelOne = $("#select_levelOne").val();
+		$("#select_levelTwo").html("");
+		$("#select_levelThree").html("");
+		if (levelOne) {
+			var temp_levelTwo;
+			if (duringPositionRetrival) {
+				temp_levelTwo = positionRetrival_levelTwo;
+			} else {
+				temp_levelTwo = $("#select_levelTwo").val();
+			}
+			$.ajax({
+				url: "/api/district/getByParentCode.do",
+				async: false,
+				data: {
+					parentCode: levelOne
+				},
+				success: function success(res) {
+					var list = res.data;
+					if (list && list.length > 0) {
+						var html = "";
+						if (positionRetrival_hasNull) {
+							html += `<option value="">请选择</option>`;
+						}
+						$.each(list, function(index, item) {
+							let selectedFlag = temp_levelTwo && item.code == temp_levelTwo;
+							html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
+						});
+						$("#select_levelTwo").html(html);
+						setTimeout(function() {
+							$("#select_levelTwo").trigger('change');
+						}, 0);
+					} else {
+						duringPositionRetrival = false;
+					}
+				}
+			});
+		}
+	});
+	$("#select_levelTwo").change(function() {
+		var levelTwo = $("#select_levelTwo").val();
+		$("#select_levelThree").html("");
+		if (levelTwo) {
+			var temp_levelThree;
+			if (duringPositionRetrival) {
+				temp_levelThree = positionRetrival_levelThree;
+			} else {
+				temp_levelThree = $("#select_levelThree").val();
+			}
+			$.ajax({
+				url: "/api/district/getByParentCode.do",
+				data: {
+					parentCode: levelTwo
+				},
+				success: function success(res) {
+					var list = res.data;
+					if (list && list.length > 0) {
+						var html = "";
+						if (positionRetrival_hasNull) {
+							html += `<option value="">请选择</option>`;
+						}
+						$.each(list, function(index, item) {
+							let selectedFlag = temp_levelThree && item.code == temp_levelThree;
+							html += `<option ${selectedFlag?"selected":""} value="${item.code}">${item.name}</option>`;
+						});
+						$("#select_levelThree").html(html);
+					}
+					duringPositionRetrival = false
+				}
+			});
+		}
+	});
 }
 // 数据回显
 function data_retrival(data) {
 
-    // ......其他数据回显
+	// ......其他数据回显
 
-    // 要开始进行多级地址的回显了，修改全局变量
-    duringPositionRetrival = true;
-    positionRetrival_levelOne = data.levelOne;
-    positionRetrival_levelTwo = data.levelTwo;
-    positionRetrival_levelThree = data.levelThree;
-    // 全局变量修改完了。修改一级地址的value，并手动触发change
-    $("#select_levelOne").val(positionRetrival_levelOne);
-    setTimeout(function() {
-        $("#select_levelOne").trigger('change');
-    }, 0);
+	// 要开始进行多级地址的回显了，修改全局变量
+	duringPositionRetrival = true;
+	positionRetrival_levelOne = data.levelOne;
+	positionRetrival_levelTwo = data.levelTwo;
+	positionRetrival_levelThree = data.levelThree;
+	// 全局变量修改完了。修改一级地址的value，并手动触发change
+	$("#select_levelOne").val(positionRetrival_levelOne);
+	setTimeout(function() {
+		$("#select_levelOne").trigger('change');
+	}, 0);
 }
 
 export { initPositionSelect, data_retrival };

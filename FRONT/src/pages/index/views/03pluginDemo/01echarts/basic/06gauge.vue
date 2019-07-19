@@ -40,20 +40,13 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xaxios({
-				url: BASE_PATH + '/dept/list.htmls',
-				params: { type: 1 }
-			}).then(res => {
-				if (res.code == 1) {
-					this.data = [
-						{ name: "苹果", value: 94 },
-						{ name: "橘子", value: 71 },
-						// { name: "菠萝", value: 76 },
-						// { name: "西瓜", value: 85 },
-					];
-					this.drawChart();
-				}
-			}).catch(error => { });
+			this.data = [
+				{ name: "苹果", value: 94 },
+				{ name: "橘子", value: 71 },
+				// { name: "菠萝", value: 76 },
+				// { name: "西瓜", value: 85 },
+			];
+			this.drawChart();
 		},
 		drawChart() {
 			// 初始化

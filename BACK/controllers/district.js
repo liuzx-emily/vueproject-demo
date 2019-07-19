@@ -1,7 +1,7 @@
 const name = "district";
 const attributes = undefined;
 
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -14,7 +14,7 @@ const getLevelOneList = async (ctx, next) => {
 };
 
 const getByParentCode = async (ctx, next) => {
-    let parentCode = ctx.query.parentCode;
+    let parentCode = ctx.requestparam.parentCode;
     let parentEle = await MainModel.findOne({ where: { code: parentCode } });
     let parentId = parentEle.id;
     let result = await MainModel.findAll({ where: { parentId: parentId } });
@@ -22,7 +22,7 @@ const getByParentCode = async (ctx, next) => {
 };
 
 const getByParentName = async (ctx, next) => {
-    let parentName = ctx.query.parentName;
+    let parentName = ctx.requestparam.parentName;
     let parentEle = await MainModel.findOne({ where: { name: parentName } });
     let parentId = parentEle.id;
     let result = await MainModel.findAll({ where: { parentId: parentId } });

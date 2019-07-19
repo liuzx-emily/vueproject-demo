@@ -81,7 +81,7 @@ export default {
 			data.append("fileName", file.name);
 			this.xaxios({
 				method: 'post',
-				url: BASE_PATH + '/upload.do',
+				url: "/api/upload.do",
 				data: data
 			}).then(res => {
 				this.list.push({
@@ -96,7 +96,7 @@ export default {
 			}).catch(error => { this.loading = false; });
 		},
 		do_download(file) {
-			window.location.href = BASE_PATH + `/download.do?id=${file.id}`;
+			window.location.href = "/api/download.do?id=" + file.id;
 		},
 		do_delete(index) {
 			this.list.splice(index, 1);

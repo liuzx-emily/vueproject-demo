@@ -13,7 +13,7 @@
 				<i class="el-icon-download"></i><span>下载</span>
 			</button>
 			<el-button type="danger" class="uploadOneImg-container-deleteBtn" icon="el-icon-delete" v-if="!readonly && canBeDeleted" @click="do_delete">删除</el-button>
-			<img :src="BASE_PATH + imgUrl" :style="imgStyle">
+			<img :src="imgUrl" :style="imgStyle">
 		</template>
 	</div>
 </template>
@@ -66,7 +66,6 @@ export default {
 	data() {
 		return {
 			loading: false,
-			BASE_PATH: BASE_PATH,
 			imgUrl: "",
 		};
 	},
@@ -96,10 +95,10 @@ export default {
 			data.append("fileName", file.name);
 			this.xaxios({
 				method: 'post',
-				url: BASE_PATH + '/upload.do',
+				url: "/api/upload.do",
 				data: data
 			}).then(res => {
-				this.imgUrl = "/download.do?id=" + res.data;
+				this.imgUrl = "/api/download.do?id=" + res.data;
 				this.$message({
 					type: "success",
 					message: "图片上传成功！"
@@ -108,7 +107,7 @@ export default {
 			}).catch(error => { this.loading = false; });
 		},
 		do_download() {
-			window.location.href = BASE_PATH + this.imgUrl;
+			window.location.href = this.imgUrl;
 		},
 		do_delete() {
 			this.imgUrl = "";

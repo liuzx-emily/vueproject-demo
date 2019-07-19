@@ -1,7 +1,7 @@
 const name = "user";
 const attributes = ["id", "username", "name", "deptId", "roleId", "email", "phone", "order", "profilePhoto"];
 
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -31,18 +31,18 @@ const rawQuery = async (params) => {
 };
 
 const findAll = async (ctx, next) => {
-    let whereParam = { deptId: ctx.query.deptId, isDelete: 0 };
-    if (ctx.query.username) {
+    let whereParam = { deptId: ctx.requestparam.deptId, isDelete: 0 };
+    if (ctx.requestparam.username) {
         whereParam.username = {
-            [Op.like]: '%' + ctx.query.username + '%',
+            [Op.like]: '%' + ctx.requestparam.username + '%',
         };
     }
-    if (ctx.query.name) {
+    if (ctx.requestparam.name) {
         whereParam.name = {
-            [Op.like]: '%' + ctx.query.name + '%',
+            [Op.like]: '%' + ctx.requestparam.name + '%',
         };
     }
-    let pagingParam = { page: ctx.query.page, row: ctx.query.row };
+    let pagingParam = { page: ctx.requestparam.page, row: ctx.requestparam.row };
     let data = await rawQuery({ whereParam, pagingParam });
     let count = await MainModel.count({ where: whereParam });
     ctx.response.body = { code: 1, data: data, count: count, session: ctx.session };
@@ -50,14 +50,14 @@ const findAll = async (ctx, next) => {
 
 
 const findByPk = async (ctx, next) => {
-    let whereParam = { isDelete: 0, id: ctx.query.id };
+    let whereParam = { isDelete: 0, id: ctx.requestparam.id };
     let data = (await rawQuery({ whereParam }))[0];
     ctx.response.body = { code: 1, data: data, };
 };
 
 const create = async (ctx, next) => {
     // 取参数
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     param.id = uuid();
     const password = param.password;
     param.password = await bcryptUtils.encryption(password);
@@ -71,7 +71,7 @@ const create = async (ctx, next) => {
 const destroy = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.ids
+            [Op.in]: ctx.requestparam.ids
         }
     };
     await MainModel.destroy({ where: whereParam });
@@ -81,7 +81,7 @@ const destroy = async (ctx, next) => {
 const destroyLogically = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.ids,
+            [Op.in]: ctx.requestparam.ids,
         },
         isDelete: 0
     };
@@ -98,23 +98,23 @@ const update = async (id, updateParam) => {
 };
 
 const editUser = async (ctx, next) => {
-    let updateParam = ctx.request.body;
+    let updateParam = ctx.requestparam;
     update(updateParam.id, updateParam);
     ctx.response.body = { code: 1, };
 };
 
 const resetPassword = async (ctx, next) => {
-    const password = ctx.request.body.password;
+    const password = ctx.requestparam.password;
     let updateParam = {
         password: await bcryptUtils.encryption(password),
         temp1: password,
     };
-    update(ctx.request.body.id, updateParam);
+    update(ctx.requestparam.id, updateParam);
     ctx.response.body = { code: 1, };
 };
 
 const changePassword = async (ctx, next) => {
-    let params = ctx.request.body;
+    let params = ctx.requestparam;
     const user = await models.user.findOne({ where: { isDelete: 0, id: params.id, } });
     const flag = await bcryptUtils.compare(params.old, user.password);
     if (flag) {

@@ -79,7 +79,7 @@ export default {
 					this.xaxios({
 						method: 'post',
 						data: param,
-						url: BASE_PATH + `/user/changePassword.do`
+						url: "/api/user/changePassword.do"
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

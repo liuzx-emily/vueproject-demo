@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 16/07/2019 17:59:41
+ Date: 19/07/2019 17:46:01
 */
 
 SET NAMES utf8mb4;
@@ -39,8 +39,22 @@ CREATE TABLE `t_article`  (
 -- ----------------------------
 -- Records of t_article
 -- ----------------------------
+INSERT INTO `t_article` VALUES ('2025473e-f273-4ac8-b502-0533055a8891', 1563526878729, 1563526878729, 0, NULL, '新文章12', '小明', 1563526877522, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('241cda06-f755-438f-b57b-81977a1229e1', 1563529349036, 1563529349036, 0, NULL, '新文章16', '小明', 1563529342338, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('3287ac8b-b97d-4f46-bb06-e5f3d1e1cb4c', 1563526882657, 1563526882657, 0, NULL, '新文章14', '小明', 1563526881628, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('68f14313-fc5e-48a9-b75d-8ae3c091b98b', 1563526773116, 1563526773116, 0, NULL, '新文章4', '小明', 1563526771899, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('6a546765-3ae4-4762-b290-18c90d85f35a', 1563526775595, 1563526775595, 0, NULL, '新文章5', '小明', 1563526774175, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('8378f2d9-5f06-41cb-8f42-3024ad6a9618', 1563526781465, 1563526781465, 0, NULL, '新文章7', '小明', 1563526779481, '<p>哈哈</p>', '1', '');
 INSERT INTO `t_article` VALUES ('8e432018-6505-4615-ac40-1c4a97e6b519', 1562916988740, 1562916988740, 0, NULL, '新文章1', '小明', 1562916982361, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('f6a39985-2b25-4a5d-8cd6-6f61344762fe', 1562916991632, 1562916991632, 0, NULL, '新文章2', '小明', 1562916990011, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('92e9ea0e-392d-47ab-915d-606913253a5c', 1563526777642, 1563526777642, 0, NULL, '新文章6', '小明', 1563526776471, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('9a98bcf3-0c0e-4ade-a120-069d31d5a19e', 1563526770760, 1563526770760, 0, NULL, '新文章3', '小明', 1563526769104, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('9af31483-b82a-418f-9b66-edc0ace57d84', 1563526783849, 1563526783849, 0, NULL, '新文章8', '小明', 1563526782615, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('9da7422e-e609-4fc1-8ab8-9cac2d0cf6f6', 1563526880880, 1563526880880, 0, NULL, '新文章13', '小明', 1563526879694, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('bdd9fcd9-32f7-4eb1-9188-ad92855104bb', 1563526885176, 1563526885176, 0, NULL, '新文章15', '小明', 1563526883455, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('c5b39e1b-32f5-4b8a-acb5-079b3bc301e9', 1563526871322, 1563526871322, 0, NULL, '新文章11', '小明', 1563526869697, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('d9624b9e-84f3-4a3d-8895-172384e9470c', 1563526788033, 1563526868671, 0, NULL, '新文章10', '小明', 1563526786940, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('f4737c09-a773-47bf-9e37-9706197b5e44', 1563526786056, 1563526786056, 0, NULL, '新文章9', '小明', 1563526784862, '<p>哈哈</p>', '1', '');
+INSERT INTO `t_article` VALUES ('f6a39985-2b25-4a5d-8cd6-6f61344762fe', 1562916991632, 1563524264864, 0, NULL, '新文章2', '小明', 1562916990011, '<p>哈哈222</p>', '1', '');
 
 -- ----------------------------
 -- Table structure for t_article_file
@@ -53,7 +67,12 @@ CREATE TABLE `t_article_file`  (
   `articleId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章id',
   `fileId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '附件id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of t_article_file
+-- ----------------------------
+INSERT INTO `t_article_file` VALUES (1, 0, 0, '241cda06-f755-438f-b57b-81977a1229e1', '8e408a91-7530-4933-bb15-c86098fc09a2');
 
 -- ----------------------------
 -- Table structure for t_dept
@@ -3720,6 +3739,8 @@ CREATE TABLE `t_file`  (
 -- Records of t_file
 -- ----------------------------
 INSERT INTO `t_file` VALUES ('76525bf4-c746-445f-835c-715d6232f2fd', 1562314468574, 1562314468574, '17.jpg', 33573, 'E:\\myProject\\upload\\upload_17edc2a24627db7c352e5c78de99fd64.jpg');
+INSERT INTO `t_file` VALUES ('8e408a91-7530-4933-bb15-c86098fc09a2', 1563529346937, 1563529346937, '5aa0f8b158041.jpg', 52321, 'e:\\myProject\\upload\\upload_da2c805713eb6469c59557f52d15b632.jpg');
+INSERT INTO `t_file` VALUES ('e9e4cf9d-71ce-443a-814f-dcc5af062db1', 1563439795229, 1563439795229, '25.jpg', 33151, 'E:\\myProject\\upload\\upload_535da5ba4c3e6f8a174cab16bd4464f8.jpg');
 
 -- ----------------------------
 -- Table structure for t_magiccomponent
@@ -3783,7 +3804,7 @@ INSERT INTO `t_permission` VALUES (2, 1557027515408, 1559115267859, 0, 2, '部�
 INSERT INTO `t_permission` VALUES (3, 1557027775223, 1559117133846, 0, 1, '人员管理', 1, 2, '/system/deptAndUser', NULL, '');
 INSERT INTO `t_permission` VALUES (4, 1557028216406, 1557028216406, 0, 3, '角色管理', 1, 2, '/system/role', NULL, '');
 INSERT INTO `t_permission` VALUES (5, 1557110406100, 1557372291268, 0, 4, '权限管理', 1, 2, '/system/permission', NULL, '');
-INSERT INTO `t_permission` VALUES (7, 1557111458144, 1559271081602, 0, 1, '预设样式', 0, 1, '/presetStyle', 'cube', '');
+INSERT INTO `t_permission` VALUES (7, 1557111458144, 1563344297412, 0, 1, '预设样式', 0, 1, '/presetStyle', 'cube', '');
 INSERT INTO `t_permission` VALUES (8, 1557111635237, 1559024250082, 0, 2, '组件说明', 0, 1, '/componentInstructions', 'superpowers', '');
 INSERT INTO `t_permission` VALUES (9, 1557111644861, 1557129495997, 0, 3, '插件DEMO', 0, 1, '/pluginDemo', 'leaf', '');
 INSERT INTO `t_permission` VALUES (10, 1557111658700, 1557129564820, 0, 4, '黑科技&难点', 0, 1, '/blackTechnology', 'magic', '');
@@ -3976,9 +3997,10 @@ INSERT INTO `t_user` VALUES ('2fdfad5f-f522-4213-8fc2-7ef38a1199e4', 15592712736
 INSERT INTO `t_user` VALUES ('4573d922-29ee-44d5-bd93-4267be5fc0ef', 1563244187232, 1563244197228, 1, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '4d9772fe-bb47-4c60-b837-8d96be77677b', 'asdfasdf', 'asdfasdf', '$2b$10$OUGu7CJJxi8KLGEOkAzjNOuxnuIljTTxEKp9uvc1/XyexCT7BScHe', '', '', '', '123456');
 INSERT INTO `t_user` VALUES ('56a67bce-4575-4129-a88c-105662832f56', 1559121455119, 1560483933717, 0, 0, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'bocaixiaoliu', '菠菜小刘', '$2b$10$.Xr0dTg6LZmUCibaPWWN2ucI4i5B/.sO1ZkUufk0BEYL9l1Oigu8q', '', '', NULL, '123456');
 INSERT INTO `t_user` VALUES ('5b29f21d-0b8d-4206-b226-f1cf92d1a7db', 1556530469471, 1560483932130, 0, NULL, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'qincaixiaoha', '现在是菠菜小哈', '$2b$10$rz7iZZ7ajAyfq3c6euhQPewYttEL6b5EToVQgtF0qHmHvbQmO1Q9.', '', '13825164233', NULL, '123456');
-INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1563170797670, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2b$10$5W8piOSk85X5uSRnPHocG.iu5tp4cKgDx4lPeskwFWqlhtyGbIE2W', 'xiaoming@163.com', '15822432311', '/download.do?id=76525bf4-c746-445f-835c-715d6232f2fd', 'rock123');
+INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1563439796168, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2b$10$5W8piOSk85X5uSRnPHocG.iu5tp4cKgDx4lPeskwFWqlhtyGbIE2W', 'xiaoming@163.com', '15822432311', '/api/download.do?id=e9e4cf9d-71ce-443a-814f-dcc5af062db1', 'rock123');
 INSERT INTO `t_user` VALUES ('98c961b4-4809-4f55-9ff6-a53b15402e26', 1563245875245, 1563245875245, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'xiaogang', '小刚', '$2b$10$2/rcmsxs8Evu6pIAjpDvw.ZkRxZKD5Aoxqz23qLkmlr9OWMRPuU9i', '', '', '', '123456');
-INSERT INTO `t_user` VALUES ('a723fbcc-6235-4e07-b038-8bd6f1eae97e', 1560483092329, 1560490276643, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'aaa', '哎哎哎', '$2b$10$ddy23q6IX6iQEa1kW6MiBu/4ukCIflyDmhFEV1LBJB.EQBejaPK/q', '', '', NULL, '123456');
+INSERT INTO `t_user` VALUES ('a723fbcc-6235-4e07-b038-8bd6f1eae97e', 1560483092329, 1563417186068, 1, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'aaa', '哎哎哎', '$2b$10$ddy23q6IX6iQEa1kW6MiBu/4ukCIflyDmhFEV1LBJB.EQBejaPK/q', '', '', NULL, '123456');
+INSERT INTO `t_user` VALUES ('af2c9f71-289b-483a-9939-7870367cc1aa', 1563438482428, 1563438486601, 1, 0, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '4d9772fe-bb47-4c60-b837-8d96be77677b', 'aa', 'aaa', '$2b$10$WcE3PPMRKP7Q8eJfsgEPNuGuZdiucEr031dDf95u6ZBk7A/.wmtPW', '', '', '', '123456');
 INSERT INTO `t_user` VALUES ('e5c382ce-d060-4604-b35c-8582b66ab5d2', 1559271290307, 1560483922563, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'shucaixiaogang', '蔬菜小刚', '$2b$10$tENZ0jiy8mWhuqRlod/QxOsPtcaFHeZbg0KJWa5387irat8mKefq2', '', '', NULL, '123456');
 
 -- ----------------------------

@@ -93,7 +93,7 @@ export default {
 		get_levelOne_list() {
 			this.levelOne_loading = true;
 			this.xaxios({
-				url: BASE_PATH + '/district/getLevelOneList.do',
+				url: "/api/district/getLevelOneList.do",
 			}).then(res => {
 				this.levelOne_list = this.processResponse(res);
 				this.levelOne_loading = false;
@@ -104,7 +104,7 @@ export default {
 			if (this.levelOne) {
 				this.levelTwo_loading = true;
 				this.xaxios({
-					url: BASE_PATH + '/district/getByParentCode.do',
+					url: "/api/district/getByParentCode.do",
 					params: { parentCode: this.levelOne }
 				}).then(res => {
 					this.levelTwo_list = this.processResponse(res);
@@ -124,7 +124,7 @@ export default {
 			this.levelThree_list = [];
 			if (this.levelTwo) {
 				this.xaxios({
-					url: BASE_PATH + '/district/getByParentCode.do',
+					url: "/api/district/getByParentCode.do",
 					params: { parentCode: this.levelTwo }
 				}).then(res => {
 					this.levelThree_list = this.processResponse(res);

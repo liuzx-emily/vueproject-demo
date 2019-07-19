@@ -17,7 +17,7 @@
 <script>
 export default {
     install(Vue) {
-        Vue.component("xTable", this);
+        Vue.component("x-table", this);
     },
     props: {
         refresh: Function,

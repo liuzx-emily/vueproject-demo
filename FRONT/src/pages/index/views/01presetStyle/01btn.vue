@@ -1,93 +1,38 @@
-<style scoped="" lang="less">
-    .box{
-        margin:10px 0;
-        .box-title{
-            display:inline-block;
-            margin-right:10px;
-            width:130px;
-            text-align:right;
-        }
-    }
-</style>
 <template>
-    <section>
-        <el-card>
-            <div slot="header">
-                <span>尺寸</span>
-            </div>
-            <section class="box">
-                <section class="box-title">
-                    size-tiny
-                </section>
-                <el-button type="" class="size-tiny">按钮</el-button>
-                <el-button type="primary" class="size-tiny">按钮</el-button>
-                <el-button type="success" class="size-tiny">按钮</el-button>
-                <el-button type="warning" class="size-tiny">按钮</el-button>
-                <el-button type="danger" class="size-tiny">按钮</el-button>
-            </section>
-            <section class="box">
-                <section class="box-title">
-                    size-small
-                </section>
-                <el-button type="" class="size-small">按钮</el-button>
-                <el-button type="primary" class="size-small">按钮</el-button>
-                <el-button type="success" class="size-small">按钮</el-button>
-                <el-button type="warning" class="size-small">按钮</el-button>
-                <el-button type="danger" class="size-small">按钮</el-button>
-            </section>
-            <section class="box">
-                <section class="box-title">
-                    size-common
-                </section>
-                <el-button type="" class="size-common">按钮</el-button>
-                <el-button type="primary" class="size-common">按钮</el-button>
-                <el-button type="success" class="size-common">按钮</el-button>
-                <el-button type="warning" class="size-common">按钮</el-button>
-                <el-button type="danger" class="size-common">按钮</el-button>
-            </section>
-            <section class="box">
-                <section class="box-title">
-                    size-big
-                </section>
-                <el-button type="" class="size-big">按钮</el-button>
-                <el-button type="primary" class="size-big">按钮</el-button>
-                <el-button type="success" class="size-big">按钮</el-button>
-                <el-button type="warning" class="size-big">按钮</el-button>
-                <el-button type="danger" class="size-big">按钮</el-button>
-            </section>
-        </el-card>
-        <el-card>
-            <div slot="header">
-                <span>颜色</span>
-            </div>
-            <section class="box">
-                <section class="box-title">
-                    color-prettyblue
-                </section>
-                <el-button class="color-prettyblue">按钮</el-button>
-            </section>
-            <section class="box">
-                <section class="box-title">
-                    color-prettygreen
-                </section>
-                <el-button class="color-prettygreen">按钮</el-button>
-            </section>
-            <section class="box">
-                <section class="box-title">
-                    color-prettyred
-                </section>
-                <el-button class="color-prettyred">按钮</el-button>
-            </section>
-        </el-card>
-    </section>
+	<section>
+		<xtree :data="treedata" style="background:#eee;"></xtree>
+	</section>
 </template>
 <script>
+import xtree from '~/components/tree/main.vue'
 export default {
-    components: {},
-    data() {
-        return {
-
-        }
-    }
+	components: { xtree },
+	data() {
+		const treedata = this.xtools.arrayToTree(original_data);
+		return { treedata }
+	},
+	mounted(){
+		console.log(this.treedata);
+	},
 };
+const original_data = [
+	{ "id": 16, "name": "echarts", "parentId": 9, },
+	{ "id": 18, "name": "CSS", "parentId": 10, },
+	{ "id": 26, "name": "打印", "parentId": 25, },
+	{ "id": 41, "name": "tricks", "parentId": 21, },
+	{ "id": 17, "name": "Guide", "parentId": 9, },
+	{ "id": 21, "name": "Javascript", "parentId": 10, },
+	{ "id": 27, "name": "页面导出PDF", "parentId": 25, },
+	{ "id": 30, "name": "在初始化方法完成后再加载其他部分", "parentId": 28, },
+	{ "id": 42, "name": "多级地址", "parentId": 21, },
+	{ "id": 9, "name": "插件DEMO", "parentId": 0, },
+	{ "id": 19, "name": "使用css绘制图形", "parentId": 18, },
+	{ "id": 22, "name": "console", "parentId": 21, },
+	{ "id": 29, "name": "图片的src是变量", "parentId": 28, },
+	{ "id": 10, "name": "黑科技&难点", "parentId": 0, },
+	{ "id": 25, "name": "综合", "parentId": 10, },
+	{ "id": 28, "name": "vue相关", "parentId": 10, },
+];
 </script>
+
+ 

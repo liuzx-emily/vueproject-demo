@@ -98,7 +98,7 @@ export default {
 				afterGettingData();
 			} else {
 				this.xaxios({
-					url: BASE_PATH + "/article/detail.do",
+					url: "/api/article/detail.do",
 					params: { id: this.articleId }
 				}).then(res => {
 					for (let key in original_data) {
@@ -150,7 +150,7 @@ export default {
 					this.loading = true;
 					this.xaxios({
 						method: 'post',
-						url: BASE_PATH + `/article/${this.mode == 1 ? "add" : "edit"}.do`,
+						url: `/api/article/${this.mode == 1 ? "add" : "edit"}.do`,
 						data: param
 					}).then(res => {
 						// 数据格式化
@@ -176,7 +176,7 @@ export default {
 				let param = { id: this.articleId, audit: true };
 				this.xaxios({
 					method: "post",
-					url: BASE_PATH + "/article/audit.do",
+					url: "/api/article/audit.do",
 					data: param
 				}).then(res => {
 					if (res.code == 1) {
@@ -205,7 +205,7 @@ export default {
 				let param = { id: this.articleId, audit: false, reason: value };
 				this.xaxios({
 					method: "post",
-					url: BASE_PATH + "/article/audit.do",
+					url: "/api/article/audit.do",
 					data: param
 				}).then(res => {
 					if (res.code == 1) {

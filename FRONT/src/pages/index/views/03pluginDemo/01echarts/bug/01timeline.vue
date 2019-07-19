@@ -65,64 +65,58 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xaxios({
-				url: BASE_PATH + '/dept/list.htmls',
-				params: { type: 1 }
-			}).then(res => {
-				if (res.code == 1) {
-					this.data = [{
-						year: '2015年',
-						data: [
-							{ name: "西瓜", value: [30, 59, 47, 66], },
-							// { name: "苹果", value: [55, 64, 43, 71], },
-							// { name: "菠萝", value: [53, 45, 22, 17], },
-						]
-					}, {
-						year: '2016年',
-						data: [
-							{ name: "西瓜", value: [85, 129, 23, 7], },
-							{ name: "苹果", value: [169, 17, 93, 76], },
-							{ name: "菠萝", value: [34, 135, 15, 46], },
-						]
-					}, {
-						year: '2017年',
-						data: [
-							{ name: "西瓜", value: [79, 96, 7, 31], },
-							// { name: "苹果", value: [23, 23, 53, 78], },
-							// { name: "菠萝", value: [72, 2, 98, 28], },
-						]
-					}, {
-						year: '2018年',
-						data: [
-							{ name: "西瓜", value: [7, 77, 4, 76], },
-							{ name: "苹果", value: [71, 62, 39, 19], },
-							// { name: "菠萝", value: [80, 65, 66, 67], },
-						]
-					}, {
-						year: '2019年',
-						data: [
-							{ name: "西瓜", value: [83, 95, 23, 75], },
-							// { name: "苹果", value: [57, 94, 57, 46], },
-							// { name: "菠萝", value: [20, 25, 100, 73], },
-						]
-					},];
-					// --------------------- 处理bug --------------------------
-					if (this.fixBug) {
-						// 首先，算出最多有几条
-						let maxNumber = Math.max(...this._(this.data).map("data").map("length").value());
-						// 给条数少的补上
-						this._(this.data).map("data").forEach(item => {
-							let len = item.length;
-							for (let i = len; i < maxNumber; i++) {
-								// name无所谓。value设置为undefined，在图表和tooltip中都不会出现
-								item.push({ name: "占位的", value: undefined, });
-							}
-						});
+
+			this.data = [{
+				year: '2015年',
+				data: [
+					{ name: "西瓜", value: [30, 59, 47, 66], },
+					// { name: "苹果", value: [55, 64, 43, 71], },
+					// { name: "菠萝", value: [53, 45, 22, 17], },
+				]
+			}, {
+				year: '2016年',
+				data: [
+					{ name: "西瓜", value: [85, 129, 23, 7], },
+					{ name: "苹果", value: [169, 17, 93, 76], },
+					{ name: "菠萝", value: [34, 135, 15, 46], },
+				]
+			}, {
+				year: '2017年',
+				data: [
+					{ name: "西瓜", value: [79, 96, 7, 31], },
+					// { name: "苹果", value: [23, 23, 53, 78], },
+					// { name: "菠萝", value: [72, 2, 98, 28], },
+				]
+			}, {
+				year: '2018年',
+				data: [
+					{ name: "西瓜", value: [7, 77, 4, 76], },
+					{ name: "苹果", value: [71, 62, 39, 19], },
+					// { name: "菠萝", value: [80, 65, 66, 67], },
+				]
+			}, {
+				year: '2019年',
+				data: [
+					{ name: "西瓜", value: [83, 95, 23, 75], },
+					// { name: "苹果", value: [57, 94, 57, 46], },
+					// { name: "菠萝", value: [20, 25, 100, 73], },
+				]
+			},];
+			// --------------------- 处理bug --------------------------
+			if (this.fixBug) {
+				// 首先，算出最多有几条
+				let maxNumber = Math.max(...this._(this.data).map("data").map("length").value());
+				// 给条数少的补上
+				this._(this.data).map("data").forEach(item => {
+					let len = item.length;
+					for (let i = len; i < maxNumber; i++) {
+						// name无所谓。value设置为undefined，在图表和tooltip中都不会出现
+						item.push({ name: "占位的", value: undefined, });
 					}
-					// --------------------- 处理bug --------------------------
-					this.drawChart();
-				}
-			}).catch(error => { });
+				});
+			}
+			// --------------------- 处理bug --------------------------
+			this.drawChart();
 		},
 		// 用数据画画
 		drawChart() {

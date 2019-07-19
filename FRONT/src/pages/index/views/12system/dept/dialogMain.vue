@@ -82,7 +82,7 @@ export default {
 				name: this.dialogData.name
 			};
 			this.xaxios({
-				url: BASE_PATH + '/dept/nameValidation.do',
+				url: "/api/dept/nameValidation.do",
 				params: param
 			}).then(res => {
 				if (res.data) {
@@ -113,7 +113,7 @@ export default {
 			} else if (type == 2 || type == 3) {
 				// 编辑、查看
 				this.xaxios({
-					url: BASE_PATH + "/dept/detail.do",
+					url: "/api/dept/detail.do",
 					params: { id: id, }
 				}).then(res => {
 					for (let key in original_data) {
@@ -140,8 +140,8 @@ export default {
 					let url = { 1: "add", 2: "edit" }[this.dialogType];
 					this.xaxios({
 						method: 'post',
+						url: `/api/dept/${url}.do`,
 						data: param,
-						url: BASE_PATH + `/dept/${url}.do`
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

@@ -140,14 +140,14 @@ export default {
             data.append("fileName", file.name);
             this.xaxios({
                 method: 'post',
-                url: BASE_PATH + "/upload.do",
+                url: "/api/upload.do",
                 data: data
             }).then(res => {
                 this.$message({
                     type: "success",
                     message: "图片上传成功！"
                 });
-                const path = BASE_PATH + "/download.do?id=" + res.data;
+                const path = "/api/download.do?id=" + res.data;
                 window.tinymce.get(this.tinymceId).insertContent(`<img src="${path}">`);
                 this.loading = false;
             });

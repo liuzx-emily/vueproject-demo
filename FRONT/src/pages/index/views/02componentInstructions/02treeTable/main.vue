@@ -42,9 +42,9 @@ export default {
             this.loading = true;
             setTimeout(() => {
                 this.treeTableData = this.xtools.arrayToTree(listData, {
-                    before_idkey: "id",
-                    before_parentkey: "parentId",
-                    after_childkey: "child"
+                    id: "id",
+                    parentId: "parentId",
+                    children: "child"
                 });
                 this.loading = false;
             }, 1000);

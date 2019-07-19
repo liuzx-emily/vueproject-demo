@@ -98,7 +98,7 @@ export default {
 				name: this.dialogData.name
 			};
 			this.xaxios({
-				url: BASE_PATH + '/role/nameValidation.do',
+				url: "/api/role/nameValidation.do",
 				params: param
 			}).then(res => {
 				if (res.data) {
@@ -110,12 +110,12 @@ export default {
 		},
 		getAllPermissionData() {
 			this.xaxios({
-				url: BASE_PATH + '/permission/list.do',
+				url: "/api/permission/list.do",
 			}).then(res => {
 				this.permissionTreeData = this.xtools.arrayToTree(res.data, {
-					before_idkey: "id",
-					before_parentkey: "parentId",
-					after_childkey: 'child'
+					id: "id",
+					parentId: "parentId",
+					children: 'child'
 				});
 			});
 		},
@@ -142,7 +142,7 @@ export default {
 			} else if (type == 2 || type == 3) {
 				// 编辑、查看
 				this.xaxios({
-					url: BASE_PATH + "/role/detail.do",
+					url: "/api/role/detail.do",
 					params: {
 						id: id,
 					}
@@ -174,7 +174,7 @@ export default {
 					this.xaxios({
 						method: 'post',
 						data: param,
-						url: BASE_PATH + `/role/${url}.do`
+						url: `/api/role/${url}.do`
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

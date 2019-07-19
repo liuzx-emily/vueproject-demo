@@ -42,7 +42,7 @@
 				<el-button v-permission:article="1" type="primary" @click="toDetailPage(1)">新增</el-button>
 			</section>
 		</section>
-		<xTable :refresh="srefresh" ref="table">
+		<x-table :refresh="srefresh" ref="table">
 			<el-table-column prop="title" label="标题"></el-table-column>
 			<el-table-column prop="publisher" label="发布人" width="120px"></el-table-column>
 			<el-table-column prop="publishTime" label="发布时间" width="150px">
@@ -66,7 +66,7 @@
 					<el-button v-permission:article="4" v-if="scope.row.state==1||scope.row.state==4" class="size-small" type="danger" @click="openConfirm_delete(1,scope.row)">删除</el-button>
 				</template>
 			</el-table-column>
-		</xTable>
+		</x-table>
 	</section>
 </template>
 <script>
@@ -95,7 +95,7 @@ export default {
 			// 获取表格数据
 			self.loading = true;
 			self.xaxios({
-				url: BASE_PATH + "/article/list.do",
+				url: "/api/article/list.do",
 				params: param
 			}).then(res => {
 				// 数据格式化
@@ -149,7 +149,7 @@ export default {
 				}
 			}
 			this.xtools.openConfirm_delete({
-				url: '/article/delete.do',
+				url: "/api/article/delete.do",
 				data: { ids: ids },
 				refreshFunc: this.refreshTable,
 			});

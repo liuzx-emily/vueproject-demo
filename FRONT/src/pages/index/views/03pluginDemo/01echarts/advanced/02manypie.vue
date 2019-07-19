@@ -54,30 +54,23 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xaxios({
-				url: BASE_PATH + '/dept/list.htmls',
-				params: { type: 1 }
-			}).then(res => {
-				if (res.code == 1) {
-					this.data = [
-						{ name: "苹果", value: 54 },
-						{ name: "橘子", value: 44 },
-						{ name: "菠萝", value: 35 },
-						{ name: "西瓜", value: 30 },
-						{ name: "玉米", value: 17 },
-						{ name: "香蕉", value: 11 },
-						{ name: "西葫芦", value: 31 },
-						{ name: "牛肉", value: 20 },
-						{ name: "土豆", value: 65 },
-						{ name: "菜花", value: 10 },
-						{ name: "芹菜", value: 20 },
-						{ name: "鸡蛋", value: 39 },
-						{ name: "西红柿", value: 54 },
-						{ name: "魔芋", value: 63 },
-					];
-					this.drawChart();
-				}
-			}).catch(error => { });
+			this.data = [
+				{ name: "苹果", value: 54 },
+				{ name: "橘子", value: 44 },
+				{ name: "菠萝", value: 35 },
+				{ name: "西瓜", value: 30 },
+				{ name: "玉米", value: 17 },
+				{ name: "香蕉", value: 11 },
+				{ name: "西葫芦", value: 31 },
+				{ name: "牛肉", value: 20 },
+				{ name: "土豆", value: 65 },
+				{ name: "菜花", value: 10 },
+				{ name: "芹菜", value: 20 },
+				{ name: "鸡蛋", value: 39 },
+				{ name: "西红柿", value: 54 },
+				{ name: "魔芋", value: 63 },
+			];
+			this.drawChart();
 		},
 		// 用数据画画
 		drawChart() {

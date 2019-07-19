@@ -44,6 +44,7 @@ export default {
 	components: {},
 	data() {
 		return {
+			DEFAULT_PASSWORD: "123456",
 			loading: false,
 			roleListData: [],
 			dialogVisible: false,
@@ -76,7 +77,6 @@ export default {
 		}
 	},
 	computed: {
-		DEFAULT_PASSWORD() { return window.DEFAULT_PASSWORD; },
 		readonly() { return this.dialogType == 3; },
 		dialogTitle() { return { 1: "新增", 2: "编辑", 3: "查看" }[this.dialogType] || ""; },
 	},
@@ -93,7 +93,7 @@ export default {
 				name: this.dialogData.name
 			};
 			this.xaxios({
-				url: BASE_PATH + '/user/nameValidation.do',
+				url: "/api/user/nameValidation.do",
 				params: param
 			}).then(res => {
 				if (res.data) {
@@ -106,7 +106,7 @@ export default {
 		// 获取角色数据
 		getRoleList() {
 			this.xaxios({
-				url: BASE_PATH + '/role/list.do',
+				url: "/api/role/list.do",
 			}).then(res => {
 				this.roleListData = res.data;
 			}).catch(error => { });
@@ -132,7 +132,7 @@ export default {
 			} else if (type == 2 || type == 3) {
 				// 编辑、查看
 				this.xaxios({
-					url: BASE_PATH + "/user/detail.do",
+					url: "/api/user/detail.do",
 					params: { id: id, }
 				}).then(res => {
 					for (let key in original_data) {
@@ -153,9 +153,9 @@ export default {
 					this.loading = true;
 					let url = { 1: "add", 2: "edit" }[this.dialogType];
 					this.xaxios({
-						method:'post',
+						method: 'post',
 						data: param,
-						url: BASE_PATH + `/user/${url}.do`
+						url: `/api/user/${url}.do`
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

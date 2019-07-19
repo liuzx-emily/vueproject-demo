@@ -1,6 +1,6 @@
 <template>
 	<section id="userBox">
-		<img v-if="userInfo.profilePhoto" class="profilePhoto" :src="BASE_PATH + userInfo.profilePhoto">
+		<img v-if="userInfo.profilePhoto" class="profilePhoto" :src="userInfo.profilePhoto">
 		<span class="username">{{userInfo.name}}</span>
 		<i class="fa fa-caret-down"></i>
 		<ul>
@@ -24,7 +24,6 @@ export default {
 	components: { dialogEditInfo, dialogChangePassword, },
 	data() {
 		return {
-			BASE_PATH: BASE_PATH,
 			userInfo: {
 				id: "",
 				username: "",
@@ -40,7 +39,7 @@ export default {
 		// 获取用户信息
 		getUserInfo() {
 			this.xaxios({
-				url: BASE_PATH + "/userInfo.do"
+				url: "/api/userInfo.do"
 			}).then(res => {
 				if (res.code == 1) {
 					this.$store.state.userId = res.data.id;
@@ -69,7 +68,7 @@ export default {
 			this.loading = false;
 			this.xaxios({
 				method: "post",
-				url: BASE_PATH + "/logout.do"
+				url: "/api/logout.do"
 			}).then(res => {
 				if (res.code == "1") {
 					window.location.href = "./login.html";

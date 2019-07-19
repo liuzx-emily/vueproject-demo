@@ -1,7 +1,7 @@
 const name = "permission";
 const attributes = ['id', "name", "parentId", "type", "code", "icon", "order", ];
 
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -34,14 +34,14 @@ const findAll = async (ctx, nect) => {
 };
 
 const findByPk = async (ctx, next) => {
-    let whereParam = { isDelete: 0, id: ctx.query.id };
+    let whereParam = { isDelete: 0, id: ctx.requestparam.id };
     let data = (await rawQuery({ whereParam }))[0];
     ctx.response.body = { code: 1, data: data, };
 };
 
 const nameValidation = async (ctx, next) => {
-    let name = ctx.query.name;
-    let id = ctx.query.id;
+    let name = ctx.requestparam.name;
+    let id = ctx.requestparam.id;
     let whereParam = {};
     whereParam.isDelete = 0;
     whereParam.name = name;
@@ -54,14 +54,14 @@ const nameValidation = async (ctx, next) => {
 
 const create = async (ctx, next) => {
     // 取参数
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     // param.id = uuid();
     await MainModel.create(param);
     ctx.response.body = { code: 1, };
 };
 
 const update = async (ctx, next) => {
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     let whereParam = { isDelete: 0, id: param.id, };
     await MainModel.update(param, { where: whereParam });
     ctx.response.body = { code: 1, };
@@ -70,7 +70,7 @@ const update = async (ctx, next) => {
 const destroy = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.ids
+            [Op.in]: ctx.requestparam.ids
         }
     };
     await MainModel.destroy({ where: whereParam });
@@ -80,7 +80,7 @@ const destroy = async (ctx, next) => {
 const destroyLogically = async (ctx, next) => {
     let whereParam = {
         id: {
-            [Op.in]: ctx.request.body.ids,
+            [Op.in]: ctx.requestparam.ids,
         },
         isDelete: 0
     };

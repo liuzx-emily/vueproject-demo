@@ -37,7 +37,7 @@ export default {
 		getNav() {
 			this.loading = true;
 			this.xaxios({
-				url: BASE_PATH + '/portal/nav.htmls',
+				url: "/api/portal/nav.htmls",
 			}).then(res => {
 				if (res.code == 1) {
 					let nav = this._.cloneDeep(res.data);

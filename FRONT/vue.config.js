@@ -15,12 +15,13 @@ module.exports = {
 	*/
 	publicPath: '',
 	// outputDir: __dirname + "/dist",
+	outputDir: "e:\\dist",
 	configureWebpack: config => {
 		// console.log(JSON.stringify(config));
 		if (process.env.NODE_ENV === 'production') {
 			// 为生产环境修改配置...
-			// config.output.filename = 'js/[name].js';
-			config.output.chunkFilename = 'js/chunks/[name].js';
+			config.output.filename = 'js/[name].js';
+			// config.output.chunkFilename = 'js/chunks/[name].js';
 		} else {
 			// 为开发环境修改配置...
 		}
@@ -35,15 +36,12 @@ module.exports = {
 	},
 	// 多页面
 	pages: {
-		/* index: {
-			// js入口
+		index: {
 			entry: 'src/pages/index/main.js',
-			// 模板来源：多个页面可以用一个模版
 			template: 'public/index.html',
-			// 标题 需要在模版里写上： <title><%= htmlWebpackPlugin.options.title %></title>
 			title: '首页',
-			// 在 dist/index.html 的输出
-			filename: 'index.html'
+			filename: 'index.html',
+			importTinymce: true
 		},
 		demo: {
 			entry: 'src/pages/demo/main.js',
@@ -62,7 +60,7 @@ module.exports = {
 			template: 'public/index.html',
 			title: '注册',
 			filename: 'register.html'
-		}, */
+		},
 		portal: {
 			entry: 'src/pages/portal/main.js',
 			template: 'public/index.html',
@@ -75,10 +73,10 @@ module.exports = {
 		// 端口号
 		port: "9446",
 		proxy: {
-			'/kitty': {
-				target: 'http://localhost:3000/',
+			'/api': {
+				target: 'http://10.10.10.7:3000/',
 				pathRewrite: {
-					'^/kitty': '',
+					'^/api': '',
 				}
 			},
 			'/foo': {

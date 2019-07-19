@@ -2,9 +2,7 @@
 	<div id="app" v-loading.fullscreen.lock="!initDone" element-loading-background="rgba(0,0,0,0.2)">
 		<section id="topbar">
 			<!-- logo -->
-			<section class="logo">后台管理系统</section>
-			<!-- 按钮放在这里，只是为了演示导出PDF的效果 -->
-			<el-button type="danger" @click="do_exportPDF">导出PDF</el-button>
+			<section class="logo">Fullmetal Alchemist</section>
 			<!-- 包在 .rightAlignContainer 中的内容会靠右对齐 -->
 			<div class="rightAlignContainer">
 				<!-- 导航 -->
@@ -25,7 +23,6 @@
 				<!-- 用户信息 -->
 				<userBox></userBox>
 			</div>
-			<!-- 导航 -->
 		</section>
 		<section id="columnContainer" :class="{cuttedSideBar:$store.state.cuttedSideBar}" v-if="initDone">
 			<!-- 侧边栏 -->
@@ -50,21 +47,12 @@
 export default {
 	components: {},
 	watch: {
-		"$route.path": {
-			immediate: true,
-			handler(value) {
-				// console.log(this.$router);
-				// console.log("$route.path为："+value);
-			}
-		},
 		sidebarNavList() {
 			this.jumpToFirstNav();
 		},
 		initDone(value) {
 			if (value) {
-				this.$nextTick(() => {
-					// this.calculateHeight();
-				});
+				this.$nextTick(() => { });
 			}
 		}
 	},
@@ -111,6 +99,7 @@ export default {
 		this.getPermissionBtnData();
 	},
 	data() {
+
 		return {
 			initDone_menu: false,
 			// 因为用v-permission控制按钮权限，所以一定要先获取到所有按钮的权限
@@ -125,24 +114,6 @@ export default {
 		};
 	},
 	methods: {
-		// 演示导出PDF的效果
-		do_exportPDF() {
-			// 不能打印 #mainContentWrap，因为他是限高的
-			let obj = document.querySelector("#mainContentWrap>*");
-			let fileName = "演示导出PDF效果";
-			this.exportPDF(obj, fileName);
-		},
-		// 计算 #columnContainer的高度
-		// calculateHeight() {
-		// 	let func = () => {
-		// 		let h1 = this.xtools.getWindowSize().height;
-		// 		let h2 = document.querySelector('#topbar').offsetHeight;
-		// 		let h3 = h1 - h2;
-		// 		document.querySelector('#columnContainer').style.height = h3 + "px";
-		// 	};
-		// 	func();
-		// 	window.onresize = func;
-		// },
 		// 如果访问本组件的根地址，自动跳转到第一个菜单
 		jumpToFirstNav() {
 			const findRealPage = list => {
@@ -170,12 +141,12 @@ export default {
 		// 获取菜单数据。如果现在没有进入任何一个页面，则手动跳转到第一个菜单
 		getMenuData() {
 			this.xaxios({
-				url: BASE_PATH + "/getMenus.do"
+				url: "/api/getMenus.do"
 			}).then(res => {
 				const navList = this.xtools.arrayToTree(res.data, {
-					before_idkey: "id",
-					before_parentkey: "parentId",
-					after_childkey: "child"
+					id: "id",
+					parentId: "parentId",
+					children: "child"
 				});
 				// 路由跳转
 				if (navList && navList.length > 0) {
@@ -196,7 +167,7 @@ export default {
 		// 获取按钮权限数据
 		getPermissionBtnData() {
 			this.xaxios({
-				url: BASE_PATH + "/getBtns.do",
+				url: "/api/getBtns.do",
 			}).then(res => {
 				this.$store.state.permissionBtns = this._.map(res.data, "code");
 				this.initDone_btn = true;

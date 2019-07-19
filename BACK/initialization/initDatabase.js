@@ -1,5 +1,6 @@
 // -----------------------------------------------------1 Setting up a connection -----------------------------------------------------
 const Sequelize = require('sequelize');
+// const Sequelize = require('./node_modules/sequelize');
 
 const config = require('../config');
 

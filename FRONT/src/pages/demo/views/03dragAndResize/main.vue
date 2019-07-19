@@ -117,7 +117,7 @@ export default {
 		},
 		getData() {
 			this.xaxios({
-				url: BASE_PATH + "/magiccomponent/list.do",
+				url: "/api/magiccomponent/list.do",
 				params: {
 					contentId: this.contentId
 				}
@@ -129,7 +129,7 @@ export default {
 					return item;
 				});
 				let dataList = this.xtools.arrayToTree(data, {
-					after_childkey: "list",
+					children: "list",
 				});
 				this.$store.commit("magicComponent/setDataList", dataList);
 			})
@@ -137,7 +137,7 @@ export default {
 		do_save() {
 			this.xaxios({
 				method: 'POST',
-				url: BASE_PATH + "/magiccomponent/saveAll.do",
+				url: "/api/magiccomponent/saveAll.do",
 				data: {
 					list: this.dataList,
 					contentId: this.contentId

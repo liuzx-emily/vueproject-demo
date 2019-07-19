@@ -24,11 +24,12 @@
 	</div>
 </template>
 <script>
+const captchaImgSrc_raw = "/api/captcha.do";
 export default {
 	data() {
 		return {
 			loading: false,
-			captchaImgSrc: BASE_PATH + "/captcha.do",
+			captchaImgSrc: captchaImgSrc_raw,
 			loginData: {
 				username: "shucaixiaoming",
 				password: "rock123",
@@ -53,7 +54,7 @@ export default {
 			this.loading = true;
 			this.xaxios({
 				method: "post",
-				url: BASE_PATH + '/login.do',
+				url: "/api/login.do",
 				data: this.loginData,
 			}).then(res => {
 				// loading遮罩层：关
@@ -79,7 +80,7 @@ export default {
 			}).catch(error => { });
 		},
 		do_refreshCaptchaImg() {
-			this.captchaImgSrc = BASE_PATH + "/captcha.do?timestamp=" + Math.random();
+			this.captchaImgSrc = captchaImgSrc_raw + "?timestamp=" + Math.random();
 		}
 	}
 };

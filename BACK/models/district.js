@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 
 // 不用easyModel
 

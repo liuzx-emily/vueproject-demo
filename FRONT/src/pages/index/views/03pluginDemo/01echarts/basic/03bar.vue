@@ -43,20 +43,13 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xaxios({
-				url: BASE_PATH + '/dept/list.htmls',
-				params: { type: 1 }
-			}).then(res => {
-				if (res.code == 1) {
-					this.data = [
-						{ name: "西瓜", data: [85, 129, 23, 7], type: "fruit", },
-						{ name: "苹果", data: [169, 17, 93, 76], type: "fruit", },
-						{ name: "菠萝", data: [34, 135, 15, 46], type: "fruit", },
-						{ name: "白菜", data: [76, 54, 29, 84], type: "vegetable", },
-					];
-					this.drawChart();
-				}
-			}).catch(error => { });
+			this.data = [
+				{ name: "西瓜", data: [85, 129, 23, 7], type: "fruit", },
+				{ name: "苹果", data: [169, 17, 93, 76], type: "fruit", },
+				{ name: "菠萝", data: [34, 135, 15, 46], type: "fruit", },
+				{ name: "白菜", data: [76, 54, 29, 84], type: "vegetable", },
+			];
+			this.drawChart();
 		},
 		drawChart() {
 			// 初始化

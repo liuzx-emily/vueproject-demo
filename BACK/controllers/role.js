@@ -1,7 +1,7 @@
 const name = "role";
 const attributes = ['id', "name", "parentId", "description", "order"];
 
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -32,7 +32,7 @@ const findAll = async (ctx, next) => {
 };
 
 const findByPk = async (ctx, next) => {
-    let roleId = ctx.query.id;
+    let roleId = ctx.requestparam.id;
     // -------------- 查找角色表 --------------
     let whereParam = {};
     whereParam.isDelete = 0;
@@ -48,7 +48,7 @@ const findByPk = async (ctx, next) => {
 };
 
 const create = async (ctx, next) => {
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     let roleId = uuid();
     // -------------- 新增角色表 --------------
     let createParam = {};
@@ -73,7 +73,7 @@ const create = async (ctx, next) => {
 };
 
 const update = async (ctx, next) => {
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     let roleId = param.id;
     // -------------- 更新角色表 --------------
     let updateParam = {};
@@ -98,7 +98,7 @@ const update = async (ctx, next) => {
 };
 
 const destroyLogically = async (ctx, next) => {
-    let param = ctx.request.body;
+    let param = ctx.requestparam;
     let roleIds = param.ids;
     // -------------- 删除角色表 --------------
     await MainModel.update({ isDelete: 1 }, {

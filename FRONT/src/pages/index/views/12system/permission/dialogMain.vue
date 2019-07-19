@@ -95,7 +95,7 @@ export default {
 				name: this.dialogData.name
 			};
 			this.xaxios({
-				url: BASE_PATH + '/permission/nameValidation.do',
+				url: "/permission/nameValidation.do",
 				params: param
 			}).then(res => {
 				if (res.data) {
@@ -126,7 +126,7 @@ export default {
 			} else if (type == 2 || type == 3) {
 				// 编辑、查看
 				this.xaxios({
-					url: BASE_PATH + "/permission/detail.do",
+					url: "/api/permission/detail.do",
 					params: { id: id, }
 				}).then(res => {
 					for (let key in original_data) {
@@ -154,7 +154,7 @@ export default {
 					this.xaxios({
 						method: 'post',
 						data: param,
-						url: BASE_PATH + `/permission/${url}.do`
+						url: `/api/permission/${url}.do`
 					}).then(res => {
 						if (res.code == 1) {
 							this.$message({

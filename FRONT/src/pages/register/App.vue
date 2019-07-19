@@ -3,9 +3,6 @@
 		<el-form ref="form" :model="registerData" :rules="rules" label-width="60px">
 			<el-form-item prop="username" label="账号">
 				<el-input v-model="registerData.username"></el-input>
-				<!-- <div style="position: absolute;top: 28px;font-size: 12px;color: #555;">
-                    默认密码：{{DEFAULT_PASSWORD}}
-                </div> -->
 			</el-form-item>
 			<el-form-item label="密码">
 				{{registerData.password}}
@@ -34,7 +31,7 @@ export default {
 				username: value
 			};
 			this.xaxios({
-				url: BASE_PATH + '/user/verification.htmls',
+				url: "/api/user/verification.htmls",
 				params: param
 			}).then(res => {
 				if (res.code == 1) {
@@ -49,7 +46,7 @@ export default {
 			loading: false,
 			registerData: {
 				username: "123",
-				password: DEFAULT_PASSWORD,
+				password: "123456",
 				realname: "123",
 				phone: "",
 				email: ""
@@ -88,13 +85,13 @@ export default {
 	},
 	methods: {
 		do_register() {
-			this.$refs.form.validate(valid => {
+			/* this.$refs.form.validate(valid => {
 				if (valid) {
 					this.loading = true;
 					let param = this._.cloneDeep(this.registerData);
 					this.xaxios({
 						method: 'POST',
-						url: BASE_PATH + '/user/add.htmls',
+						url: "/api/user/add.do",
 						data: param,
 					}).then(res => {
 						this.loading = false;
@@ -125,7 +122,7 @@ export default {
 				} else {
 					return false;
 				}
-			});
+			}); */
 		}
 	}
 };

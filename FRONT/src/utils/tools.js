@@ -5,9 +5,9 @@ const tools = {
     // -------------------------- Array --------------------------
     arrayToTree(dataArr, param) {
         param = param || {};
-        const before_idkey = param.before_idkey || "id";
-        const before_parentkey = param.before_parentkey || "parentId";
-        const after_childkey = param.after_childkey || "child";
+        const before_idkey = param.id || "id";
+        const before_parentkey = param.parentId || "parentId";
+        const after_childkey = param.children || "child";
         let tree = dataArr.filter((father) => {
             //循环所有项
             let branchArr = dataArr.filter((child) => {
@@ -165,7 +165,7 @@ const tools = {
             });
             xaxios({
                 method: 'post',
-                url: BASE_PATH + url,
+                url: url,
                 data: data
             }).then(res => {
                 if (res.code == 1) {

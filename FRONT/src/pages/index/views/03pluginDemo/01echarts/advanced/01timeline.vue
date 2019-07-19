@@ -41,50 +41,43 @@ export default {
 			this.loading = true;
 			// 先销毁之前的图
 			this.echarts.dispose(document.getElementById(this.elementId));
-			this.xaxios({
-				url: BASE_PATH + '/dept/list.htmls',
-				params: { type: 1 }
-			}).then(res => {
-				if (res.code == 1) {
-					this.data = [{
-						year: '2016年',
-						data: [
-							{ name: "西瓜", value: [85, 129, 23, 7], },
-							{ name: "苹果", value: [169, 17, 93, 76], },
-							{ name: "菠萝", value: [34, 135, 15, 46], },
-						]
-					}, {
-						year: '2017年',
-						data: [
-							{ name: "西瓜", value: [79, 96, 7, 31], },
-							{ name: "苹果", value: [23, 23, 53, 78], },
-							{ name: "菠萝", value: [72, 2, 98, 28], },
-						]
-					}, {
-						year: '2018年',
-						data: [
-							{ name: "西瓜", value: [7, 77, 4, 76], },
-							{ name: "苹果", value: [71, 62, 39, 19], },
-							{ name: "菠萝", value: [80, 65, 66, 67], },
-						]
-					}, {
-						year: '2019年',
-						data: [
-							{ name: "西瓜", value: [83, 95, 23, 75], },
-							{ name: "苹果", value: [57, 94, 57, 46], },
-							{ name: "菠萝", value: [20, 25, 100, 73], },
-						]
-					}, {
-						year: '2020年',
-						data: [
-							{ name: "西瓜", value: [38, 59, 32, 57], },
-							{ name: "苹果", value: [75, 49, 75, 64], },
-							{ name: "菠萝", value: [34, 62, 16, 78], },
-						]
-					},];
-					this.drawChart();
-				}
-			}).catch(error => { });
+			this.data = [{
+				year: '2016年',
+				data: [
+					{ name: "西瓜", value: [85, 129, 23, 7], },
+					{ name: "苹果", value: [169, 17, 93, 76], },
+					{ name: "菠萝", value: [34, 135, 15, 46], },
+				]
+			}, {
+				year: '2017年',
+				data: [
+					{ name: "西瓜", value: [79, 96, 7, 31], },
+					{ name: "苹果", value: [23, 23, 53, 78], },
+					{ name: "菠萝", value: [72, 2, 98, 28], },
+				]
+			}, {
+				year: '2018年',
+				data: [
+					{ name: "西瓜", value: [7, 77, 4, 76], },
+					{ name: "苹果", value: [71, 62, 39, 19], },
+					{ name: "菠萝", value: [80, 65, 66, 67], },
+				]
+			}, {
+				year: '2019年',
+				data: [
+					{ name: "西瓜", value: [83, 95, 23, 75], },
+					{ name: "苹果", value: [57, 94, 57, 46], },
+					{ name: "菠萝", value: [20, 25, 100, 73], },
+				]
+			}, {
+				year: '2020年',
+				data: [
+					{ name: "西瓜", value: [38, 59, 32, 57], },
+					{ name: "苹果", value: [75, 49, 75, 64], },
+					{ name: "菠萝", value: [34, 62, 16, 78], },
+				]
+			},];
+			this.drawChart();
 		},
 		// 用数据画画
 		drawChart() {

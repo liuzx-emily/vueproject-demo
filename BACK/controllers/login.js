@@ -1,4 +1,4 @@
-const sequelize = require("../utils/initDatabase");
+const sequelize = require("../initialization/initDatabase");
 const Op = require('sequelize').Op;
 const uuid = require("uuid/v4");
 const models = require("../utils/scanModels");
@@ -10,7 +10,7 @@ const svgCaptcha = require('svg-captcha');
 const WebSocket = require('ws');
 
 const login = async (ctx, next) => {
-	let params = ctx.request.body;
+	let params = ctx.requestparam;
 	// if (params.validateCode != ctx.session.captcha) {
 	//     ctx.response.body = { code: 0, message: "验证码错误！" };
 	//     return;
@@ -27,7 +27,7 @@ const login = async (ctx, next) => {
 			ctx.session.userId = result.id;
 			ctx.response.body = { code: 1 };
 		} else {
-			global.ws.broadcast(`广播广播！有人尝试登录账号:${params.username}`)
+			// global.ws.broadcast(`广播广播！有人尝试登录账号:${params.username}`)
 			ctx.response.body = { code: 0, message: "账号、密码错误！" };
 		}
 	} else {
@@ -53,7 +53,6 @@ const userInfo = async (ctx, next) => {
 		ctx.response.body = { code: 0, message: "登录失效" };
 	}
 };
-
 
 const getMenus = async (ctx, nect) => {
 	let whereParam = { isDelete: 0 };
