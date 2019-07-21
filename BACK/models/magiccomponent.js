@@ -81,4 +81,4 @@ module.exports = new EasyModelExample({
         hasField_order: false,
         hasField_isDelete: false,
     },
-}).getModel();;
+});

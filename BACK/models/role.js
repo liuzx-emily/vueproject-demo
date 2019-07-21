@@ -31,4 +31,4 @@ module.exports = new EasyModelExample({
         hasField_order: true,
         hasField_isDelete: true,
     },
-}).getModel();;
+});

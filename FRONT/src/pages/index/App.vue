@@ -97,6 +97,21 @@ export default {
 		// 获取菜单数据，并且自动跳转到第一个菜单
 		this.getMenuData();
 		this.getPermissionBtnData();
+		// websocket
+		var ws = new WebSocket("ws://localhost:8888");
+		ws.onopen = function () {
+			ws.send(1);
+		};
+
+		ws.onmessage = function (evt) {
+			var received_msg = evt.data;
+			console.log("服务器发来了：", received_msg);
+		};
+
+		ws.onclose = function () {
+			// 关闭 websocket
+			alert("连接已关闭...");
+		};
 	},
 	data() {
 

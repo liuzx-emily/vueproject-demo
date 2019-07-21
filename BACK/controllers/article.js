@@ -1,12 +1,9 @@
-const name = "article";
 const attributes = ["id", "title", "publisher", "publishTime", "content", "state", "reason"];
 
-const uuid = require("uuid/v4");
-const models = require("../utils/scanModels");
 const fileUtils = require("./utils/fileUtils.js");
 
 const getStr = (strparams) => {
-	return str = `
+	return `
 		SELECT
 			${strparams.str_attriutes}
 		FROM
@@ -19,7 +16,7 @@ const getStr = (strparams) => {
 
 
 const findAll = async (ctx, nect) => {
-	const Op = ctx.Op;
+	const Op = ctx.xglobal.Op;
 	// ---------------------------------------------- whereParam
 	let whereParam = { isDelete: 0, };
 	if (ctx.requestparam.title) {
@@ -43,14 +40,15 @@ const findAll = async (ctx, nect) => {
 	if (ctx.requestparam.state && ctx.requestparam.state != "-1") {
 		whereParam.state = ctx.requestparam.state;
 	}
-	let { data, count } = await ctx.rawquery_tablewithpaging({ ctx, whereParam, attributes, getStr, });
+	let pagingParam = { page: ctx.requestparam.page, row: ctx.requestparam.row };
+	let { data, count } = await ctx.xglobal.rawquery_listwithpaging({ whereParam, pagingParam, attributes, }, getStr, );
 	ctx.response.body = { code: 1, data: data, count: count, };
 };
 
 const findByPk = async (ctx, next) => {
 	const articleId = ctx.requestparam.id;
 	let whereParam = { isDelete: 0, id: articleId };
-	let data = await ctx.rawquery_id({ ctx, whereParam, attributes, getStr, });
+	let data = await ctx.xglobal.rawquery_one({ whereParam, attributes }, getStr, );
 	// 取附件
 	const str_file = `
     SELECT
@@ -60,15 +58,16 @@ const findByPk = async (ctx, next) => {
         t_file tf
         LEFT JOIN t_article_file taf ON tf.id = taf.fileId 
     WHERE
-        taf.articleId = "${articleId}"`;
-	let fileList = await ctx.sequelize.query(str_file, { type: ctx.sequelize.QueryTypes.SELECT });
+		taf.articleId = "${articleId}"`;
+	let fileList = await ctx.xglobal.basequery(str_file);
 	data.fileList = fileList;
 	ctx.response.body = { code: 1, data: data, };
 };
 
 const create = async (ctx, next) => {
+	const models = ctx.xglobal.models;
 	// 取参数
-	const articleId = uuid();
+	const articleId = ctx.xtools.randomId();
 	let param = ctx.requestparam;
 	param.id = articleId;
 	await models.article.create(param);
@@ -88,6 +87,8 @@ const create = async (ctx, next) => {
 
 
 const update = async (ctx, next) => {
+	const models = ctx.xglobal.models;
+	// 
 	let param = ctx.requestparam;
 	const articleId = param.id;
 	let whereParam = { isDelete: 0, id: articleId, };
@@ -108,7 +109,9 @@ const update = async (ctx, next) => {
 };
 
 const destroyLogically = async (ctx, next) => {
-	const Op = ctx.Op;
+	const models = ctx.xglobal.models;
+	const Op = ctx.xglobal.Op;
+	// 
 	const articleIds = ctx.requestparam.ids;
 	let whereParam = {
 		id: {
@@ -125,7 +128,7 @@ const destroyLogically = async (ctx, next) => {
 			},
 		}
 	}).map(file => file.fileId);
-	await fileUtils.deleteFile(fileIds);
+	await fileUtils.deleteFile(ctx, fileIds);
 	// 删关联表
 	await models.article_file.destroy({
 		where: {
@@ -138,6 +141,8 @@ const destroyLogically = async (ctx, next) => {
 };
 
 const audit = async (ctx, next) => {
+	const models = ctx.xglobal.models;
+	// 
 	let params = ctx.requestparam;
 	let state = params.audit ? 3 : 4;
 	let reason = params.audit ? "" : params.reason;
@@ -146,11 +151,11 @@ const audit = async (ctx, next) => {
 };
 
 module.exports = [
-	{ method: 'POST', url: `/${name}/audit.do`, function: audit },
+	{ method: 'POST', url: "/article/audit.do", function: audit },
 	// 
-	{ method: 'GET', url: `/${name}/list.do`, function: findAll },
-	{ method: 'GET', url: `/${name}/detail.do`, function: findByPk },
-	{ method: 'POST', url: `/${name}/add.do`, function: create },
-	{ method: 'POST', url: `/${name}/edit.do`, function: update },
-	{ method: 'POST', url: `/${name}/delete.do`, function: destroyLogically },
+	{ method: 'GET', url: "/article/list.do", function: findAll },
+	{ method: 'GET', url: "/article/detail.do", function: findByPk },
+	{ method: 'POST', url: "/article/add.do", function: create },
+	{ method: 'POST', url: "/article/edit.do", function: update },
+	{ method: 'POST', url: "/article/delete.do", function: destroyLogically },
 ];

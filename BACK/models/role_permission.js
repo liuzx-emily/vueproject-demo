@@ -31,6 +31,6 @@ const model = new EasyModelExample({
         hasField_order: false,
         hasField_isDelete: false,
     },
-}).getModel();
+});
 
 module.exports = model;

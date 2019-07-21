@@ -1,20 +1,14 @@
-const sequelize = require("../initialization/initDatabase");
-const Op = require('sequelize').Op;
-const uuid = require("uuid/v4");
-const models = require("../utils/scanModels");
-const rawQueryUtils = require("./utils/rawQueryUtils.js");
 const bcryptUtils = require("./utils/bcryptUtils.js");
-
 const svgCaptcha = require('svg-captcha');
 
-const WebSocket = require('ws');
-
 const login = async (ctx, next) => {
+	const models = ctx.xglobal.models;
+	// 
 	let params = ctx.requestparam;
-	// if (params.validateCode != ctx.session.captcha) {
-	//     ctx.response.body = { code: 0, message: "验证码错误！" };
-	//     return;
-	// }
+	if (params.validateCode != ctx.session.captcha) {
+		ctx.response.body = { code: 0, message: "验证码错误！" };
+		return;
+	}
 	let whereParam = {
 		isDelete: 0,
 		username: params.username,
@@ -27,7 +21,6 @@ const login = async (ctx, next) => {
 			ctx.session.userId = result.id;
 			ctx.response.body = { code: 1 };
 		} else {
-			// global.ws.broadcast(`广播广播！有人尝试登录账号:${params.username}`)
 			ctx.response.body = { code: 0, message: "账号、密码错误！" };
 		}
 	} else {
@@ -36,12 +29,13 @@ const login = async (ctx, next) => {
 };
 
 const logout = async (ctx, next) => {
-	// let userId = ctx.session.userId;
 	ctx.session.userId = null;
 	ctx.response.body = { code: 1 };
 };
 
 const userInfo = async (ctx, next) => {
+	const models = ctx.xglobal.models;
+	// 
 	let userId = ctx.session.userId;
 	if (userId) {
 		// 存用户信息
@@ -55,6 +49,9 @@ const userInfo = async (ctx, next) => {
 };
 
 const getMenus = async (ctx, nect) => {
+	const models = ctx.xglobal.models;
+	const Op = ctx.xglobal.Op;
+	// 
 	let whereParam = { isDelete: 0 };
 	whereParam.type = {
 		[Op.not]: 3
@@ -67,6 +64,8 @@ const getMenus = async (ctx, nect) => {
 };
 
 const getBtns = async (ctx, nect) => {
+	const models = ctx.xglobal.models;
+	// 
 	let whereParam = { isDelete: 0, type: 3 };
 	let orderParam = [
 		["order", 'ASC']
@@ -89,6 +88,7 @@ const getCaptcha = async (ctx, next) => {
 	ctx.session.captcha = captcha.text.toLowerCase();
 	ctx.response.type = "image/svg+xml";
 	ctx.body = captcha.data;
+	ctx.xglobal.ws.broadcast(`有人在刷新验证码！`);
 };
 
 
