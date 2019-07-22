@@ -58,14 +58,11 @@ let attributes = {
 // }, );
 
 const model = new EasyModelExample({
+	clean: true,
 	name: "district",
 	attributes: attributes,
 	options: {
 		tableName: "t_district",
-	},
-	easyModelOptions: {
-		hasField_order: false,
-		hasField_isDelete: false,
 	},
 });
 

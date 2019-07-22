@@ -110,7 +110,7 @@ export default {
 
 		ws.onclose = function () {
 			// 关闭 websocket
-			alert("连接已关闭...");
+			console.log("连接已关闭...");
 		};
 	},
 	data() {

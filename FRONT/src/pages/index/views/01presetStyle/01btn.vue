@@ -11,9 +11,7 @@ export default {
 		const treedata = this.xtools.arrayToTree(original_data);
 		return { treedata }
 	},
-	mounted(){
-		console.log(this.treedata);
-	},
+	mounted() { },
 };
 const original_data = [
 	{ "id": 16, "name": "echarts", "parentId": 9, },

@@ -7,6 +7,17 @@ const BASIC_ATTRIBUTES = {
 		allowNull: false,
 		comment: "",
 	},
+	isDelete: {
+		type: Sequelize.TINYINT,
+		allowNull: false,
+		comment: "0正常1删除",
+		defaultValue: 0
+	},
+	order: {
+		type: Sequelize.TINYINT,
+		allowNull: true,
+		comment: "排序字段"
+	},
 	createTime: {
 		type: Sequelize.BIGINT,
 		allowNull: false,
@@ -129,43 +140,24 @@ class EasyModelExample {
 	constructor(param) {
 		// name
 		this.name = param.name;
-
-		// attributes
-		this.attributes = {};
-		// 基础属性：id createTime updateTime
-		for (let key in BASIC_ATTRIBUTES) {
-			this.attributes[key] = BASIC_ATTRIBUTES[key];
+		if (param.clean) {
+			// attributes 
+			this.attributes = param.attributes;
+			// options
+			this.options = param.options;
+		} else {
+			// attributes 
+			this.attributes = { ...BASIC_ATTRIBUTES, ...param.attributes };
+			const easyModelOptions = param.easyModelOptions || {};
+			if (easyModelOptions.noField_isDelete) {
+				delete this.attributes.isDelete;
+			}
+			if (easyModelOptions.noField_order) {
+				delete this.attributes.order;
+			}
+			// options
+			this.options = { ...BASIC_OPTIONS, ...param.options };
 		}
-		// 可选属性：order description
-		param.easyModelOptions = param.easyModelOptions || {};
-		if (param.easyModelOptions.hasField_isDelete) {
-			this.attributes.isDelete = {
-				type: Sequelize.TINYINT,
-				allowNull: false,
-				comment: "0正常1删除",
-				defaultValue: 0
-			};
-		}
-		if (param.easyModelOptions.hasField_order) {
-			this.attributes.order = {
-				type: Sequelize.TINYINT,
-				allowNull: true,
-				comment: "排序字段"
-			};
-		}
-		// 自定义属性
-		for (let key in param.attributes) {
-			this.attributes[key] = param.attributes[key];
-		}
-		// options
-		this.options = {};
-		for (let key in BASIC_OPTIONS) {
-			this.options[key] = BASIC_OPTIONS[key];
-		}
-		for (let key in param.options) {
-			this.options[key] = param.options[key];
-		}
-
 	}
 	register(sequelize) {
 		return sequelize.define(this.name, this.attributes, this.options);
