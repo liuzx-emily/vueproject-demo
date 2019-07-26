@@ -9,10 +9,6 @@ const routes = {
 		},
 		// js
 		{
-			path: "js/01",
-			component: () => import('~/pages/index/views/04blackTechnology/js/01tricks/main.vue')
-		},
-		{
 			path: "js/02",
 			component: () => import('~/pages/index/views/04blackTechnology/js/02manyLevelAddress/main.vue')
 		},
@@ -33,10 +29,6 @@ const routes = {
 		{
 			path: "vue/02",
 			component: () => import('~/pages/index/views/04blackTechnology/vue/02afterInitDone/main.vue')
-		},
-		{
-			path: "vue/03",
-			component: () => import('~/pages/index/views/04blackTechnology/vue/03variableImgSrc/main.vue')
 		},
 	],
 };

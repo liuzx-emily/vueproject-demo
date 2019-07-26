@@ -88,7 +88,7 @@ const getCaptcha = async (ctx, next) => {
 	ctx.session.captcha = captcha.text.toLowerCase();
 	ctx.response.type = "image/svg+xml";
 	ctx.body = captcha.data;
-	ctx.xglobal.ws.broadcast(`有人在刷新验证码！`);
+	// ctx.xglobal.ws.broadcast(`有人在刷新验证码！`);
 };
 
 
