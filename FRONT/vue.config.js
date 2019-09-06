@@ -43,6 +43,13 @@ module.exports = {
 			filename: 'index.html',
 			importTinymce: true
 		},
+		admin: {
+			entry: 'src/pages/admin/main.js',
+			template: 'public/index.html',
+			title: '管理系统',
+			filename: 'admin.html',
+			importTinymce: true
+		},
 		demo: {
 			entry: 'src/pages/demo/main.js',
 			template: 'public/index.html',
@@ -74,14 +81,11 @@ module.exports = {
 		port: "9446",
 		proxy: {
 			'/api': {
-				target: 'http://localhost:3000/',
+				target: 'http://localhost:3526/',
 				pathRewrite: {
 					'^/api': '',
 				}
 			},
-			'/foo': {
-				target: '<other_url>'
-			}
 		}
 	},
 	// 打包上线的环境中，是否需要 sourcemap。默认为true

@@ -1,14 +1,25 @@
-// 默认样式重置
-@import url(./00reset.less);
+// // 按钮
+// @import url(./btn.less);
 
-// element-ui 样式重置
-@import url(./01elementUI.less);
 
-// 表格上方的搜索框，内含搜索条件和按钮
-@import url(./02searchCondition.less);
 
-// 按钮
-@import url(./03btn.less);
+@import url(./reset-element/main.less);
 
-// 表格
-@import url(./04table.less);
+
+@import url(./abovelist-search-and-btns.less);
+
+@import url(./table.less);
+
+
+
+body,ul,li {
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+
+span,a {
+	display: inline-block;
+}

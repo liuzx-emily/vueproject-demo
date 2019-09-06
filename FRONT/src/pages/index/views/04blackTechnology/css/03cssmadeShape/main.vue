@@ -1,30 +1,43 @@
-<style scoped></style>
+<style scoped lang="less">
+@w: 100px;
+@w1: 10px;
+@w2: 8px;
+@w3: 12px;
+.demo1 {
+	width: @w;
+	height: @w;
+	box-sizing: border-box;
+	background: #ff7576;
+	border: @w1 dashed #f9efe4;
+	position: relative;
+	border-radius: 5px;
+}
+.demo1:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #f7fdff;
+	border: @w2 dashed #c8e6c9;
+}
+.demo1:after {
+	content: "";
+	position: absolute;
+	left: @w2;
+	right: @w2;
+	top: @w2;
+	bottom: @w2;
+	background: #76ccf3;
+	border: @w3 dashed #fbf9f3;
+}
+</style>
 <template>
-    <section>
-        <el-radio-group v-model="mode">
-            <el-radio :label="1">三角形</el-radio>
-            <el-radio :label="2">花色边框</el-radio>
-        </el-radio-group>
-        <section style="padding:10px 0;">
-            <subpage1 v-if="mode==1" />
-            <subpage2 v-if="mode==2" />
-        </section>
-    </section>
+	<section class="demo1"></section>
 </template>
 <script>
-import subpage1 from './01triangle.vue'
-import subpage2 from './02.vue'
 export default {
-    props: {},
-    components: { subpage1,subpage2 },
-    data() {
-        return {
-            mode: 2,
-        }
-    },
-    computed: {},
-    watch: {},
-    created() {},
-    mounted() {},
+
 };
 </script>

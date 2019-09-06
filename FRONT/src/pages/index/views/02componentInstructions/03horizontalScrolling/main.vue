@@ -30,7 +30,7 @@
 <template>
 	<section>
 		<a href="https://www.swiper.com.cn/api/index.html">中文API</a>
-		<xHorizontalScrolling :list="list" style="height:300px;">
+		<gc-horizontal-scrolling :list="list" style="height:300px;">
 			<template slot-scope="scope">
 				<section class="box">
 					<section class="box-title">{{scope.item.title}}</section>
@@ -38,9 +38,9 @@
 					<section class="box-time">时间：{{xtools.formattingDate(scope.item.time)}}</section>
 				</section>
 			</template>
-		</xHorizontalScrolling>
+		</gc-horizontal-scrolling>
 		<br>
-		<xHorizontalScrolling :list="list" style="height:300px;">
+		<gc-horizontal-scrolling :list="list" style="height:300px;">
 			<template slot-scope="scope">
 				<section class="box">
 					<section class="box-title">{{scope.item.title}}</section>
@@ -48,7 +48,7 @@
 					<section class="box-time">时间：{{xtools.formattingDate(scope.item.time)}}</section>
 				</section>
 			</template>
-		</xHorizontalScrolling>
+		</gc-horizontal-scrolling>
 	</section>
 </template>
 <script>
@@ -67,12 +67,12 @@ export default {
 				{ "title": "标题1 华为：对此感到失望", publisher: "快科技1", time: "1551628800000", },
 				{ "title": "标题2 华为：对此感到失望", publisher: "快科技2", time: "1551628800000", },
 				{ "title": "标题3 华为：对此感到失望", publisher: "快科技3", time: "1551628800000", },
-				{ "title": "标题4 华为：对此感到失望", publisher: "快科技4", time: "1551628800000", },
-				{ "title": "标题5 华为：对此感到失望", publisher: "快科技5", time: "1551628800000", },
-				{ "title": "标题6 华为：对此感到失望", publisher: "快科技6", time: "1551628800000", },
-				{ "title": "标题7 华为：对此感到失望", publisher: "快科技7", time: "1551628800000", },
+				// { "title": "标题4 华为：对此感到失望", publisher: "快科技4", time: "1551628800000", },
+				// { "title": "标题5 华为：对此感到失望", publisher: "快科技5", time: "1551628800000", },
+				// { "title": "标题6 华为：对此感到失望", publisher: "快科技6", time: "1551628800000", },
+				// { "title": "标题7 华为：对此感到失望", publisher: "快科技7", time: "1551628800000", },
 			];
-		}, 1000)
+		}, 0)
 	}
 };
 </script>

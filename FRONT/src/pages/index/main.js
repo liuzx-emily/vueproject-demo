@@ -8,9 +8,6 @@ import router from "./router/main.js"
 // store (vuex)
 import store from './store/main.js'
 
-// mock
-import './mock/main.js'
-
 // --------------- 注册本页面的组件和模块 ---------------
 import m_userBox from "./modules/userBox/main.vue";
 Vue.use(m_userBox);

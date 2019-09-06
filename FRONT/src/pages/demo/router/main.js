@@ -17,6 +17,14 @@ const routes = [{
     path: "/dragToDelete",
     component: () => import('~/pages/demo/views/04dragToDelete/main.vue')
 },
+{
+    path: "/wave",
+    component: () => import('~/pages/demo/views/05wave/main.vue')
+},
+{
+    path: "/calendar",
+    component: () => import('~/pages/demo/views/06calendar/main.vue')
+},
 
 ];
 

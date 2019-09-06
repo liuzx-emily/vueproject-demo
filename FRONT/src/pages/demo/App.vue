@@ -15,6 +15,8 @@ export default {
 				{ name: "图片处理", code: "/photoEditing" },
 				{ name: "dragAndResize", code: "/dragAndResize" },
 				{ name: "拖拽刪除", code: "/dragToDelete" },
+				{ name: "波浪~", code: "/wave" },
+				{ name: "日历组件", code: "/calendar" },
 			],
 		};
 	},

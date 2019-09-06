@@ -23,7 +23,8 @@
 export default {
     methods: {
         do_exportPDF() {
-            let obj = document.querySelector('#mainContentWrap>*');
+            let obj = document.querySelector('#mainContent');
+            // let obj = document.querySelector('#mainContentWrap>*');
             let fileName = "哈哈";
             this.exportPDF(obj, fileName);
         }

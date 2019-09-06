@@ -1,7 +1,7 @@
 <style scoped></style>
 <template>
     <section>
-        <xEditor :fcontent.sync="dialogData.content" ref="xEditor" height="200" />
+        <gc-editor :fcontent.sync="dialogData.content" ref="editor" height="200"></gc-editor>
         <button type="button" @click="saveData">保存</button>
     </section>
 </template>
@@ -30,7 +30,7 @@ export default {
         refreshData() {
             this.dialogData.content = this.currentMagic.data.content || "";
             this.$nextTick(() => {
-                this.$refs.xEditor.setContent(this.dialogData.content);
+                this.$refs.editor.setContent(this.dialogData.content);
             });
         },
         saveData() {

@@ -33,6 +33,7 @@ app.use(session(SESSIONCONFIG, app));
 
 
 /* ---------- bodyParser：处理请求体中的参数，放到 ctx.request.body 中。 ---------- */
+// 要在注册路由之前挂载bodyparser
 const bodyParser = require('koa-bodyparser');
 app.use(bodyParser());
 
@@ -60,7 +61,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 /* ---------- websocket ---------- */
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8888 });
+const wss = new WebSocket.Server({ port: 9898 });
 wss.on('connection', ws => {
 	console.log("ws连接已建立！");
 	ws.wss = wss;
@@ -87,5 +88,5 @@ wss.on('close', () => {
 
 
 
-app.listen(3000);
-console.log(" ---------- 服务器启动成功，监听端口3000。 ---------- ");
+app.listen(3526);
+console.log(" ---------- 服务器启动成功，监听端口3526。 ---------- ");

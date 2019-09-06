@@ -1,21 +1,3 @@
-<style rel="stylesheet/css">
-@keyframes treeTableShow {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-@-webkit-keyframes treeTableShow {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-</style>
 <style lang="less" scoped>
 @space-width: 18px;
 .ms-tree-space {
@@ -43,7 +25,7 @@
 }
 </style>
 <template>
-	<el-table :data="formatData" :row-style="showRow" class="xTableStyle" :class="styleClassList">
+	<el-table :data="formattedData" :row-style="showRow" class="xTableStyle" :class="styleClassList">
 		<!-- 控制列永远是左对齐的，不受表格整体对齐方式的影响 -->
 		<el-table-column :width="controlColumn.width">
 			<section slot="header" style="text-align:left">
@@ -51,7 +33,7 @@
 			</section>
 			<section slot-scope="scope" style="text-align:left">
 				<span v-for="space in scope.row._level" :key="space" class="ms-tree-space" />
-				<span v-if="iconShow(0,scope.row)" class="tree-ctrl" @click="toggleExpanded(scope.$index)">
+				<span v-if="iconShow(0,scope.row)" class="tree-ctrl" @click="toggleExpanded(scope)">
 					<i v-if="!scope.row._expanded" class="el-icon-plus" />
 					<i v-else class="el-icon-minus" />
 				</span>
@@ -62,19 +44,15 @@
 	</el-table>
 </template>
 <script>
-/** 
-  Auth: Lei.j1ang
-  Created: 2018/1/19-13:59
-*/
-import treeToArray from './eval'
+import Vue from 'vue'
 export default {
 	install(Vue) {
-		Vue.component("treeTable", this);
+		Vue.component("gc-treetable", this);
 	},
 	props: {
 		data: {
-			type: [Array, Object],
-			required: true
+			type: Array,
+			required: true,
 		},
 		controlColumn: {
 			type: Object,
@@ -105,10 +83,32 @@ export default {
 		},
 	},
 	computed: {
-		// 格式化数据源
-		formatData: function () {
-			const args = [this.data, this.expandAll];
-			let res = treeToArray.apply(null, args);
+		formattedData: function () {
+			function treeToArray(data, expandAll, parent = null, level = null) {
+				let tmp = []
+				Array.from(data).forEach(function (record) {
+					if (record._expanded === undefined) {
+						Vue.set(record, '_expanded', expandAll)
+					}
+					let _level = 1
+					if (level !== undefined && level !== null) {
+						_level = level + 1
+					}
+					Vue.set(record, '_level', _level);
+					// 如果有父元素
+					if (parent) {
+						Vue.set(record, '_parent', parent);
+					}
+					tmp.push(record);
+					if (record.child && record.child.length > 0) {
+						const child = treeToArray(record.child, expandAll, record, _level)
+						tmp = tmp.concat(child)
+					}
+				})
+				return tmp;
+			}
+			let _data = this.xtools.arrayToTree(this.data, { id: "id", parentId: "parentId", children: "child" });
+			let res = treeToArray(_data, this.expandAll);
 			return res;
 		},
 		styleClassList() {
@@ -117,14 +117,19 @@ export default {
 	},
 	methods: {
 		showRow: function (row) {
-			const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
-			row.row._show = show
-			return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
+			let show;
+			if (row.row._parent) {
+				let parent = row.row._parent
+				show = parent._expanded && parent._show;
+			} else {
+				show = true;
+			}
+			row.row._show = show;
+			return show ? '' : 'display:none;'
 		},
 		// 切换下级是否展开
-		toggleExpanded: function (trIndex) {
-			const record = this.formatData[trIndex]
-			record._expanded = !record._expanded
+		toggleExpanded: function (scope) {
+			scope.row._expanded = !scope.row._expanded;
 		},
 		// 图标显示
 		iconShow(index, record) {

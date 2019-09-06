@@ -33,7 +33,7 @@ export default {
 	mounted() {
 		// 当容器的宽度变化时，重新画画
 		this.chartResizeWhenWidthChange(this.elementId);
-		// this.getData();
+		this.getData();
 	},
 	methods: {
 		getData() {

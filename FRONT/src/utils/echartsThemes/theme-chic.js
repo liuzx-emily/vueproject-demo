@@ -251,7 +251,7 @@ const theme = {
         // item：散点图、饼图； axis：柱状图，折线图； none
         trigger: 'axis',
         formatter: params => {
-            console.log(params);
+            // console.log(params);
             const getStr_line = (params) => {
                 let str = params[0].name + '<br/>';
                 params.forEach(item => {

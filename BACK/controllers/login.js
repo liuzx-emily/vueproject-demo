@@ -48,30 +48,26 @@ const userInfo = async (ctx, next) => {
 	}
 };
 
-const getMenus = async (ctx, nect) => {
+
+const getMenusAndBtns = async (ctx, next) => {
 	const models = ctx.xglobal.models;
 	const Op = ctx.xglobal.Op;
-	// 
-	let whereParam = { isDelete: 0 };
-	whereParam.type = {
+
+	let orderParam = [
+		["order", 'ASC']
+	];
+	// menus
+	let whereParam_menus = { isDelete: 0, page: ctx.requestparam.page };
+	whereParam_menus.type = {
 		[Op.not]: 3
 	};
-	let orderParam = [
-		["order", 'ASC']
-	];
-	let data = await models.permission.findAll({ where: whereParam, order: orderParam });
-	ctx.response.body = { code: 1, data: data, };
-};
-
-const getBtns = async (ctx, nect) => {
-	const models = ctx.xglobal.models;
-	// 
-	let whereParam = { isDelete: 0, type: 3 };
-	let orderParam = [
-		["order", 'ASC']
-	];
-	let data = await models.permission.findAll({ where: whereParam, order: orderParam });
-	ctx.response.body = { code: 1, data: data, };
+	let menus = await models.permission.findAll({ where: whereParam_menus, order: orderParam });
+	// btns
+	let btns = await models.permission.findAll({
+		where: { isDelete: 0, type: 3, page: ctx.requestparam.page },
+		order: orderParam
+	});
+	ctx.response.body = { code: 1, data: { menus: menus, btns: btns, } };
 };
 
 // 获取验证码
@@ -97,6 +93,5 @@ module.exports = [
 	{ method: 'POST', url: `/login.do`, function: login },
 	{ method: 'POST', url: `/logout.do`, function: logout },
 	{ method: 'GET', url: `/userInfo.do`, function: userInfo },
-	{ method: 'GET', url: `/getMenus.do`, function: getMenus },
-	{ method: 'GET', url: `/getBtns.do`, function: getBtns },
+	{ method: 'GET', url: `/getMenusAndBtns.do`, function: getMenusAndBtns },
 ];

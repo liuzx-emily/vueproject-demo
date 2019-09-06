@@ -33,13 +33,13 @@ Vue.prototype.exportPDF = exportPDF
 
 // -------------- 自定义指令 ----------------
 Vue.directive("permission", {
-    // 指令的定义
-    inserted(el, binding, vnode) {
-        const permissionBtns = vnode.context.$store.state.permissionBtns
-        const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
-        const flag = _.indexOf(permissionBtns, code) != -1;
-        (!flag) && (el.parentElement.removeChild(el));
-    },
+	// 指令的定义
+	inserted(el, binding, vnode) {
+		const permissionBtns = vnode.context.$store.state.permissionBtns
+		const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
+		const flag = _.indexOf(permissionBtns, code) != -1;
+		(!flag) && (el.parentElement.removeChild(el));
+	},
 });
 
 // -------------- 插件echarts --------------
@@ -49,39 +49,41 @@ echarts.registerTheme("chic", themeChick);
 import { bind as sizeSensor, clear } from 'size-sensor';
 Vue.prototype.echarts = echarts
 Vue.prototype.chartResizeWhenWidthChange = (id) => {
-    sizeSensor(document.getElementById(id), element => {
-        if (element) {
-            let echartsObj = echarts.getInstanceByDom(element);
-            if (echartsObj) {
-                echartsObj.resize();
-            }
-        }
-    });
+	sizeSensor(document.getElementById(id), element => {
+		if (element) {
+			let echartsObj = echarts.getInstanceByDom(element);
+			if (echartsObj) {
+				echartsObj.resize();
+			}
+		}
+	});
 }
 
 
 // -------------- 注册常用组件和模块 --------------
-import c_table from '~/components/table/main.vue'
-Vue.use(c_table);
-import c_treeTable from '~/components/treeTable/main.vue';
-Vue.use(c_treeTable);
-import c_horizontalScrolling from '~/components/horizontalScrolling/main.vue';
-Vue.use(c_horizontalScrolling);
-import c_editor from "~/components/editor/main.vue";
-Vue.use(c_editor);
-import c_pickYear from "~/components/commonFormItem/pickYear/main.vue";
-Vue.use(c_pickYear);
-import c_pickDateRange from "~/components/commonFormItem/pickDateRange/main.vue";
-Vue.use(c_pickDateRange);
-// 
-import m_limitlessSidebarMenu from "~/modules/limitlessSidebarMenu/main.vue";
-Vue.use(m_limitlessSidebarMenu);
-import c_manyLevelAddress from "~/modules/manyLevelAddress/main.vue";
-Vue.use(c_manyLevelAddress);
-import m_upload from "~/modules/upload/main.vue";
-Vue.use(m_upload);
-import m_uploadOneImg from "~/modules/uploadOneImg/main.vue";
-Vue.use(m_uploadOneImg);
+import gc_editor from "~/components/editor/main.vue";
+Vue.use(gc_editor);
+import gc_form_item_pickyear from "~/components/form-item/pickyear/main.vue";
+Vue.use(gc_form_item_pickyear);
+import gc_form_item_pickdaterange from "~/components/form-item/pickdaterange/main.vue";
+Vue.use(gc_form_item_pickdaterange);
+import gc_horizontal_scrolling from '~/components/horizontal-scrolling/main.vue';
+Vue.use(gc_horizontal_scrolling);
+import gc_table from '~/components/table/main.vue'
+Vue.use(gc_table);
+import gc_treetable from '~/components/treetable/main.vue';
+Vue.use(gc_treetable);
+import gm_cascading_address from "~/modules/cascading-address/main.vue";
+Vue.use(gm_cascading_address);
+import gm_upload from "~/modules/upload/main.vue";
+Vue.use(gm_upload);
+import gm_upload_one_img from "~/modules/upload-one-img/main.vue";
+Vue.use(gm_upload_one_img);
+
+// -------------- xui --------------
+import xui_button from "~/xui/button/main.vue";
+Vue.use(xui_button);
+
 
 
 Vue.config.productionTip = false;

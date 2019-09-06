@@ -32,7 +32,7 @@
 import './main.less'
 export default {
 	install(Vue) {
-		Vue.component("xUpload", this);
+		Vue.component("gm-upload", this);
 	},
 	props: {
 		flist: {
