@@ -15,9 +15,6 @@ ul li {
 		}
 	}
 }
-.linshihuabu {
-	display: none;
-}
 </style>
 
 <template>
@@ -29,13 +26,8 @@ ul li {
 			画笔颜色<input type="color" v-model="lineColor">
 			画笔粗细<input type="number" v-model="lineWidth">
 			<br>
-			<button></button>
-		</section>
-		<section>
-
 		</section>
 		<canvas :id="elementId" width="500" height="500"></canvas>
-		<div class="linshihuabu"></div>
 	</section>
 </template>
 <script>

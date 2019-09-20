@@ -17,6 +17,7 @@ export default {
 				{ name: "拖拽刪除", code: "/dragToDelete" },
 				{ name: "波浪~", code: "/wave" },
 				{ name: "日历组件", code: "/calendar" },
+				{ name: "计算文件md5", code: "/computeFileMd5" },
 			],
 		};
 	},

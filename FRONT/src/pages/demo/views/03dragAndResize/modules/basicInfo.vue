@@ -1,59 +1,25 @@
 <style scoped></style>
 <template>
 	<section>
-		<input v-model="dialogData.title">
-		<button type="button" @click="do_add"><i class="el-icon-plus"></i> 添加子内容</button>
-		<button type="button" @click="do_delete"><i class="el-icon-delete"></i> 删除</button>
-		<button type="button" @click="saveData">保存</button>
+		<el-input v-model="currentNode.title" />
+		<x-button @click="do_add" icon="plus"></x-button>
+		<x-button @click="do_delete" icon="trash"></x-button>
 	</section>
 </template>
 <script>
-// 数据
-import original_data from '../data/mainData.js'
 export default {
-	data() {
-		return {
-			dialogData: {
-				title: "",
-			}
-		}
-	},
+	inject: ["treeStore"],
 	computed: {
-		currentId() {
-			return this.$store.state.magicComponent.currentId;
-		},
-		currentData() {
-			return this.$store.state.magicComponent.currentData;
+		currentNode() {
+			return this.treeStore.currentNode;
 		}
-	},
-	watch: {
-		currentId(value) {
-			if (value) {
-				this.refreshData();
-			}
-		},
 	},
 	methods: {
-		refreshData() {
-			this.dialogData.title = this.currentData.title || "";
-		},
-		saveData() {
-			this.currentData.title = this.dialogData.title;
-		},
 		do_add() {
-			// if (!this.currentData.list) {
-			//     // 这里必须用 this.$set 来新增属性，不然就会出现 "数据变化了，但是渲染没有更新" 的问题
-			//     this.$set(this.currentData, "list", []);
-			//     // this.currentData.list = [];
-			// }
-			let newItem = this._.cloneDeep(original_data);
-			newItem.id = this.xtools.randomId();
-			newItem.active = true;
-
-			this.$store.commit("magicComponent/addItem", newItem);
+			this.treeStore.insertChild(this.currentNode.id);
 		},
 		do_delete() {
-			this.$store.commit("magicComponent/deleteItem");
+			this.treeStore.removeNode(this.currentNode);
 		},
 	}
 };

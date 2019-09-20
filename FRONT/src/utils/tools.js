@@ -84,6 +84,35 @@ const tools = {
 		else result = "刚刚";
 		return result;
 	},
+	getBetweenDays(day1, day2, pattern) {
+		if (pattern == "timestamp") {
+			// 获取输入日期的毫秒数
+			var d1Ms = day1;
+			var d2Ms = day2;
+		} else {
+			// 获取入参字符串形式日期的Date型日期
+			var d1 = day1.getDate();
+			var d2 = day2.getDate();
+			// 获取输入日期的毫秒数
+			var d1Ms = d1.getTime();
+			var d2Ms = d2.getTime();
+		}
+		var dayMilliSeconds = 1000 * 60 * 60 * 24;
+
+		// 定义返回值
+		var ret;
+		// 对日期毫秒数进行循环比较，直到d1Ms 大于等于 d2Ms 时退出循环
+		// 每次循环结束，给d1Ms 增加一天
+		for (d1Ms; d1Ms <= d2Ms; d1Ms += dayMilliSeconds) {
+			// 如果ret为空，则无需添加","作为分隔符
+			if (!ret) {
+				ret = this.formatDate(d1Ms);
+			} else {
+				ret = ret + "," + this.formatDate(d1Ms);
+			}
+		}
+		return ret.split(","); // 或可换为return ret;
+	},
 	// -------------------------- String --------------------------
 	// 生成随机id（最长10位）
 	randomId: (len = 10) => Math.random().toString(36).substr(3, len),

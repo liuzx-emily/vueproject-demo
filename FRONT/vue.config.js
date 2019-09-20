@@ -15,7 +15,7 @@ module.exports = {
 	*/
 	publicPath: '',
 	// outputDir: __dirname + "/dist",
-	outputDir: "e:\\dist",
+	// outputDir: "e:\\dist",
 	configureWebpack: config => {
 		// console.log(JSON.stringify(config));
 		if (process.env.NODE_ENV === 'production') {
@@ -54,7 +54,8 @@ module.exports = {
 			entry: 'src/pages/demo/main.js',
 			template: 'public/index.html',
 			title: 'demo',
-			filename: 'demo.html'
+			filename: 'demo.html',
+			importTinymce: true
 		},
 		login: {
 			entry: 'src/pages/login/main.js',

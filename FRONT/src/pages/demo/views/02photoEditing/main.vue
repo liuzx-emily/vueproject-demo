@@ -7,8 +7,12 @@ canvas {
 
 <template>
 	<section>
+		<input type="file" accept="image/*" @change="uploadFile">
+		<img src="./1.jpg" style="display:none">
 		问题：为什么本地图片1.jpg会加载失败？？？
 		<button type="button" @click="visualEffect_none">原图</button>
+		<button type="button" @click="visualEffect_brighter(20)">增加亮度</button>
+		<button type="button" @click="visualEffect_brighter(-20)">降低亮度</button>
 		<button type="button" @click="visualEffect_momo">沫沫</button>
 		<button type="button" @click="visualEffect_gray">黑白</button>
 		<button type="button" @click="visualEffect_upsidedown">颠倒</button>
@@ -35,22 +39,47 @@ export default {
 		canvas.setAttribute("width", width);
 		canvas.setAttribute("height", height);
 		ctx = canvas.getContext("2d");
-		// this.getOriginalImageData("1.jpg");
-		this.getOriginalImageData("/kitty/download.do?id=6ae2e320-3816-4595-81f1-310d8e8b4446");
+		this.getOriginalImageData("1.jpg");
 	},
 	methods: {
+		uploadFile() {
+			let img = this.$el.querySelector('input[type="file"]').files[0];
+			var fr = new FileReader();
+			fr.onload = () => {
+				this.$el.querySelector("img").src = fr.result;
+			};
+			fr.readAsDataURL(img);
+			// ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
+			// this.imgdata1 = ctx.getImageData(0, 0, width, height);
+			// this.imgdata2 = ctx.createImageData(this.imgdata1);
+		},
 		getOriginalImageData(path) {
-			const img = new Image();
+			// const img = new Image();
+			const img = this.$el.querySelector("img");
 			img.onload = () => {
 				ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, width, height);
 				this.imgdata1 = ctx.getImageData(0, 0, width, height);
 				this.imgdata2 = ctx.createImageData(this.imgdata1);
 			};
-			img.src = path;
+			img.onerror = e => {
+				console.log(e);
+			};
 		},
 		visualEffect_none() {
 			this.clearCanvas();
 			ctx.putImageData(this.imgdata1, 0, 0);
+		},
+		// 增加亮度
+		visualEffect_brighter(delta) {
+			this.clearCanvas();
+			for (let x = 0; x < width; x++) {
+				for (let y = 0; y < height; y++) {
+					const colorArr = this.getColor(this.imgdata1, x, y);
+					let newColor = colorArr.map(item => item + delta);
+					this.setColor(this.imgdata2, x, y, newColor);
+				}
+			}
+			ctx.putImageData(this.imgdata2, 0, 0);
 		},
 		// 沫沫
 		visualEffect_momo() {

@@ -35,14 +35,14 @@
 	<section style="height:100%;">
 		<section class="left">
 			<section class="container">
-				<magicComponent v-for="item in dataList" :key="item" :fdata.sync="item"></magicComponent>
+				<magicComponent v-for="item in treeStore.data" :key="item.id" :data="item"></magicComponent>
 			</section>
 		</section>
 		<section class="right">
 			<a href="https://github.com/gorkys/vue-draggable-resizable">github地址</a>
 			<button type="button" @click="do_save">保存</button>
 			<button type="button" @click="cancelSelect">取消当前选择的内容</button>
-			<!-- <el-card>
+			<el-card>
 				<div slot="header">当前元素</div>
 				<section style="height:450px;overflow:auto">
 					<section v-if="currentId">
@@ -66,13 +66,15 @@
 			<el-card>
 				<div slot="header">大纲</div>
 				<section style="height:250px;overflow:auto">
-					<el-tree :data="dataList" node-key="id" :props="{children:'list',label:'title'}" :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false" @node-click="nodeClick" ref="tree"></el-tree>
+					<el-tree :data="treeStore.data" node-key="id" :props="{label:'title'}" :highlight-current="true" :default-expand-all="true" :expand-on-click-node="false" @node-click="nodeClick" ref="tree"></el-tree>
 				</section>
-			</el-card> -->
+			</el-card>
 		</section>
 	</section>
 </template>
 <script>
+// 数据
+import TreeStore from './data/tree-store'
 // 递归的 magicComponent
 import magicComponent from './magicComponent.vue'
 // 弹窗
@@ -80,40 +82,35 @@ import basicInfo from './modules/basicInfo.vue'
 import editingText from './modules/editingText.vue'
 import settingBackground from './modules/settingBackground.vue'
 import settingBorder from './modules/settingBorder.vue'
-// 数据
-import original_data from './data/mainData.js'
 export default {
 	components: { magicComponent, basicInfo, editingText, settingBackground, settingBorder, },
+	provide() {
+		return { treeStore: this.treeStore }
+	},
 	data() {
 		return {
 			contentId: "magic",
-			title: "",
+			treeStore: new TreeStore()
 		}
 	},
 	computed: {
-		dataList() {
-			return this.$store.state.magicComponent.dataList;
-		},
 		currentId() {
-			return this.$store.state.magicComponent.currentId;
+			return this.treeStore.currentKey;
 		}
 	},
 	watch: {
-		"currentId"(currentId) {
-			if (currentId) {
-				this.$refs.tree.setCurrentKey(currentId);
+		"currentId"(val) {
+			if (val) {
+				this.$refs.tree.setCurrentKey(val);
 			} else {
 				this.$refs.tree.setCurrentKey(null);
 			}
 		}
 	},
-	created() {
-		this.getData();
-	},
-	mounted() { },
+	created() { this.getData(); },
 	methods: {
 		cancelSelect() {
-			this.$store.commit("magicComponent/setCurrentId", "");
+			this.treeStore.setCurrentKey(null);
 		},
 		getData() {
 			this.xaxios({
@@ -122,16 +119,8 @@ export default {
 					contentId: this.contentId
 				}
 			}).then(res => {
-				let data = res.data.map(item => {
-					item.top = false;
-					item.active = false;
-					item.isDelete = false;
-					return item;
-				});
-				let dataList = this.xtools.arrayToTree(data, {
-					children: "list",
-				});
-				this.$store.commit("magicComponent/setDataList", dataList);
+				const list = this.xtools.arrayToTree(res.data, { children: "list", });
+				this.treeStore.setData(list);
 			})
 		},
 		do_save() {
@@ -139,21 +128,18 @@ export default {
 				method: 'POST',
 				url: "/api/magiccomponent/saveAll.do",
 				data: {
-					list: this.dataList,
+					list: this.treeStore.data,
 					contentId: this.contentId
 				}
 			}).then(res => {
 				if (res.code == 1) {
-					this.$message({
-						message: '保存成功！',
-						type: 'success',
-					});
+					this.$message({ message: '保存成功！', type: 'success', });
 				}
 			});
 		},
 		nodeClick(data) {
 			data.active = true;
-			this.$store.commit("magicComponent/setCurrentId", data.id);
+			this.treeStore.setCurrentKey(data.id);
 		}
 	}
 };

@@ -25,6 +25,10 @@ const routes = [{
     path: "/calendar",
     component: () => import('~/pages/demo/views/06calendar/main.vue')
 },
+{
+    path: "/computeFileMd5",
+    component: () => import('~/pages/demo/views/07computeFileMd5/main.vue')
+},
 
 ];
 
