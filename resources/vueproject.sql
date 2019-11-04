@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 19/07/2019 17:46:01
+ Date: 04/11/2019 15:28:04
 */
 
 SET NAMES utf8mb4;
@@ -39,22 +39,11 @@ CREATE TABLE `t_article`  (
 -- ----------------------------
 -- Records of t_article
 -- ----------------------------
-INSERT INTO `t_article` VALUES ('2025473e-f273-4ac8-b502-0533055a8891', 1563526878729, 1563526878729, 0, NULL, '新文章12', '小明', 1563526877522, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('241cda06-f755-438f-b57b-81977a1229e1', 1563529349036, 1563529349036, 0, NULL, '新文章16', '小明', 1563529342338, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('3287ac8b-b97d-4f46-bb06-e5f3d1e1cb4c', 1563526882657, 1563526882657, 0, NULL, '新文章14', '小明', 1563526881628, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('68f14313-fc5e-48a9-b75d-8ae3c091b98b', 1563526773116, 1563526773116, 0, NULL, '新文章4', '小明', 1563526771899, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('6a546765-3ae4-4762-b290-18c90d85f35a', 1563526775595, 1563526775595, 0, NULL, '新文章5', '小明', 1563526774175, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('8378f2d9-5f06-41cb-8f42-3024ad6a9618', 1563526781465, 1563526781465, 0, NULL, '新文章7', '小明', 1563526779481, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('8e432018-6505-4615-ac40-1c4a97e6b519', 1562916988740, 1562916988740, 0, NULL, '新文章1', '小明', 1562916982361, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('92e9ea0e-392d-47ab-915d-606913253a5c', 1563526777642, 1563526777642, 0, NULL, '新文章6', '小明', 1563526776471, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('9a98bcf3-0c0e-4ade-a120-069d31d5a19e', 1563526770760, 1563526770760, 0, NULL, '新文章3', '小明', 1563526769104, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('9af31483-b82a-418f-9b66-edc0ace57d84', 1563526783849, 1563526783849, 0, NULL, '新文章8', '小明', 1563526782615, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('9da7422e-e609-4fc1-8ab8-9cac2d0cf6f6', 1563526880880, 1563526880880, 0, NULL, '新文章13', '小明', 1563526879694, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('bdd9fcd9-32f7-4eb1-9188-ad92855104bb', 1563526885176, 1563526885176, 0, NULL, '新文章15', '小明', 1563526883455, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('c5b39e1b-32f5-4b8a-acb5-079b3bc301e9', 1563526871322, 1563526871322, 0, NULL, '新文章11', '小明', 1563526869697, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('d9624b9e-84f3-4a3d-8895-172384e9470c', 1563526788033, 1563526868671, 0, NULL, '新文章10', '小明', 1563526786940, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('f4737c09-a773-47bf-9e37-9706197b5e44', 1563526786056, 1563526786056, 0, NULL, '新文章9', '小明', 1563526784862, '<p>哈哈</p>', '1', '');
-INSERT INTO `t_article` VALUES ('f6a39985-2b25-4a5d-8cd6-6f61344762fe', 1562916991632, 1563524264864, 0, NULL, '新文章2', '小明', 1562916990011, '<p>哈哈222</p>', '1', '');
+INSERT INTO `t_article` VALUES ('27762484-53b8-451d-90a8-f65bc4860735', 1567751212419, 1567751273060, 0, NULL, '2', '2', 1567751187361, '<p>2222</p>\n<p>&nbsp;</p>\n<p><img src=\"api/download.do?id=11f47ab2-c9bf-4cba-9eaf-5794fe86598a\" width=\"115\" height=\"115\" /></p>\n<p>&nbsp;</p>', '1', '');
+INSERT INTO `t_article` VALUES ('3abe924a-3516-42f9-89ed-8ba11c0ac324', 1567750231024, 1567751208020, 1, NULL, '2', '2', 1567750225616, '<p>小明你好</p>', '1', '');
+INSERT INTO `t_article` VALUES ('a8330812-0922-416b-87df-5c6ce91c4888', 1567750065081, 1567751209428, 1, NULL, '1', '1', 1567750060200, '<p>ggg</p>', '1', '');
+INSERT INTO `t_article` VALUES ('be6fc1ce-2a68-41b7-b134-4e7b949c81ae', 1567751224915, 1567751231754, 0, NULL, '1', '1', 1567751187361, '<p>1111111111</p>', '2', '');
+INSERT INTO `t_article` VALUES ('c57ade1f-0202-4ae1-9f72-1c695b5fe340', 1567751203796, 1567751206443, 1, NULL, '1', '1', 1567751187361, '<p>1</p>', '1', '');
 
 -- ----------------------------
 -- Table structure for t_article_file
@@ -67,12 +56,12 @@ CREATE TABLE `t_article_file`  (
   `articleId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章id',
   `fileId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '附件id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_article_file
 -- ----------------------------
-INSERT INTO `t_article_file` VALUES (1, 0, 0, '241cda06-f755-438f-b57b-81977a1229e1', '8e408a91-7530-4933-bb15-c86098fc09a2');
+INSERT INTO `t_article_file` VALUES (8, 0, 0, '', '3190b6a3-02d6-483f-8a20-557ba29422a1');
 
 -- ----------------------------
 -- Table structure for t_dept
@@ -3738,44 +3727,16 @@ CREATE TABLE `t_file`  (
 -- ----------------------------
 -- Records of t_file
 -- ----------------------------
-INSERT INTO `t_file` VALUES ('76525bf4-c746-445f-835c-715d6232f2fd', 1562314468574, 1562314468574, '17.jpg', 33573, 'E:\\myProject\\upload\\upload_17edc2a24627db7c352e5c78de99fd64.jpg');
-INSERT INTO `t_file` VALUES ('8e408a91-7530-4933-bb15-c86098fc09a2', 1563529346937, 1563529346937, '5aa0f8b158041.jpg', 52321, 'e:\\myProject\\upload\\upload_da2c805713eb6469c59557f52d15b632.jpg');
-INSERT INTO `t_file` VALUES ('e9e4cf9d-71ce-443a-814f-dcc5af062db1', 1563439795229, 1563439795229, '25.jpg', 33151, 'E:\\myProject\\upload\\upload_535da5ba4c3e6f8a174cab16bd4464f8.jpg');
-
--- ----------------------------
--- Table structure for t_magiccomponent
--- ----------------------------
-DROP TABLE IF EXISTS `t_magiccomponent`;
-CREATE TABLE `t_magiccomponent`  (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `parentId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '父级id',
-  `contentId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '所属内容id',
-  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
-  `updateTime` bigint(20) NOT NULL COMMENT '修改时间',
-  `x` int(11) NULL DEFAULT NULL,
-  `y` int(11) NULL DEFAULT NULL,
-  `width` int(11) NULL DEFAULT NULL,
-  `height` int(11) NULL DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `backgroundType` tinyint(4) NULL DEFAULT NULL COMMENT '1无 2背景颜色 3背景图片',
-  `backgroundColor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `backgroundImgUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `borderRadius` int(11) NULL DEFAULT NULL,
-  `borderStyle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '1无 solid dashed',
-  `borderColor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `borderWidth` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of t_magiccomponent
--- ----------------------------
-INSERT INTO `t_magiccomponent` VALUES ('6f230793-ebdc-4f62-9925-f3fc6b3cec18', '0', 'magic', 1561614328892, 1561614328892, 676, 40, 502, 317, '背景板2', '<p>我不好</p>', 2, '#ecd', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `t_magiccomponent` VALUES ('e7f66297-83a6-4eb7-9c61-91ee0be55035', 'eb797931-ae48-444a-8029-edf37c1b81d9', 'magic', 1561614328883, 1561614328883, 436, 134, 100, 50, '新内容1', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
-INSERT INTO `t_magiccomponent` VALUES ('eb797931-ae48-444a-8029-edf37c1b81d9', '0', 'magic', 1561614328878, 1561614328878, 69, 134, 594, 281, '背景板', '<p>你好</p>', 2, '#dce', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `t_magiccomponent` VALUES ('f3b39708-de9c-4b55-b431-dc49a67e75a3', '6f230793-ebdc-4f62-9925-f3fc6b3cec18', 'magic', 1561614328896, 1561614328896, 189, 121, 100, 50, '新内容', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
-INSERT INTO `t_magiccomponent` VALUES ('fc7330a7-c595-4e33-9f93-8fc834984870', 'eb797931-ae48-444a-8029-edf37c1b81d9', 'magic', 1561614328889, 1561614328889, 147, 78, 100, 50, '新内容2', '新内容', 2, '#ede', NULL, 5, 'solid', '#eee', NULL);
+INSERT INTO `t_file` VALUES ('0bcc3242-5f8d-4db6-97dc-ba3ae5b246f6', 1568095275567, 1568095275567, 'bg.png', 3515599, 'e:\\myProject\\upload\\upload_08ac401f89bfd6181d0f88ff48504eaa.png');
+INSERT INTO `t_file` VALUES ('3b814e5d-5db7-4eaf-a43f-cf6a9459b7a5', 1568095237105, 1568095237105, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_f8935bb9ef4b5be680c101cd5b555086.jpg');
+INSERT INTO `t_file` VALUES ('60119a1c-661c-497d-9e0b-232611ae9912', 1568018892353, 1568018892353, 'icon1.png', 31733, 'e:\\myProject\\upload\\upload_512e04343c48ed5e11769cd90c699719.png');
+INSERT INTO `t_file` VALUES ('7786dc3b-2d17-417b-9d99-6c4bff89d456', 1568017105680, 1568017105680, '53d70ebfd249a.jpg', 82444, 'e:\\myProject\\upload\\upload_9727cd554dbad4ecaa23c9b9255cce25.jpg');
+INSERT INTO `t_file` VALUES ('78670076-1c5a-4fe7-b5bb-4f5058dcec5b', 1568017665992, 1568017665992, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_bb62461a872230441e3e36a92731ccb3.jpg');
+INSERT INTO `t_file` VALUES ('a2698dd9-ff01-496e-878f-2c0ce6cc867b', 1568096236963, 1568096236963, '21643957_1370325500333.png', 273901, 'e:\\myProject\\upload\\upload_4aa2ef47a79bf11451f92079bd9a0c57.png');
+INSERT INTO `t_file` VALUES ('bd3f7237-388e-47f6-8417-597afdcfb649', 1568094194975, 1568094194976, '1209305995131.jpg', 481005, 'e:\\myProject\\upload\\upload_b689c2a38be3e44f3b537d72481a1789.jpg');
+INSERT INTO `t_file` VALUES ('d0262dd4-169d-44e5-bde4-777823dfe99a', 1568096229859, 1568096229859, 'paper3.jpg', 93856, 'e:\\myProject\\upload\\upload_270838573ff478f0e7f4cb36038f501c.jpg');
+INSERT INTO `t_file` VALUES ('e0df244f-3ba2-489c-ba29-752f292dc8a1', 1568095146665, 1568095146665, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_8955c7836ddfe040da5a0f8d3ecbef38.jpg');
+INSERT INTO `t_file` VALUES ('e9e4cf9d-71ce-443a-814f-dcc5af062db1', 1563439795229, 1563439795229, '25.jpg', 33151, 'E:\\myProject\\upload\\avatar.jpg');
 
 -- ----------------------------
 -- Table structure for t_permission
@@ -3783,87 +3744,51 @@ INSERT INTO `t_magiccomponent` VALUES ('fc7330a7-c595-4e33-9f93-8fc834984870', '
 DROP TABLE IF EXISTS `t_permission`;
 CREATE TABLE `t_permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
-  `updateTime` bigint(20) NOT NULL COMMENT '修改时间',
-  `isDelete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0正常1删除',
-  `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `parentId` int(11) NOT NULL COMMENT '父级id',
-  `type` tinyint(4) NOT NULL COMMENT '1导航(无内容) 2菜单 3按钮',
+  `type` tinyint(4) NOT NULL COMMENT '1导航(无内容) 2菜单 3按钮 4页面跳转链接',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'url或者code值',
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
+  `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
+  `isDelete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0正常1删除',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_permission
 -- ----------------------------
-INSERT INTO `t_permission` VALUES (1, 1557027428395, 1557195832417, 0, 12, '系统管理', 0, 1, '/system', 'gears', '');
-INSERT INTO `t_permission` VALUES (2, 1557027515408, 1559115267859, 0, 2, '部门管理', 1, 2, '/system/dept', NULL, '');
-INSERT INTO `t_permission` VALUES (3, 1557027775223, 1559117133846, 0, 1, '人员管理', 1, 2, '/system/deptAndUser', NULL, '');
-INSERT INTO `t_permission` VALUES (4, 1557028216406, 1557028216406, 0, 3, '角色管理', 1, 2, '/system/role', NULL, '');
-INSERT INTO `t_permission` VALUES (5, 1557110406100, 1557372291268, 0, 4, '权限管理', 1, 2, '/system/permission', NULL, '');
-INSERT INTO `t_permission` VALUES (7, 1557111458144, 1563344297412, 0, 1, '预设样式', 0, 1, '/presetStyle', 'cube', '');
-INSERT INTO `t_permission` VALUES (8, 1557111635237, 1559024250082, 0, 2, '组件说明', 0, 1, '/componentInstructions', 'superpowers', '');
-INSERT INTO `t_permission` VALUES (9, 1557111644861, 1557129495997, 0, 3, '插件DEMO', 0, 1, '/pluginDemo', 'leaf', '');
-INSERT INTO `t_permission` VALUES (10, 1557111658700, 1557129564820, 0, 4, '黑科技&难点', 0, 1, '/blackTechnology', 'magic', '');
-INSERT INTO `t_permission` VALUES (11, 1557128981918, 1557128981918, 0, 1, '按钮', 7, 2, '/presetStyle/btn', '', '');
-INSERT INTO `t_permission` VALUES (12, 1557128998814, 1557128998814, 0, 2, '搜索条件', 7, 2, '/presetStyle/searchCondition', '', '');
-INSERT INTO `t_permission` VALUES (13, 1557129446685, 1559633920604, 0, 1, '表格table', 8, 2, '/componentInstructions/table', '', '');
-INSERT INTO `t_permission` VALUES (14, 1557129465767, 1557129465767, 0, 2, 'treeTable', 8, 2, '/componentInstructions/treeTable', '', '');
-INSERT INTO `t_permission` VALUES (15, 1557129480333, 1557129480333, 0, 3, '横向滚动', 8, 2, '/componentInstructions/horizontalScrolling', '', '');
-INSERT INTO `t_permission` VALUES (16, 1557129517350, 1557129517350, 0, 1, 'echarts', 9, 2, '/pluginDemo/echarts', '', '');
-INSERT INTO `t_permission` VALUES (17, 1557129542688, 1557129542688, 0, 2, 'Guide', 9, 2, '/pluginDemo/guide', '', '');
-INSERT INTO `t_permission` VALUES (18, 1557129587195, 1557129614479, 0, 1, 'CSS', 10, 1, '/blackTechnology/css', '', '');
-INSERT INTO `t_permission` VALUES (19, 1557129608347, 1557988597949, 0, 3, '使用css绘制图形', 18, 2, '/blackTechnology/css/03', '', '');
-INSERT INTO `t_permission` VALUES (20, 1557129646124, 1563155256206, 1, 2, '利用content属性attr抓取资料', 18, 2, '/blackTechnology/css/02', '', '');
-INSERT INTO `t_permission` VALUES (21, 1557129805787, 1557129805787, 0, 2, 'Javascript', 10, 1, '/blackTechnology/js', '', '');
-INSERT INTO `t_permission` VALUES (22, 1557129830883, 1557988572307, 0, 3, 'console', 21, 2, '/blackTechnology/js/03', '', '');
-INSERT INTO `t_permission` VALUES (23, 1557129849079, 1563169578198, 1, 3, 'HTML', 10, 1, '/blackTechnology/html', '', '');
-INSERT INTO `t_permission` VALUES (24, 1557191243343, 1563169323220, 1, 1, '输入数学公式', 23, 2, '/blackTechnology/html/01', '', '');
-INSERT INTO `t_permission` VALUES (25, 1557191262124, 1557191262124, 0, 4, '综合', 10, 1, '/blackTechnology/complex', '', '');
-INSERT INTO `t_permission` VALUES (26, 1557191278753, 1557191278753, 0, 1, '打印', 25, 2, '/blackTechnology/complex/01', '', '');
-INSERT INTO `t_permission` VALUES (27, 1557191301658, 1557191301658, 0, 2, '页面导出PDF', 25, 2, '/blackTechnology/complex/02', '', '');
-INSERT INTO `t_permission` VALUES (28, 1557191323708, 1557372446714, 0, 5, 'vue相关', 10, 1, '/blackTechnology/vue', '', '');
-INSERT INTO `t_permission` VALUES (29, 1557191341536, 1558064621691, 0, 3, '图片的src是变量', 28, 2, '/blackTechnology/vue/03', '', '');
-INSERT INTO `t_permission` VALUES (30, 1557191358015, 1557191358015, 0, 2, '在初始化方法完成后再加载其他部分', 28, 2, '/blackTechnology/vue/02', '', '');
-INSERT INTO `t_permission` VALUES (31, 1557191389360, 1557195837762, 0, 11, '文章管理', 0, 2, '/article', 'book', '');
-INSERT INTO `t_permission` VALUES (32, 1557195814726, 1559115237438, 1, 13, '人员管理', 0, 2, '/deptAndUser', 'user', '');
-INSERT INTO `t_permission` VALUES (39, 1557741931092, 1557741931092, 0, 4, '常见表单组件', 8, 2, '/componentInstructions/commonFormItem', '', '');
-INSERT INTO `t_permission` VALUES (40, 1557891352688, 1563155249709, 1, 1, 'tricks', 18, 2, '/blackTechnology/css/01', '', '');
-INSERT INTO `t_permission` VALUES (41, 1557892532138, 1557988576571, 0, 1, 'tricks', 21, 2, '/blackTechnology/js/01', '', '');
-INSERT INTO `t_permission` VALUES (42, 1557975656515, 1557988564597, 0, 2, '多级地址', 21, 2, '/blackTechnology/js/02', '', '');
-INSERT INTO `t_permission` VALUES (43, 1558064644520, 1563170101486, 1, 1, 'tricks', 28, 2, '/blackTechnology/vue/01', '', '');
-INSERT INTO `t_permission` VALUES (44, 1558405866313, 1558406135596, 1, 0, '11', 0, 2, '11', '', '');
-INSERT INTO `t_permission` VALUES (45, 1559099231635, 1559099231635, 0, 1, '新增', 2, 3, 'dept:btn:add', '', '');
-INSERT INTO `t_permission` VALUES (46, 1559099266232, 1559099266232, 0, 2, '编辑', 2, 3, 'dept:btn:edit', '', '');
-INSERT INTO `t_permission` VALUES (47, 1559099277544, 1559099277544, 0, 3, '查看', 2, 3, 'dept:btn:look', '', '');
-INSERT INTO `t_permission` VALUES (48, 1559099288353, 1559099288353, 0, 4, '删除', 2, 3, 'dept:btn:delete', '', '');
-INSERT INTO `t_permission` VALUES (49, 1559099653124, 1559099653124, 0, 1, '新增', 3, 3, 'user:btn:add', '', '');
-INSERT INTO `t_permission` VALUES (50, 1559099666990, 1559099666990, 0, 2, '编辑', 3, 3, 'user:btn:edit', '', '');
-INSERT INTO `t_permission` VALUES (51, 1559099676728, 1559099676728, 0, 3, '查看', 3, 3, 'user:btn:look', '', '');
-INSERT INTO `t_permission` VALUES (52, 1559099691591, 1559099691591, 0, 4, '删除', 3, 3, 'user:btn:delete', '', '');
-INSERT INTO `t_permission` VALUES (53, 1559099728861, 1559099728861, 0, 1, '新增', 4, 3, 'role:btn:add', '', '');
-INSERT INTO `t_permission` VALUES (54, 1559099737543, 1559099737543, 0, 2, '编辑', 4, 3, 'role:btn:edit', '', '');
-INSERT INTO `t_permission` VALUES (55, 1559099746585, 1559099746585, 0, 3, '查看', 4, 3, 'role:btn:look', '', '');
-INSERT INTO `t_permission` VALUES (56, 1559099757926, 1559099757926, 0, 4, '删除', 4, 3, 'role:btn:delete', '', '');
-INSERT INTO `t_permission` VALUES (57, 1559099791709, 1559099791709, 0, 1, '新增', 5, 3, 'permission:btn:add', '', '');
-INSERT INTO `t_permission` VALUES (58, 1559099800423, 1559099800423, 0, 2, '编辑', 5, 3, 'permission:btn:edit', '', '');
-INSERT INTO `t_permission` VALUES (59, 1559099810440, 1559099810440, 0, 3, '查看', 5, 3, 'permission:btn:look', '', '');
-INSERT INTO `t_permission` VALUES (60, 1559099821324, 1559099821324, 0, 4, '删除', 5, 3, 'permission:btn:delete', '', '');
-INSERT INTO `t_permission` VALUES (61, 1559122007950, 1559122007950, 0, 1, '新增', 31, 3, 'article:btn:add', '', '');
-INSERT INTO `t_permission` VALUES (62, 1559122026122, 1559122026122, 0, 2, '编辑', 31, 3, 'article:btn:edit', '', '');
-INSERT INTO `t_permission` VALUES (63, 1559122042650, 1559122042650, 0, 3, '查看', 31, 3, 'article:btn:look', '', '');
-INSERT INTO `t_permission` VALUES (64, 1559122062242, 1559122062242, 0, 4, '删除', 31, 3, 'article:btn:delete', '', '');
-INSERT INTO `t_permission` VALUES (65, 1559194644356, 1559194644356, 0, 5, '审核', 31, 3, 'article:btn:audit', '', '');
-INSERT INTO `t_permission` VALUES (66, 1559628756490, 1559714388936, 1, 5, 'foldableBox', 8, 2, '/componentInstructions/foldableBox', '', '');
-INSERT INTO `t_permission` VALUES (67, 1560830542110, 1560843088196, 1, 5, '上传附件', 8, 2, '/componentInstructions/upload', '', '');
-INSERT INTO `t_permission` VALUES (68, 1560830587257, 1560843091897, 1, 6, '上传单一图片', 8, 2, '/componentInstructions/uploadOneImg', '', '');
-INSERT INTO `t_permission` VALUES (69, 1560830689513, 1560843094801, 1, 7, '编辑器', 8, 2, '/componentInstructions/editor', '', '');
-INSERT INTO `t_permission` VALUES (70, 1560849667607, 1563171105667, 1, 13, '拖拽缩放', 0, 2, '/dragAndResize', 'fire', '');
-INSERT INTO `t_permission` VALUES (71, 1562202881876, 1563155227731, 1, 5, '画板', 8, 2, '/componentInstructions/painting', '', '');
-INSERT INTO `t_permission` VALUES (72, 1562903845417, 1563155230909, 1, 6, 'canvasImage', 8, 2, '/componentInstructions/canvasImage', '', '');
+INSERT INTO `t_permission` VALUES (1, '系统管理', 0, 1, '/system', 'gears', '', 12, 0, 1557027428395, 1557195832417);
+INSERT INTO `t_permission` VALUES (2, '部门管理', 1, 2, '/system/dept', NULL, '', 2, 0, 1557027515408, 1559115267859);
+INSERT INTO `t_permission` VALUES (3, '人员管理', 1, 2, '/system/deptAndUser', NULL, '', 1, 0, 1557027775223, 1559117133846);
+INSERT INTO `t_permission` VALUES (4, '角色管理', 1, 2, '/system/role', NULL, '', 3, 0, 1557028216406, 1557028216406);
+INSERT INTO `t_permission` VALUES (5, '权限管理', 1, 2, '/system/permission', NULL, '', 4, 0, 1557110406100, 1557372291268);
+INSERT INTO `t_permission` VALUES (31, '文章管理', 0, 2, '/article', 'book', '', 11, 0, 1557191389360, 1557195837762);
+INSERT INTO `t_permission` VALUES (45, '新增', 2, 3, 'dept:btn:add', '', '', 1, 0, 1559099231635, 1559099231635);
+INSERT INTO `t_permission` VALUES (46, '编辑', 2, 3, 'dept:btn:edit', '', '', 2, 0, 1559099266232, 1559099266232);
+INSERT INTO `t_permission` VALUES (47, '查看', 2, 3, 'dept:btn:look', '', '', 3, 0, 1559099277544, 1559099277544);
+INSERT INTO `t_permission` VALUES (48, '删除', 2, 3, 'dept:btn:delete', '', '', 4, 0, 1559099288353, 1559099288353);
+INSERT INTO `t_permission` VALUES (49, '新增', 3, 3, 'user:btn:add', '', '', 1, 0, 1559099653124, 1559099653124);
+INSERT INTO `t_permission` VALUES (50, '编辑', 3, 3, 'user:btn:edit', '', '', 2, 0, 1559099666990, 1559099666990);
+INSERT INTO `t_permission` VALUES (51, '查看', 3, 3, 'user:btn:look', '', '', 3, 0, 1559099676728, 1559099676728);
+INSERT INTO `t_permission` VALUES (52, '删除', 3, 3, 'user:btn:delete', '', '', 4, 0, 1559099691591, 1559099691591);
+INSERT INTO `t_permission` VALUES (53, '新增', 4, 3, 'role:btn:add', '', '', 1, 0, 1559099728861, 1559099728861);
+INSERT INTO `t_permission` VALUES (54, '编辑', 4, 3, 'role:btn:edit', '', '', 2, 0, 1559099737543, 1559099737543);
+INSERT INTO `t_permission` VALUES (55, '查看', 4, 3, 'role:btn:look', '', '', 3, 0, 1559099746585, 1559099746585);
+INSERT INTO `t_permission` VALUES (56, '删除', 4, 3, 'role:btn:delete', '', '', 4, 0, 1559099757926, 1559099757926);
+INSERT INTO `t_permission` VALUES (57, '新增', 5, 3, 'permission:btn:add', '', '', 1, 0, 1559099791709, 1559099791709);
+INSERT INTO `t_permission` VALUES (58, '编辑', 5, 3, 'permission:btn:edit', '', '', 2, 0, 1559099800423, 1559099800423);
+INSERT INTO `t_permission` VALUES (59, '查看', 5, 3, 'permission:btn:look', '', '', 3, 0, 1559099810440, 1559099810440);
+INSERT INTO `t_permission` VALUES (60, '删除', 5, 3, 'permission:btn:delete', '', '', 4, 0, 1559099821324, 1559099821324);
+INSERT INTO `t_permission` VALUES (61, '新增', 31, 3, 'article:btn:add', '', '', 1, 0, 1559122007950, 1559122007950);
+INSERT INTO `t_permission` VALUES (62, '编辑', 31, 3, 'article:btn:edit', '', '', 2, 0, 1559122026122, 1559122026122);
+INSERT INTO `t_permission` VALUES (63, '查看', 31, 3, 'article:btn:look', '', '', 3, 0, 1559122042650, 1559122042650);
+INSERT INTO `t_permission` VALUES (64, '删除', 31, 3, 'article:btn:delete', '', '', 4, 0, 1559122062242, 1559122062242);
+INSERT INTO `t_permission` VALUES (65, '审核', 31, 3, 'article:btn:audit', '', '', 5, 0, 1559194644356, 1559194644356);
+INSERT INTO `t_permission` VALUES (73, '门户', 0, 4, './portal.html', 'fire', '', 21, 0, 1572851034425, 1572851601550);
+INSERT INTO `t_permission` VALUES (74, '注册', 0, 4, './register.html', 'fire', '', 22, 0, 1572851536431, 1572851604958);
 
 -- ----------------------------
 -- Table structure for t_role
@@ -4014,6 +3939,6 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_user` AS SELECT
 FROM
 	t_user u
 	LEFT JOIN t_dept d ON u.deptId = d.id
-	LEFT JOIN t_role r on u.roleId=r.id ;
+	LEFT JOIN t_role r on u.roleId=r.id ; ;
 
 SET FOREIGN_KEY_CHECKS = 1;

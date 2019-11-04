@@ -32,13 +32,33 @@ Vue.prototype.exportPDF = exportPDF
 
 
 // -------------- 自定义指令 ----------------
+/* 
+v-permission 和 v-if 一起使用时，有时候会出错。尤其是v-if的值会变化时。
+所以我想着， v-permission 内部不能用 removeChild 处理了，改成隐藏元素吧。
+但是隐藏元素有个问题 隐藏的元素button + button ，会触发margin。 
+
+而且只在 inserted 中处理是不够的，必须还在 update 中处理！
+*/
 Vue.directive("permission", {
-	// 指令的定义
 	inserted(el, binding, vnode) {
 		const permissionBtns = vnode.context.$store.state.permissionBtns
 		const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
 		const flag = _.indexOf(permissionBtns, code) != -1;
-		(!flag) && (el.parentElement.removeChild(el));
+		if (flag) {
+			el.classList.remove("no-permission-btn");
+		} else {
+			el.classList.add("no-permission-btn");
+		}
+	},
+	update(el, binding, vnode) {
+		const permissionBtns = vnode.context.$store.state.permissionBtns
+		const code = `${binding.arg}:btn:${{1:'add',2:'edit',3:'look',4:'delete'}[binding.value]||binding.value}`;
+		const flag = _.indexOf(permissionBtns, code) != -1;
+		if (flag) {
+			el.classList.remove("no-permission-btn");
+		} else {
+			el.classList.add("no-permission-btn");
+		}
 	},
 });
 
@@ -48,13 +68,11 @@ import themeChick from './echartsThemes/theme-chic.js'
 echarts.registerTheme("chic", themeChick);
 import { bind as sizeSensor, clear } from 'size-sensor';
 Vue.prototype.echarts = echarts
-Vue.prototype.chartResizeWhenWidthChange = (id) => {
-	sizeSensor(document.getElementById(id), element => {
-		if (element) {
-			let echartsObj = echarts.getInstanceByDom(element);
-			if (echartsObj) {
-				echartsObj.resize();
-			}
+Vue.prototype.chartResizeWhenWidthChange = domElement => {
+	sizeSensor(domElement, element => {
+		let echartsObj = echarts.getInstanceByDom(element);
+		if (echartsObj) {
+			echartsObj.resize();
 		}
 	});
 }

@@ -57,14 +57,22 @@ const getMenusAndBtns = async (ctx, next) => {
 		["order", 'ASC']
 	];
 	// menus
-	let whereParam_menus = { isDelete: 0, page: ctx.requestparam.page };
+	let whereParam_menus = { isDelete: 0};
 	whereParam_menus.type = {
 		[Op.not]: 3
 	};
 	let menus = await models.permission.findAll({ where: whereParam_menus, order: orderParam });
+	// menus中每一项都是一个class实例，楞添属性的话，前台接收不到。所以先转成普通object
+	// menus = JSON.parse(JSON.stringify(menus));
+	// menus.forEach(item => {
+	// 	item.isPage = false;
+	// });
+
+
+	// menus.unshift({ icon: "fire", id: 871, isPage: true, name: "门户" })
 	// btns
 	let btns = await models.permission.findAll({
-		where: { isDelete: 0, type: 3, page: ctx.requestparam.page },
+		where: { isDelete: 0, type: 3,  },
 		order: orderParam
 	});
 	ctx.response.body = { code: 1, data: { menus: menus, btns: btns, } };

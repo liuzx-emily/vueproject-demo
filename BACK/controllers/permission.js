@@ -1,4 +1,4 @@
-const attributes = ['id', "name", "parentId","page", "type", "code", "icon", "order", ];
+const attributes = ['id', "name", "parentId","type", "code", "icon", "order", ];
 
 // 涉及到多个表，自动手动拼sql比较方便
 const getStr = (strparams) => {
@@ -15,7 +15,7 @@ const getStr = (strparams) => {
 };
 
 const findAll = async (ctx, nect) => {
-	let whereParam = { isDelete: 0, page: ctx.requestparam.page };
+	let whereParam = { isDelete: 0,};
 	let data = await ctx.xglobal.rawquery_list({ whereParam, attributes }, getStr, );
 	ctx.response.body = { code: 1, data: data, };
 };

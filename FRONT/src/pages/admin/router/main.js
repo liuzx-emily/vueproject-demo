@@ -5,11 +5,11 @@ Vue.use(VueRouter)
 
 const routes = [
 	// ---------------------- 404 ----------------------
-	{
-		name: '404',
-		path: '/404',
-		component: () => import('~/pages/index/views/404.vue')
-	},
+	// {
+	// 	name: '404',
+	// 	path: '/404',
+	// 	component: () => import('~/pages/index/views/404.vue')
+	// },
 	// ---------------------- 文章管理 ---------------------- 
 	{
 		path: '/article',

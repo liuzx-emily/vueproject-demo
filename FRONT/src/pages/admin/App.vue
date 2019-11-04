@@ -12,6 +12,10 @@
 							<i class="fa" :class="'fa-'+item.icon"></i>
 							<span class="name">{{item.name}}</span>
 						</router-link>
+						<a :href="item.code" v-for="item in externalLinkNav" :key="item.code">
+							<i class="fa" :class="'fa-'+item.icon"></i>
+							<span class="name">{{item.name}}</span>
+						</a>
 					</nav>
 					<!-- 用户信息 -->
 					<userbox></userbox>
@@ -52,7 +56,6 @@ export default {
 		getMenusAndBtns() {
 			this.xaxios({
 				url: "/api/getMenusAndBtns.do",
-				params: { page: 1 },
 			}).then(res => {
 				this.refreshPermissionBtns(res.data.btns);
 				this.refreshNavList(res.data.menus);

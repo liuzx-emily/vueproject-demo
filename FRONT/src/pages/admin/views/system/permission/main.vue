@@ -1,15 +1,6 @@
 <template>
 	<section v-loading.fullscreen.lock="loading">
 		<section class="abovelist-search-and-btns">
-			<section class="search-box">
-				<span class="search-label">页面</span>
-				<span class="search-input">
-					<el-radio-group v-model="searchparam.page">
-						<el-radio :label="1">admin</el-radio>
-						<el-radio :label="2">index</el-radio>
-					</el-radio-group>
-				</span>
-			</section>
 			<section class="btns-box">
 				<x-button @click="refreshData">搜索</x-button>
 				<x-button v-permission:permission="1" @click="openDial_main(1)">新增</x-button>
@@ -21,6 +12,7 @@
 					<span v-if="scope.row.type==1" style="color:#9C27B0">导航</span>
 					<span v-if="scope.row.type==2" style="color:#4CAF50">页面</span>
 					<span v-if="scope.row.type==3" style="color:#ff9800">按钮</span>
+					<span v-if="scope.row.type==4" style="color:#ff5722">页面跳转链接</span>
 				</template>
 			</el-table-column>
 			<el-table-column prop="code" label="code" width="350px"></el-table-column>
@@ -44,7 +36,7 @@ export default {
 	data() {
 		return {
 			loading: false,
-			searchparam: { page: 1 },
+			searchparam: {},
 			treeTableProps: {
 				controlColumn: { label: "名称", prop: "name", width: "" },
 				expandAll: true,
@@ -61,7 +53,6 @@ export default {
 			this.loading = true;
 			this.xaxios({
 				url: "/api/permission/list.do",
-				params: { page: this.searchparam.page }
 			}).then(res => {
 				let data = this._.cloneDeep(res.data);
 				this.treeTableData = this.xtools.arrayToTree(data, {

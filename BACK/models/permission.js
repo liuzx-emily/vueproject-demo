@@ -19,11 +19,6 @@ let attributes = {
 		allowNull: false,
 		comment: "父级id",
 	},
-	page: {
-		type: Sequelize.INTEGER,
-		allowNull: false,
-		comment: "所属页面 1admin ",
-	},
 	type: {
 		type: Sequelize.TINYINT,
 		allowNull: false,

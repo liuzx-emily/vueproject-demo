@@ -6,17 +6,12 @@
 				<el-form-item label="名称" prop="name">
 					<el-input v-model="dialogData.name"></el-input>
 				</el-form-item>
-				<el-form-item label="所属页面" prop="page">
-					<el-radio-group v-model="dialogData.page">
-						<el-radio :label="1">admin</el-radio>
-						<el-radio :label="2">index</el-radio>
-					</el-radio-group>
-				</el-form-item>
 				<el-form-item label="类型" prop="type">
 					<el-radio-group v-model="dialogData.type">
 						<el-radio :label="1">导航</el-radio>
 						<el-radio :label="2">页面</el-radio>
 						<el-radio :label="3">按钮</el-radio>
+						<el-radio :label="4">页面跳转链接</el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="code" prop="code">
@@ -25,7 +20,7 @@
 				<el-form-item label="icon" prop="icon">
 					<el-input v-model="dialogData.icon"></el-input>
 				</el-form-item>
-				<el-form-item label="上级" prop="parentId">
+				<el-form-item label="上级" prop="parentId" v-show="dialogData.type!=4">
 					<template v-if="readonly">{{dialogData.parentName}}</template>
 					<template v-else>
 						<el-tree :data="parentTreeData" node-key="id" :props="{label: 'name',children:'child'}" :default-expand-all="true" :highlight-current="true" :expand-on-click-node="false" ref="selectParentTree"></el-tree>
@@ -145,12 +140,15 @@ export default {
 		},
 		saveDial() {
 			this.dialogData.parentId = this.$refs.selectParentTree.getCurrentKey();
-			if (this.dialogType == '2' && this.dialogData.parentId === this.dialogData.id) {
-				this.$message({
-					message: '上级单位不能选择自身！',
-					type: 'warning',
-				});
-				return;
+			// if (this.dialogType == '2' && this.dialogData.parentId === this.dialogData.id) {
+			// 	this.$message({
+			// 		message: '上级单位不能选择自身！',
+			// 		type: 'warning',
+			// 	});
+			// 	return;
+			// }
+			if (this.dialogData.type == 4) {
+				this.dialogData.parentId = "0";
 			}
 			this.$refs.form.validate(valid => {
 				if (valid) {

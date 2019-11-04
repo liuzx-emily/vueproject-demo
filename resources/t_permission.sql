@@ -1,36 +1,72 @@
-INSERT INTO `t_permission` VALUES (1, 1557027428395, 1557195832417, 0, 12, '系统管理', 0, 1, '/system', 'gears', '');
-INSERT INTO `t_permission` VALUES (2, 1557027515408, 1557027515408, 0, 1, '部门管理', 1, 2, '/system/dept', NULL, '');
-INSERT INTO `t_permission` VALUES (3, 1557027775223, 1557027775223, 0, 2, '用户管理', 1, 2, '/system/user', NULL, '');
-INSERT INTO `t_permission` VALUES (4, 1557028216406, 1557028216406, 0, 3, '角色管理', 1, 2, '/system/role', NULL, '');
-INSERT INTO `t_permission` VALUES (5, 1557110406100, 1557372291268, 0, 4, '权限管理', 1, 2, '/system/permission', NULL, '');
-INSERT INTO `t_permission` VALUES (7, 1557111458144, 1557737341169, 0, 1, '预设样式', 0, 1, '/presetStyle', 'cube', '');
-INSERT INTO `t_permission` VALUES (8, 1557111635237, 1557129422258, 0, 2, '组件说明', 0, 1, '/componentInstructions', 'superpowers', '');
-INSERT INTO `t_permission` VALUES (9, 1557111644861, 1557129495997, 0, 3, '插件DEMO', 0, 1, '/pluginDemo', 'leaf', '');
-INSERT INTO `t_permission` VALUES (10, 1557111658700, 1557129564820, 0, 4, '黑科技&难点', 0, 1, '/blackTechnology', 'magic', '');
-INSERT INTO `t_permission` VALUES (11, 1557128981918, 1557128981918, 0, 1, '按钮', 7, 2, '/presetStyle/btn', '', '');
-INSERT INTO `t_permission` VALUES (12, 1557128998814, 1557128998814, 0, 2, '搜索条件', 7, 2, '/presetStyle/searchCondition', '', '');
-INSERT INTO `t_permission` VALUES (13, 1557129446685, 1557129446685, 0, 1, '表格xTable', 8, 2, '/componentInstructions/xTable', '', '');
-INSERT INTO `t_permission` VALUES (14, 1557129465767, 1557129465767, 0, 2, 'treeTable', 8, 2, '/componentInstructions/treeTable', '', '');
-INSERT INTO `t_permission` VALUES (15, 1557129480333, 1557129480333, 0, 3, '横向滚动', 8, 2, '/componentInstructions/horizontalScrolling', '', '');
-INSERT INTO `t_permission` VALUES (16, 1557129517350, 1557129517350, 0, 1, 'echarts', 9, 2, '/pluginDemo/echarts', '', '');
-INSERT INTO `t_permission` VALUES (17, 1557129542688, 1557129542688, 0, 2, 'Guide', 9, 2, '/pluginDemo/guide', '', '');
-INSERT INTO `t_permission` VALUES (18, 1557129587195, 1557129614479, 0, 1, 'CSS', 10, 1, '/blackTechnology/css', '', '');
-INSERT INTO `t_permission` VALUES (19, 1557129608347, 1557988597949, 0, 3, '使用css绘制图形', 18, 2, '/blackTechnology/css/03', '', '');
-INSERT INTO `t_permission` VALUES (20, 1557129646124, 1557374645882, 0, 2, '利用content属性attr抓取资料', 18, 2, '/blackTechnology/css/02', '', '');
-INSERT INTO `t_permission` VALUES (21, 1557129805787, 1557129805787, 0, 2, 'Javascript', 10, 1, '/blackTechnology/js', '', '');
-INSERT INTO `t_permission` VALUES (22, 1557129830883, 1557988572307, 0, 3, 'console', 21, 2, '/blackTechnology/js/03', '', '');
-INSERT INTO `t_permission` VALUES (23, 1557129849079, 1557129876502, 0, 3, 'HTML', 10, 1, '/blackTechnology/html', '', '');
-INSERT INTO `t_permission` VALUES (24, 1557191243343, 1557191243343, 0, 1, '输入数学公式', 23, 2, '/blackTechnology/html/01', '', '');
-INSERT INTO `t_permission` VALUES (25, 1557191262124, 1557191262124, 0, 4, '综合', 10, 1, '/blackTechnology/complex', '', '');
-INSERT INTO `t_permission` VALUES (26, 1557191278753, 1557191278753, 0, 1, '打印', 25, 2, '/blackTechnology/complex/01', '', '');
-INSERT INTO `t_permission` VALUES (27, 1557191301658, 1557191301658, 0, 2, '页面导出PDF', 25, 2, '/blackTechnology/complex/02', '', '');
-INSERT INTO `t_permission` VALUES (28, 1557191323708, 1557372446714, 0, 5, 'vue相关', 10, 1, '/blackTechnology/vue', '', '');
-INSERT INTO `t_permission` VALUES (29, 1557191341536, 1558064621691, 0, 3, '图片的src是变量', 28, 2, '/blackTechnology/vue/03', '', '');
-INSERT INTO `t_permission` VALUES (30, 1557191358015, 1557191358015, 0, 2, '在初始化方法完成后再加载其他部分', 28, 2, '/blackTechnology/vue/02', '', '');
-INSERT INTO `t_permission` VALUES (31, 1557191389360, 1557195837762, 0, 11, '文章管理', 0, 2, '/article', 'book', '');
-INSERT INTO `t_permission` VALUES (32, 1557195814726, 1557195814726, 0, 13, '人员管理', 0, 2, '/deptAndUser', 'user', '');
-INSERT INTO `t_permission` VALUES (39, 1557741931092, 1557741931092, 0, 4, '常见表单组件', 8, 2, '/componentInstructions/commonFormItem', '', '');
-INSERT INTO `t_permission` VALUES (40, 1557891352688, 1557988585767, 0, 1, 'tricks', 18, 2, '/blackTechnology/css/01', '', '');
-INSERT INTO `t_permission` VALUES (41, 1557892532138, 1557988576571, 0, 1, 'tricks', 21, 2, '/blackTechnology/js/01', '', '');
-INSERT INTO `t_permission` VALUES (42, 1557975656515, 1557988564597, 0, 2, '多级地址', 21, 2, '/blackTechnology/js/02', '', '');
-INSERT INTO `t_permission` VALUES (43, 1558064644520, 1558064787978, 0, 1, 'tricks', 28, 2, '/blackTechnology/vue/01', '', '');
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : localhost密码root
+ Source Server Type    : MySQL
+ Source Server Version : 50548
+ Source Host           : localhost:3306
+ Source Schema         : vueproject
+
+ Target Server Type    : MySQL
+ Target Server Version : 50548
+ File Encoding         : 65001
+
+ Date: 04/11/2019 15:28:13
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `t_permission`;
+CREATE TABLE `t_permission`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
+  `parentId` int(11) NOT NULL COMMENT '父级id',
+  `type` tinyint(4) NOT NULL COMMENT '1导航(无内容) 2菜单 3按钮 4页面跳转链接',
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'url或者code值',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
+  `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
+  `isDelete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0正常1删除',
+  `createTime` bigint(20) NOT NULL COMMENT '创建时间',
+  `updateTime` bigint(20) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of t_permission
+-- ----------------------------
+INSERT INTO `t_permission` VALUES (1, '系统管理', 0, 1, '/system', 'gears', '', 12, 0, 1557027428395, 1557195832417);
+INSERT INTO `t_permission` VALUES (2, '部门管理', 1, 2, '/system/dept', NULL, '', 2, 0, 1557027515408, 1559115267859);
+INSERT INTO `t_permission` VALUES (3, '人员管理', 1, 2, '/system/deptAndUser', NULL, '', 1, 0, 1557027775223, 1559117133846);
+INSERT INTO `t_permission` VALUES (4, '角色管理', 1, 2, '/system/role', NULL, '', 3, 0, 1557028216406, 1557028216406);
+INSERT INTO `t_permission` VALUES (5, '权限管理', 1, 2, '/system/permission', NULL, '', 4, 0, 1557110406100, 1557372291268);
+INSERT INTO `t_permission` VALUES (31, '文章管理', 0, 2, '/article', 'book', '', 11, 0, 1557191389360, 1557195837762);
+INSERT INTO `t_permission` VALUES (45, '新增', 2, 3, 'dept:btn:add', '', '', 1, 0, 1559099231635, 1559099231635);
+INSERT INTO `t_permission` VALUES (46, '编辑', 2, 3, 'dept:btn:edit', '', '', 2, 0, 1559099266232, 1559099266232);
+INSERT INTO `t_permission` VALUES (47, '查看', 2, 3, 'dept:btn:look', '', '', 3, 0, 1559099277544, 1559099277544);
+INSERT INTO `t_permission` VALUES (48, '删除', 2, 3, 'dept:btn:delete', '', '', 4, 0, 1559099288353, 1559099288353);
+INSERT INTO `t_permission` VALUES (49, '新增', 3, 3, 'user:btn:add', '', '', 1, 0, 1559099653124, 1559099653124);
+INSERT INTO `t_permission` VALUES (50, '编辑', 3, 3, 'user:btn:edit', '', '', 2, 0, 1559099666990, 1559099666990);
+INSERT INTO `t_permission` VALUES (51, '查看', 3, 3, 'user:btn:look', '', '', 3, 0, 1559099676728, 1559099676728);
+INSERT INTO `t_permission` VALUES (52, '删除', 3, 3, 'user:btn:delete', '', '', 4, 0, 1559099691591, 1559099691591);
+INSERT INTO `t_permission` VALUES (53, '新增', 4, 3, 'role:btn:add', '', '', 1, 0, 1559099728861, 1559099728861);
+INSERT INTO `t_permission` VALUES (54, '编辑', 4, 3, 'role:btn:edit', '', '', 2, 0, 1559099737543, 1559099737543);
+INSERT INTO `t_permission` VALUES (55, '查看', 4, 3, 'role:btn:look', '', '', 3, 0, 1559099746585, 1559099746585);
+INSERT INTO `t_permission` VALUES (56, '删除', 4, 3, 'role:btn:delete', '', '', 4, 0, 1559099757926, 1559099757926);
+INSERT INTO `t_permission` VALUES (57, '新增', 5, 3, 'permission:btn:add', '', '', 1, 0, 1559099791709, 1559099791709);
+INSERT INTO `t_permission` VALUES (58, '编辑', 5, 3, 'permission:btn:edit', '', '', 2, 0, 1559099800423, 1559099800423);
+INSERT INTO `t_permission` VALUES (59, '查看', 5, 3, 'permission:btn:look', '', '', 3, 0, 1559099810440, 1559099810440);
+INSERT INTO `t_permission` VALUES (60, '删除', 5, 3, 'permission:btn:delete', '', '', 4, 0, 1559099821324, 1559099821324);
+INSERT INTO `t_permission` VALUES (61, '新增', 31, 3, 'article:btn:add', '', '', 1, 0, 1559122007950, 1559122007950);
+INSERT INTO `t_permission` VALUES (62, '编辑', 31, 3, 'article:btn:edit', '', '', 2, 0, 1559122026122, 1559122026122);
+INSERT INTO `t_permission` VALUES (63, '查看', 31, 3, 'article:btn:look', '', '', 3, 0, 1559122042650, 1559122042650);
+INSERT INTO `t_permission` VALUES (64, '删除', 31, 3, 'article:btn:delete', '', '', 4, 0, 1559122062242, 1559122062242);
+INSERT INTO `t_permission` VALUES (65, '审核', 31, 3, 'article:btn:audit', '', '', 5, 0, 1559194644356, 1559194644356);
+INSERT INTO `t_permission` VALUES (73, '门户', 0, 4, './portal.html', 'fire', '', 21, 0, 1572851034425, 1572851601550);
+INSERT INTO `t_permission` VALUES (74, '注册', 0, 4, './register.html', 'fire', '', 22, 0, 1572851536431, 1572851604958);
+
+SET FOREIGN_KEY_CHECKS = 1;

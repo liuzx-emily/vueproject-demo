@@ -54,7 +54,8 @@ export default {
 			searchparam: {
 				username: "",
 				name: "",
-			}
+			},
+			mark: "1",
 		};
 	},
 	watch: {

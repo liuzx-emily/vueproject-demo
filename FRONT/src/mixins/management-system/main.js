@@ -3,7 +3,7 @@ import userbox from "./modules/userbox/main.vue";
 
 import './styles/main.less'
 export default {
-	components: {  sidebarMenu, userbox },
+	components: { sidebarMenu, userbox },
 	watch: {
 		sidebarNavList() {
 			// console.log("sidebarNavList:",this.sidebarNavList);
@@ -55,13 +55,15 @@ export default {
 			initDone_menu: false,
 			// 因为用v-permission控制按钮权限，所以一定要先获取到所有按钮的权限
 			initDone_btn: false,
-			// 总导航
+			// 总导航（router的）
 			navList: [],
+			// 【因为涉及到 jumpToFirstNav 的问题，所以把页面内路由跳转链接，和外部链接放到两个字段里】
+			externalLinkNav: [],
 		};
 	},
 	methods: {
 		refreshNavList(data) {
-			const navList = this.xtools.arrayToTree(data, { id: "id", parentId: "parentId", children: "child" });
+			const navList = this.xtools.arrayToTree(data.filter(item => item.type != 4), { id: "id", parentId: "parentId", children: "child" });
 			if (navList && navList.length > 0) {
 				this.navList = navList;
 				this.initDone_menu = true;
@@ -75,6 +77,7 @@ export default {
 			} else {
 				this.initDone_menu = true;
 			}
+			this.externalLinkNav = data.filter(item => item.type == 4);
 		},
 		refreshPermissionBtns(data) {
 			this.$store.state.permissionBtns = this._.map(data, "code");

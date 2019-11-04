@@ -14,14 +14,15 @@ module.exports = {
 	    2 当使用 pages 选项构建多页面应用时。
 	*/
 	publicPath: '',
+
 	// outputDir: __dirname + "/dist",
 	// outputDir: "e:\\dist",
+
 	configureWebpack: config => {
-		// console.log(JSON.stringify(config));
 		if (process.env.NODE_ENV === 'production') {
 			// 为生产环境修改配置...
 			config.output.filename = 'js/[name].js';
-			// config.output.chunkFilename = 'js/chunks/[name].js';
+			config.output.chunkFilename = 'js/chunks-[name].js';
 		} else {
 			// 为开发环境修改配置...
 		}
@@ -33,28 +34,15 @@ module.exports = {
 				'~': path.resolve(__dirname, 'src'),
 			}
 		};
+
 	},
 	// 多页面
 	pages: {
-		index: {
-			entry: 'src/pages/index/main.js',
-			template: 'public/index.html',
-			title: '首页',
-			filename: 'index.html',
-			importTinymce: true
-		},
 		admin: {
 			entry: 'src/pages/admin/main.js',
 			template: 'public/index.html',
 			title: '管理系统',
 			filename: 'admin.html',
-			importTinymce: true
-		},
-		demo: {
-			entry: 'src/pages/demo/main.js',
-			template: 'public/index.html',
-			title: 'demo',
-			filename: 'demo.html',
 			importTinymce: true
 		},
 		login: {
