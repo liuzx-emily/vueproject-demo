@@ -8,17 +8,6 @@ let attributes = {
 		allowNull: false,
 		comment: "名称",
 	},
-	parentId: {
-		type: Sequelize.STRING(50),
-		allowNull: false,
-		comment: "父级id",
-	},
-	description: {
-		// Unlimited length TEXT column
-		type: Sequelize.TEXT,
-		allowNull: true,
-		comment: "描述（没什么用，为了前端页面能有一个textarea效果而加的。）",
-	},
 };
 
 module.exports = new EasyModelExample({

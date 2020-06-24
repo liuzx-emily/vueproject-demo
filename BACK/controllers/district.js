@@ -1,13 +1,11 @@
+const models = require("../initialization/scanModels")
+
 const getLevelOneList = async (ctx, next) => {
-	const models = ctx.xglobal.models;
-	//
 	let result = await models.district.findAll({ where: { parentId: 0 } });
 	ctx.response.body = { code: 1, data: result, };
 };
 
 const getByParentCode = async (ctx, next) => {
-	const models = ctx.xglobal.models;
-	//
 	let parentCode = ctx.requestparam.parentCode;
 	let parentEle = await models.district.findOne({ where: { code: parentCode } });
 	let parentId = parentEle.id;
@@ -16,8 +14,6 @@ const getByParentCode = async (ctx, next) => {
 };
 
 const getByParentName = async (ctx, next) => {
-	const models = ctx.xglobal.models;
-	//
 	let parentName = ctx.requestparam.parentName;
 	let parentEle = await models.district.findOne({ where: { name: parentName } });
 	let parentId = parentEle.id;

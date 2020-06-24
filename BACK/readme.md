@@ -1,0 +1,9 @@
+koa               2.7.0
+koa-body          4.1.0
+koa-bodyparser    4.2.1
+koa-router        7.4.0
+koa-session      5.12.2
+mysql2            1.6.5
+sequelize        5.10.1
+uuid              3.3.2
+ws                7.1.0

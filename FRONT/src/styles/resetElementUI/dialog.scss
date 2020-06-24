@@ -1,0 +1,33 @@
+.el-dialog__header {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	line-height: normal;
+	background: #2196f3;
+
+	.el-dialog__title {
+		font-size: 14px;
+		font-weight: bold;
+		color: #fff;
+	}
+
+	.el-dialog__headerbtn {
+		top: 12px;
+		.el-dialog__close {
+			color: white;
+		}
+	}
+}
+
+.el-dialog__body {
+	padding: 15px 20px 15px;
+}
+
+// .general-dialog-footer {
+// 	text-align: right;
+//   margin-top: 10px;
+// 	.x-button.size-common {
+// 		margin: 0 5px;
+// 		padding: 6px 12px;
+// 		font-size: 14px;
+// 	}
+// }

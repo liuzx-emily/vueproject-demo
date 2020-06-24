@@ -1,9 +1,8 @@
+const models = require("../../initialization/scanModels")
+const Op = require('sequelize').Op;
 const fs = require("fs");
 
 const getFileRecord = async (ctx, { fileIds, fileId }) => {
-	const models = ctx.xglobal.models;
-	const Op = ctx.xglobal.Op;
-	//
 	if (fileIds) {
 		const recordList = await models.file.findAll({
 			where: {
@@ -20,9 +19,6 @@ const getFileRecord = async (ctx, { fileIds, fileId }) => {
 };
 
 const deleteFile = async (ctx, fileIds) => {
-	const models = ctx.xglobal.models;
-	const Op = ctx.xglobal.Op;
-	//
 	// 删除物理文件
 	const fileRecords = await getFileRecord(ctx, { fileIds });
 	fileRecords.forEach(file => { fs.unlinkSync(file.path); });

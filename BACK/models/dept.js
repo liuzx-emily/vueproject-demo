@@ -13,17 +13,6 @@ let attributes = {
 		allowNull: false,
 		comment: "父级id",
 	},
-	type: {
-		type: Sequelize.TINYINT,
-		allowNull: false,
-		comment: "类型（没什么用，为了前端页面能有一个单选效果而加的。）",
-	},
-	description: {
-		// Unlimited length TEXT column
-		type: Sequelize.TEXT,
-		allowNull: true,
-		comment: "描述（没什么用，为了前端页面能有一个textarea效果而加的。）",
-	},
 };
 
 const model = new EasyModelExample({
