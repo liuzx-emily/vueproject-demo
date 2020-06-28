@@ -11,7 +11,7 @@
  Target Server Version : 50548
  File Encoding         : 65001
 
- Date: 04/11/2019 15:28:04
+ Date: 28/06/2020 10:41:40
 */
 
 SET NAMES utf8mb4;
@@ -39,7 +39,7 @@ CREATE TABLE `t_article`  (
 -- ----------------------------
 -- Records of t_article
 -- ----------------------------
-INSERT INTO `t_article` VALUES ('27762484-53b8-451d-90a8-f65bc4860735', 1567751212419, 1567751273060, 0, NULL, '2', '2', 1567751187361, '<p>2222</p>\n<p>&nbsp;</p>\n<p><img src=\"api/download.do?id=11f47ab2-c9bf-4cba-9eaf-5794fe86598a\" width=\"115\" height=\"115\" /></p>\n<p>&nbsp;</p>', '1', '');
+INSERT INTO `t_article` VALUES ('27762484-53b8-451d-90a8-f65bc4860735', 1567751212419, 1592205847707, 0, NULL, '2', '2', 1590076800000, '<p><span style=\"color: #ff0000;\">dasd</span></p>\n<p><span style=\"color: #ff0000; background-color: #ff00ff;\">asda</span></p>\n<p><span style=\"color: #ff0000;\">aa1111</span></p>', '1', '');
 INSERT INTO `t_article` VALUES ('3abe924a-3516-42f9-89ed-8ba11c0ac324', 1567750231024, 1567751208020, 1, NULL, '2', '2', 1567750225616, '<p>小明你好</p>', '1', '');
 INSERT INTO `t_article` VALUES ('a8330812-0922-416b-87df-5c6ce91c4888', 1567750065081, 1567751209428, 1, NULL, '1', '1', 1567750060200, '<p>ggg</p>', '1', '');
 INSERT INTO `t_article` VALUES ('be6fc1ce-2a68-41b7-b134-4e7b949c81ae', 1567751224915, 1567751231754, 0, NULL, '1', '1', 1567751187361, '<p>1111111111</p>', '2', '');
@@ -56,12 +56,7 @@ CREATE TABLE `t_article_file`  (
   `articleId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章id',
   `fileId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '附件id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of t_article_file
--- ----------------------------
-INSERT INTO `t_article_file` VALUES (8, 0, 0, '', '3190b6a3-02d6-483f-8a20-557ba29422a1');
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for t_dept
@@ -75,47 +70,19 @@ CREATE TABLE `t_dept`  (
   `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `parentId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '父级id',
-  `type` tinyint(4) NOT NULL COMMENT '类型（没什么用，为了前端页面能有一个单选效果而加的。）',
-  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述（没什么用，为了前端页面能有一个textarea效果而加的。）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_dept
 -- ----------------------------
-INSERT INTO `t_dept` VALUES ('0253e0be-e34e-4f5f-b63f-0352742d02dd', 1557201142509, 1557737116907, 1, 10, 'sadfsfasf', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('0955d538-483f-447c-8600-0ca50e287c2a', 1559726994222, 1559727004667, 1, 10, 'ddd', '12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d', 2, '');
-INSERT INTO `t_dept` VALUES ('12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d', 1556249148241, 1559118486607, 0, 0, '芹菜', '1f2c2889-fe0c-4594-8683-d2cfef933488', 2, '');
-INSERT INTO `t_dept` VALUES ('1f2c2889-fe0c-4594-8683-d2cfef933488', 1556249117676, 1558593451173, 0, 2, '蔬菜', '0', 1, 'vegetable');
-INSERT INTO `t_dept` VALUES ('257b7b60-5ea1-493e-a617-f48d84857cf3', 1557121013485, 1559120918049, 1, NULL, '蛋类', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('2ae7ca3b-3e8f-4c13-9a8c-a45d7cfa4929', 1559116915852, 1559116924262, 1, 10, 'aaaavvvv', 'a825a84c-8954-43dd-a774-268e5728e79f', 1, '');
-INSERT INTO `t_dept` VALUES ('343e3d97-9ccf-4c3e-840d-c6c4dc97ee26', 1556249158473, 1559120881456, 1, 1, '土豆、紫薯、红薯', '4c65b01c-9594-459f-a067-a736785dd201', 1, '');
-INSERT INTO `t_dept` VALUES ('346e57fd-978f-4a48-9e60-454aae9e8357', 1557127207862, 1559115415170, 1, NULL, '玉兰片2', '4c65b01c-9594-459f-a067-a736785dd201', 1, '');
-INSERT INTO `t_dept` VALUES ('3d7569d2-932c-4dce-82ce-42ebd97fe88b', 1557201148303, 1557737114817, 1, 10, 'fsasdsdf', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('498cfb44-db9f-420e-92b1-ceda099b6144', 1557114749250, 1559120918049, 1, NULL, '海鲜', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('4a480fbe-e5b9-4acf-a11e-2de64e3af25a', 1556249363846, 1559120881456, 1, 3, '玉兰片', '4c65b01c-9594-459f-a067-a736785dd201', 2, '长了个蔬菜的样子，居然是主食？！！');
-INSERT INTO `t_dept` VALUES ('4c65b01c-9594-459f-a067-a736785dd201', 1556249129490, 1559120887562, 1, 3, '主食', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('4d654e6b-b318-4f02-ae37-c6f71b3d541b', 1557200554967, 1559115420356, 1, 10, '发送', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('538157aa-abea-41da-9d8a-e5294fb1f554', 1557115159538, 1559120906216, 0, NULL, '三文鱼', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('5c3c90cb-eb0d-4c5b-8cdd-9d4299d52c56', 1559117265910, 1559117272436, 1, 10, 'ddddddd', 'd3721b90-b3cd-47ae-9e46-00b64be13444', 1, '');
-INSERT INTO `t_dept` VALUES ('60ae0ebb-f491-4b46-9d82-ab81866cad07', 1559117201155, 1559117272436, 1, 10, '顶顶顶顶', '257b7b60-5ea1-493e-a617-f48d84857cf3', 1, '');
-INSERT INTO `t_dept` VALUES ('724a1936-68c5-4012-ad2b-aac416b48c43', 1559270734165, 1559270746200, 1, 10, '点点点的', '12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d', 2, '');
-INSERT INTO `t_dept` VALUES ('805a780c-e00c-4caa-b5c2-d63049970523', 1557127298195, 1559121669873, 1, NULL, '蛤蜊', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('94bdb009-eead-4b11-bd0f-6dcc202966a2', 1557127232156, 1557206121310, 1, NULL, '3123', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('98b78057-0cda-4f60-b7c6-8922c741cff9', 1560304616316, 1560304619085, 1, 10, 'ddd', '538157aa-abea-41da-9d8a-e5294fb1f554', 1, '');
-INSERT INTO `t_dept` VALUES ('a4f90dd4-20c5-4d46-bd2d-0f52fbb74d0d', 1558405962280, 1558405970550, 1, NULL, 'adasd', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('a825a84c-8954-43dd-a774-268e5728e79f', 1556249272054, 1559120881456, 1, 2, '毛豆、蚕豆、豌豆', '4c65b01c-9594-459f-a067-a736785dd201', 2, '');
-INSERT INTO `t_dept` VALUES ('b1589c01-581c-43d9-a011-6bc5bee297d9', 1557113627019, 1557206127159, 1, NULL, '3321', '4c65b01c-9594-459f-a067-a736785dd201', 2, '');
-INSERT INTO `t_dept` VALUES ('b98abcde-dcf8-4c37-89c2-ed9ffeb605ac', 1560304625434, 1560304627869, 1, 10, 'asdfsfd', 'd3721b90-b3cd-47ae-9e46-00b64be13444', 1, '');
-INSERT INTO `t_dept` VALUES ('bc1001e9-74e6-4976-a71b-64a31a49eee3', 1557127260935, 1559115007160, 1, 0, '321321a', '1f2c2889-fe0c-4594-8683-d2cfef933488', 2, '');
-INSERT INTO `t_dept` VALUES ('c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', 1556249141597, 1556249141597, 0, NULL, '菠菜', '1f2c2889-fe0c-4594-8683-d2cfef933488', 1, '');
-INSERT INTO `t_dept` VALUES ('c5c9fb25-3feb-4cc5-9ce0-f3036e5595fe', 1559119362727, 1559119367363, 1, 10, 'fdsassfd', 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', 1, '');
-INSERT INTO `t_dept` VALUES ('c7432832-c5b3-4f0a-88eb-6bd371e203c4', 1557115176735, 1559120918049, 1, NULL, '禽类', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('c7c459fd-99ad-4856-ae8b-53f1a7671cd8', 1557206059401, 1557737112397, 1, 10, 'sdfasfsdafs', '3d7569d2-932c-4dce-82ce-42ebd97fe88b', 1, '');
-INSERT INTO `t_dept` VALUES ('d3721b90-b3cd-47ae-9e46-00b64be13444', 1557200114491, 1559120900601, 0, 1, '鸡蛋', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1, '');
-INSERT INTO `t_dept` VALUES ('d3849be8-e99d-4ed0-945e-e48de6b42492', 1557115170206, 1559121669873, 1, NULL, '鸡胸肉', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1', 2, '');
-INSERT INTO `t_dept` VALUES ('e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1556249123497, 1557736837682, 0, 1, '肉类', '0', 1, '');
-INSERT INTO `t_dept` VALUES ('f319b1d2-7ea4-48e5-9240-5a5d930f1d6e', 1556249233054, 1559120884953, 1, 4, '莲藕', '4c65b01c-9594-459f-a067-a736785dd201', 2, '');
+INSERT INTO `t_dept` VALUES ('12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d', 1556249148241, 1591166475879, 0, 0, '芹菜', '1f2c2889-fe0c-4594-8683-d2cfef933488');
+INSERT INTO `t_dept` VALUES ('1f2c2889-fe0c-4594-8683-d2cfef933488', 1556249123497, 1589955913952, 0, 0, '蔬菜', '0');
+INSERT INTO `t_dept` VALUES ('538157aa-abea-41da-9d8a-e5294fb1f554', 1557115159538, 1559120906216, 0, NULL, '三文鱼', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1');
+INSERT INTO `t_dept` VALUES ('c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', 1556249141597, 1556249141597, 0, NULL, '菠菜', '1f2c2889-fe0c-4594-8683-d2cfef933488');
+INSERT INTO `t_dept` VALUES ('c43e8c79-84ad-4369-8e9a-5fa1ae9996a3', 1586424472752, 1586424472752, 0, 10, '小芹菜', '12ed7d5f-5b7e-4c4a-be25-6e457d01cf0d');
+INSERT INTO `t_dept` VALUES ('d3721b90-b3cd-47ae-9e46-00b64be13444', 1557200114491, 1559120900601, 0, 1, '鸡蛋', 'e74bcafe-7bc7-4688-887a-86e3206fbbf1');
+INSERT INTO `t_dept` VALUES ('e74bcafe-7bc7-4688-887a-86e3206fbbf1', 1556249123497, 1557736837682, 0, 1, '肉类', '0');
 
 -- ----------------------------
 -- Table structure for t_district
@@ -3727,16 +3694,11 @@ CREATE TABLE `t_file`  (
 -- ----------------------------
 -- Records of t_file
 -- ----------------------------
-INSERT INTO `t_file` VALUES ('0bcc3242-5f8d-4db6-97dc-ba3ae5b246f6', 1568095275567, 1568095275567, 'bg.png', 3515599, 'e:\\myProject\\upload\\upload_08ac401f89bfd6181d0f88ff48504eaa.png');
-INSERT INTO `t_file` VALUES ('3b814e5d-5db7-4eaf-a43f-cf6a9459b7a5', 1568095237105, 1568095237105, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_f8935bb9ef4b5be680c101cd5b555086.jpg');
-INSERT INTO `t_file` VALUES ('60119a1c-661c-497d-9e0b-232611ae9912', 1568018892353, 1568018892353, 'icon1.png', 31733, 'e:\\myProject\\upload\\upload_512e04343c48ed5e11769cd90c699719.png');
-INSERT INTO `t_file` VALUES ('7786dc3b-2d17-417b-9d99-6c4bff89d456', 1568017105680, 1568017105680, '53d70ebfd249a.jpg', 82444, 'e:\\myProject\\upload\\upload_9727cd554dbad4ecaa23c9b9255cce25.jpg');
-INSERT INTO `t_file` VALUES ('78670076-1c5a-4fe7-b5bb-4f5058dcec5b', 1568017665992, 1568017665992, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_bb62461a872230441e3e36a92731ccb3.jpg');
-INSERT INTO `t_file` VALUES ('a2698dd9-ff01-496e-878f-2c0ce6cc867b', 1568096236963, 1568096236963, '21643957_1370325500333.png', 273901, 'e:\\myProject\\upload\\upload_4aa2ef47a79bf11451f92079bd9a0c57.png');
-INSERT INTO `t_file` VALUES ('bd3f7237-388e-47f6-8417-597afdcfb649', 1568094194975, 1568094194976, '1209305995131.jpg', 481005, 'e:\\myProject\\upload\\upload_b689c2a38be3e44f3b537d72481a1789.jpg');
-INSERT INTO `t_file` VALUES ('d0262dd4-169d-44e5-bde4-777823dfe99a', 1568096229859, 1568096229859, 'paper3.jpg', 93856, 'e:\\myProject\\upload\\upload_270838573ff478f0e7f4cb36038f501c.jpg');
-INSERT INTO `t_file` VALUES ('e0df244f-3ba2-489c-ba29-752f292dc8a1', 1568095146665, 1568095146665, '25.jpg', 33151, 'e:\\myProject\\upload\\upload_8955c7836ddfe040da5a0f8d3ecbef38.jpg');
-INSERT INTO `t_file` VALUES ('e9e4cf9d-71ce-443a-814f-dcc5af062db1', 1563439795229, 1563439795229, '25.jpg', 33151, 'E:\\myProject\\upload\\avatar.jpg');
+INSERT INTO `t_file` VALUES ('34d2b47f467f4c80a220ae91054c2365', 1593312055970, 1593312055970, 'f0cda89031194f04b3697692c14e0725!400x400.jpeg', 42661, 'E:\\myProject\\upload\\/cdf5a1dca0d14447b379531ed4a9190d');
+INSERT INTO `t_file` VALUES ('5a52f0c95abd442b830a431f70cd3854', 1592987782553, 1592987782553, 'icon1.png', 31733, 'E:\\myProject\\upload\\/9ae4f99d5a884ecb98f48761c9a6b459');
+INSERT INTO `t_file` VALUES ('65db97e774244eac8cd28d4e93bca71d', 1592987684354, 1592987684354, '538542b8c379e.jpg', 541201, 'E:\\myProject\\upload\\/e59a95b3a3fe401aa64b08357e8f918d');
+INSERT INTO `t_file` VALUES ('e8d3d69a65ea43b992dd6a38ab071ead', 1592206539555, 1592206539555, 'f0cda89031194f04b3697692c14e0725!400x400.jpeg', 42661, 'e:\\myProject\\upload\\/c8c05408beeb4512b49adbdfb752cdce');
+INSERT INTO `t_file` VALUES ('ed4098492287490e901264beaabfb6ce', 1592804858257, 1592804858257, 'f0cda89031194f04b3697692c14e0725!400x400.jpeg', 42661, 'E:\\myProject\\upload\\/71b045220d2f4de7888be69ec8eb1c8c');
 
 -- ----------------------------
 -- Table structure for t_permission
@@ -3746,49 +3708,81 @@ CREATE TABLE `t_permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
   `parentId` int(11) NOT NULL COMMENT '父级id',
-  `type` tinyint(4) NOT NULL COMMENT '1导航(无内容) 2菜单 3按钮 4页面跳转链接',
+  `showInNavigation` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否在导航中显示 0不显示 1显示',
+  `isExternalLink` tinyint(1) NULL DEFAULT 0 COMMENT '是否为外部链接 0不是 1是（仅在showInNavigation为1时有效）',
   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'url或者code值',
-  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'icon（仅在showInNavigation为1时有效）',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述',
   `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
   `isDelete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0正常1删除',
   `createTime` bigint(20) NOT NULL COMMENT '创建时间',
   `updateTime` bigint(20) NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_permission
 -- ----------------------------
-INSERT INTO `t_permission` VALUES (1, '系统管理', 0, 1, '/system', 'gears', '', 12, 0, 1557027428395, 1557195832417);
-INSERT INTO `t_permission` VALUES (2, '部门管理', 1, 2, '/system/dept', NULL, '', 2, 0, 1557027515408, 1559115267859);
-INSERT INTO `t_permission` VALUES (3, '人员管理', 1, 2, '/system/deptAndUser', NULL, '', 1, 0, 1557027775223, 1559117133846);
-INSERT INTO `t_permission` VALUES (4, '角色管理', 1, 2, '/system/role', NULL, '', 3, 0, 1557028216406, 1557028216406);
-INSERT INTO `t_permission` VALUES (5, '权限管理', 1, 2, '/system/permission', NULL, '', 4, 0, 1557110406100, 1557372291268);
-INSERT INTO `t_permission` VALUES (31, '文章管理', 0, 2, '/article', 'book', '', 11, 0, 1557191389360, 1557195837762);
-INSERT INTO `t_permission` VALUES (45, '新增', 2, 3, 'dept:btn:add', '', '', 1, 0, 1559099231635, 1559099231635);
-INSERT INTO `t_permission` VALUES (46, '编辑', 2, 3, 'dept:btn:edit', '', '', 2, 0, 1559099266232, 1559099266232);
-INSERT INTO `t_permission` VALUES (47, '查看', 2, 3, 'dept:btn:look', '', '', 3, 0, 1559099277544, 1559099277544);
-INSERT INTO `t_permission` VALUES (48, '删除', 2, 3, 'dept:btn:delete', '', '', 4, 0, 1559099288353, 1559099288353);
-INSERT INTO `t_permission` VALUES (49, '新增', 3, 3, 'user:btn:add', '', '', 1, 0, 1559099653124, 1559099653124);
-INSERT INTO `t_permission` VALUES (50, '编辑', 3, 3, 'user:btn:edit', '', '', 2, 0, 1559099666990, 1559099666990);
-INSERT INTO `t_permission` VALUES (51, '查看', 3, 3, 'user:btn:look', '', '', 3, 0, 1559099676728, 1559099676728);
-INSERT INTO `t_permission` VALUES (52, '删除', 3, 3, 'user:btn:delete', '', '', 4, 0, 1559099691591, 1559099691591);
-INSERT INTO `t_permission` VALUES (53, '新增', 4, 3, 'role:btn:add', '', '', 1, 0, 1559099728861, 1559099728861);
-INSERT INTO `t_permission` VALUES (54, '编辑', 4, 3, 'role:btn:edit', '', '', 2, 0, 1559099737543, 1559099737543);
-INSERT INTO `t_permission` VALUES (55, '查看', 4, 3, 'role:btn:look', '', '', 3, 0, 1559099746585, 1559099746585);
-INSERT INTO `t_permission` VALUES (56, '删除', 4, 3, 'role:btn:delete', '', '', 4, 0, 1559099757926, 1559099757926);
-INSERT INTO `t_permission` VALUES (57, '新增', 5, 3, 'permission:btn:add', '', '', 1, 0, 1559099791709, 1559099791709);
-INSERT INTO `t_permission` VALUES (58, '编辑', 5, 3, 'permission:btn:edit', '', '', 2, 0, 1559099800423, 1559099800423);
-INSERT INTO `t_permission` VALUES (59, '查看', 5, 3, 'permission:btn:look', '', '', 3, 0, 1559099810440, 1559099810440);
-INSERT INTO `t_permission` VALUES (60, '删除', 5, 3, 'permission:btn:delete', '', '', 4, 0, 1559099821324, 1559099821324);
-INSERT INTO `t_permission` VALUES (61, '新增', 31, 3, 'article:btn:add', '', '', 1, 0, 1559122007950, 1559122007950);
-INSERT INTO `t_permission` VALUES (62, '编辑', 31, 3, 'article:btn:edit', '', '', 2, 0, 1559122026122, 1559122026122);
-INSERT INTO `t_permission` VALUES (63, '查看', 31, 3, 'article:btn:look', '', '', 3, 0, 1559122042650, 1559122042650);
-INSERT INTO `t_permission` VALUES (64, '删除', 31, 3, 'article:btn:delete', '', '', 4, 0, 1559122062242, 1559122062242);
-INSERT INTO `t_permission` VALUES (65, '审核', 31, 3, 'article:btn:audit', '', '', 5, 0, 1559194644356, 1559194644356);
-INSERT INTO `t_permission` VALUES (73, '门户', 0, 4, './portal.html', 'fire', '', 21, 0, 1572851034425, 1572851601550);
-INSERT INTO `t_permission` VALUES (74, '注册', 0, 4, './register.html', 'fire', '', 22, 0, 1572851536431, 1572851604958);
+INSERT INTO `t_permission` VALUES (1, '系统管理', 0, 1, 0, '/system', 'fa-cogs', '', 1, 0, 1557027428395, 1592451543270);
+INSERT INTO `t_permission` VALUES (2, '部门管理', 1, 1, 0, '/system/org', 'fa-university', '', 2, 0, 1557027515408, 1591930763967);
+INSERT INTO `t_permission` VALUES (3, '人员管理', 1, 1, 0, '/system/user', 'fa-user-circle', '', 1, 0, 1557027775223, 1591930614698);
+INSERT INTO `t_permission` VALUES (4, '角色管理', 1, 1, 0, '/system/role', 'fa-user-secret', '', 3, 0, 1557028216406, 1591932480092);
+INSERT INTO `t_permission` VALUES (5, '权限管理', 1, 1, 0, '/system/permission', 'fa-deaf', '', 4, 0, 1557110406100, 1591931743624);
+INSERT INTO `t_permission` VALUES (31, '文章管理', 0, 1, 0, '/article', 'fa-book', '', 2, 0, 1557191389360, 1591946497418);
+INSERT INTO `t_permission` VALUES (45, '新增', 2, 0, 0, 'org:add', '', '', 1, 0, 1559099231635, 1592358513819);
+INSERT INTO `t_permission` VALUES (46, '编辑', 2, 0, 0, 'org:edit', '', '', 2, 0, 1559099266232, 1592358568844);
+INSERT INTO `t_permission` VALUES (47, '查看', 2, 0, 0, 'org:detail', '', '', 3, 0, 1559099277544, 1592358576051);
+INSERT INTO `t_permission` VALUES (48, '删除', 2, 0, 0, 'org:delete', '', '', 4, 0, 1559099288353, 1592358582130);
+INSERT INTO `t_permission` VALUES (49, '新增', 3, 0, 0, 'user:add', '', '', 1, 0, 1559099653124, 1592358259191);
+INSERT INTO `t_permission` VALUES (50, '编辑', 3, 0, 0, 'user:edit', '', '', 2, 0, 1559099666990, 1592358266197);
+INSERT INTO `t_permission` VALUES (51, '查看', 3, 0, 0, 'user:detail', '', '', 3, 0, 1559099676728, 1592358281530);
+INSERT INTO `t_permission` VALUES (52, '删除', 3, 0, 0, 'user:delete', '', '', 4, 0, 1559099691591, 1592358287526);
+INSERT INTO `t_permission` VALUES (53, '新增', 4, 0, 0, 'role:add', '', '', 1, 0, 1559099728861, 1592358591923);
+INSERT INTO `t_permission` VALUES (54, '编辑', 4, 0, 0, 'role:edit', '', '', 2, 0, 1559099737543, 1592358596355);
+INSERT INTO `t_permission` VALUES (55, '查看', 4, 0, 0, 'role:detail', '', '', 3, 0, 1559099746585, 1592358602474);
+INSERT INTO `t_permission` VALUES (56, '删除', 4, 0, 0, 'role:delete', '', '', 4, 0, 1559099757926, 1592358607525);
+INSERT INTO `t_permission` VALUES (57, '新增', 5, 0, 0, 'permission:add', '', '', 1, 0, 1559099791709, 1592358613932);
+INSERT INTO `t_permission` VALUES (58, '编辑', 5, 0, 0, 'permission:edit', '', '', 2, 0, 1559099800423, 1592358652329);
+INSERT INTO `t_permission` VALUES (60, '删除', 5, 0, 0, 'permission:delete', '', '', 4, 0, 1559099821324, 1592358656825);
+INSERT INTO `t_permission` VALUES (61, '新增', 31, 0, 0, 'article:add', '', '', 1, 0, 1559122007950, 1592358662128);
+INSERT INTO `t_permission` VALUES (62, '编辑', 31, 0, 0, 'article:edit', '', '', 2, 0, 1559122026122, 1592358666576);
+INSERT INTO `t_permission` VALUES (63, '查看', 31, 0, 0, 'article:detail', '', '', 3, 0, 1559122042650, 1592358672088);
+INSERT INTO `t_permission` VALUES (64, '删除', 31, 0, 0, 'article:delete', '', '', 4, 0, 1559122062242, 1592358678320);
+INSERT INTO `t_permission` VALUES (65, '审核', 31, 0, 0, 'article:audit', '', '', 5, 0, 1559194644356, 1592358682680);
+INSERT INTO `t_permission` VALUES (66, '腾讯外链', 0, 1, 1, 'http://www.qq.com', 'fa-qq', NULL, 3, 0, 1591946483924, 1592188606474);
+INSERT INTO `t_permission` VALUES (67, '重置密码', 3, 0, 0, 'user:resetpw', '', NULL, 5, 0, 1592358367012, 1592358367012);
+INSERT INTO `t_permission` VALUES (68, '权限测试', 0, 1, 0, '/permission-test', 'fa-bullseye', NULL, 4, 0, 1592452224411, 1592465171474);
+INSERT INTO `t_permission` VALUES (69, '电之生气', 75, 1, 0, '/permission-test/1/2/electricity', 'fa-bolt', NULL, 1, 0, 1592465520084, 1592536905919);
+INSERT INTO `t_permission` VALUES (71, '水之难过', 75, 0, 0, '/permission-test/1/2/water', '', NULL, 4, 0, 1592465602266, 1592536972385);
+INSERT INTO `t_permission` VALUES (72, '霜之哀伤', 75, 0, 0, '/permission-test/1/2/frost', '', NULL, 3, 0, 1592466107504, 1592536964745);
+INSERT INTO `t_permission` VALUES (73, '权限1', 68, 1, 0, '/permission-test/1', 'fa-bookmark-o', NULL, 1, 0, 1592536742169, 1592537198400);
+INSERT INTO `t_permission` VALUES (74, '权限1-1', 73, 1, 0, '/permission-test/1/1', 'fa-bookmark-o', NULL, 1, 0, 1592536854220, 1592536854220);
+INSERT INTO `t_permission` VALUES (75, '权限1-2', 73, 1, 0, '/permission-test/1/2', 'fa-bookmark-o', NULL, 2, 0, 1592536890347, 1592536890347);
+INSERT INTO `t_permission` VALUES (76, '权限2', 68, 1, 0, '/permission-test/2', 'fa-bookmark-o', NULL, 2, 0, 1592537146646, 1592537146646);
+INSERT INTO `t_permission` VALUES (77, '权限3', 68, 1, 0, '/permission-test/3', 'fa-bookmark-o', NULL, 3, 0, 1592537157393, 1592537157393);
+INSERT INTO `t_permission` VALUES (78, '权限1-1-1', 74, 1, 0, '/permission-test/1/1/1', 'fa-bookmark-o', NULL, 1, 0, 1592537312844, 1592537318884);
+INSERT INTO `t_permission` VALUES (79, '权限1-1-2', 74, 1, 0, '/permission-test/1/1/2', 'fa-bookmark-o', NULL, 2, 0, 1592537333872, 1592537333872);
+INSERT INTO `t_permission` VALUES (80, '火之高兴', 75, 0, 0, '/permission-test/1/2/frost', '', NULL, 2, 0, 1592804315032, 1592804315032);
+INSERT INTO `t_permission` VALUES (81, 'playground', 0, 1, 0, '/playground', 'fa-heartbeat', NULL, 0, 0, 1592892077806, 1592992441780);
+INSERT INTO `t_permission` VALUES (82, '画板', 93, 1, 0, '/playground/canvas/drawingBoard', '', NULL, 1, 0, 1592892115785, 1592902038193);
+INSERT INTO `t_permission` VALUES (83, '照片滤镜', 93, 1, 0, '/playground/canvas/photoFilter', '', NULL, 2, 0, 1592892397917, 1592902034656);
+INSERT INTO `t_permission` VALUES (84, '太阳升起', 93, 1, 0, '/playground/canvas/sunRising', '', NULL, 3, 0, 1592893435734, 1592902065850);
+INSERT INTO `t_permission` VALUES (85, '漂亮的仪表盘', 93, 1, 0, '/playground/canvas/prettyDashboard', '', NULL, 4, 0, 1592893668278, 1592902074455);
+INSERT INTO `t_permission` VALUES (86, '各种神奇效果', 96, 1, 0, '/playground/css/magician', '', NULL, 1, 0, 1592893914347, 1592902343086);
+INSERT INTO `t_permission` VALUES (87, '日历', 94, 1, 0, '/playground/component/calendar', '', NULL, 1, 0, 1592901587694, 1592902109176);
+INSERT INTO `t_permission` VALUES (88, '级联地址', 94, 1, 0, '/playground/component/cascadingAdress', '', NULL, 2, 0, 1592901608064, 1592902117302);
+INSERT INTO `t_permission` VALUES (89, '树', 94, 1, 0, '/playground/component/tree', '', NULL, 4, 0, 1592901623864, 1592966903354);
+INSERT INTO `t_permission` VALUES (90, '导出excel', 95, 1, 0, '/playground/js/exportExcel', '', NULL, 1, 0, 1592901650898, 1592902245695);
+INSERT INTO `t_permission` VALUES (91, '导出PDF', 95, 1, 0, '/playground/js/exportPdf', '', NULL, 2, 0, 1592901668551, 1592902255454);
+INSERT INTO `t_permission` VALUES (92, '打印', 95, 1, 0, '/playground/js/print', '', NULL, 3, 0, 1592901681759, 1592902263926);
+INSERT INTO `t_permission` VALUES (93, 'canvas', 81, 1, 0, '/playground/canvas', '', NULL, 1, 0, 1592902017082, 1592902017082);
+INSERT INTO `t_permission` VALUES (94, '组件', 81, 1, 0, '/playground/component', '', NULL, 3, 0, 1592902085022, 1592902373790);
+INSERT INTO `t_permission` VALUES (95, 'js', 81, 1, 0, '/playground/js', '', NULL, 4, 0, 1592902215676, 1592902380557);
+INSERT INTO `t_permission` VALUES (96, 'css', 81, 1, 0, '/playground/css', '', NULL, 2, 0, 1592902333898, 1592902357286);
+INSERT INTO `t_permission` VALUES (97, 'echarts', 81, 1, 0, '/playground/echarts', '', NULL, 5, 0, 1592905186638, 1592905186638);
+INSERT INTO `t_permission` VALUES (98, '雪中的问候', 96, 1, 0, '/playground/css/greetingInSnow', '', NULL, 2, 0, 1592966672641, 1592966672641);
+INSERT INTO `t_permission` VALUES (99, '富文本编辑器', 94, 1, 0, '/playground/component/editor', '', NULL, 3, 0, 1592966900572, 1592966900572);
+INSERT INTO `t_permission` VALUES (100, '作弊码', 95, 1, 0, '/playground/js/cheatCode', '', NULL, 4, 0, 1592967081019, 1592967081019);
 
 -- ----------------------------
 -- Table structure for t_role
@@ -3801,7 +3795,6 @@ CREATE TABLE `t_role`  (
   `isDelete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0正常1删除',
   `order` tinyint(4) NULL DEFAULT NULL COMMENT '排序字段',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
-  `parentId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '父级id',
   `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '描述（没什么用，为了前端页面能有一个textarea效果而加的。）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -3809,15 +3802,8 @@ CREATE TABLE `t_role`  (
 -- ----------------------------
 -- Records of t_role
 -- ----------------------------
-INSERT INTO `t_role` VALUES ('041a9ece-98d4-4198-8d27-274d306d4653', 1558411026407, 1559186169269, 0, NULL, '系统管理员', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', '');
-INSERT INTO `t_role` VALUES ('2fd96e30-8b73-4632-bac9-92950359c0d8', 1558410985827, 1558411090289, 1, NULL, 'fsadfsd', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', '');
-INSERT INTO `t_role` VALUES ('4d9772fe-bb47-4c60-b837-8d96be77677b', 1560502117001, 1560502117001, 0, NULL, '菜鸟', '0', '');
-INSERT INTO `t_role` VALUES ('6f5466aa-3714-4625-9b85-be77a0bbd986', 1560304989601, 1560305045406, 1, NULL, 'sdaf', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', '');
-INSERT INTO `t_role` VALUES ('6f61d0a3-6301-4fcd-a20f-daa1e3f041fa', 1558416255359, 1558416264582, 1, NULL, '方法方法付', '041a9ece-98d4-4198-8d27-274d306d4653', '');
-INSERT INTO `t_role` VALUES ('b967515e-ed75-4e72-b5d1-9326f1ee9ee8', 1560304633506, 1560304798704, 1, NULL, 'asdfasdf', '041a9ece-98d4-4198-8d27-274d306d4653', '');
-INSERT INTO `t_role` VALUES ('cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 1556516960960, 1559100683087, 0, NULL, '超级管理员', '0', '拥有全部权限');
-INSERT INTO `t_role` VALUES ('dd1a78ac-e8cc-4181-a99a-b6307ab4727d', 1559115054077, 1559115058288, 1, NULL, 'ddd', '041a9ece-98d4-4198-8d27-274d306d4653', '');
-INSERT INTO `t_role` VALUES ('ed8cb524-60e2-4500-9fc0-5520d9cf00a3', 1560304999676, 1560305045406, 1, NULL, 'kkkk', '041a9ece-98d4-4198-8d27-274d306d4653', '');
+INSERT INTO `t_role` VALUES ('cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 1556516960960, 1592967088640, 0, 1, '超级管理员', '拥有全部权限');
+INSERT INTO `t_role` VALUES ('d87c0bc7311a4b3e8d54e95ab56aa8a4', 1592362465548, 1592362465548, 0, NULL, '文章管理员', NULL);
 
 -- ----------------------------
 -- Table structure for t_role_permission
@@ -3830,68 +3816,75 @@ CREATE TABLE `t_role_permission`  (
   `roleId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色id',
   `permissionId` int(11) NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 176 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1484 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of t_role_permission
 -- ----------------------------
-INSERT INTO `t_role_permission` VALUES (114, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 7);
-INSERT INTO `t_role_permission` VALUES (115, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 11);
-INSERT INTO `t_role_permission` VALUES (116, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 12);
-INSERT INTO `t_role_permission` VALUES (117, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 8);
-INSERT INTO `t_role_permission` VALUES (118, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 13);
-INSERT INTO `t_role_permission` VALUES (119, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 14);
-INSERT INTO `t_role_permission` VALUES (120, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 15);
-INSERT INTO `t_role_permission` VALUES (121, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 39);
-INSERT INTO `t_role_permission` VALUES (122, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 9);
-INSERT INTO `t_role_permission` VALUES (123, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 16);
-INSERT INTO `t_role_permission` VALUES (124, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 17);
-INSERT INTO `t_role_permission` VALUES (125, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 10);
-INSERT INTO `t_role_permission` VALUES (126, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 18);
-INSERT INTO `t_role_permission` VALUES (127, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 40);
-INSERT INTO `t_role_permission` VALUES (128, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 20);
-INSERT INTO `t_role_permission` VALUES (129, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 19);
-INSERT INTO `t_role_permission` VALUES (130, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 21);
-INSERT INTO `t_role_permission` VALUES (131, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 41);
-INSERT INTO `t_role_permission` VALUES (132, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 42);
-INSERT INTO `t_role_permission` VALUES (133, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 22);
-INSERT INTO `t_role_permission` VALUES (134, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 23);
-INSERT INTO `t_role_permission` VALUES (135, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 24);
-INSERT INTO `t_role_permission` VALUES (136, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 25);
-INSERT INTO `t_role_permission` VALUES (137, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 26);
-INSERT INTO `t_role_permission` VALUES (138, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 27);
-INSERT INTO `t_role_permission` VALUES (139, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 28);
-INSERT INTO `t_role_permission` VALUES (140, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 43);
-INSERT INTO `t_role_permission` VALUES (141, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 30);
-INSERT INTO `t_role_permission` VALUES (142, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 29);
-INSERT INTO `t_role_permission` VALUES (143, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 31);
-INSERT INTO `t_role_permission` VALUES (144, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 1);
-INSERT INTO `t_role_permission` VALUES (145, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 2);
-INSERT INTO `t_role_permission` VALUES (146, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 45);
-INSERT INTO `t_role_permission` VALUES (147, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 46);
-INSERT INTO `t_role_permission` VALUES (148, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 47);
-INSERT INTO `t_role_permission` VALUES (149, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 48);
-INSERT INTO `t_role_permission` VALUES (150, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 3);
-INSERT INTO `t_role_permission` VALUES (151, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 49);
-INSERT INTO `t_role_permission` VALUES (152, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 50);
-INSERT INTO `t_role_permission` VALUES (153, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 51);
-INSERT INTO `t_role_permission` VALUES (154, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 52);
-INSERT INTO `t_role_permission` VALUES (155, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 4);
-INSERT INTO `t_role_permission` VALUES (156, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 53);
-INSERT INTO `t_role_permission` VALUES (157, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 54);
-INSERT INTO `t_role_permission` VALUES (158, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 55);
-INSERT INTO `t_role_permission` VALUES (159, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 56);
-INSERT INTO `t_role_permission` VALUES (160, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 5);
-INSERT INTO `t_role_permission` VALUES (161, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 57);
-INSERT INTO `t_role_permission` VALUES (162, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 58);
-INSERT INTO `t_role_permission` VALUES (163, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 59);
-INSERT INTO `t_role_permission` VALUES (164, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 60);
-INSERT INTO `t_role_permission` VALUES (165, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 32);
-INSERT INTO `t_role_permission` VALUES (171, 0, 0, '041a9ece-98d4-4198-8d27-274d306d4653', 1);
-INSERT INTO `t_role_permission` VALUES (172, 0, 0, '041a9ece-98d4-4198-8d27-274d306d4653', 3);
-INSERT INTO `t_role_permission` VALUES (173, 0, 0, '041a9ece-98d4-4198-8d27-274d306d4653', 2);
-INSERT INTO `t_role_permission` VALUES (174, 0, 0, '041a9ece-98d4-4198-8d27-274d306d4653', 4);
-INSERT INTO `t_role_permission` VALUES (175, 0, 0, '041a9ece-98d4-4198-8d27-274d306d4653', 5);
+INSERT INTO `t_role_permission` VALUES (347, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 31);
+INSERT INTO `t_role_permission` VALUES (348, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 61);
+INSERT INTO `t_role_permission` VALUES (349, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 62);
+INSERT INTO `t_role_permission` VALUES (350, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 63);
+INSERT INTO `t_role_permission` VALUES (351, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 64);
+INSERT INTO `t_role_permission` VALUES (352, 0, 0, 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 65);
+INSERT INTO `t_role_permission` VALUES (1426, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 81);
+INSERT INTO `t_role_permission` VALUES (1427, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 93);
+INSERT INTO `t_role_permission` VALUES (1428, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 82);
+INSERT INTO `t_role_permission` VALUES (1429, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 83);
+INSERT INTO `t_role_permission` VALUES (1430, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 84);
+INSERT INTO `t_role_permission` VALUES (1431, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 85);
+INSERT INTO `t_role_permission` VALUES (1432, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 96);
+INSERT INTO `t_role_permission` VALUES (1433, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 86);
+INSERT INTO `t_role_permission` VALUES (1434, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 98);
+INSERT INTO `t_role_permission` VALUES (1435, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 94);
+INSERT INTO `t_role_permission` VALUES (1436, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 87);
+INSERT INTO `t_role_permission` VALUES (1437, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 88);
+INSERT INTO `t_role_permission` VALUES (1438, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 99);
+INSERT INTO `t_role_permission` VALUES (1439, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 89);
+INSERT INTO `t_role_permission` VALUES (1440, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 95);
+INSERT INTO `t_role_permission` VALUES (1441, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 90);
+INSERT INTO `t_role_permission` VALUES (1442, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 91);
+INSERT INTO `t_role_permission` VALUES (1443, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 92);
+INSERT INTO `t_role_permission` VALUES (1444, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 100);
+INSERT INTO `t_role_permission` VALUES (1445, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 97);
+INSERT INTO `t_role_permission` VALUES (1446, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 1);
+INSERT INTO `t_role_permission` VALUES (1447, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 3);
+INSERT INTO `t_role_permission` VALUES (1448, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 49);
+INSERT INTO `t_role_permission` VALUES (1449, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 50);
+INSERT INTO `t_role_permission` VALUES (1450, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 51);
+INSERT INTO `t_role_permission` VALUES (1451, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 52);
+INSERT INTO `t_role_permission` VALUES (1452, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 67);
+INSERT INTO `t_role_permission` VALUES (1453, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 2);
+INSERT INTO `t_role_permission` VALUES (1454, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 45);
+INSERT INTO `t_role_permission` VALUES (1455, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 46);
+INSERT INTO `t_role_permission` VALUES (1456, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 47);
+INSERT INTO `t_role_permission` VALUES (1457, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 48);
+INSERT INTO `t_role_permission` VALUES (1458, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 4);
+INSERT INTO `t_role_permission` VALUES (1459, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 53);
+INSERT INTO `t_role_permission` VALUES (1460, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 54);
+INSERT INTO `t_role_permission` VALUES (1461, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 55);
+INSERT INTO `t_role_permission` VALUES (1462, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 56);
+INSERT INTO `t_role_permission` VALUES (1463, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 5);
+INSERT INTO `t_role_permission` VALUES (1464, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 57);
+INSERT INTO `t_role_permission` VALUES (1465, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 58);
+INSERT INTO `t_role_permission` VALUES (1466, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 60);
+INSERT INTO `t_role_permission` VALUES (1467, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 31);
+INSERT INTO `t_role_permission` VALUES (1468, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 61);
+INSERT INTO `t_role_permission` VALUES (1469, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 62);
+INSERT INTO `t_role_permission` VALUES (1470, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 63);
+INSERT INTO `t_role_permission` VALUES (1471, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 64);
+INSERT INTO `t_role_permission` VALUES (1472, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 65);
+INSERT INTO `t_role_permission` VALUES (1473, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 66);
+INSERT INTO `t_role_permission` VALUES (1474, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 68);
+INSERT INTO `t_role_permission` VALUES (1475, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 73);
+INSERT INTO `t_role_permission` VALUES (1476, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 74);
+INSERT INTO `t_role_permission` VALUES (1477, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 78);
+INSERT INTO `t_role_permission` VALUES (1478, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 79);
+INSERT INTO `t_role_permission` VALUES (1479, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 75);
+INSERT INTO `t_role_permission` VALUES (1480, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 69);
+INSERT INTO `t_role_permission` VALUES (1481, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 80);
+INSERT INTO `t_role_permission` VALUES (1482, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 76);
+INSERT INTO `t_role_permission` VALUES (1483, 0, 0, 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 77);
 
 -- ----------------------------
 -- Table structure for t_user
@@ -3918,15 +3911,8 @@ CREATE TABLE `t_user`  (
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('2fdfad5f-f522-4213-8fc2-7ef38a1199e4', 1559271273609, 1562227403581, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaohong', '蔬菜小红', '$2b$10$nGA9RvL9TToCdBWd31AMSe.7ijCVZTYxpesVkaDB3eNZswyri0ywS', '', '', '/download.do?id=b20d9922-e42a-4cb5-9d61-7e85ec0e27df', '123456');
-INSERT INTO `t_user` VALUES ('4573d922-29ee-44d5-bd93-4267be5fc0ef', 1563244187232, 1563244197228, 1, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '4d9772fe-bb47-4c60-b837-8d96be77677b', 'asdfasdf', 'asdfasdf', '$2b$10$OUGu7CJJxi8KLGEOkAzjNOuxnuIljTTxEKp9uvc1/XyexCT7BScHe', '', '', '', '123456');
-INSERT INTO `t_user` VALUES ('56a67bce-4575-4129-a88c-105662832f56', 1559121455119, 1560483933717, 0, 0, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'bocaixiaoliu', '菠菜小刘', '$2b$10$.Xr0dTg6LZmUCibaPWWN2ucI4i5B/.sO1ZkUufk0BEYL9l1Oigu8q', '', '', NULL, '123456');
-INSERT INTO `t_user` VALUES ('5b29f21d-0b8d-4206-b226-f1cf92d1a7db', 1556530469471, 1560483932130, 0, NULL, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '041a9ece-98d4-4198-8d27-274d306d4653', 'qincaixiaoha', '现在是菠菜小哈', '$2b$10$rz7iZZ7ajAyfq3c6euhQPewYttEL6b5EToVQgtF0qHmHvbQmO1Q9.', '', '13825164233', NULL, '123456');
-INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1563439796168, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2b$10$5W8piOSk85X5uSRnPHocG.iu5tp4cKgDx4lPeskwFWqlhtyGbIE2W', 'xiaoming@163.com', '15822432311', '/api/download.do?id=e9e4cf9d-71ce-443a-814f-dcc5af062db1', 'rock123');
-INSERT INTO `t_user` VALUES ('98c961b4-4809-4f55-9ff6-a53b15402e26', 1563245875245, 1563245875245, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'xiaogang', '小刚', '$2b$10$2/rcmsxs8Evu6pIAjpDvw.ZkRxZKD5Aoxqz23qLkmlr9OWMRPuU9i', '', '', '', '123456');
-INSERT INTO `t_user` VALUES ('a723fbcc-6235-4e07-b038-8bd6f1eae97e', 1560483092329, 1563417186068, 1, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'aaa', '哎哎哎', '$2b$10$ddy23q6IX6iQEa1kW6MiBu/4ukCIflyDmhFEV1LBJB.EQBejaPK/q', '', '', NULL, '123456');
-INSERT INTO `t_user` VALUES ('af2c9f71-289b-483a-9939-7870367cc1aa', 1563438482428, 1563438486601, 1, 0, 'c0d0d214-06b0-4b5a-96ae-8ad060ff19c9', '4d9772fe-bb47-4c60-b837-8d96be77677b', 'aa', 'aaa', '$2b$10$WcE3PPMRKP7Q8eJfsgEPNuGuZdiucEr031dDf95u6ZBk7A/.wmtPW', '', '', '', '123456');
-INSERT INTO `t_user` VALUES ('e5c382ce-d060-4604-b35c-8582b66ab5d2', 1559271290307, 1560483922563, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', '041a9ece-98d4-4198-8d27-274d306d4653', 'shucaixiaogang', '蔬菜小刚', '$2b$10$tENZ0jiy8mWhuqRlod/QxOsPtcaFHeZbg0KJWa5387irat8mKefq2', '', '', NULL, '123456');
+INSERT INTO `t_user` VALUES ('78eaac16-8ade-459a-bcd5-6e5150a9a3d2', 1556517217684, 1593312057346, 0, NULL, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'cd3299cc-e079-4ad6-81ab-32e609ba9bc3', 'shucaixiaoming', '蔬菜小明', '$2a$10$Df6AfZvsQchubf6EhjJPBuIH/Otxtnw8QGCLcSv0Y87dXT9oxBWnO', 'xiaoming@163.com', '15822432311', '/api/download.do?id=34d2b47f467f4c80a220ae91054c2365', '123456');
+INSERT INTO `t_user` VALUES ('d4c564409ad2447398c062644c3744fc', 1592357146024, 1592362470653, 0, 0, '1f2c2889-fe0c-4594-8683-d2cfef933488', 'd87c0bc7311a4b3e8d54e95ab56aa8a4', 'xiaohong', '小红', '$2a$10$EypTKalTdv/gqtm2y9Y/AuGc9.xaZMP309vkCrcA0xYR85s2H8d4u', '', '', '', '123456');
 
 -- ----------------------------
 -- View structure for v_user
@@ -3940,5 +3926,51 @@ FROM
 	t_user u
 	LEFT JOIN t_dept d ON u.deptId = d.id
 	LEFT JOIN t_role r on u.roleId=r.id ; ;
+
+-- ----------------------------
+-- Function structure for org_findMyselfAndChildren
+-- ----------------------------
+DROP FUNCTION IF EXISTS `org_findMyselfAndChildren`;
+delimiter ;;
+CREATE FUNCTION `org_findMyselfAndChildren`(rootId VARCHAR(4000))
+ RETURNS varchar(4000) CHARSET utf8
+  DETERMINISTIC
+BEGIN
+  DECLARE sTemp VARCHAR(4000);
+  DECLARE sTempChd VARCHAR(4000);
+  SET sTemp = '';
+  SET sTempChd = rootId; 
+  WHILE sTempChd is not null DO
+    SET sTemp = CONCAT(sTemp,',',sTempChd);
+    SELECT GROUP_CONCAT(id) INTO sTempChd FROM t_dept
+        WHERE FIND_IN_SET(parentId,sTempChd)>0;
+  END WHILE;
+  RETURN sTemp;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Function structure for permission_findMyselfAndChildren
+-- ----------------------------
+DROP FUNCTION IF EXISTS `permission_findMyselfAndChildren`;
+delimiter ;;
+CREATE FUNCTION `permission_findMyselfAndChildren`(rootId INT)
+ RETURNS varchar(4000) CHARSET utf8
+  DETERMINISTIC
+BEGIN
+  DECLARE sTemp VARCHAR(4000);
+  DECLARE sTempChd VARCHAR(4000);
+  SET sTemp = '';
+  SET sTempChd = CAST(rootId as CHAR);
+  WHILE sTempChd is not null DO
+    SET sTemp = CONCAT(sTemp,',',sTempChd);
+    SELECT GROUP_CONCAT(id) INTO sTempChd FROM t_permission
+        WHERE FIND_IN_SET(parentId,sTempChd)>0;
+  END WHILE;
+  RETURN sTemp;
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

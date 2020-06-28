@@ -240,7 +240,7 @@ function _getFinalPathBasedOnRouteAndPermission(route) {
   const path = route.matched[route.matched.length - 1].path;
 
   // 如果是根路径，那么跳转到 navigationRootRedirectPath
-  if (path === '/') {
+  if (path === '/' || path === '') {
     return navigationRootRedirectPath;
   }
 
