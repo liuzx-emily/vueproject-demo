@@ -28,7 +28,7 @@
 					<el-date-picker v-model="dialogData.publishTime" type="date" value-format="timestamp" style="width:140px;"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="附件">
-					<x-upload :flist.sync="dialogData.fileList" :readonly="readonly" />
+					<x-upload v-model="dialogData.fileList" :readonly="readonly" />
 				</el-form-item>
 				<el-form-item label="内容">
 					<x-editor :fcontent.sync="dialogData.content" :readonly="readonly" ref="editor"></x-editor>
@@ -125,7 +125,7 @@
 				this.$refs.form.validate().then(() => {
 					let param = this._.cloneDeep(this.dialogData);
 					// 附件
-					param.fileList = this._.map(this.dialogData.fileList, "id");
+					param.fileList = this.dialogData.fileList.map(o => o.id);
 					// state 1未提交 2待审核 3审核通过 4审核不通过
 					// 审核状态：状态为审核不通过，点击保存，审核状态不变
 					if (param.state == 4 && !submitFlag) {

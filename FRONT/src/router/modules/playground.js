@@ -8,6 +8,7 @@ const route = {
   },
   children: [
     { path: 'echarts', component: () => import('views/playground/echarts/index') },
+    { path: 'dagre-d3', component: () => import('views/playground/dagre-d3/index') },
     {
       path: 'canvas',
       component: Blank,
@@ -37,6 +38,14 @@ const route = {
         { path: 'exportExcel', component: () => import('views/playground/js-exportExcel/index') },
         { path: 'exportPdf', component: () => import('views/playground/js-exportPdf/index') },
         { path: 'print', component: () => import('views/playground/js-print/index') },
+      ]
+    },
+    {
+      path: 'vue',
+      component: Blank,
+      meta: { isTransitionView: true },
+      children: [
+        { path: 'homemadeStore', component: () => import('views/playground/vue-homemadeStore/index') },
       ]
     },
     {

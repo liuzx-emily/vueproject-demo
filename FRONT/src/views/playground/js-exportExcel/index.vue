@@ -19,7 +19,7 @@
 				export_json_to_excel({
 					//表头 必填
 					header: ["姓名", "年龄", ],
-					//具体数据 必填
+					//具体数据 必填 格式：[["小明", 12],["小红", 13],["小刚", 14]]
 					data: formatJson(["name", "age", ], list),
 					// excel文件名称
 					filename: '学生信息',

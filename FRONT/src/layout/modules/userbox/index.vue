@@ -1,12 +1,16 @@
 <template>
 	<section id="userBox">
-		<img v-if="userInfo.profilePhoto" class="profilePhoto" :src="userInfo.profilePhoto">
-		<i class="fa fa-caret-down dropdown-icon"></i>
-		<ul>
-			<li @click="openDial_changePassword">修改密码</li>
-			<li @click="openDial_editInfo">个人信息</li>
-			<li @click="logout">安全退出</li>
-		</ul>
+		<el-dropdown>
+			<section class="avatar-wrapper">
+				<img v-if="userInfo.profilePhoto" class="profilePhoto" :src="userInfo.profilePhoto">
+				<i class="fa fa-caret-down dropdown-icon"></i>
+			</section>
+			<el-dropdown-menu slot="dropdown">
+				<el-dropdown-item @click.native="openDial_changePassword">修改密码</el-dropdown-item>
+				<el-dropdown-item @click.native="openDial_editInfo">个人信息</el-dropdown-item>
+				<el-dropdown-item @click.native="logout">安全退出</el-dropdown-item>
+			</el-dropdown-menu>
+		</el-dropdown>
 		<!-- 弹窗：修改个人信息 -->
 		<dialogEditInfo ref="dialogEditInfo" :refreshFunc="getUserInfo"></dialogEditInfo>
 		<!-- 弹窗：修改密码 -->
@@ -25,7 +29,7 @@
 					username: "",
 					name: "",
 					profilePhoto: "",
-				}
+				},
 			}
 		},
 		created() {
@@ -67,6 +71,7 @@
 					url: "/api/logout.do"
 				}).then(res => {
 					if (res.code == 1) {
+						this.$store.state.permission.permissionDataLoaded = false;
 						this.$router.push("/login")
 					}
 				})

@@ -66,7 +66,7 @@
 			Vue.component("x-upload", this);
 		},
 		props: {
-			flist: {
+			value: {
 				type: Array,
 				default: () => { return []; }
 			},
@@ -76,16 +76,16 @@
 			},
 		},
 		watch: {
-			flist: {
+			value: {
 				immediate: true,
-				handler(value) {
+				handler(val) {
 					// 注意：这里不能深拷贝，因为会触发list变化 -> 触发flist变化 -> 触发list变化。。无限循环。
-					// this.list = this._.cloneDeep(value) || [];
-					this.list = value || [];
+					// this.list = this._.cloneDeep(val) || [];
+					this.list = val || [];
 				},
 			},
-			list(value) {
-				this.$emit("update:flist", value);
+			list(val) {
+				this.$emit("input", val);
 			},
 		},
 		components: {},

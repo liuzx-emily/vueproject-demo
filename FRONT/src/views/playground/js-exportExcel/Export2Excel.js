@@ -219,5 +219,6 @@ export function export_json_to_excel({
 	}), `${filename}.${bookType}`);
 }
 export function formatJson(filterVal, jsonData) {
+  console.log(jsonData.map(v => filterVal.map(j => v[j])));
 	return jsonData.map(v => filterVal.map(j => v[j]))
 }

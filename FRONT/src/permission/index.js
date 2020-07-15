@@ -11,6 +11,7 @@ let navigationListData;
 let navigationTreeData;
 let navigationPathMap;
 
+// 设置路由时
 function initPermissionData(data) {
   _reset();
   // 所有权限（用于v-permission，页面权限拦截等）
@@ -107,6 +108,14 @@ function routerInterception(to, from, next) {
     } else {
       next()
     }
+    // 把前往的页面的导航，在侧边栏中 expand
+    let finalPath = path ? path : to.path
+    const list = getNavAncestors(finalPath)
+    list.forEach(o => {
+      if (o.hasChildren) {
+        o.showChildren = true;
+      }
+    })
   } else {
     // 第一次触发时（页面初始化）可能还没有vm。此时肯定还没拿到权限数据，无法判断只能先放行
     next()
@@ -122,40 +131,8 @@ function getBreadcrumb() {
     navList.push({ name: vm.$route.meta.breadcrumb.name });
   }
   return navList;
-
 }
 
-function getBreadcrumb2() {
-  function _pushFather(permissionObj) {
-    if (navigationPathMap.has(permissionObj.code)) {
-      const navObject = navigationPathMap.get(permissionObj.code);
-      navList.unshift(navObject);
-    }
-    const father = permissionIdMap.get(permissionObj.parentId);
-    if (father) {
-      _pushFather(father);
-    }
-  }
-  const path = vm.$route.path;
-  const navList = [];
-  if (permissionCodeMap.has(path)) {
-    _pushFather(permissionCodeMap.get(path));
-    if (!navigationPathMap.has(path)) {
-      // 本页在权限数据中，但设置为不在导航中显示。则上面的 _pushFather 不会把它自己放进去，要手动拼一下
-      navList.push({ name: permissionCodeMap.get(path).name });
-    }
-  } else if (vm.$route.meta.noIntercept) {
-    // 本页设置了 noIntercept
-    // 因为本页不需要权限拦截，所以数据库中可能根本就没存这个权限信息（不在 permissionCodeMap中）。
-    // 所以本页的面包屑信息，都要去 route.meta.breadcrumb 中取
-    _pushFather(permissionCodeMap.get(vm.$route.meta.breadcrumb.parentPath));
-    // 把它自己拼进去
-    navList.push({ name: vm.$route.meta.breadcrumb.name });
-  } else {
-    return [];
-  }
-  return navList;
-}
 
 export { initPermissionData, routerInterception, getBreadcrumb }
 

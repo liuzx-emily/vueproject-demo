@@ -1,6 +1,3 @@
-<style lang="scss" scoped>
-
-</style>
 <template>
 	<!-- 说明：
         在 a.limitless-menu-li-name 上通过style加padding，是为了背景颜色覆盖一整行。
@@ -41,11 +38,9 @@
 	</ul>
 </template>
 <script>
-	import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
 	export default {
 		// 自己调用自己，所以必须得写name！！！！
 		name: 'submenu',
-		components: ElCollapseTransition,
 		props: {
 			data: Array,
 			level: {

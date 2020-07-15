@@ -42,11 +42,11 @@
 					.controlBtn {
 						position: absolute;
 						z-index: 1;
-            right: 0;
+						right: 0;
 						top: 0;
 						line-height: $nav-height;
 						height: $nav-height;
-            padding: 0 15px;
+						padding: 0 15px;
 						i.fa {
 							margin-top: 0;
 							transition: transform 0.3s, margin-top 0.3s;
@@ -90,41 +90,20 @@
 				position: absolute;
 				right: 20px;
 				top: 0;
-				img.profilePhoto {
-					width: 40px;
-					height: 40px;
-					border-radius: 10px;
-					margin-top: 5px;
-					margin-right: 10px;
-				}
-				i.dropdown-icon {
-					color: #777;
-					font-size: 14px;
-				}
-				ul {
-          // display: none;
-					position: absolute;
-					width: 110px;
-					padding: 10px 0;
-					box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-					border: 1px solid #e6ebf5;
-					background-color: white;
-					border-radius: 4px;
-					top: 55px;
-					right: 0;
-					li {
-						line-height: 30px;
-						padding: 0 17px;
+				.avatar-wrapper {
+					img.profilePhoto {
+						width: 40px;
+						height: 40px;
+						border-radius: 10px;
+						margin-top: 5px;
+						margin-right: 10px;
+					}
+					i.dropdown-icon {
+						color: #777;
 						font-size: 14px;
-						color: #606266;
-						transition: background-color 0.2s, color 0.2s;
-						&:hover {
-							background-color: #e8f4ff;
-							color: #46a6ff;
-							cursor: pointer;
-						}
 					}
 				}
+
 			}
 		}
 		.layout-main-container {

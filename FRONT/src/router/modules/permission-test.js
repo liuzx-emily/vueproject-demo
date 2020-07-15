@@ -25,7 +25,7 @@ const route = {
         {
           path: '2/frost', component: () => import('views/permission-test/1/1-2/modules/frost'),
           meta: {
-            // 如果设置了 noIntercept ，那么必须要设置 breadcrumb（因为不控制权限的话，就不会存数据库，那么面包屑相关信息只能存这里了）
+            // 设置了 noIntercept ，那么必须要设置 breadcrumb（因为这个页面在 layout 中，要显示面包屑。不控制权限的话，就不会存数据库，那么面包屑相关信息只能存这里了）
             noIntercept: true,
             breadcrumb: { name: "霜之哀伤", parentPath: '/permission-test/1/2' },
           }

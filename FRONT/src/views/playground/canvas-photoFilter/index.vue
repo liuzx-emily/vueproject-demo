@@ -7,7 +7,7 @@ canvas {
 
 <template>
 	<section>
-		<input type="file" accept="image/*" @change="uploadFile">
+		<input type="file" accept="image/*" @change="uploadFile"><!-- magic-remove-comments-ignore-line -->
 		<img src="./1.jpg" style="display:none">
 		问题：为什么本地图片1.jpg会加载失败？？？
 		<button type="button" @click="visualEffect_none">原图</button>

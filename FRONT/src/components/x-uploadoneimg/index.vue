@@ -9,7 +9,7 @@
 </style>
 <template>
 	<div v-loading="loading" class="common-upload-one-img-container">
-		<el-upload action="用不到，随便填" :http-request="doUploadAttachment" :show-file-list="false" :multiple="false" v-if="!readonly" style="display:inline-block;margin-right:10px" accept="image/*">
+		<el-upload action="用不到，随便填" :http-request="doUploadAttachment" :show-file-list="false" :multiple="false" v-if="!readonly" style="display:inline-block;margin-right:10px" accept="image/*"><!-- magic-remove-comments-ignore-line -->
 			<template slot="trigger">
 				<x-button v-if="imgUrl" icon="refresh">更换</x-button>
 				<x-button v-else icon="upload">上传</x-button>

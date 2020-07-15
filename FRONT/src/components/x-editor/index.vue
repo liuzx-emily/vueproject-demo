@@ -28,7 +28,7 @@
 		font-size: 14px;
 		line-height: normal;
 		color: black;
-    overflow: auto;
+		overflow: auto;
 	}
 </style>
 <template>
@@ -38,7 +38,7 @@
 		</section>
 		<section v-show="!readonly">
 			<textarea :id="tinymceId" class="tinymce-textarea"></textarea>
-			<input type="file" @change="uploadImg" accept="image/*" style="display:none;" ref="uploadImageBtn">
+			<input type="file" @change="uploadImg" accept="image/*" style="display:none;" ref="uploadImageBtn"><!-- magic-remove-comments-ignore-line -->
 		</section>
 	</div>
 </template>
