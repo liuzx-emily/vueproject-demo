@@ -38,7 +38,7 @@
 		</section>
 		<section v-show="!readonly">
 			<textarea :id="tinymceId" class="tinymce-textarea"></textarea>
-			<input type="file" @change="uploadImg" accept="image/*" style="display:none;" ref="uploadImageBtn"><!-- magic-remove-comments-ignore-line -->
+			<input type="file" @change="uploadImg" accept="image/*" style="display:none;" ref="uploadImageBtn">
 		</section>
 	</div>
 </template>
