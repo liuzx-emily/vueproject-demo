@@ -35,6 +35,7 @@ const route = {
       meta: { isTransitionView: true },
       children: [
         { path: 'cheatCode', component: () => import('views/playground/js-cheatCode/index') },
+        { path: 'codeEditor', component: () => import('views/playground/js-codeEditor/index') },
         { path: 'exportExcel', component: () => import('views/playground/js-exportExcel/index') },
         { path: 'exportPdf', component: () => import('views/playground/js-exportPdf/index') },
         { path: 'print', component: () => import('views/playground/js-print/index') },

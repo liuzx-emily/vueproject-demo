@@ -1,5 +1,10 @@
 /* eslint-disable */
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
 import { vm } from '@/main'
+
+NProgress.configure({ showSpinner: false, ease: 'ease', speed: 200 }) // NProgress Configuration
+
 // 访问根路径时自动跳转到的地址
 let navigationRootRedirectPath = "";
 
@@ -101,12 +106,16 @@ function getNavAncestors(path) {
 }
 
 function routerInterception(to, from, next) {
+  // start progress bar
+  NProgress.start()
   if (vm) {
     let path = _getFinalPathBasedOnRouteAndPermission(to)
     if (path) {
       next(path);
+      NProgress.done()
     } else {
       next()
+      NProgress.done()
     }
     // 把前往的页面的导航，在侧边栏中 expand
     let finalPath = path ? path : to.path
@@ -119,6 +128,7 @@ function routerInterception(to, from, next) {
   } else {
     // 第一次触发时（页面初始化）可能还没有vm。此时肯定还没拿到权限数据，无法判断只能先放行
     next()
+    NProgress.done()
   }
 }
 
