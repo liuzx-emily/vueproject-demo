@@ -26,6 +26,7 @@ const routes = [
     component: Layout,
     children: [
       { path: 'article', component: () => import('views/article/index') },
+      { path: 'form-generator', component: () => import('views/form-generator/index') },
     ]
   },
   { path: '/login', meta: { noIntercept: true, dontNeedPermissionData: true }, component: () => import('views/login/index') },
