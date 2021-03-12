@@ -21,7 +21,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "jshint": "^2.11.1",
     "jsonlint": "^1.6.3",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "nprogress": "^0.2.0",
     "script-loader": "^0.7.2",
     "size-sensor": "0.2.2",
